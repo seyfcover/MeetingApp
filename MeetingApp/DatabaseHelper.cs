@@ -1232,8 +1232,7 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
         }
 
         public DataTable GetParticipantDetailsById(int participantId, string participantType) {
-            string query = "";
-
+            string query;
             switch (participantType) {
                 case "Company":
                     query = "SELECT * FROM Companies WHERE CompanyID = @ParticipantID";

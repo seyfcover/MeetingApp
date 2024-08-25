@@ -15,6 +15,7 @@ namespace MeetingApp
             this.dbHelper = databaseHelper;
         }
 
+        [Obsolete]
         public void GenerateMeetingReport(int meetingId, string templatePath, string outputDocxPath, string outputPdfPath) {
             DataTable meetingDetails = dbHelper.GetMeetingDetails(meetingId);
             if (meetingDetails.Rows.Count == 0) {
@@ -26,7 +27,7 @@ namespace MeetingApp
             //ConvertDocxToPdf(outputDocxPath, outputPdfPath);
         }
 
-
+        [Obsolete]
         private void FillDocx(string templatePath, string outputPath, DataTable meetingDetails, DataTable participants) {
             using (DocX document = DocX.Load(templatePath)) {
                 DataRow meeting = meetingDetails.Rows[0];

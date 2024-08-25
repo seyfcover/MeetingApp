@@ -1,4 +1,6 @@
-﻿namespace MeetingApp
+﻿using System;
+
+namespace MeetingApp
 {
     partial class ReportForm
     {

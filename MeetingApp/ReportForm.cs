@@ -108,7 +108,7 @@ namespace MeetingApp
         }
 
 
-
+        [Obsolete]
         private void btnGenerateReport_Click(object sender, EventArgs e) {
             if (dgvMeetings.SelectedRows.Count > 0) {
                 DataGridViewRow selectedRow = dgvMeetings.SelectedRows[0];
@@ -126,6 +126,7 @@ namespace MeetingApp
             }
         }
 
+        [Obsolete]
         public void GenerateReport(int meetingID) {
             string query = $"SELECT MeetingDate, MeetingTitle FROM Meetings WHERE MeetingID = {meetingID}";
             System.Data.DataTable dt = dbHelper.ExecuteQuery(query);

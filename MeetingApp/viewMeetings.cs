@@ -304,6 +304,7 @@ namespace MeetingApp
             dbHelper.LoadAllMeetingTitles(listofMeetings);
         }
 
+        [Obsolete]
         private async void generateReport_Click(object sender, EventArgs e) {
             try {
                 // meetingID'nin geçerli olup olmadığını kontrol ediyoruz
@@ -353,7 +354,7 @@ namespace MeetingApp
         private void ParticipantCompany_Click(object sender, EventArgs e) {
             // Kullanıcı bilgilerini al
             DataTable userDetail = dbHelper.GetDetailUser(userID);
-            string mailtoUri = "example@example.com";
+            string mailtoUri;
 
             // Eğer kullanıcı bilgileri başarıyla alındıysa
             if ((userDetail != null && userDetail.Rows.Count > 0) && (!String.IsNullOrEmpty(ParticipantName.Text))) {

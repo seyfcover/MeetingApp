@@ -276,22 +276,22 @@ namespace MeetingApp
         }
 
         private void btnDelMeeting_Click(object sender, EventArgs e) {
-            if (_selectedMeetingID == null || _selectedMeetingID <= 0) {
+            if (_selectedMeetingID != null && _selectedMeetingID > 0) {
+                DialogResult result = MessageBox.Show("Bu toplantıyı silmek istediğinizden emin misiniz?", "Toplantı Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes) {
+                    bool isDeleted = dbHelper.DeleteMeeting(_selectedMeetingID);
+
+                    if (isDeleted) {
+                        MessageBox.Show("Toplantı başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadMeetingsIntoComboBox();
+                    } else {
+                        MessageBox.Show("Toplantı silinirken bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            } else {
                 MessageBox.Show("Lütfen silmek için geçerli bir toplantı seçin.", "Geçersiz Seçim", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
-
-            DialogResult result = MessageBox.Show("Bu toplantıyı silmek istediğinizden emin misiniz?", "Toplantı Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes) {
-                bool isDeleted = dbHelper.DeleteMeeting(_selectedMeetingID);
-
-                if (isDeleted) {
-                    MessageBox.Show("Toplantı başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadMeetingsIntoComboBox();
-                } else {
-                    MessageBox.Show("Toplantı silinirken bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 
