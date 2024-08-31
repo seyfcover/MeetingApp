@@ -17,11 +17,10 @@ namespace MeetingApp
         private System.Windows.Forms.Button btnAddAcademics;
         private System.Windows.Forms.Button btnAddEmployees;
         private System.Windows.Forms.Button btnSaveMeeting;
-        private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.DateTimePicker dtpTime;
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.RichTextBox rtbNotes;
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateMeeting));
             this.lbSelectedCompanies = new System.Windows.Forms.ListBox();
             this.lbSelectedUsers = new System.Windows.Forms.ListBox();
             this.lbSelectedAcademics = new System.Windows.Forms.ListBox();
@@ -404,10 +403,10 @@ namespace MeetingApp
             // 
             // nameDocument
             // 
-            this.nameDocument.AutoSize = true;
-            this.nameDocument.Location = new System.Drawing.Point(385, 667);
+            this.nameDocument.AutoEllipsis = true;
+            this.nameDocument.Location = new System.Drawing.Point(385, 656);
             this.nameDocument.Name = "nameDocument";
-            this.nameDocument.Size = new System.Drawing.Size(0, 16);
+            this.nameDocument.Size = new System.Drawing.Size(409, 75);
             this.nameDocument.TabIndex = 30;
             // 
             // addDocument
@@ -432,7 +431,7 @@ namespace MeetingApp
             this.deleteFile.Name = "deleteFile";
             this.deleteFile.Size = new System.Drawing.Size(142, 27);
             this.deleteFile.TabIndex = 32;
-            this.deleteFile.Text = "Sil";
+            this.deleteFile.Text = "Belgeleri Sil";
             this.deleteFile.UseVisualStyleBackColor = false;
             this.deleteFile.Click += new System.EventHandler(this.deleteFile_Click);
             // 
@@ -694,6 +693,7 @@ namespace MeetingApp
             this.Controls.Add(this.btnSaveMeeting);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "UpdateMeeting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -718,7 +718,6 @@ namespace MeetingApp
         private Label nameDocument;
         private Button addDocument;
         private Button deleteFile;
-        private ComboBox listofMeetings;
         private Label label13;
         private Button viewDocument;
         private Label label14;
@@ -735,5 +734,8 @@ namespace MeetingApp
         private TextBox txtMeetingSearch;
         private Label label18;
         private Button btnDelMeeting;
+        public ComboBox listofMeetings;
+        public DateTimePicker dtpDate;
+        public DateTimePicker dtpTime;
     }
 }

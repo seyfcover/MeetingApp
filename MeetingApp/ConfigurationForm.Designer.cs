@@ -12,6 +12,7 @@
         }
 
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurationForm));
             this.txtServer = new System.Windows.Forms.TextBox();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.txtDatabase = new System.Windows.Forms.TextBox();
@@ -119,8 +120,6 @@
             // 
             // ConfigurationForm
             // 
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
             this.ClientSize = new System.Drawing.Size(340, 270);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblPassword);
@@ -133,6 +132,9 @@
             this.Controls.Add(this.txtDatabase);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtServer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ConfigurationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuration";

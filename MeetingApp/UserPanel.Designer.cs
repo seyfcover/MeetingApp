@@ -12,6 +12,7 @@
         }
 
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPanel));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.yeniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.şirketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -23,8 +24,8 @@
             this.aramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.raporToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.takvimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelofMeetings = new System.Windows.Forms.Panel();
             this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelofMeetings = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,7 +98,7 @@
             // toplantıToolStripMenuItem1
             // 
             this.toplantıToolStripMenuItem1.Name = "toplantıToolStripMenuItem1";
-            this.toplantıToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.toplantıToolStripMenuItem1.Size = new System.Drawing.Size(132, 24);
             this.toplantıToolStripMenuItem1.Text = "Toplantı";
             this.toplantıToolStripMenuItem1.Click += new System.EventHandler(this.toplantıToolStripMenuItem1_Click);
             // 
@@ -122,6 +123,13 @@
             this.takvimToolStripMenuItem.Text = "Takvim";
             this.takvimToolStripMenuItem.Click += new System.EventHandler(this.takvimToolStripMenuItem_Click);
             // 
+            // istatistiklerToolStripMenuItem
+            // 
+            this.istatistiklerToolStripMenuItem.Name = "istatistiklerToolStripMenuItem";
+            this.istatistiklerToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
+            this.istatistiklerToolStripMenuItem.Text = "İstatistikler";
+            this.istatistiklerToolStripMenuItem.Click += new System.EventHandler(this.istatistiklerToolStripMenuItem_Click);
+            // 
             // panelofMeetings
             // 
             this.panelofMeetings.AutoScroll = true;
@@ -132,13 +140,6 @@
             this.panelofMeetings.Size = new System.Drawing.Size(1207, 646);
             this.panelofMeetings.TabIndex = 11;
             // 
-            // istatistiklerToolStripMenuItem
-            // 
-            this.istatistiklerToolStripMenuItem.Name = "istatistiklerToolStripMenuItem";
-            this.istatistiklerToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
-            this.istatistiklerToolStripMenuItem.Text = "İstatistikler";
-            this.istatistiklerToolStripMenuItem.Click += new System.EventHandler(this.istatistiklerToolStripMenuItem_Click);
-            // 
             // UserPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -148,6 +149,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;

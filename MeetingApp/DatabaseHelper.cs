@@ -808,11 +808,18 @@ namespace MeetingApp
                         cmd1.ExecuteNonQuery();
                     }
 
-                    // 2. Adım: Meetings tablosundan toplantıyı sil
-                    string query2 = "DELETE FROM Meetings WHERE MeetingID = @MeetingID";
+                    // 2. Adım: MeetingDocuments tablosundan toplantıya ait tüm belgeleri sil
+                    string query2 = "DELETE FROM MeetingDocuments WHERE MeetingID = @MeetingID";
                     using (SqlCommand cmd2 = new SqlCommand(query2, conn, transaction)) {
                         cmd2.Parameters.AddWithValue("@MeetingID", meetingId);
-                        int result = cmd2.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
+                    }
+
+                    // 3. Adım: Meetings tablosundan toplantıyı sil
+                    string query3 = "DELETE FROM Meetings WHERE MeetingID = @MeetingID";
+                    using (SqlCommand cmd3 = new SqlCommand(query3, conn, transaction)) {
+                        cmd3.Parameters.AddWithValue("@MeetingID", meetingId);
+                        int result = cmd3.ExecuteNonQuery();
 
                         // İşlemleri commit et
                         transaction.Commit();
@@ -828,6 +835,7 @@ namespace MeetingApp
                 }
             }
         }
+
 
 
 
@@ -903,24 +911,96 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
             }
         }
 
-
-
-        public void AddMeetingDocument(int meetingId, byte[] documentData) {
+        // Belge ekleme işlemi
+        public void AddMeetingDocuments(int meetingId, List<byte[]> documentDataList, List<string> fileNames, List<string> documentTypes) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
                 conn.Open();
-                //update document
-                if (documentData != null) {
-                    string fileQuery = "UPDATE Meetings SET Documents = @Documents WHERE MeetingID = @MeetingID";
-                    using (SqlCommand fileCmd = new SqlCommand(fileQuery, conn)) {
-                        fileCmd.Parameters.AddWithValue("@MeetingID", meetingId);
-                        fileCmd.Parameters.AddWithValue("@Documents", documentData);
+                for (int i = 0; i < documentDataList.Count; i++) {
+                    byte[] documentData = documentDataList[i];
+                    string fileName = fileNames[i];
+                    string documentType = documentTypes[i];
 
-                        fileCmd.ExecuteNonQuery();
+                    string insertQuery = "INSERT INTO MeetingDocuments (MeetingID, DocumentType, DocumentData, FileName) VALUES (@MeetingID, @DocumentType, @DocumentData, @FileName)";
+                    using (SqlCommand insertCmd = new SqlCommand(insertQuery, conn)) {
+                        insertCmd.Parameters.AddWithValue("@MeetingID", meetingId);
+                        insertCmd.Parameters.AddWithValue("@DocumentType", documentType);
+                        insertCmd.Parameters.AddWithValue("@DocumentData", documentData);
+                        insertCmd.Parameters.AddWithValue("@FileName", fileName);
+                        insertCmd.ExecuteNonQuery();
                     }
                 }
             }
         }
-        //export docx
+
+
+
+        public void UpdateMeetingDocuments(int meetingId, List<byte[]> newDocumentDataList, List<string> fileNames, List<string> documentTypes) {
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+
+                // Mevcut belge sayısını kontrol et
+                int existingDocumentCount = GetDocumentCountForMeeting(meetingId); // Mevcut belge sayısını al
+
+                if (existingDocumentCount < 3) {
+                    int remainingCapacity = 3 - existingDocumentCount;
+                    int documentsToAdd = Math.Min(newDocumentDataList.Count, remainingCapacity);
+
+                    for (int i = 0; i < documentsToAdd; i++) {
+                        byte[] documentData = newDocumentDataList[i];
+                        string fileName = fileNames[i];
+                        string documentType = documentTypes[i];
+
+                        string insertQuery = "INSERT INTO MeetingDocuments (MeetingID, DocumentType, DocumentData, FileName) VALUES (@MeetingID, @DocumentType, @DocumentData, @FileName)";
+                        using (SqlCommand insertCmd = new SqlCommand(insertQuery, conn)) {
+                            insertCmd.Parameters.AddWithValue("@MeetingID", meetingId);
+                            insertCmd.Parameters.AddWithValue("@DocumentType", documentType);
+                            insertCmd.Parameters.AddWithValue("@DocumentData", documentData);
+                            insertCmd.Parameters.AddWithValue("@FileName", fileName);
+                            insertCmd.ExecuteNonQuery();
+                        }
+                    }
+                } else {
+                    MessageBox.Show("Toplamda 3 dosyadan fazlası eklenemez.");
+                }
+            }
+        }
+
+
+
+        public void DeleteMeetingDocuments(int meetingId) {
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+                string deleteQuery = "DELETE FROM MeetingDocuments WHERE MeetingID = @MeetingID";
+                using (SqlCommand deleteCmd = new SqlCommand(deleteQuery, conn)) {
+                    deleteCmd.Parameters.AddWithValue("@MeetingID", meetingId);
+                    deleteCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public int GetDocumentCountForMeeting(int meetingId) {
+            int currentDocumentCount = 0;
+
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM MeetingDocuments WHERE MeetingID = @MeetingID";
+                using (SqlCommand command = new SqlCommand(query, conn)) {
+                    command.Parameters.AddWithValue("@MeetingID", meetingId);
+                    currentDocumentCount = (int)command.ExecuteScalar();
+                }
+            }
+
+            return currentDocumentCount;
+        }
+
+
+        public void ViewDocuments(int meetingId) {
+            ViewDocumentsForm viewDocumentsForm = new ViewDocumentsForm(meetingId,connectionString);
+            viewDocumentsForm.ShowDialog();
+        }
+
+
+        // Veritabanından MeetingID'ye göre çoklu dokümanları alır
 
         public DataTable GetMeetingDetails(int meetingId) {
             using (SqlConnection connection = new SqlConnection(connectionString)) {
@@ -1172,64 +1252,10 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
             }
         }
 
-        private byte[] GetDocumentByMeetingID(int meetingId) {
-            using (SqlConnection connection = new SqlConnection(connectionString)) {
-                string query = "SELECT Documents FROM Meetings WHERE MeetingID = @MeetingID";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@MeetingID", meetingId);
+        
 
-                connection.Open();
-                byte[] documentData = command.ExecuteScalar() as byte[];
 
-                return documentData;
-            }
-        }
-        private string DetermineFileExtension(byte[] fileData) {
-            if (fileData.Length > 4) {
-                // PDF dosyaları "%PDF-" ile başlar
-                if (fileData[0] == 0x25 && fileData[1] == 0x50 && fileData[2] == 0x44 && fileData[3] == 0x46)
-                    return "pdf";
 
-                // DOCX ve diğer Office dosyaları ZIP formatında olur, ilk iki bayt "PK" (0x50, 0x4B) ile başlar
-                if (fileData[0] == 0x50 && fileData[1] == 0x4B)
-                    return "docx"; // Burada varsayılan olarak DOCX dönebiliriz, ama diğer türleri de kontrol edebiliriz.
-
-                // PNG dosyaları "\x89PNG" ile başlar
-                if (fileData[0] == 0x89 && fileData[1] == 0x50 && fileData[2] == 0x4E && fileData[3] == 0x47)
-                    return "png";
-
-                // JPG/JPEG dosyaları "\xFF\xD8\xFF" ile başlar
-                if (fileData[0] == 0xFF && fileData[1] == 0xD8 && fileData[2] == 0xFF)
-                    return "jpg";
-            }
-
-            return "unknown";
-        }
-
-        public void ViewDocument(int meetingId) {
-            byte[] documentData = GetDocumentByMeetingID(meetingId);
-
-            if (documentData != null) {
-                // Dosya türünü belirle
-                string fileExtension = DetermineFileExtension(documentData);
-
-                if (fileExtension == "unknown") {
-                    MessageBox.Show("Bilinmeyen bir dosya türü. Görüntüleme işlemi başarısız oldu.");
-                    return;
-                }
-
-                // Geçici dosya yolunu oluştur
-                string tempFilePath = Path.Combine(Path.GetTempPath(), $"MeetingDocument_{meetingId}.{fileExtension}");
-
-                // Dökümanı geçici dosya olarak kaydet
-                File.WriteAllBytes(tempFilePath, documentData);
-
-                // Dosyayı varsayılan uygulama ile aç
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(tempFilePath) { UseShellExecute = true });
-            } else {
-                MessageBox.Show("Döküman bulunamadı.");
-            }
-        }
 
         public DataTable GetParticipantDetailsById(int participantId, string participantType) {
             string query;
@@ -1395,12 +1421,11 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
         }
 
         public DataTable LoadEvents(int year, int month) {
-            string query = "SELECT MeetingDate, MeetingTitle FROM Meetings WHERE YEAR(MeetingDate) = @year AND MONTH(MeetingDate) = @month";
+            string query = "SELECT MeetingDate, MeetingTitle, MeetingID FROM Meetings WHERE YEAR(MeetingDate) = @year AND MONTH(MeetingDate) = @month";
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@year", year);
                 command.Parameters.AddWithValue("@month", month);
-
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable meetingsTable = new DataTable();
                 adapter.Fill(meetingsTable);

@@ -27,6 +27,7 @@ namespace MeetingApp
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HeatMapForm));
             this.plotViewHeatMap = new OxyPlot.WindowsForms.PlotView();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@ namespace MeetingApp
             this.ControlBox = false;
             this.Controls.Add(this.plotViewHeatMap);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HeatMapForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeatMapForm";

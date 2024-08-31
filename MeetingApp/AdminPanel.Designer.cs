@@ -28,12 +28,12 @@ namespace MeetingApp
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminPanel));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.yeniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kullanıcıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.görüşmeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addCompany = new System.Windows.Forms.ToolStripMenuItem();
-            this.personelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAcademian = new System.Windows.Forms.ToolStripMenuItem();
             this.düzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kullanıcıToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,10 +42,10 @@ namespace MeetingApp
             this.personelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.akademisyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.makeReport = new System.Windows.Forms.ToolStripMenuItem();
             this.takvimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.adayŞirketlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.makeReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.adayŞirketlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelofMeetings = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +76,6 @@ namespace MeetingApp
             this.kullanıcıToolStripMenuItem,
             this.görüşmeToolStripMenuItem,
             this.addCompany,
-            this.personelToolStripMenuItem,
             this.addAcademian});
             this.yeniToolStripMenuItem.Name = "yeniToolStripMenuItem";
             this.yeniToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
@@ -86,35 +85,28 @@ namespace MeetingApp
             // kullanıcıToolStripMenuItem
             // 
             this.kullanıcıToolStripMenuItem.Name = "kullanıcıToolStripMenuItem";
-            this.kullanıcıToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
+            this.kullanıcıToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
             this.kullanıcıToolStripMenuItem.Text = "Kullanıcı";
             this.kullanıcıToolStripMenuItem.Click += new System.EventHandler(this.kullanıcıToolStripMenuItem_Click);
             // 
             // görüşmeToolStripMenuItem
             // 
             this.görüşmeToolStripMenuItem.Name = "görüşmeToolStripMenuItem";
-            this.görüşmeToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
-            this.görüşmeToolStripMenuItem.Text = "Görüşme";
+            this.görüşmeToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
+            this.görüşmeToolStripMenuItem.Text = "Toplantı";
             this.görüşmeToolStripMenuItem.Click += new System.EventHandler(this.addMeeting_Click);
             // 
             // addCompany
             // 
             this.addCompany.Name = "addCompany";
-            this.addCompany.Size = new System.Drawing.Size(166, 24);
-            this.addCompany.Text = "Şirket";
+            this.addCompany.Size = new System.Drawing.Size(193, 24);
+            this.addCompany.Text = "Şirket ve Personel";
             this.addCompany.Click += new System.EventHandler(this.addCompany_Click);
-            // 
-            // personelToolStripMenuItem
-            // 
-            this.personelToolStripMenuItem.Name = "personelToolStripMenuItem";
-            this.personelToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
-            this.personelToolStripMenuItem.Text = "Personel";
-            this.personelToolStripMenuItem.Click += new System.EventHandler(this.addEmployee_Click);
             // 
             // addAcademian
             // 
             this.addAcademian.Name = "addAcademian";
-            this.addAcademian.Size = new System.Drawing.Size(166, 24);
+            this.addAcademian.Size = new System.Drawing.Size(193, 24);
             this.addAcademian.Text = "Akademisyen";
             this.addAcademian.Click += new System.EventHandler(this.addAcademian_Click);
             // 
@@ -134,35 +126,35 @@ namespace MeetingApp
             // kullanıcıToolStripMenuItem1
             // 
             this.kullanıcıToolStripMenuItem1.Name = "kullanıcıToolStripMenuItem1";
-            this.kullanıcıToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
+            this.kullanıcıToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
             this.kullanıcıToolStripMenuItem1.Text = "Kullanıcı";
             this.kullanıcıToolStripMenuItem1.Click += new System.EventHandler(this.kullanıcıToolStripMenuItem1_Click);
             // 
             // şirketToolStripMenuItem
             // 
             this.şirketToolStripMenuItem.Name = "şirketToolStripMenuItem";
-            this.şirketToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
-            this.şirketToolStripMenuItem.Text = "Görüşme";
+            this.şirketToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.şirketToolStripMenuItem.Text = "Toplantı";
             this.şirketToolStripMenuItem.Click += new System.EventHandler(this.şirketToolStripMenuItem_Click);
             // 
             // şirketToolStripMenuItem1
             // 
             this.şirketToolStripMenuItem1.Name = "şirketToolStripMenuItem1";
-            this.şirketToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
+            this.şirketToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
             this.şirketToolStripMenuItem1.Text = "Şirket";
             this.şirketToolStripMenuItem1.Click += new System.EventHandler(this.şirketToolStripMenuItem1_Click);
             // 
             // personelToolStripMenuItem1
             // 
             this.personelToolStripMenuItem1.Name = "personelToolStripMenuItem1";
-            this.personelToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
+            this.personelToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
             this.personelToolStripMenuItem1.Text = "Personel";
             this.personelToolStripMenuItem1.Click += new System.EventHandler(this.personelToolStripMenuItem1_Click);
             // 
             // akademisyenToolStripMenuItem
             // 
             this.akademisyenToolStripMenuItem.Name = "akademisyenToolStripMenuItem";
-            this.akademisyenToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
+            this.akademisyenToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.akademisyenToolStripMenuItem.Text = "Akademisyen";
             this.akademisyenToolStripMenuItem.Click += new System.EventHandler(this.akademisyenToolStripMenuItem_Click);
             // 
@@ -174,6 +166,20 @@ namespace MeetingApp
             this.aramaToolStripMenuItem.Text = "Arama";
             this.aramaToolStripMenuItem.Click += new System.EventHandler(this.aramaToolStripMenuItem_Click);
             // 
+            // takvimToolStripMenuItem
+            // 
+            this.takvimToolStripMenuItem.Name = "takvimToolStripMenuItem";
+            this.takvimToolStripMenuItem.Size = new System.Drawing.Size(66, 44);
+            this.takvimToolStripMenuItem.Text = "Takvim";
+            this.takvimToolStripMenuItem.Click += new System.EventHandler(this.takvimToolStripMenuItem_Click);
+            // 
+            // istatistiklerToolStripMenuItem
+            // 
+            this.istatistiklerToolStripMenuItem.Name = "istatistiklerToolStripMenuItem";
+            this.istatistiklerToolStripMenuItem.Size = new System.Drawing.Size(92, 44);
+            this.istatistiklerToolStripMenuItem.Text = "İstatistikler";
+            this.istatistiklerToolStripMenuItem.Click += new System.EventHandler(this.istatistiklerToolStripMenuItem_Click);
+            // 
             // makeReport
             // 
             this.makeReport.Name = "makeReport";
@@ -182,26 +188,12 @@ namespace MeetingApp
             this.makeReport.Text = "Rapor";
             this.makeReport.Click += new System.EventHandler(this.makeReport_Click);
             // 
-            // takvimToolStripMenuItem
-            // 
-            this.takvimToolStripMenuItem.Name = "takvimToolStripMenuItem";
-            this.takvimToolStripMenuItem.Size = new System.Drawing.Size(66, 44);
-            this.takvimToolStripMenuItem.Text = "Takvim";
-            this.takvimToolStripMenuItem.Click += new System.EventHandler(this.takvimToolStripMenuItem_Click);
-            // 
             // adayŞirketlerToolStripMenuItem
             // 
             this.adayŞirketlerToolStripMenuItem.Name = "adayŞirketlerToolStripMenuItem";
             this.adayŞirketlerToolStripMenuItem.Size = new System.Drawing.Size(113, 44);
             this.adayŞirketlerToolStripMenuItem.Text = "Aday Şirketler";
             this.adayŞirketlerToolStripMenuItem.Click += new System.EventHandler(this.adayŞirketlerToolStripMenuItem_Click);
-            // 
-            // istatistiklerToolStripMenuItem
-            // 
-            this.istatistiklerToolStripMenuItem.Name = "istatistiklerToolStripMenuItem";
-            this.istatistiklerToolStripMenuItem.Size = new System.Drawing.Size(92, 44);
-            this.istatistiklerToolStripMenuItem.Text = "İstatistikler";
-            this.istatistiklerToolStripMenuItem.Click += new System.EventHandler(this.istatistiklerToolStripMenuItem_Click);
             // 
             // panelofMeetings
             // 
@@ -222,6 +214,7 @@ namespace MeetingApp
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
@@ -242,7 +235,6 @@ namespace MeetingApp
         private System.Windows.Forms.ToolStripMenuItem yeniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem görüşmeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCompany;
-        private System.Windows.Forms.ToolStripMenuItem personelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addAcademian;
         private System.Windows.Forms.ToolStripMenuItem aramaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem makeReport;

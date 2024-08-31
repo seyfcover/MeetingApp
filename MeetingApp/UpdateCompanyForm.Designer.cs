@@ -12,6 +12,7 @@
         }
 
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateCompanyForm));
             this.txtCompanyName = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.RichTextBox();
             this.txtFieldsOfActivity = new System.Windows.Forms.RichTextBox();
@@ -232,6 +233,7 @@
             this.Controls.Add(this.txtCompanyName);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "UpdateCompanyForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

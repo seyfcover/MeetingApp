@@ -132,7 +132,7 @@ namespace MeetingApp
 
 
         private void viewDocument_Click(object sender, EventArgs e) {
-            dbHelper.ViewDocument(meetingID);
+            dbHelper.ViewDocuments(meetingID);
         }
 
         private void listofParticipants_SelectedIndexChanged(object sender, EventArgs e) {

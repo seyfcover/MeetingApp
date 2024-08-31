@@ -15,6 +15,7 @@
         }
 
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalenderForm));
             this.tableLayoutPanelDays = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.close_Viewpanel = new System.Windows.Forms.Button();
@@ -139,6 +140,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanelDays);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CalenderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.CalenderForm_Load);

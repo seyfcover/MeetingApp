@@ -25,6 +25,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateEmployee));
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -81,6 +82,8 @@
             // 
             // cmbCompany
             // 
+            this.cmbCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbCompany.FormattingEnabled = true;
             this.cmbCompany.Location = new System.Drawing.Point(17, 366);
             this.cmbCompany.Name = "cmbCompany";
@@ -207,10 +210,13 @@
             // 
             // listofEmployee
             // 
+            this.listofEmployee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.listofEmployee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.listofEmployee.FormattingEnabled = true;
             this.listofEmployee.Location = new System.Drawing.Point(17, 38);
             this.listofEmployee.Name = "listofEmployee";
             this.listofEmployee.Size = new System.Drawing.Size(297, 24);
+            this.listofEmployee.Sorted = true;
             this.listofEmployee.TabIndex = 15;
             this.listofEmployee.SelectedIndexChanged += new System.EventHandler(this.listofEmployee_SelectedIndexChanged);
             // 
@@ -263,6 +269,7 @@
             this.Controls.Add(this.txtFirstName);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "UpdateEmployee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -289,8 +296,8 @@
         private System.Windows.Forms.Label lblCompany;
         private System.Windows.Forms.ComboBox txtTitle;
         private System.Windows.Forms.MaskedTextBox txtPhone;
-        private System.Windows.Forms.ComboBox listofEmployee;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDel;
+        public System.Windows.Forms.ComboBox listofEmployee;
     }
 }

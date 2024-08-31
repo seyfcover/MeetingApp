@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Mailjet.Client.Resources;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace MeetingApp
@@ -75,6 +78,7 @@ namespace MeetingApp
                 dayPanel.Controls.Add(lblDay);
 
                 // Etkinlikler için yer ayırma
+                // ListBox'ı oluştur ve stilize et
                 ListBox lstEvents = new ListBox {
                     Dock = DockStyle.Top,
                     Font = new Font("Century Gothic", 8),
@@ -83,10 +87,30 @@ namespace MeetingApp
                     ItemHeight = 18,
                     HorizontalScrollbar = true
                 };
-                // ListBox'ın tıklama olayını bağlama
 
+                // Etkinlik seçildiğinde tetiklenen olay
+                lstEvents.SelectedIndexChanged += (s, e) => {
+                    if (lstEvents.SelectedItem is KeyValuePair<int, string> selectedEvent) {
+                        int selectedEventID = selectedEvent.Key;
+
+                        if (selectedEventID > 0) {
+                            // Yeni form oluştur ve aç
+                            UpdateMeeting eventForm = new UpdateMeeting(dbHelper, userID);
+                            eventForm._selectedMeetingID = selectedEventID;
+                            eventForm.listofMeetings_SelectedIndexChanged(null, null);
+                            eventForm.dtpDate.Value = Convert.ToDateTime(eventForm.listofMeetings.Text);
+                            eventForm.FormClosed += UpdateMeeting_FormClosed;
+                            eventForm.ShowDialog();
+                            
+                            // listofMeetings ComboBox'ında etkinliği seçili yap
+                        }
+                    }
+                };
+
+                // ListBox'ı panel'e ekle
                 dayPanel.Controls.Add(lstEvents);
-      
+
+
                 int row = (i + startDayOfWeek) / 7 + 1; // Günlerin başladığı satırdan itibaren ayarlandı
                 int column = (i + startDayOfWeek) % 7;
                 tableLayoutPanelDays.Controls.Add(dayPanel, column, row);
@@ -94,6 +118,44 @@ namespace MeetingApp
 
             lblMonthYear.Text = currentDate.ToString("MMMM yyyy");
         }
+        private void UpdateMeeting_FormClosed(object sender, FormClosedEventArgs e) {
+            refCalendar_Click(null, null);
+        }
+        private void LoadEvents() {
+            DataTable eventsTable = dbHelper.LoadEvents(currentDate.Year, currentDate.Month);
+
+            foreach (DataRow row in eventsTable.Rows) {
+                DateTime eventDate = (DateTime)row["MeetingDate"];
+                string eventTitle = row["MeetingTitle"].ToString();
+                string eventDay = eventDate.Day.ToString();
+                int MeetingID = Convert.ToInt32(row["MeetingID"]);
+                var eventDetails = new KeyValuePair<int, string>(MeetingID, eventTitle);
+
+                foreach (Control control in tableLayoutPanelDays.Controls) {
+                    if (control is Panel panel && panel.Controls.Count > 1) {
+                        // Paneldeki Label ve ListBox'ı bul
+                        Label lblDay = panel.Controls[0] as Label;
+                        ListBox lstEvents = panel.Controls[1] as ListBox;
+
+                        if (lblDay != null && lblDay.Text == eventDay) {
+                            // ListBox'a KeyValuePair ekle ve stilize et
+                            lstEvents.Items.Add(eventDetails);
+                            lstEvents.DisplayMember = "Value"; // Gösterilecek metin: Value kısmı
+                            lstEvents.ValueMember = "Key"; // Seçilecek değer: Key kısmı
+                            lstEvents.ForeColor = Color.White;
+                            lstEvents.BackColor = Color.FromArgb(255, 153, 51);
+                            lstEvents.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+
+                            // Label'ı stilize et
+                            lblDay.AutoEllipsis = true;
+
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         private void LblDay_Click(object sender, EventArgs e) {
             // Tıklanan label'ı elde et
             Label clickedLabel = sender as Label;
@@ -105,44 +167,14 @@ namespace MeetingApp
                 DateTime dayDate = (DateTime)clickedLabel.Tag;
                 string dateText = dayDate.ToString("dd MMMM yyyy"); // Tarih formatını buradan ayarlayabilirsiniz
 
-                MeetingForm newMeeting = new MeetingForm(dbHelper,userID);
+                MeetingForm newMeeting = new MeetingForm(dbHelper, userID);
                 newMeeting.dtpDate.Text = dateText;
                 newMeeting.dtpTime.Text = "09:00";
+                newMeeting.FormClosed += UpdateMeeting_FormClosed;
                 newMeeting.ShowDialog();
             }
         }
-        private void LoadEvents() {
-            DataTable eventsTable = dbHelper.LoadEvents(currentDate.Year, currentDate.Month);
 
-            foreach (DataRow row in eventsTable.Rows) {
-                DateTime eventDate = (DateTime)row["MeetingDate"];
-                string eventTitle = row["MeetingTitle"].ToString();
-                string eventDay = eventDate.Day.ToString();
-                string eventDetails = $"{eventTitle}";
-
-                foreach (Control control in tableLayoutPanelDays.Controls) {
-                    if (control is Panel panel && panel.Controls.Count > 1) {
-                        // Panelin içindeki ListBox'ı ve Label'ı bul
-                        ListBox lstEvents = panel.Controls[1] as ListBox;
-                        Label lblDay = panel.Controls[0] as Label;
-
-                        if (lblDay.Text == eventDay) {
-                            // ListBox'ı stilize et
-                            lstEvents.Items.Add(eventDetails);
-                            lstEvents.ForeColor = Color.White; // Yazı rengi
-                            lstEvents.BackColor = Color.FromArgb(255, 153, 51);
-                            lstEvents.Font = new Font("Segoe UI", 10, FontStyle.Bold); // Yazı tipi ve boyutu
-
-                            // Label'ı stilize et
-                            lblDay.AutoEllipsis = true;
-
-                            break;
-                        }
-                    }
-                }
-
-            }
-        }
 
         private void btnPreviousMonth_Click(object sender, EventArgs e) {
             currentDate = currentDate.AddMonths(-1);
@@ -156,11 +188,11 @@ namespace MeetingApp
             LoadEvents();
         }
 
-        private void refCalendar_Click(object sender, EventArgs e) {
+        public void refCalendar_Click(object sender, EventArgs e) {
             DisplayDays();
             LoadEvents();
         }
-
+       
         private void close_Viewpanel_Click(object sender, EventArgs e) {
             this.Close();
         }

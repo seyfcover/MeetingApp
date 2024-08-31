@@ -15,7 +15,7 @@ namespace MeetingApp
             this.userID = userID;
             LoadCompanies();
             LoadEmployees();
-            
+           
         }
 
 
@@ -52,15 +52,16 @@ namespace MeetingApp
             int companyID = Convert.ToInt32(cmbCompany.SelectedValue);
 
             // Boş alanları kontrol et
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(position)) {
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(position)) {
                 MessageBox.Show("Lütfen tüm alanları doldurun.", "Eksik Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // E-posta formatını kontrol et
-            if (!IsValidEmail(email)) {
-                MessageBox.Show("Geçersiz e-posta formatı.", "Geçersiz E-posta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+            if (!string.IsNullOrWhiteSpace(txtEmail.Text)) {
+                if (!IsValidEmail(email)) {
+                    MessageBox.Show("Yanlış e-mail formatı");
+                    return;
+                }
             }
 
             if (listofEmployee.SelectedValue == null) {

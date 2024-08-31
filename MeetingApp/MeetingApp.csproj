@@ -412,6 +412,12 @@
     <Compile Include="UserPanel.Designer.cs">
       <DependentUpon>UserPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewDocumentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDocumentsForm.Designer.cs">
+      <DependentUpon>ViewDocumentsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="viewMeetings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -479,6 +485,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserPanel.resx">
       <DependentUpon>UserPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewDocumentsForm.resx">
+      <DependentUpon>ViewDocumentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="viewMeetings.resx">
       <DependentUpon>viewMeetings.cs</DependentUpon>

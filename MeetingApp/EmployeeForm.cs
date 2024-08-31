@@ -20,7 +20,14 @@ namespace MeetingApp
             cmbCompany.DataSource = companies;
             cmbCompany.DisplayMember = "name";
             cmbCompany.ValueMember = "companyID";
+
+            // Son eklenen şirketin seçili olmasını sağla
+            if (companies.Rows.Count > 0) {
+                int lastCompanyID = (int)companies.Compute("MAX(companyID)", string.Empty);
+                cmbCompany.SelectedValue = lastCompanyID;
+            }
         }
+
 
         private void btnSave_Click(object sender, EventArgs e) {
             string firstName = txtFirstName.Text;
@@ -31,19 +38,20 @@ namespace MeetingApp
             string position = txtPosition.Text;
             int companyID = Convert.ToInt32(cmbCompany.SelectedValue);
 
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(position)) {
-                MessageBox.Show("Tüm alanlar gereklidir.");
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(position)) {
+                MessageBox.Show("Ad, soyad , görev ve ünvan boş olamaz.");
                 return;
             }
-
-            if (!IsValidEmail(email)) {
-                MessageBox.Show("Yanlış e-mail formatı");
-                return;
+            if (txtEmail.Text != null) {
+                if (!IsValidEmail(email)) {
+                    MessageBox.Show("Yanlış e-mail formatı");
+                    return;
+                }
             }
-
+            
             if (dbHelper.AddEmployee(firstName, lastName, companyID, email, phone, title, position)) {
                 MessageBox.Show("Personel başarıyla eklendi");
-                this.Close();
+                clearForm();
             } else {
                 MessageBox.Show("Personel eklenirken bir hata oluştu.");
             }
@@ -58,6 +66,15 @@ namespace MeetingApp
             } catch (Exception) {
                 return false;
             }
+        }
+
+        private void clearForm() { 
+            txtEmail.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;    
+            txtPhone.Text = string.Empty;
+            txtPosition.Text = string.Empty;
+            txtTitle.Text = string.Empty;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MeetingApp.Models;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -10,7 +11,10 @@ namespace MeetingApp
     public partial class MeetingForm : Form
     {
         private DatabaseHelper dbHelper;
-        private byte[] documentData;
+        // Dosya isimlerini ve türlerini tutacak listeler
+        private List<byte[]> documentDataList = new List<byte[]>(); // Dosya içerikleri
+        private List<string> documentNamesList = new List<string>(); // Dosya adları
+        private List<string> documentTypesList = new List<string>(); // Dosya türleri
         private int userID;
         public MeetingForm(DatabaseHelper dbHelper, int userID) {
             InitializeComponent();
@@ -205,7 +209,7 @@ namespace MeetingApp
                 AddParticipantsToMeeting(meetingId, lbSelectedEmployees.Items, "Employee");
 
                 //Toplantıya dosyayaı ekle
-                dbHelper.AddMeetingDocument(meetingId, documentData);
+                dbHelper.AddMeetingDocuments(meetingId, documentDataList, documentNamesList, documentTypesList);
                 // Bilgilendirme mesajı
                 MessageBox.Show("Toplantı başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearForm();
@@ -237,30 +241,83 @@ namespace MeetingApp
             lbSelectedUsers.Items.Clear();
             lbSelectedAcademics.Items.Clear();
             lbSelectedEmployees.Items.Clear();
-            documentData = null;
+            documentDataList?.Clear();
+            documentNamesList?.Clear();
+            documentTypesList?.Clear();
             nameDocument.Text = string.Empty;
         }
 
         private void addDocument_Click(object sender, EventArgs e) {
+            // Listeleri temizle
+            documentDataList?.Clear();
+            documentNamesList?.Clear();
+            documentTypesList?.Clear();
+            nameDocument.Text = string.Empty;
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Supported Files|*.docx;*.pdf;*.xlsx;*.jpg;*.png";
+            openFileDialog.Multiselect = true; // Birden fazla dosya seçilmesine izin verir
+            openFileDialog.Filter = "Supported Files|*.docx;*.pdf;*.xlsx;*.jpg;*.png"; // Desteklenen dosya türleri
 
             if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                string filePath = openFileDialog.FileName;
-                FileInfo fileInfo = new FileInfo(filePath);
-
-                // 10 MB sınırı (10 MB = 10 * 1024 * 1024 bytes)
-                long maxFileSize = 10 * 1024 * 1024;
-                if (fileInfo.Length > maxFileSize) {
-                    MessageBox.Show("Dosya boyutu 10 MB'ı geçemez.");
-                    return;
+                // Seçilen dosya sayısını kontrol et
+                if (openFileDialog.FileNames.Length > 3) {
+                    MessageBox.Show("En fazla 3 dosya seçebilirsiniz.");
+                    return; // Fazla dosya seçildiyse işlemi iptal et
                 }
 
-                // Dosya içeriklerini byte dizisi olarak oku
-                documentData = File.ReadAllBytes(filePath);
-                nameDocument.Text = fileInfo.Name;
+                List<string> selectedFileNames = new List<string>(); // Seçilen dosya isimlerini tutacak liste
+
+                foreach (string filePath in openFileDialog.FileNames) {
+                    FileInfo fileInfo = new FileInfo(filePath);
+
+                    // 3 MB sınırı (3 MB = 3 * 1024 * 1024 bytes)
+                    long maxFileSize = 3 * 1024 * 1024;
+                    if (fileInfo.Length > maxFileSize) {
+                        MessageBox.Show($"Dosya '{fileInfo.Name}' boyutu 3 MB'ı geçemez.");
+                        continue; // Dosya boyutu sınırı aşıldıysa döngüye devam et
+                    }
+
+                    // Dosya içeriklerini byte dizisi olarak oku ve listeye ekle
+                    byte[] documentData = File.ReadAllBytes(filePath);
+                    documentDataList.Add(documentData); // Byte dizisini listeye ekle
+
+                    // Dosya adını ekle
+                    documentNamesList.Add(fileInfo.Name);
+
+                    // Dosya türünü al ve ekle
+                    string documentType = GetDocumentType(fileInfo.Extension);
+                    documentTypesList.Add(documentType);
+
+                    // Dosya adını ve türünü listelere ekle
+                    selectedFileNames.Add($"{fileInfo.Name} ({documentType})");
+                }
+
+                // Seçilen dosya isimlerini `nameDocument.Text` içinde göster
+                nameDocument.Text = string.Join(", ", selectedFileNames);
             }
         }
+
+
+
+        private string GetDocumentType(string extension) {
+            switch (extension.ToLower()) {
+                case ".docx":
+                    return "Word Document";
+                case ".pdf":
+                    return "PDF Document";
+                case ".xlsx":
+                    return "Excel Spreadsheet";
+                case ".jpg":
+                case ".jpeg":
+                    return "JPEG Image";
+                case ".png":
+                    return "PNG Image";
+                default:
+                    return "Unknown";
+            }
+        }
+
+
 
         private void clrCom_Click(object sender, EventArgs e) {
             lbSelectedCompanies.Items.Clear();
@@ -279,7 +336,9 @@ namespace MeetingApp
         }
 
         private void deleteFile_Click(object sender, EventArgs e) {
-            documentData = null;
+            documentDataList?.Clear();
+            documentNamesList?.Clear();
+            documentTypesList?.Clear();
             nameDocument.Text = string.Empty;
         }
 

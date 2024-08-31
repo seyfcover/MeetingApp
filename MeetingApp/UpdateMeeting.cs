@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -12,8 +13,10 @@ namespace MeetingApp
     public partial class UpdateMeeting : Form
     {
         private DatabaseHelper dbHelper;
-        private byte[] documentData;
-        private int _selectedMeetingID;
+        private List<byte[]> documentDataList = new List<byte[]>(); // Dosya içerikleri
+        private List<string> documentNamesList = new List<string>(); // Dosya adları
+        private List<string> documentTypesList = new List<string>();
+        public int _selectedMeetingID;
         private int userID;
         public UpdateMeeting(DatabaseHelper databaseHelper , int userID) {
             InitializeComponent();
@@ -260,8 +263,8 @@ namespace MeetingApp
                 UpdateMeetingParticipants();
 
                 // Toplantıya dosyayı ekle (eğer varsa)
-                if (documentData != null) {
-                    dbHelper.AddMeetingDocument(_selectedMeetingID, documentData);
+                if (documentDataList != null) {
+                    dbHelper.UpdateMeetingDocuments(_selectedMeetingID, documentDataList,documentNamesList,documentTypesList);
                 }
 
                 // Bilgilendirme mesajı
@@ -311,28 +314,87 @@ namespace MeetingApp
             lbSelectedUsers.Items.Clear();
             lbSelectedAcademics.Items.Clear();
             lbSelectedEmployees.Items.Clear();
-            documentData = null;
+            documentDataList?.Clear();
+            documentNamesList?.Clear();
+            documentTypesList?.Clear();
             nameDocument.Text = string.Empty;
         }
 
         private void addDocument_Click(object sender, EventArgs e) {
+            documentDataList?.Clear();
+            documentNamesList?.Clear();
+            documentTypesList?.Clear();
+            nameDocument.Text = string.Empty;
+
+            int currentDocumentCount = 0;
+
+            // Veritabanında mevcut olan dosya sayısını al
+            currentDocumentCount = dbHelper.GetDocumentCountForMeeting(_selectedMeetingID);
+
+            if (currentDocumentCount >= 3) {
+                MessageBox.Show("Maksimum 3 dosya yüklenebilir. Zaten 3 dosya mevcut.");
+                return; // Mevcut dosya sayısı 3 veya daha fazla ise işlem iptal edilir.
+            }
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Supported Files|*.docx;*.pdf;*.xlsx;*.jpg;*.png";
+            openFileDialog.Multiselect = true; // Birden fazla dosya seçilmesine izin verir
+            openFileDialog.Filter = "Supported Files|*.docx;*.pdf;*.xlsx;*.jpg;*.png"; // Desteklenen dosya türleri
 
             if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                string filePath = openFileDialog.FileName;
-                FileInfo fileInfo = new FileInfo(filePath);
+                List<string> selectedFileNames = new List<string>(); // Seçilen dosya isimlerini tutacak liste
 
-                // 10 MB sınırı (10 MB = 10 * 1024 * 1024 bytes)
-                long maxFileSize = 10 * 1024 * 1024;
-                if (fileInfo.Length > maxFileSize) {
-                    MessageBox.Show("Dosya boyutu 10 MB'ı geçemez.");
+                // Kullanıcının seçtiği dosya sayısı + veritabanındaki mevcut dosya sayısı toplamı 3'ü geçmemeli
+                if (openFileDialog.FileNames.Length + currentDocumentCount > 3) {
+                    MessageBox.Show($"Maksimum 3 dosya yükleyebilirsiniz. Zaten {currentDocumentCount} dosya mevcut.");
                     return;
                 }
 
-                // Dosya içeriklerini byte dizisi olarak oku
-                documentData = File.ReadAllBytes(filePath);
-                nameDocument.Text = fileInfo.Name;
+                foreach (string filePath in openFileDialog.FileNames) // Seçilen her dosya için döngü
+                {
+                    FileInfo fileInfo = new FileInfo(filePath);
+
+                    long maxFileSize = 3 * 1024 * 1024;
+                    if (fileInfo.Length > maxFileSize) {
+                        MessageBox.Show($"Dosya '{fileInfo.Name}' boyutu 3 MB'ı geçemez.");
+                        continue; // Dosya boyutu sınırı aşıldıysa döngüye devam et
+                    }
+
+                    // Dosya içeriklerini byte dizisi olarak oku ve listeye ekle
+                    byte[] documentData = File.ReadAllBytes(filePath);
+                    documentDataList.Add(documentData); // Byte dizisini listeye ekle
+
+                    // Dosya adını ekle
+                    documentNamesList.Add(fileInfo.Name);
+
+                    // Dosya türünü al ve ekle
+                    string documentType = GetDocumentType(fileInfo.Extension);
+                    documentTypesList.Add(documentType);
+
+                    // Dosya adını ve türünü listelere ekle
+                    selectedFileNames.Add($"{fileInfo.Name} ({documentType})");
+                }
+
+                // Seçilen dosya isimlerini `nameDocument.Text` içinde göster
+                nameDocument.Text = string.Join(", ", selectedFileNames);
+            }
+        }
+
+
+        private string GetDocumentType(string fileExtension) {
+            switch (fileExtension.ToLower()) {
+                case ".docx":
+                    return "Word Document";
+                case ".pdf":
+                    return "PDF Document";
+                case ".xlsx":
+                    return "Excel Document";
+                case ".jpg":
+                case ".jpeg":
+                    return "JPEG Image";
+                case ".png":
+                    return "PNG Image";
+                default:
+                    return "Unknown";
             }
         }
 
@@ -370,35 +432,63 @@ namespace MeetingApp
 
 
         private void deleteFile_Click(object sender, EventArgs e) {
-            documentData = null;
+            // Document listelerini temizle
+            documentDataList?.Clear();
+            documentNamesList?.Clear();
+            documentTypesList?.Clear();
+
+            // UI elementlerini temizle
             nameDocument.Text = string.Empty;
-        }
+            DialogResult result = MessageBox.Show("Bu toplantı belgelerini silmek istediğinizden emin misiniz?", "Toplantı Belgeleri Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-        private void listofMeetings_SelectedIndexChanged(object sender, EventArgs e) {
-            if (listofMeetings.SelectedItem != null) {
-                var selectedMeeting = (KeyValuePair<int, string>)listofMeetings.SelectedItem;
-                _selectedMeetingID = selectedMeeting.Key;  // ID'yi sakla
-
-                // Katılımcıları ve diğer bilgileri yükle
-                dbHelper.LoadParticipants(_selectedMeetingID, lbSelectedCompanies, lbSelectedEmployees, lbSelectedAcademics, lbSelectedUsers);
-                DataRow meetingData = dbHelper.GetMeetingById(_selectedMeetingID);
-
-                if (meetingData != null) {
-                    // Toplantı tarihini ve saatini ayarla
-                    listofMeetings.Text = Convert.ToDateTime(meetingData["MeetingDate"]).ToString("dd.MM.yyyy");
-                    TimeSpan meetingTime = (TimeSpan)meetingData["MeetingTime"];
-                    dtpTime.Text = meetingTime.ToString(@"hh\:mm");
-
-                    // Toplantı başlığını, notlarını ve diğer bilgileri ayarla
-                    txtTitle.Text = meetingData["MeetingTitle"].ToString();
-                    rtbNotes.Text = meetingData["MeetingNotes"].ToString();
-                    txtLocation.Text = meetingData["MeetingLocation"].ToString();
+            if (result == DialogResult.Yes) {
+                // Toplantı ID'si kontrolü
+                if (_selectedMeetingID > 0) {
+                    try {
+                        // Veritabanından ilgili dosyaları sil
+                        dbHelper.DeleteMeetingDocuments(_selectedMeetingID);
+                        MessageBox.Show("İlgili dosyalar başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } catch (Exception ex) {
+                        MessageBox.Show($"Dosyalar silinirken bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } else {
+                    MessageBox.Show("Silinecek dökuman bulunamadı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
+
+        public void listofMeetings_SelectedIndexChanged(object sender, EventArgs e) {
+            if (sender == null && e == null) {
+                forceloadcalendar(_selectedMeetingID);
+            }
+            if (listofMeetings.SelectedItem != null) {
+                var selectedMeeting = (KeyValuePair<int, string>)listofMeetings.SelectedItem;
+                _selectedMeetingID = selectedMeeting.Key;  // ID'yi sakla
+                forceloadcalendar(_selectedMeetingID);
+            } 
+        }
+
+        public void forceloadcalendar(int selectedmeetingID) {
+            // Katılımcıları ve diğer bilgileri yükle
+            dbHelper.LoadParticipants(_selectedMeetingID, lbSelectedCompanies, lbSelectedEmployees, lbSelectedAcademics, lbSelectedUsers);
+            DataRow meetingData = dbHelper.GetMeetingById(_selectedMeetingID);
+
+            if (meetingData != null) {
+                // Toplantı tarihini ve saatini ayarla
+                listofMeetings.Text = Convert.ToDateTime(meetingData["MeetingDate"]).ToString("dd.MM.yyyy");
+                TimeSpan meetingTime = (TimeSpan)meetingData["MeetingTime"];
+                dtpTime.Text = meetingTime.ToString(@"hh\:mm");
+
+                // Toplantı başlığını, notlarını ve diğer bilgileri ayarla
+                txtTitle.Text = meetingData["MeetingTitle"].ToString();
+                rtbNotes.Text = meetingData["MeetingNotes"].ToString();
+                txtLocation.Text = meetingData["MeetingLocation"].ToString();
+            }
+        }
+
         private void viewDocument_Click(object sender, EventArgs e) {
-            dbHelper.ViewDocument(_selectedMeetingID);
+            dbHelper.ViewDocuments(_selectedMeetingID);
         }
 
         private void searchCompany_TextChanged(object sender, EventArgs e) {

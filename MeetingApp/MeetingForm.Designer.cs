@@ -22,6 +22,7 @@ namespace MeetingApp
         private System.Windows.Forms.Label lblAcademics;
         private System.Windows.Forms.Label lblEmployees;
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeetingForm));
             this.lbSelectedCompanies = new System.Windows.Forms.ListBox();
             this.lbSelectedUsers = new System.Windows.Forms.ListBox();
             this.lbSelectedAcademics = new System.Windows.Forms.ListBox();
@@ -437,10 +438,10 @@ namespace MeetingApp
             // 
             // nameDocument
             // 
-            this.nameDocument.AutoSize = true;
-            this.nameDocument.Location = new System.Drawing.Point(379, 626);
+            this.nameDocument.AutoEllipsis = true;
+            this.nameDocument.Location = new System.Drawing.Point(370, 619);
             this.nameDocument.Name = "nameDocument";
-            this.nameDocument.Size = new System.Drawing.Size(0, 16);
+            this.nameDocument.Size = new System.Drawing.Size(372, 122);
             this.nameDocument.TabIndex = 30;
             // 
             // addDocument
@@ -601,6 +602,7 @@ namespace MeetingApp
             this.Controls.Add(this.btnSaveMeeting);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MeetingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
