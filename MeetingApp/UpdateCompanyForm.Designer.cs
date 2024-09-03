@@ -41,6 +41,7 @@
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(260, 23);
             this.txtCompanyName.TabIndex = 0;
+            this.txtCompanyName.TextChanged += new System.EventHandler(this.txtCompanyName_TextChanged);
             // 
             // txtAddress
             // 

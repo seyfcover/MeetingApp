@@ -37,41 +37,39 @@ namespace MeetingApp
         }
         private void btnSave_Click(object sender, EventArgs e) {
             string companyName = txtCompanyName.Text;
-                string address = txtAddress.Text;
-                string phone = txtPhone.Text;
-                string email = txtEmail.Text;
-                string fieldsOfActivity = txtFieldsOfActivity.Text;
-                byte[] logo = null; // Başlangıçta logo null olarak ayarlanır
+            string address = txtAddress.Text;
+            string phone = txtPhone.Text;
+            string email = txtEmail.Text;
+            string fieldsOfActivity = txtFieldsOfActivity.Text;
+            byte[] logo = null; // Başlangıçta logo null olarak ayarlanır
 
-                // E-posta doğrulaması
+            // E-posta doğrulaması
+            if (!string.IsNullOrWhiteSpace(txtEmail.Text)) {
                 if (!IsValidEmail(email)) {
-                    MessageBox.Show("Doğru bir e-mail adresi girin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Yanlış e-mail formatı");
                     return;
                 }
+            }
 
-                // Alanların boş olup olmadığını kontrol et
-                if (string.IsNullOrWhiteSpace(companyName)) {
-                    MessageBox.Show("Şirket adı boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            // Alanların boş olup olmadığını kontrol et
+            if (string.IsNullOrWhiteSpace(companyName)) {
+                MessageBox.Show("Şirket adı boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (string.IsNullOrWhiteSpace(address)) {
-                    MessageBox.Show("Adres boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            if (string.IsNullOrWhiteSpace(address)) {
+                MessageBox.Show("Adres boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (string.IsNullOrWhiteSpace(phone)) {
-                    MessageBox.Show("Telefon numarası boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
 
-                if (string.IsNullOrWhiteSpace(fieldsOfActivity)) {
-                    MessageBox.Show("Faaliyet alanları boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            if (string.IsNullOrWhiteSpace(fieldsOfActivity)) {
+                MessageBox.Show("Faaliyet alanları boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (isCandidate.Checked == false) {
-                
+
                 try {
                     // Logo varsa, byte dizisine dönüştür
                     if (logoBox.Image != null) {
@@ -94,11 +92,10 @@ namespace MeetingApp
                     // Hata mesajını logla veya kullanıcıya göster
                     MessageBox.Show("Bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            } 
-            else {
+            } else {
 
                 int point = Convert.ToInt32(canPoints.Text);
-              
+
                 // Alanların boş olup olmadığını kontrol et
                 if (string.IsNullOrWhiteSpace(point.ToString())) {
                     MessageBox.Show("Puanlama boş olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -115,7 +112,7 @@ namespace MeetingApp
                     }
 
                     // Şirketi eklemeye çalış
-                    if (dbHelper.AddCandidateCompany(companyName, address, phone, fieldsOfActivity, logo, email , point)) {
+                    if (dbHelper.AddCandidateCompany(companyName, address, phone, fieldsOfActivity, logo, email, point)) {
                         MessageBox.Show("Şirket başarıyla eklendi.");
                         clearForm();
                     } else {
@@ -127,7 +124,7 @@ namespace MeetingApp
                 }
 
             }
-            
+
         }
 
         private void clearForm() {
@@ -152,7 +149,16 @@ namespace MeetingApp
                 openFileDialog.Filter = "Image Files (*.jpg; *.jpeg; *.png)|*.jpg; *.jpeg; *.png";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                    logoBox.Image = Image.FromFile(openFileDialog.FileName);
+                    // Dosya boyutunu kontrol et
+                    FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+                    long fileSizeInBytes = fileInfo.Length;
+
+                    // 1 MB = 1,048,576 bytes
+                    if (fileSizeInBytes > 1048576) {
+                        MessageBox.Show("Dosya boyutu 1 MB'ı geçmemelidir.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    } else {
+                        logoBox.Image = Image.FromFile(openFileDialog.FileName);
+                    }
                 }
             }
         }
@@ -254,6 +260,14 @@ namespace MeetingApp
             } else {
                 MessageBox.Show("Lütfen güncellemek istediğiniz çalışanı seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void txtCompanyName_TextChanged(object sender, EventArgs e) {
+            dbHelper.CastingName(txtCompanyName);
+        }
+
+        private void EtxtFirstName_TextChanged(object sender, EventArgs e) {
+            dbHelper.CastingName(EtxtFirstName);
         }
     }
 }

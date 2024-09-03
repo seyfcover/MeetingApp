@@ -150,6 +150,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(145, 26);
             this.txtFirstName.TabIndex = 3;
+            this.txtFirstName.TextChanged += new System.EventHandler(this.txtFirstName_TextChanged);
             // 
             // txtLastName
             // 
@@ -162,6 +163,7 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtEmail.Location = new System.Drawing.Point(157, 224);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";

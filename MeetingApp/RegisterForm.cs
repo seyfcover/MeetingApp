@@ -91,6 +91,9 @@ namespace MeetingApp
             }
         }
 
+        private void txtFirstName_TextChanged(object sender, EventArgs e) {
+            dbHelper.CastingName(txtFirstName);
+        }
     }
 
 }

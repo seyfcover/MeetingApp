@@ -34,6 +34,10 @@ namespace MeetingApp
             PopulateCheckedListBoxWithAllData();
             originalItems = listofMeetings.Items.Cast<string>().ToList();
             toolTip.SetToolTip(ParticipantCompany, "Toplantıyla ilgili mail gönder");
+
+            Filterbegin.Value = DateTime.Now.AddMonths(-1).Date;
+            // Bugünün tarihini dptEnd'e ata (günün son anına kadar ayarlanmış şekilde)
+            Filterend.Value = DateTime.Now.Date.AddDays(1).AddTicks(-1);
         }
 
         private void PopulateCheckedListBoxWithAllData() {
@@ -387,6 +391,7 @@ namespace MeetingApp
         private void ParticipantCompany_MouseLeave(object sender, EventArgs e) {
             ParticipantCompany.BackColor = System.Drawing.Color.Transparent;
         }
+
     }
 }
 

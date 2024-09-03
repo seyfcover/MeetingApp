@@ -73,6 +73,16 @@ namespace MeetingApp.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap jGlzr {
+            get {
+                object obj = ResourceManager.GetObject("jGlzr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap teknokentlogo {
             get {
                 object obj = ResourceManager.GetObject("teknokentlogo", resourceCulture);

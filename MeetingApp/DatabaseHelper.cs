@@ -1381,7 +1381,7 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                 }
             }
 
-            return allData;
+            return allData.OrderBy(p => p.DisplayName).ToList();
         }
 
         public DataTable GetMeetingsByParticipantsAndDateRange(
@@ -1616,6 +1616,27 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
             }
 
             return dt;
+        }
+
+        public void CastingName(TextBox textBox) {
+            // Textbox'taki metni al
+            string input = textBox.Text;
+
+            // Kelimeleri ayır
+            string[] words = input.Split(' ');
+
+            // Her kelimenin ilk harfini büyük, geri kalanını küçük yap
+            for (int i = 0; i < words.Length; i++) {
+                if (words[i].Length > 0) {
+                    words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1).ToLower();
+                }
+            }
+
+            // Düzenlenmiş kelimeleri birleştir
+            textBox.Text = string.Join(" ", words);
+
+            // İmleci sonuna getir
+            textBox.SelectionStart = textBox.Text.Length;
         }
     }
 }

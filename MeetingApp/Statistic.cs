@@ -17,6 +17,10 @@ namespace MeetingApp
             InitializeComponent();
             dbHelper = databaseHelper;
             InitializeHeatMap();
+            dtpStart.Value = DateTime.Now.AddMonths(-1).Date;
+
+            // Bugünün tarihini dptEnd'e ata (günün son anına kadar ayarlanmış şekilde)
+            dptEnd.Value = DateTime.Now.Date.AddDays(1).AddTicks(-1);
         }
 
         private void Statistic_Load(object sender, EventArgs e) {
@@ -28,6 +32,9 @@ namespace MeetingApp
         private void InitializeHeatMap() {
             if (heatMapForm == null || heatMapForm.IsDisposed) {
                 // HeatMapForm'u oluştur
+
+                // 1 ay öncesinin tarihini dtpStart'a ata
+                
                 DateTime startDate = dtpStart.Value.Date;
                 DateTime endDate = dptEnd.Value.Date.AddDays(1).AddTicks(-1);
                 heatMapForm = new HeatMapForm(dbHelper,startDate, endDate);

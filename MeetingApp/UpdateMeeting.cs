@@ -225,6 +225,10 @@ namespace MeetingApp
 
         private void btnSaveMeeting_Click(object sender, EventArgs e) {
             try {
+                if (_selectedMeetingID <= 0) {
+                    MessageBox.Show($"Toplantı seçmediniz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 // Boş alanlar için kontrolleri yap
                 if (string.IsNullOrWhiteSpace(txtTitle.Text)) {
                     MessageBox.Show("Toplantı başlığı boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -255,23 +259,25 @@ namespace MeetingApp
                     Notes = rtbNotes.Text,
                     Location = txtLocation.Text
                 };
+                
+                    // Toplantıyı güncelle
+                    dbHelper.UpdateMeeting(meeting);
 
-                // Toplantıyı güncelle
-                dbHelper.UpdateMeeting(meeting);
+                    // Toplantı Katılımcılarını güncelle
+                    UpdateMeetingParticipants();
 
-                // Toplantı Katılımcılarını güncelle
-                UpdateMeetingParticipants();
+                    // Toplantıya dosyayı ekle (eğer varsa)
+                    if (documentDataList != null) {
+                        dbHelper.UpdateMeetingDocuments(_selectedMeetingID, documentDataList, documentNamesList, documentTypesList);
+                    }
 
-                // Toplantıya dosyayı ekle (eğer varsa)
-                if (documentDataList != null) {
-                    dbHelper.UpdateMeetingDocuments(_selectedMeetingID, documentDataList,documentNamesList,documentTypesList);
-                }
+                    // Bilgilendirme mesajı
+                    MessageBox.Show("Toplantı başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Bilgilendirme mesajı
-                MessageBox.Show("Toplantı başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Formu temizle
+                    ClearForm();
+                    LoadMeetingsIntoComboBox();
 
-                // Formu temizle
-                ClearForm();
             } catch (Exception ex) {
                 // Hata durumunda bilgilendirme mesajı
                 MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -279,7 +285,7 @@ namespace MeetingApp
         }
 
         private void btnDelMeeting_Click(object sender, EventArgs e) {
-            if (_selectedMeetingID != null && _selectedMeetingID > 0) {
+            if (_selectedMeetingID > 0) {
                 DialogResult result = MessageBox.Show("Bu toplantıyı silmek istediğinizden emin misiniz?", "Toplantı Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Yes) {
@@ -287,7 +293,9 @@ namespace MeetingApp
 
                     if (isDeleted) {
                         MessageBox.Show("Toplantı başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ClearForm();
                         LoadMeetingsIntoComboBox();
+                        
                     } else {
                         MessageBox.Show("Toplantı silinirken bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -318,6 +326,8 @@ namespace MeetingApp
             documentNamesList?.Clear();
             documentTypesList?.Clear();
             nameDocument.Text = string.Empty;
+            listofMeetings.SelectedItem = null;
+            _selectedMeetingID = 0;
         }
 
         private void addDocument_Click(object sender, EventArgs e) {
@@ -476,7 +486,8 @@ namespace MeetingApp
 
             if (meetingData != null) {
                 // Toplantı tarihini ve saatini ayarla
-                listofMeetings.Text = Convert.ToDateTime(meetingData["MeetingDate"]).ToString("dd.MM.yyyy");
+                listofMeetings.Text = meetingData["MeetingTitle"].ToString();
+                dtpDate.Text = Convert.ToDateTime(meetingData["MeetingDate"]).ToString("dd.MM.yyyy");
                 TimeSpan meetingTime = (TimeSpan)meetingData["MeetingTime"];
                 dtpTime.Text = meetingTime.ToString(@"hh\:mm");
 

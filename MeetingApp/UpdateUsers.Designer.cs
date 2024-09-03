@@ -189,6 +189,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(129, 26);
             this.txtFirstName.TabIndex = 3;
+            this.txtFirstName.TextChanged += new System.EventHandler(this.txtFirstName_TextChanged);
             // 
             // txtLastName
             // 
@@ -201,6 +202,7 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtEmail.Location = new System.Drawing.Point(141, 246);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
@@ -299,6 +301,8 @@
             // 
             // listofUsers
             // 
+            this.listofUsers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.listofUsers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.listofUsers.FormattingEnabled = true;
             this.listofUsers.Location = new System.Drawing.Point(95, 24);
             this.listofUsers.Name = "listofUsers";

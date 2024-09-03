@@ -51,5 +51,9 @@ namespace MeetingApp
                 return false;
             }
         }
+
+        private void txtFirstName_TextChanged(object sender, EventArgs e) {
+            dbHelper.CastingName(txtFirstName);
+        }
     }
 }

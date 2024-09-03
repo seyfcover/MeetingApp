@@ -69,9 +69,9 @@
             this.btnClearSelection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearSelection.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.btnClearSelection.ForeColor = System.Drawing.Color.Black;
-            this.btnClearSelection.Location = new System.Drawing.Point(134, 586);
+            this.btnClearSelection.Location = new System.Drawing.Point(194, 894);
             this.btnClearSelection.Name = "btnClearSelection";
-            this.btnClearSelection.Size = new System.Drawing.Size(98, 37);
+            this.btnClearSelection.Size = new System.Drawing.Size(144, 37);
             this.btnClearSelection.TabIndex = 54;
             this.btnClearSelection.Text = "Temizle";
             this.btnClearSelection.UseVisualStyleBackColor = false;
@@ -79,21 +79,22 @@
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.textBoxSearch.Location = new System.Drawing.Point(27, 365);
+            this.textBoxSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
+            this.textBoxSearch.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBoxSearch.Location = new System.Drawing.Point(26, 512);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(200, 27);
+            this.textBoxSearch.Size = new System.Drawing.Size(311, 33);
             this.textBoxSearch.TabIndex = 53;
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // checkedListBoxParticipants
             // 
             this.checkedListBoxParticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.checkedListBoxParticipants.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkedListBoxParticipants.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkedListBoxParticipants.FormattingEnabled = true;
-            this.checkedListBoxParticipants.Location = new System.Drawing.Point(30, 406);
+            this.checkedListBoxParticipants.Location = new System.Drawing.Point(26, 573);
             this.checkedListBoxParticipants.Name = "checkedListBoxParticipants";
-            this.checkedListBoxParticipants.Size = new System.Drawing.Size(200, 164);
+            this.checkedListBoxParticipants.Size = new System.Drawing.Size(311, 290);
             this.checkedListBoxParticipants.TabIndex = 52;
             // 
             // ListMeetingforFilter
@@ -105,9 +106,9 @@
             this.ListMeetingforFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ListMeetingforFilter.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.ListMeetingforFilter.ForeColor = System.Drawing.Color.White;
-            this.ListMeetingforFilter.Location = new System.Drawing.Point(30, 586);
+            this.ListMeetingforFilter.Location = new System.Drawing.Point(27, 894);
             this.ListMeetingforFilter.Name = "ListMeetingforFilter";
-            this.ListMeetingforFilter.Size = new System.Drawing.Size(98, 37);
+            this.ListMeetingforFilter.Size = new System.Drawing.Size(157, 37);
             this.ListMeetingforFilter.TabIndex = 51;
             this.ListMeetingforFilter.Text = "Listele";
             this.ListMeetingforFilter.UseVisualStyleBackColor = false;
@@ -117,7 +118,8 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label6.Location = new System.Drawing.Point(121, 330);
+            this.label6.Location = new System.Drawing.Point(180, 484);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(16, 21);
             this.label6.TabIndex = 50;
@@ -125,29 +127,29 @@
             // 
             // Filterbegin
             // 
-            this.Filterbegin.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Filterbegin.Location = new System.Drawing.Point(27, 324);
+            this.Filterbegin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Filterbegin.Location = new System.Drawing.Point(26, 479);
             this.Filterbegin.Name = "Filterbegin";
-            this.Filterbegin.Size = new System.Drawing.Size(79, 29);
+            this.Filterbegin.Size = new System.Drawing.Size(126, 27);
             this.Filterbegin.TabIndex = 49;
             // 
             // Filterend
             // 
-            this.Filterend.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Filterend.Location = new System.Drawing.Point(148, 324);
+            this.Filterend.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Filterend.Location = new System.Drawing.Point(228, 479);
             this.Filterend.Name = "Filterend";
-            this.Filterend.Size = new System.Drawing.Size(79, 29);
+            this.Filterend.Size = new System.Drawing.Size(107, 27);
             this.Filterend.TabIndex = 48;
             // 
             // label5
             // 
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(12, 14);
+            this.label5.Location = new System.Drawing.Point(29, 23);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(10);
-            this.label5.Size = new System.Drawing.Size(176, 47);
+            this.label5.Size = new System.Drawing.Size(366, 47);
             this.label5.TabIndex = 26;
             this.label5.Text = "Toplantılar";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -155,62 +157,59 @@
             // ParticipantPosition
             // 
             this.ParticipantPosition.AutoEllipsis = true;
-            this.ParticipantPosition.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.ParticipantPosition.Location = new System.Drawing.Point(23, 135);
+            this.ParticipantPosition.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ParticipantPosition.Location = new System.Drawing.Point(24, 197);
             this.ParticipantPosition.Name = "ParticipantPosition";
             this.ParticipantPosition.Size = new System.Drawing.Size(221, 17);
             this.ParticipantPosition.TabIndex = 45;
-            this.ParticipantPosition.Text = "-";
             // 
             // ParticipantTitle
             // 
             this.ParticipantTitle.AutoSize = true;
-            this.ParticipantTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.ParticipantTitle.Location = new System.Drawing.Point(23, 152);
+            this.ParticipantTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ParticipantTitle.Location = new System.Drawing.Point(24, 227);
             this.ParticipantTitle.Name = "ParticipantTitle";
-            this.ParticipantTitle.Size = new System.Drawing.Size(15, 20);
+            this.ParticipantTitle.Size = new System.Drawing.Size(0, 19);
             this.ParticipantTitle.TabIndex = 44;
-            this.ParticipantTitle.Text = "-";
             // 
             // countofAmeeting
             // 
             this.countofAmeeting.AutoSize = true;
-            this.countofAmeeting.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.countofAmeeting.Location = new System.Drawing.Point(191, 251);
+            this.countofAmeeting.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.countofAmeeting.Location = new System.Drawing.Point(215, 400);
             this.countofAmeeting.Name = "countofAmeeting";
-            this.countofAmeeting.Size = new System.Drawing.Size(15, 17);
+            this.countofAmeeting.Size = new System.Drawing.Size(18, 19);
             this.countofAmeeting.TabIndex = 42;
             this.countofAmeeting.Text = "0";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label4.Location = new System.Drawing.Point(24, 251);
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.Location = new System.Drawing.Point(22, 400);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(161, 17);
+            this.label4.Size = new System.Drawing.Size(187, 19);
             this.label4.TabIndex = 41;
             this.label4.Text = "Katıldığı Toplantı Sayısı:";
             // 
             // ParticipantPhone
             // 
             this.ParticipantPhone.AutoEllipsis = true;
-            this.ParticipantPhone.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.ParticipantPhone.Location = new System.Drawing.Point(23, 189);
+            this.ParticipantPhone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ParticipantPhone.Location = new System.Drawing.Point(23, 290);
             this.ParticipantPhone.Name = "ParticipantPhone";
-            this.ParticipantPhone.Size = new System.Drawing.Size(221, 62);
+            this.ParticipantPhone.Size = new System.Drawing.Size(312, 110);
             this.ParticipantPhone.TabIndex = 40;
-            this.ParticipantPhone.Text = "-";
             // 
             // labelPArticipants
             // 
             this.labelPArticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.labelPArticipants.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelPArticipants.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelPArticipants.ForeColor = System.Drawing.Color.White;
-            this.labelPArticipants.Location = new System.Drawing.Point(12, 319);
+            this.labelPArticipants.Location = new System.Drawing.Point(29, 481);
             this.labelPArticipants.Name = "labelPArticipants";
             this.labelPArticipants.Padding = new System.Windows.Forms.Padding(10);
-            this.labelPArticipants.Size = new System.Drawing.Size(176, 42);
+            this.labelPArticipants.Size = new System.Drawing.Size(366, 42);
             this.labelPArticipants.TabIndex = 39;
             this.labelPArticipants.Text = "Katılımcılar";
             this.labelPArticipants.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -218,36 +217,35 @@
             // ParticipantEmail
             // 
             this.ParticipantEmail.AutoSize = true;
-            this.ParticipantEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.ParticipantEmail.Location = new System.Drawing.Point(23, 169);
+            this.ParticipantEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ParticipantEmail.Location = new System.Drawing.Point(24, 261);
             this.ParticipantEmail.Name = "ParticipantEmail";
-            this.ParticipantEmail.Size = new System.Drawing.Size(15, 20);
+            this.ParticipantEmail.Size = new System.Drawing.Size(0, 19);
             this.ParticipantEmail.TabIndex = 38;
-            this.ParticipantEmail.Text = "-";
             // 
             // ParticipantName
             // 
             this.ParticipantName.AutoEllipsis = true;
             this.ParticipantName.AutoSize = true;
             this.ParticipantName.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.ParticipantName.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.ParticipantName.Location = new System.Drawing.Point(23, 113);
+            this.ParticipantName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ParticipantName.Location = new System.Drawing.Point(24, 166);
             this.ParticipantName.Name = "ParticipantName";
-            this.ParticipantName.Size = new System.Drawing.Size(0, 20);
+            this.ParticipantName.Size = new System.Drawing.Size(0, 19);
             this.ParticipantName.TabIndex = 37;
             // 
             // listofParticipants
             // 
             this.listofParticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.listofParticipants.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listofParticipants.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.listofParticipants.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listofParticipants.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.listofParticipants.FormattingEnabled = true;
-            this.listofParticipants.ItemHeight = 20;
-            this.listofParticipants.Location = new System.Drawing.Point(12, 368);
+            this.listofParticipants.ItemHeight = 23;
+            this.listofParticipants.Location = new System.Drawing.Point(29, 537);
             this.listofParticipants.Name = "listofParticipants";
             this.listofParticipants.ScrollAlwaysVisible = true;
-            this.listofParticipants.Size = new System.Drawing.Size(176, 202);
+            this.listofParticipants.Size = new System.Drawing.Size(366, 301);
             this.listofParticipants.TabIndex = 36;
             this.listofParticipants.SelectedIndexChanged += new System.EventHandler(this.listofParticipants_SelectedIndexChanged);
             // 
@@ -260,7 +258,7 @@
             this.close_Viewpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.close_Viewpanel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.close_Viewpanel.ForeColor = System.Drawing.Color.White;
-            this.close_Viewpanel.Location = new System.Drawing.Point(226, 12);
+            this.close_Viewpanel.Location = new System.Drawing.Point(337, 0);
             this.close_Viewpanel.Name = "close_Viewpanel";
             this.close_Viewpanel.Size = new System.Drawing.Size(25, 25);
             this.close_Viewpanel.TabIndex = 35;
@@ -271,37 +269,37 @@
             // MeetingTime
             // 
             this.MeetingTime.AutoSize = true;
-            this.MeetingTime.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MeetingTime.Location = new System.Drawing.Point(829, 19);
+            this.MeetingTime.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingTime.Location = new System.Drawing.Point(1402, 21);
             this.MeetingTime.Name = "MeetingTime";
-            this.MeetingTime.Size = new System.Drawing.Size(0, 20);
+            this.MeetingTime.Size = new System.Drawing.Size(0, 25);
             this.MeetingTime.TabIndex = 34;
             // 
             // MeetingDate
             // 
             this.MeetingDate.AutoSize = true;
-            this.MeetingDate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MeetingDate.Location = new System.Drawing.Point(679, 19);
+            this.MeetingDate.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingDate.Location = new System.Drawing.Point(1252, 21);
             this.MeetingDate.Name = "MeetingDate";
-            this.MeetingDate.Size = new System.Drawing.Size(0, 20);
+            this.MeetingDate.Size = new System.Drawing.Size(0, 25);
             this.MeetingDate.TabIndex = 33;
             // 
             // MeetingLocation
             // 
             this.MeetingLocation.AutoEllipsis = true;
-            this.MeetingLocation.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MeetingLocation.Location = new System.Drawing.Point(215, 75);
+            this.MeetingLocation.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingLocation.Location = new System.Drawing.Point(464, 62);
             this.MeetingLocation.Name = "MeetingLocation";
-            this.MeetingLocation.Size = new System.Drawing.Size(726, 28);
+            this.MeetingLocation.Size = new System.Drawing.Size(1018, 40);
             this.MeetingLocation.TabIndex = 32;
             // 
             // MeetingTitle
             // 
             this.MeetingTitle.AutoSize = true;
-            this.MeetingTitle.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MeetingTitle.Location = new System.Drawing.Point(214, 50);
+            this.MeetingTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingTitle.Location = new System.Drawing.Point(463, 15);
             this.MeetingTitle.Name = "MeetingTitle";
-            this.MeetingTitle.Size = new System.Drawing.Size(0, 25);
+            this.MeetingTitle.Size = new System.Drawing.Size(0, 30);
             this.MeetingTitle.TabIndex = 31;
             // 
             // viewDocument
@@ -311,11 +309,11 @@
             this.viewDocument.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(89)))), ((int)(((byte)(149)))));
             this.viewDocument.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(179)))));
             this.viewDocument.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.viewDocument.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.viewDocument.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.viewDocument.ForeColor = System.Drawing.Color.White;
-            this.viewDocument.Location = new System.Drawing.Point(219, 586);
+            this.viewDocument.Location = new System.Drawing.Point(468, 876);
             this.viewDocument.Name = "viewDocument";
-            this.viewDocument.Size = new System.Drawing.Size(189, 37);
+            this.viewDocument.Size = new System.Drawing.Size(230, 55);
             this.viewDocument.TabIndex = 30;
             this.viewDocument.Text = "Doküman Görüntüle";
             this.viewDocument.UseVisualStyleBackColor = false;
@@ -324,12 +322,12 @@
             // MeetingNotes
             // 
             this.MeetingNotes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.MeetingNotes.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MeetingNotes.Location = new System.Drawing.Point(218, 103);
+            this.MeetingNotes.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingNotes.Location = new System.Drawing.Point(468, 102);
             this.MeetingNotes.Margin = new System.Windows.Forms.Padding(0);
             this.MeetingNotes.Name = "MeetingNotes";
             this.MeetingNotes.ReadOnly = true;
-            this.MeetingNotes.Size = new System.Drawing.Size(726, 467);
+            this.MeetingNotes.Size = new System.Drawing.Size(1026, 736);
             this.MeetingNotes.TabIndex = 29;
             this.MeetingNotes.Text = "";
             // 
@@ -344,14 +342,14 @@
             // 
             this.listofMeetings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.listofMeetings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listofMeetings.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.listofMeetings.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listofMeetings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.listofMeetings.FormattingEnabled = true;
-            this.listofMeetings.ItemHeight = 20;
-            this.listofMeetings.Location = new System.Drawing.Point(12, 103);
+            this.listofMeetings.ItemHeight = 23;
+            this.listofMeetings.Location = new System.Drawing.Point(29, 134);
             this.listofMeetings.Name = "listofMeetings";
             this.listofMeetings.ScrollAlwaysVisible = true;
-            this.listofMeetings.Size = new System.Drawing.Size(176, 202);
+            this.listofMeetings.Size = new System.Drawing.Size(366, 324);
             this.listofMeetings.TabIndex = 27;
             this.listofMeetings.SelectedIndexChanged += new System.EventHandler(this.listofMeetings_SelectedIndexChanged);
             // 
@@ -361,7 +359,7 @@
             this.ParticipantCompany.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ParticipantCompany.Location = new System.Drawing.Point(27, 11);
             this.ParticipantCompany.Name = "ParticipantCompany";
-            this.ParticipantCompany.Size = new System.Drawing.Size(100, 99);
+            this.ParticipantCompany.Size = new System.Drawing.Size(140, 140);
             this.ParticipantCompany.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ParticipantCompany.TabIndex = 43;
             this.ParticipantCompany.TabStop = false;
@@ -371,10 +369,11 @@
             // 
             // searchTextbox
             // 
-            this.searchTextbox.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.searchTextbox.Location = new System.Drawing.Point(12, 70);
+            this.searchTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
+            this.searchTextbox.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.searchTextbox.Location = new System.Drawing.Point(29, 87);
             this.searchTextbox.Name = "searchTextbox";
-            this.searchTextbox.Size = new System.Drawing.Size(176, 27);
+            this.searchTextbox.Size = new System.Drawing.Size(366, 31);
             this.searchTextbox.TabIndex = 55;
             this.searchTextbox.TextChanged += new System.EventHandler(this.searchTextbox_TextChanged);
             // 
@@ -385,11 +384,11 @@
             this.generateReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(89)))), ((int)(((byte)(149)))));
             this.generateReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(179)))));
             this.generateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.generateReport.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.generateReport.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.generateReport.ForeColor = System.Drawing.Color.White;
-            this.generateReport.Location = new System.Drawing.Point(752, 586);
+            this.generateReport.Location = new System.Drawing.Point(1257, 876);
             this.generateReport.Name = "generateReport";
-            this.generateReport.Size = new System.Drawing.Size(192, 37);
+            this.generateReport.Size = new System.Drawing.Size(237, 55);
             this.generateReport.TabIndex = 30;
             this.generateReport.Text = "Rapor Oluştur";
             this.generateReport.UseVisualStyleBackColor = false;
@@ -398,14 +397,14 @@
             // labelsearch
             // 
             this.labelsearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
-            this.labelsearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelsearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelsearch.ForeColor = System.Drawing.Color.White;
-            this.labelsearch.Location = new System.Drawing.Point(27, 284);
+            this.labelsearch.Location = new System.Drawing.Point(24, 429);
             this.labelsearch.Name = "labelsearch";
             this.labelsearch.Padding = new System.Windows.Forms.Padding(8);
-            this.labelsearch.Size = new System.Drawing.Size(200, 31);
+            this.labelsearch.Size = new System.Drawing.Size(311, 37);
             this.labelsearch.TabIndex = 57;
-            this.labelsearch.Text = "Toplantı Ara";
+            this.labelsearch.Text = "Toplantı Arama";
             this.labelsearch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
@@ -428,10 +427,10 @@
             this.panel1.Controls.Add(this.ParticipantPhone);
             this.panel1.Controls.Add(this.ParticipantName);
             this.panel1.Controls.Add(this.ParticipantEmail);
-            this.panel1.Location = new System.Drawing.Point(944, 0);
+            this.panel1.Location = new System.Drawing.Point(1533, 9);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(264, 646);
+            this.panel1.Size = new System.Drawing.Size(362, 944);
             this.panel1.TabIndex = 58;
             // 
             // refMeeting
@@ -441,11 +440,11 @@
             this.refMeeting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(89)))), ((int)(((byte)(149)))));
             this.refMeeting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(179)))));
             this.refMeeting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refMeeting.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.refMeeting.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.refMeeting.ForeColor = System.Drawing.Color.White;
-            this.refMeeting.Location = new System.Drawing.Point(12, 586);
+            this.refMeeting.Location = new System.Drawing.Point(29, 876);
             this.refMeeting.Name = "refMeeting";
-            this.refMeeting.Size = new System.Drawing.Size(176, 37);
+            this.refMeeting.Size = new System.Drawing.Size(366, 55);
             this.refMeeting.TabIndex = 30;
             this.refMeeting.Text = "Yenile";
             this.refMeeting.UseVisualStyleBackColor = false;
@@ -456,7 +455,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.ClientSize = new System.Drawing.Size(1207, 645);
+            this.ClientSize = new System.Drawing.Size(1904, 962);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.MeetingTime);

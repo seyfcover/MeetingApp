@@ -350,5 +350,9 @@ namespace MeetingApp
         private void searchAcedemic_TextChanged(object sender, EventArgs e) {
             FilterAcademics(searchAcedemic.Text);
         }
+
+        private void txtLocation_TextChanged(object sender, EventArgs e) {
+            dbHelper.CastingName(txtLocation);
+        }
     }
 }

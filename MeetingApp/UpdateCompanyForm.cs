@@ -103,12 +103,14 @@ namespace MeetingApp
             string email = txtEmail.Text;
             string fieldsOfActivity = txtFieldsOfActivity.Text;
             byte[] logo = null; // Başlangıçta logo null olarak ayarlanır
-            
-            
+
+
             // E-posta doğrulaması
-            if (!IsValidEmail(email)) {
-                MessageBox.Show("Doğru bir e-mail adresi girin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+            if (!string.IsNullOrWhiteSpace(email)) {
+                if (!IsValidEmail(email)) {
+                    MessageBox.Show("Yanlış e-mail formatı");
+                    return;
+                }
             }
 
             // Alanların boş olup olmadığını kontrol et
@@ -119,11 +121,6 @@ namespace MeetingApp
 
             if (string.IsNullOrWhiteSpace(address)) {
                 MessageBox.Show("Adres boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(phone)) {
-                MessageBox.Show("Telefon numarası boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -169,10 +166,20 @@ namespace MeetingApp
                 openFileDialog.Filter = "Image Files (*.jpg; *.jpeg; *.png)|*.jpg; *.jpeg; *.png";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                    logoBox.Image = Image.FromFile(openFileDialog.FileName);
+                    // Dosya boyutunu kontrol et
+                    FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+                    long fileSizeInBytes = fileInfo.Length;
+
+                    // 1 MB = 1,048,576 bytes
+                    if (fileSizeInBytes > 1048576) {
+                        MessageBox.Show("Dosya boyutu 1 MB'ı geçmemelidir.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    } else {
+                        logoBox.Image = Image.FromFile(openFileDialog.FileName);
+                    }
                 }
             }
         }
+
         private bool IsValidEmail(string email) {
             try {
                 string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
@@ -241,6 +248,10 @@ namespace MeetingApp
                 // Eğer geçersiz bir giriş yapılırsa (örneğin boş bırakılırsa), textbox'ı temizle
                 canPoints.Text = string.Empty;
             }
+        }
+
+        private void txtCompanyName_TextChanged(object sender, EventArgs e) {
+            dbHelper.CastingName(txtCompanyName);
         }
     }
 }

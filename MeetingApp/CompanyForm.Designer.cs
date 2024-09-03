@@ -59,6 +59,7 @@
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(260, 24);
             this.txtCompanyName.TabIndex = 0;
+            this.txtCompanyName.TextChanged += new System.EventHandler(this.txtCompanyName_TextChanged);
             // 
             // txtAddress
             // 
@@ -90,7 +91,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(260, 30);
             this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "Kaydet";
+            this.btnSave.Text = "Şirket Kaydet";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -157,6 +158,7 @@
             // 
             // txtPhone
             // 
+            this.txtPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.txtPhone.Location = new System.Drawing.Point(20, 210);
             this.txtPhone.Mask = "(999) 000-0000";
             this.txtPhone.Name = "txtPhone";
@@ -257,6 +259,7 @@
             "İnsan Kaynakları Sorumlusu",
             "Hukuk Müşaviri"});
             this.EtxtTitle.Location = new System.Drawing.Point(308, 312);
+            this.EtxtTitle.MaxLength = 50;
             this.EtxtTitle.Name = "EtxtTitle";
             this.EtxtTitle.Size = new System.Drawing.Size(227, 25);
             this.EtxtTitle.TabIndex = 19;
@@ -341,7 +344,7 @@
             this.EbtnSave.Name = "EbtnSave";
             this.EbtnSave.Size = new System.Drawing.Size(232, 30);
             this.EbtnSave.TabIndex = 22;
-            this.EbtnSave.Text = "Kaydet";
+            this.EbtnSave.Text = "Personel Kaydet";
             this.EbtnSave.UseVisualStyleBackColor = false;
             this.EbtnSave.Click += new System.EventHandler(this.EbtnSave_Click);
             // 
@@ -403,6 +406,7 @@
             this.EtxtFirstName.Name = "EtxtFirstName";
             this.EtxtFirstName.Size = new System.Drawing.Size(227, 24);
             this.EtxtFirstName.TabIndex = 15;
+            this.EtxtFirstName.TextChanged += new System.EventHandler(this.EtxtFirstName_TextChanged);
             // 
             // listofEmployee
             // 

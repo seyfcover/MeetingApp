@@ -45,9 +45,10 @@ namespace MeetingApp
                     Text = daysOfWeek[i],
                     Dock = DockStyle.Bottom,
                     TextAlign = ContentAlignment.MiddleCenter,
-                    Font = new Font("Arial", 10, FontStyle.Bold),
-                    BackColor = Color.LightGray,
-                    Height = 17 // Başlıklar için uygun yükseklik
+                    Font = new Font("Arial", 13, FontStyle.Bold),
+                    BackColor = Color.SteelBlue,
+                    ForeColor = Color.White,
+                    Height = 20 // Başlıklar için uygun yükseklik
                 };
                 tableLayoutPanelDays.Controls.Add(lblDayOfWeek, i, 0);
             }
@@ -65,7 +66,7 @@ namespace MeetingApp
                     Text = (i + 1).ToString(),
                     Dock = DockStyle.Bottom,
                     TextAlign = ContentAlignment.MiddleLeft,
-                    Font = new Font("Arial", 9, FontStyle.Bold),
+                    Font = new Font("Arial", 12, FontStyle.Bold),
                     BackColor = Color.LightGray,
                     Height = 18 // Günler için uygun yükseklik
                 };
@@ -81,10 +82,10 @@ namespace MeetingApp
                 // ListBox'ı oluştur ve stilize et
                 ListBox lstEvents = new ListBox {
                     Dock = DockStyle.Top,
-                    Font = new Font("Century Gothic", 8),
+                    Font = new Font("Century Gothic", 11),
                     IntegralHeight = false,
                     BackColor = Color.FromArgb(220, 230, 242),
-                    ItemHeight = 18,
+                    ItemHeight = 20,
                     HorizontalScrollbar = true
                 };
 
@@ -98,7 +99,7 @@ namespace MeetingApp
                             UpdateMeeting eventForm = new UpdateMeeting(dbHelper, userID);
                             eventForm._selectedMeetingID = selectedEventID;
                             eventForm.listofMeetings_SelectedIndexChanged(null, null);
-                            eventForm.dtpDate.Value = Convert.ToDateTime(eventForm.listofMeetings.Text);
+                            eventForm.dtpDate.Value = Convert.ToDateTime(eventForm.dtpDate.Value);
                             eventForm.FormClosed += UpdateMeeting_FormClosed;
                             eventForm.ShowDialog();
                             
@@ -144,7 +145,7 @@ namespace MeetingApp
                             lstEvents.ValueMember = "Key"; // Seçilecek değer: Key kısmı
                             lstEvents.ForeColor = Color.White;
                             lstEvents.BackColor = Color.FromArgb(255, 153, 51);
-                            lstEvents.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+                            lstEvents.Font = new Font("Segoe UI", 12, FontStyle.Bold);
 
                             // Label'ı stilize et
                             lblDay.AutoEllipsis = true;

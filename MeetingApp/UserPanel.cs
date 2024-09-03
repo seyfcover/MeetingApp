@@ -9,12 +9,14 @@ namespace MeetingApp
     {
         private DatabaseHelper dbHelper;
         private CompanyForm companyForm;
-        private EmployeeForm employeeForm;
         private AcademicForm academicForm;
         private MeetingForm meetingForm;
         private ReportForm reportForm;
         private UpdateMeeting UpdateMeetingForm;
         private Statistic statisticForm;
+        private UpdateCompanyForm updateCompanyForm;
+        private UpdateEmployee updateEmployeeForm;
+        private UpdateAcedemic updateAcedemicForm;
         private Form calendarForm = null;
         private Form viewMeetingsForm = null;
         private int userID;
@@ -79,11 +81,13 @@ namespace MeetingApp
         private void CloseOpenForms() {
             // Açık olan formları kapat
             if (companyForm != null && !companyForm.IsDisposed) companyForm.Close();
-            if (employeeForm != null && !employeeForm.IsDisposed) employeeForm.Close();
             if (academicForm != null && !academicForm.IsDisposed) academicForm.Close();
             if (meetingForm != null && !meetingForm.IsDisposed) meetingForm.Close();
             if (reportForm != null && !reportForm.IsDisposed) reportForm.Close();
-            if(statisticForm != null && !statisticForm.IsDisposed) statisticForm.Close();
+            if (statisticForm != null && !statisticForm.IsDisposed) statisticForm.Close();
+            if (updateAcedemicForm != null && !updateAcedemicForm.IsDisposed) updateAcedemicForm.Close();
+            if (updateCompanyForm != null && !updateCompanyForm.IsDisposed) updateCompanyForm.Close();
+            if (updateEmployeeForm != null && !updateEmployeeForm.IsDisposed) updateEmployeeForm.Close();
         }
         private void aramaToolStripMenuItem_Click(object sender, EventArgs e) {
             // Diğer form açıksa kapat
@@ -124,16 +128,12 @@ namespace MeetingApp
             ShowOrCreateForm(ref companyForm, () => new CompanyForm(dbHelper, userID));
         }
 
-        private void personelToolStripMenuItem_Click(object sender, EventArgs e) {
-            ShowOrCreateForm(ref employeeForm, () => new EmployeeForm(dbHelper));
-        }
-
         private void akedemisyenToolStripMenuItem_Click(object sender, EventArgs e) {
             ShowOrCreateForm(ref academicForm, () => new AcademicForm(dbHelper, userID));
         }
 
         private void toplantıToolStripMenuItem_Click(object sender, EventArgs e) {
-            ShowOrCreateForm(ref meetingForm, () => new MeetingForm(dbHelper,userID));
+            ShowOrCreateForm(ref meetingForm, () => new MeetingForm(dbHelper, userID));
         }
 
         private void raporToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -152,6 +152,15 @@ namespace MeetingApp
             ShowOrCreateForm(ref statisticForm, () => new Statistic(dbHelper));
         }
 
+        private void şirketToolStripMenuItem1_Click(object sender, EventArgs e) {
+            ShowOrCreateForm(ref updateCompanyForm, () => new UpdateCompanyForm(dbHelper, userID));
+        }
+        private void personelToolStripMenuItem1_Click(object sender, EventArgs e) {
+            ShowOrCreateForm(ref updateEmployeeForm, () => new UpdateEmployee(dbHelper, userID));
+        }
+        private void akademisyenToolStripMenuItem_Click(object sender, EventArgs e) {
+            ShowOrCreateForm(ref updateAcedemicForm, () => new UpdateAcedemic(dbHelper, userID));
+        }
         private void takvimToolStripMenuItem_Click(object sender, EventArgs e) {
             // Diğer form açıksa kapat
             if (viewMeetingsForm != null && !viewMeetingsForm.IsDisposed) {
@@ -162,7 +171,5 @@ namespace MeetingApp
             // Takvim formunu kontrol et ve aç
             LoadCalendarForm();
         }
-
-        
     }
 }

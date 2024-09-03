@@ -66,7 +66,7 @@ namespace MeetingApp
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1207, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1904, 48);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -126,35 +126,35 @@ namespace MeetingApp
             // kullanıcıToolStripMenuItem1
             // 
             this.kullanıcıToolStripMenuItem1.Name = "kullanıcıToolStripMenuItem1";
-            this.kullanıcıToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.kullanıcıToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
             this.kullanıcıToolStripMenuItem1.Text = "Kullanıcı";
             this.kullanıcıToolStripMenuItem1.Click += new System.EventHandler(this.kullanıcıToolStripMenuItem1_Click);
             // 
             // şirketToolStripMenuItem
             // 
             this.şirketToolStripMenuItem.Name = "şirketToolStripMenuItem";
-            this.şirketToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.şirketToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
             this.şirketToolStripMenuItem.Text = "Toplantı";
             this.şirketToolStripMenuItem.Click += new System.EventHandler(this.şirketToolStripMenuItem_Click);
             // 
             // şirketToolStripMenuItem1
             // 
             this.şirketToolStripMenuItem1.Name = "şirketToolStripMenuItem1";
-            this.şirketToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.şirketToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
             this.şirketToolStripMenuItem1.Text = "Şirket";
             this.şirketToolStripMenuItem1.Click += new System.EventHandler(this.şirketToolStripMenuItem1_Click);
             // 
             // personelToolStripMenuItem1
             // 
             this.personelToolStripMenuItem1.Name = "personelToolStripMenuItem1";
-            this.personelToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.personelToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
             this.personelToolStripMenuItem1.Text = "Personel";
             this.personelToolStripMenuItem1.Click += new System.EventHandler(this.personelToolStripMenuItem1_Click);
             // 
             // akademisyenToolStripMenuItem
             // 
             this.akademisyenToolStripMenuItem.Name = "akademisyenToolStripMenuItem";
-            this.akademisyenToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.akademisyenToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
             this.akademisyenToolStripMenuItem.Text = "Akademisyen";
             this.akademisyenToolStripMenuItem.Click += new System.EventHandler(this.akademisyenToolStripMenuItem_Click);
             // 
@@ -202,14 +202,14 @@ namespace MeetingApp
             this.panelofMeetings.Location = new System.Drawing.Point(0, 49);
             this.panelofMeetings.Margin = new System.Windows.Forms.Padding(11);
             this.panelofMeetings.Name = "panelofMeetings";
-            this.panelofMeetings.Size = new System.Drawing.Size(1207, 646);
+            this.panelofMeetings.Size = new System.Drawing.Size(1904, 962);
             this.panelofMeetings.TabIndex = 10;
             // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1207, 695);
+            this.ClientSize = new System.Drawing.Size(1904, 1011);
             this.Controls.Add(this.panelofMeetings);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));

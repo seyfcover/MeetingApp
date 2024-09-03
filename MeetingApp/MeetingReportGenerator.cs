@@ -12,7 +12,7 @@ namespace MeetingApp
         private DatabaseHelper dbHelper;
 
         public MeetingReportGenerator(DatabaseHelper databaseHelper) {
-            this.dbHelper = databaseHelper;
+            dbHelper = databaseHelper;
         }
 
         [Obsolete]
@@ -76,9 +76,21 @@ namespace MeetingApp
                     document.ReplaceText($"{{ParticipantCompany{i}}}", "");
                 }
 
+                // Akademik katılımcıları yerleştir
+                var academicParticipants = participants.AsEnumerable().Where(r => r["ParticipantType"].ToString() == "Academic");
+                int academicCount = 1;
+                foreach (var academic in academicParticipants) {
+                    document.ReplaceText($"{{Acedemic{academicCount}}}", $"{academic["UserName"]}");
+                    academicCount++;
+                }
+
+                // Kalan akademik placeholder'larını temizle
+                for (int i = academicCount; i <= 6; i++) { // 6, toplam boş olan placeholder sayısıdır. İhtiyaca göre değiştirilebilir.
+                    document.ReplaceText($"{{Acedemic{i}}}", "");
+                }
+
                 document.SaveAs(outputPath);
             }
         }
-
     }
 }

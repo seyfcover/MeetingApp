@@ -53,7 +53,7 @@ namespace MeetingApp
 
             // Boş alanları kontrol et
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(position)) {
-                MessageBox.Show("Lütfen tüm alanları doldurun.", "Eksik Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ad, soyad, ünvan ve görev eksik olamaz.", "Eksik Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -139,5 +139,8 @@ namespace MeetingApp
             }
         }
 
+        private void txtFirstName_TextChanged(object sender, EventArgs e) {
+            dbHelper.CastingName(txtFirstName);
+        }
     }
 }

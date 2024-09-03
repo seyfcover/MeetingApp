@@ -11,7 +11,6 @@ namespace MeetingApp
         private int userID;
         private DatabaseHelper dbHelper;
         private CompanyForm companyForm;
-        private EmployeeForm employeeForm;
         private AcademicForm academicForm;
         private MeetingForm meetingForm;
         private ReportForm reportForm;
@@ -61,7 +60,6 @@ namespace MeetingApp
         private void CloseOpenForms() {
             // Açık olan formları kapat
             if (companyForm != null && !companyForm.IsDisposed) companyForm.Close();
-            if (employeeForm != null && !employeeForm.IsDisposed) employeeForm.Close();
             if (academicForm != null && !academicForm.IsDisposed) academicForm.Close();
             if (meetingForm != null && !meetingForm.IsDisposed) meetingForm.Close();
             if (reportForm != null && !reportForm.IsDisposed) reportForm.Close();
@@ -111,10 +109,6 @@ namespace MeetingApp
         private void kullanıcıToolStripMenuItem_Click(object sender, EventArgs e) {
             ShowOrCreateForm(ref registerForm, () => new RegisterForm(dbHelper));
         }
-        private void addEmployee_Click(object sender, EventArgs e) {
-            ShowOrCreateForm(ref employeeForm, () => new EmployeeForm(dbHelper));
-        }
-
         private void addAcademian_Click(object sender, EventArgs e) {
             ShowOrCreateForm(ref academicForm, () => new AcademicForm(dbHelper,userID));
         }

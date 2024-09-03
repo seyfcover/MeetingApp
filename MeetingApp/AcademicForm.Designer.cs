@@ -45,21 +45,26 @@
             // txtFirstName
             // 
             this.txtFirstName.Location = new System.Drawing.Point(120, 30);
+            this.txtFirstName.MaxLength = 50;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(200, 24);
             this.txtFirstName.TabIndex = 0;
+            this.txtFirstName.TextChanged += new System.EventHandler(this.txtFirstName_TextChanged);
             // 
             // txtLastName
             // 
             this.txtLastName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLastName.Location = new System.Drawing.Point(120, 70);
+            this.txtLastName.MaxLength = 50;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(200, 24);
             this.txtLastName.TabIndex = 1;
             // 
             // txtEmail
             // 
+            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtEmail.Location = new System.Drawing.Point(120, 110);
+            this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(200, 24);
             this.txtEmail.TabIndex = 2;
@@ -67,6 +72,7 @@
             // txtPosition
             // 
             this.txtPosition.Location = new System.Drawing.Point(120, 230);
+            this.txtPosition.MaxLength = 50;
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Size = new System.Drawing.Size(200, 24);
             this.txtPosition.TabIndex = 5;
@@ -177,6 +183,7 @@
             "İnsan Kaynakları Sorumlusu",
             "Hukuk Müşaviri"});
             this.txtTitle.Location = new System.Drawing.Point(120, 190);
+            this.txtTitle.MaxLength = 100;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(200, 25);
             this.txtTitle.TabIndex = 4;
