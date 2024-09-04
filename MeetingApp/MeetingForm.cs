@@ -170,6 +170,10 @@ namespace MeetingApp
 
         private void btnSaveMeeting_Click(object sender, EventArgs e) {
             try {
+                if (MeetingType.SelectedItem == null) {
+                    MessageBox.Show("Faaliyet türü boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 // Boş alanlar için kontrolleri yap
                 if (string.IsNullOrWhiteSpace(txtTitle.Text)) {
                     MessageBox.Show("Toplantı başlığı boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -197,6 +201,8 @@ namespace MeetingApp
                     Title = txtTitle.Text,
                     Notes = rtbNotes.Text,
                     Location = txtLocation.Text,
+                    MeetingType = MeetingType.Text,
+                    isImportant = isImportant.Checked
                 };
 
                 // Toplantıyı veritabanına ekle ve ID'sini al

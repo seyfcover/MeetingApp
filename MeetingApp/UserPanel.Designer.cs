@@ -46,7 +46,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1904, 35);
+            this.menuStrip1.Size = new System.Drawing.Size(1532, 35);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -64,7 +64,7 @@
             // 
             this.toplantıToolStripMenuItem.Name = "toplantıToolStripMenuItem";
             this.toplantıToolStripMenuItem.Size = new System.Drawing.Size(232, 30);
-            this.toplantıToolStripMenuItem.Text = "Toplantı";
+            this.toplantıToolStripMenuItem.Text = "Faaliyet";
             this.toplantıToolStripMenuItem.Click += new System.EventHandler(this.toplantıToolStripMenuItem_Click);
             // 
             // şirketToolStripMenuItem
@@ -155,14 +155,14 @@
             this.panelofMeetings.Location = new System.Drawing.Point(0, 36);
             this.panelofMeetings.Margin = new System.Windows.Forms.Padding(11);
             this.panelofMeetings.Name = "panelofMeetings";
-            this.panelofMeetings.Size = new System.Drawing.Size(1904, 962);
+            this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
             this.panelofMeetings.TabIndex = 11;
             // 
             // UserPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 999);
+            this.ClientSize = new System.Drawing.Size(1532, 829);
             this.Controls.Add(this.panelofMeetings);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));

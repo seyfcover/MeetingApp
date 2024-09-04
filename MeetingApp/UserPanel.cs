@@ -31,7 +31,7 @@ namespace MeetingApp
         private void LoadCalendarForm() {
             // Takvim formunu oluştur ve panelde göster
             if (calendarForm == null || calendarForm.IsDisposed) {
-                calendarForm = new CalenderForm(dbHelper, userID);
+                calendarForm = new WeeklyCalendarForm(dbHelper, userID);
                 calendarForm.TopLevel = false;
                 calendarForm.FormBorderStyle = FormBorderStyle.None;
                 calendarForm.Dock = DockStyle.Fill;

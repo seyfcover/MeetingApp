@@ -22,6 +22,7 @@ namespace MeetingApp
         private UpdateMeeting updateMeetingForm;
         private CandidateCompanies candidateCompaniesForm;
         private Statistic statisticForm;
+        private WeeklyCalendarForm weeklyCalendarForm;
         private Form calendarForm = null;
         private Form viewMeetingsForm = null;
         private List<object> selectedItems = new List<object>();
@@ -34,10 +35,11 @@ namespace MeetingApp
             UpdateFormTitle(userID);
             LoadCalendarForm(); 
         }
+ 
         private void LoadCalendarForm() {
             // Takvim formunu oluştur ve panelde göster
             if (calendarForm == null || calendarForm.IsDisposed) {
-                calendarForm = new CalenderForm(dbHelper,userID);
+                calendarForm = new WeeklyCalendarForm(dbHelper, userID);
                 calendarForm.TopLevel = false;
                 calendarForm.FormBorderStyle = FormBorderStyle.None;
                 calendarForm.Dock = DockStyle.Fill;
@@ -185,6 +187,10 @@ namespace MeetingApp
         }
         private void AdminPanel_FormClosing(object sender, FormClosingEventArgs e) {
             CloseOpenForms();
+        }
+
+        private void haftalıkTakvimToolStripMenuItem_Click(object sender, EventArgs e) {
+            ShowOrCreateForm(ref weeklyCalendarForm, () => new WeeklyCalendarForm(dbHelper,userID));
         }
     }
 }

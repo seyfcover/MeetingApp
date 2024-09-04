@@ -97,6 +97,11 @@ namespace MeetingApp
         }
 
         private void btnSave_Click(object sender, EventArgs e) {
+
+            if (selectedCompanyId <= 0) {
+                MessageBox.Show("Lütfen şirket seçin");
+                return;
+            }
             string companyName = txtCompanyName.Text;
             string address = txtAddress.Text;
             string phone = txtPhone.Text;
@@ -112,7 +117,12 @@ namespace MeetingApp
                     return;
                 }
             }
+            string emptyMask = "(   )    -    "; // MaskedTextBox boşken görünen format
 
+            if (phone == emptyMask) {
+                // Boş veya eksik bilgi varsa null olarak değerlendir
+                phone = null;
+            }
             // Alanların boş olup olmadığını kontrol et
             if (string.IsNullOrWhiteSpace(companyName)) {
                 MessageBox.Show("Şirket adı boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -142,14 +152,14 @@ namespace MeetingApp
                     int point = Convert.ToInt32(canPoints.Text);
                     if (dbHelper.UpdateCandidateCompany(selectedCompanyId, companyName, address, phone, fieldsOfActivity, logo, email,point)) {
                         MessageBox.Show("Şirket başarıyla güncellendi.");
-                        this.Close();
+                        ClearForms();
                     } else {
                         MessageBox.Show("Şirket güncellenirken bir hata oluştu.");
                     }
                 } else {
                     if (dbHelper.UpdateCompany(selectedCompanyId, companyName, address, phone, fieldsOfActivity, logo, email)) {
                         MessageBox.Show("Şirket başarıyla güncellendi.");
-                        this.Close();
+                        ClearForms();
                     } else {
                         MessageBox.Show("Şirket güncellenirken bir hata oluştu.");
                     }
@@ -191,6 +201,9 @@ namespace MeetingApp
         }
 
         private void cmbCompany_SelectedIndexChanged(object sender, EventArgs e) {
+            if (cmbCompany.SelectedItem == null) {
+                return;
+            }
             if (cmbCompany.SelectedItem is DataRowView selectedRowView) {
                 selectedCompanyId = Convert.ToInt32(selectedRowView["CompanyID"]);
                 if (isCandidate.Checked == true) {
@@ -209,24 +222,28 @@ namespace MeetingApp
         }
 
         private void delCandidate_Click(object sender, EventArgs e) {
-            if (!isCandidate.Checked && dbHelper.IsAdmin(userID)) {
-                try {
-                    dbHelper.DeleteCompany(selectedCompanyId);
-                    MessageBox.Show("Aday şirket silindi");
-                    this.Close();
-                } catch (Exception ex) {
-                    MessageBox.Show("Hata oluştu" + ex.ToString());
-                    throw ex;
+            if (selectedCompanyId > 0) {
+                if (!isCandidate.Checked && dbHelper.IsAdmin(userID)) {
+                    try {
+                        dbHelper.DeleteCompany(selectedCompanyId);
+                        MessageBox.Show("Şirket ve onunla ilgili her şey silindi.");
+                        ClearForms();
+                    } catch (Exception ex) {
+                        MessageBox.Show("Hata oluştu" + ex.ToString());
+                        throw ex;
+                    }
+                } else {
+                    try {
+                        dbHelper.DeleteCandidateCompany(selectedCompanyId);
+                        MessageBox.Show("Aday şirket silindi");
+                        ClearForms();
+                    } catch (Exception ex) {
+                        MessageBox.Show("Hata oluştu" + ex.ToString());
+                        throw ex;
+                    }
                 }
             } else {
-                try {
-                    dbHelper.DeleteCandidateCompany(selectedCompanyId);
-                    MessageBox.Show("Şirket ve onunla ilgili her şey silindi.");
-                    this.Close();
-                } catch (Exception ex) {
-                    MessageBox.Show("Hata oluştu" + ex.ToString());
-                    throw ex;
-                }
+                MessageBox.Show("Lütfen şirket seçin.");
             }
         }
 
@@ -250,6 +267,18 @@ namespace MeetingApp
             }
         }
 
+        private void ClearForms() { 
+            txtCompanyName.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtAddress.Text = string.Empty; 
+            txtFieldsOfActivity.Text = string.Empty;
+            txtPhone.Text = string.Empty;
+            cmbCompany.SelectedItem = null;
+            canPoints.Text = string.Empty;
+            logoBox.Image = null;
+            LoadCompanies();
+
+        }
         private void txtCompanyName_TextChanged(object sender, EventArgs e) {
             dbHelper.CastingName(txtCompanyName);
         }

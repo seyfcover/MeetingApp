@@ -15,5 +15,7 @@ namespace MeetingApp.Models
         public string Location { get; set; }
         public byte[] Documents { get; set; } // Belge eklemek isterseniz
         public int MeetingID { get; set; }
+        public string MeetingType { get; set; }
+        public bool isImportant { get; set; }
     }
 }

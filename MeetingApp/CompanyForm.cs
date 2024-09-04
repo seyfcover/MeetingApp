@@ -1,5 +1,6 @@
 ﻿using MeetingApp.Models;
 using System;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -49,6 +50,13 @@ namespace MeetingApp
                     MessageBox.Show("Yanlış e-mail formatı");
                     return;
                 }
+            }
+
+            string emptyMask = "(   )    -"; // MaskedTextBox boşken görünen format
+
+            if (phone == emptyMask) {
+                // Boş veya eksik bilgi varsa null olarak değerlendir
+                phone = string.Empty;
             }
 
             // Alanların boş olup olmadığını kontrol et
@@ -220,6 +228,13 @@ namespace MeetingApp
                 }
             }
 
+            string emptyMask = "(   )    -"; // MaskedTextBox boşken görünen format
+
+            if (phone == emptyMask) {
+                // Boş veya eksik bilgi varsa null olarak değerlendir
+                phone = string.Empty;
+            }
+
             if (dbHelper.AddEmployee(firstName, lastName, companyID, email, phone, title, position)) {
                 MessageBox.Show("Personel başarıyla eklendi");
                 EclearForm();
@@ -230,9 +245,11 @@ namespace MeetingApp
             }
         }
 
+        private int selectedforEmp;
         private void cmbCompany_SelectedIndexChanged(object sender, EventArgs e) {
             if (cmbCompany.SelectedItem is DataRowView rowView) {
                 int selectedCompanyId = Convert.ToInt32(rowView["companyID"]);
+                selectedforEmp = selectedCompanyId;
                 LoadEmployees(selectedCompanyId); // Bu ID'ye göre çalışanları yükle
             }
         }
@@ -256,7 +273,10 @@ namespace MeetingApp
                 // UpdateEmployee formunu aç ve seçili olan EmployeeID'yi gönder
                 UpdateEmployee updateEmployeeForm = new UpdateEmployee(dbHelper, userID);
                 updateEmployeeForm.listofEmployee.SelectedValue = selectedEmployeeID;
+                updateEmployeeForm.listofEmployee_SelectedIndexChanged(null,null);
+                updateEmployeeForm.FormClosed += (s, args) => LoadEmployees(selectedforEmp);
                 updateEmployeeForm.ShowDialog();
+                
             } else {
                 MessageBox.Show("Lütfen güncellemek istediğiniz çalışanı seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }

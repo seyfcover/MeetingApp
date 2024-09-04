@@ -766,13 +766,15 @@ namespace MeetingApp
 
         public int AddMeeting(Meeting meeting) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = "INSERT INTO Meetings (MeetingDate, MeetingTime, MeetingTitle, MeetingNotes ,MeetingLocation) OUTPUT INSERTED.MeetingID VALUES (@Date, @Time, @Title, @Notes, @Location)";
+                string query = "INSERT INTO Meetings (MeetingDate, MeetingTime, MeetingTitle, MeetingNotes, MeetingLocation, MeetingType, isImprtant) OUTPUT INSERTED.MeetingID VALUES (@Date, @Time, @Title, @Notes, @Location, @MeetingType, @isImprtant)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Date", meeting.Date);
                 cmd.Parameters.AddWithValue("@Time", meeting.Time);
                 cmd.Parameters.AddWithValue("@Title", meeting.Title);
                 cmd.Parameters.AddWithValue("@Notes", meeting.Notes);
                 cmd.Parameters.AddWithValue("@Location", meeting.Location);
+                cmd.Parameters.AddWithValue("@MeetingType", meeting.MeetingType);
+                cmd.Parameters.AddWithValue("@isImportant", meeting.isImportant);
                 conn.Open();
                 return (int)cmd.ExecuteScalar();
             }
@@ -780,13 +782,15 @@ namespace MeetingApp
 
         public void UpdateMeeting(Meeting meeting) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = "UPDATE Meetings SET MeetingDate = @Date, MeetingTime = @Time, MeetingTitle = @Title, MeetingNotes = @Notes, MeetingLocation = @Location WHERE MeetingID = @MeetingID";
+                string query = "UPDATE Meetings SET MeetingDate = @Date, MeetingTime = @Time, MeetingTitle = @Title, MeetingNotes = @Notes, MeetingLocation = @Location, MeetingType = @MeetingType, isImportant = @isImportant WHERE MeetingID = @MeetingID";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Date", meeting.Date);
                 cmd.Parameters.AddWithValue("@Time", meeting.Time);
                 cmd.Parameters.AddWithValue("@Title", meeting.Title);
                 cmd.Parameters.AddWithValue("@Notes", meeting.Notes);
                 cmd.Parameters.AddWithValue("@Location", meeting.Location);
+                cmd.Parameters.AddWithValue("@MeetingType", meeting.MeetingType);
+                cmd.Parameters.AddWithValue("@isImportant", meeting.isImportant);
                 cmd.Parameters.AddWithValue("@MeetingID", meeting.MeetingID); // Güncellenecek toplantının ID'si
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -1637,6 +1641,28 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
 
             // İmleci sonuna getir
             textBox.SelectionStart = textBox.Text.Length;
+        }
+
+        public DataTable LoadEventsForWeek(DateTime startOfWeek, DateTime endOfWeek) {
+            DataTable eventsTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString)) {
+                string query = @"
+                    SELECT MeetingID, MeetingTitle, MeetingDate, MeetingType, isImportant
+                    FROM Meetings
+                    WHERE MeetingDate BETWEEN @StartOfWeek AND @EndOfWeek
+                    ORDER BY MeetingDate";
+
+                using (SqlCommand command = new SqlCommand(query, connection)) {
+                    command.Parameters.AddWithValue("@StartOfWeek", startOfWeek);
+                    command.Parameters.AddWithValue("@EndOfWeek", endOfWeek);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(eventsTable);
+                }
+            }
+
+            return eventsTable;
         }
     }
 }

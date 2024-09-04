@@ -233,6 +233,13 @@
             this.EtxtTitle.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.EtxtTitle.FormattingEnabled = true;
             this.EtxtTitle.Items.AddRange(new object[] {
+            "Ar-Ge Merkezi Müdürü",
+            "Ar-Ge Sorumlusu",
+            "İşletme Müdürü",
+            "Kalite Müdürü",
+            "Sorumlu Mühendis",
+            "Firma Sahibi",
+            "Üretim Direktörü",
             "Rektör",
             "Rektör Yardımcısı",
             "Fakülte Dekanı",

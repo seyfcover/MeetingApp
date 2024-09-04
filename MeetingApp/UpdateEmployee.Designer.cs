@@ -171,31 +171,13 @@
             // 
             this.txtTitle.FormattingEnabled = true;
             this.txtTitle.Items.AddRange(new object[] {
-            "Rektör",
-            "Rektör Yardımcısı",
-            "Fakülte Dekanı",
-            "Dekan Yardımcısı",
-            "Bölüm Başkanı",
-            "Bölüm Başkan Yardımcısı",
-            "Anabilim Dalı Başkanı",
-            "Anabilim Dalı Başkan Yardımcısı",
-            "Prof. Dr.",
-            "Doç. Dr.",
-            "Yardımcı Doç. Dr.",
-            "Dr. Öğr. Üyesi",
-            "Öğr. Gör.",
-            "Araştırma Görevlisi",
-            "Araştırma Görevlisi (Öğretim Görevlisi)",
-            "Öğrenci Asistanı",
-            "Laborant",
-            "İdari Personel",
-            "Sekreter",
-            "Bilgi İşlem Sorumlusu",
-            "Kütüphane Görevlisi",
-            "İç Denetçi",
-            "Finans Sorumlusu",
-            "İnsan Kaynakları Sorumlusu",
-            "Hukuk Müşaviri"});
+            "Ar-Ge Merkezi Müdürü",
+            "Ar-Ge Sorumlusu",
+            "İşletme Müdürü",
+            "Kalite Müdürü",
+            "Sorumlu Mühendis",
+            "Firma Sahibi",
+            "Üretim Direktörü"});
             this.txtTitle.Location = new System.Drawing.Point(17, 267);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(297, 24);
@@ -217,7 +199,6 @@
             this.listofEmployee.Location = new System.Drawing.Point(17, 38);
             this.listofEmployee.Name = "listofEmployee";
             this.listofEmployee.Size = new System.Drawing.Size(297, 24);
-            this.listofEmployee.Sorted = true;
             this.listofEmployee.TabIndex = 15;
             this.listofEmployee.SelectedIndexChanged += new System.EventHandler(this.listofEmployee_SelectedIndexChanged);
             // 

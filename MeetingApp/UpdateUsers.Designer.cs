@@ -247,6 +247,13 @@
             this.txtTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtTitle.FormattingEnabled = true;
             this.txtTitle.Items.AddRange(new object[] {
+            "Ar-Ge Merkezi Müdürü",
+            "Ar-Ge Sorumlusu",
+            "İşletme Müdürü",
+            "Kalite Müdürü",
+            "Sorumlu Mühendis",
+            "Firma Sahibi",
+            "Üretim Direktörü",
             "Rektör",
             "Rektör Yardımcısı",
             "Fakülte Dekanı",

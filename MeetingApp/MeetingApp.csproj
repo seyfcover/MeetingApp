@@ -294,12 +294,6 @@
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="AdvancedReporting.cs" />
-    <Compile Include="CalenderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CalenderForm.Designer.cs">
-      <DependentUpon>CalenderForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CandidateCompanies.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -418,14 +412,17 @@
     <Compile Include="viewMeetings.Designer.cs">
       <DependentUpon>viewMeetings.cs</DependentUpon>
     </Compile>
+    <Compile Include="WeeklyCalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WeeklyCalendarForm.Designer.cs">
+      <DependentUpon>WeeklyCalendarForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AcademicForm.resx">
       <DependentUpon>AcademicForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CalenderForm.resx">
-      <DependentUpon>CalenderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CandidateCompanies.resx">
       <DependentUpon>CandidateCompanies.cs</DependentUpon>
@@ -482,6 +479,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="viewMeetings.resx">
       <DependentUpon>viewMeetings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeeklyCalendarForm.resx">
+      <DependentUpon>WeeklyCalendarForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="MeetingApp_TemporaryKey.pfx" />
     <None Include="packages.config" />

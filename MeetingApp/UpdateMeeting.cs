@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -229,6 +227,10 @@ namespace MeetingApp
                     MessageBox.Show($"Toplantı seçmediniz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (MeetingType.SelectedItem == null) {
+                    MessageBox.Show("Faaliyet türü boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 // Boş alanlar için kontrolleri yap
                 if (string.IsNullOrWhiteSpace(txtTitle.Text)) {
                     MessageBox.Show("Toplantı başlığı boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -257,7 +259,9 @@ namespace MeetingApp
                     Time = TimeSpan.Parse(dtpTime.Text),
                     Title = txtTitle.Text,
                     Notes = rtbNotes.Text,
-                    Location = txtLocation.Text
+                    Location = txtLocation.Text,
+                    MeetingType = MeetingType.Text,
+                    isImportant = isImportant.Checked
                 };
                 
                     // Toplantıyı güncelle
@@ -490,7 +494,8 @@ namespace MeetingApp
                 dtpDate.Text = Convert.ToDateTime(meetingData["MeetingDate"]).ToString("dd.MM.yyyy");
                 TimeSpan meetingTime = (TimeSpan)meetingData["MeetingTime"];
                 dtpTime.Text = meetingTime.ToString(@"hh\:mm");
-
+                isImportant.Checked = meetingData["isImportant"] != DBNull.Value && Convert.ToBoolean(meetingData["isImportant"]);
+                MeetingType.Text = meetingData["MeetingType"] != DBNull.Value ? meetingData["MeetingType"].ToString() : string.Empty;
                 // Toplantı başlığını, notlarını ve diğer bilgileri ayarla
                 txtTitle.Text = meetingData["MeetingTitle"].ToString();
                 rtbNotes.Text = meetingData["MeetingNotes"].ToString();
@@ -509,33 +514,5 @@ namespace MeetingApp
         private void searchAcedemic_TextChanged(object sender, EventArgs e) {
             FilterAcademics(searchAcedemic.Text);
         }
-
-        private void txtMeetingSearch_TextChanged(object sender, EventArgs e) {
-            string searchText = txtMeetingSearch.Text;
-            FilterMeetings(searchText);
-        }
-
-        private void txtMeetingSearch_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) {
-            if (e.KeyCode == Keys.Tab) {
-                e.IsInputKey = true; // Varsayılan tab olayını durdur
-                if (listofMeetings.Items.Count > 0) {
-                    listofMeetings.SelectedIndex = 0; // İlk öğeyi seç
-                    var selectedMeeting = (KeyValuePair<int, string>)listofMeetings.SelectedItem;
-                    listofMeetings.Text = selectedMeeting.Value; // Seçilen öğenin başlığını ComboBox'ta göster
-                    txtMeetingSearch.Text = selectedMeeting.Value;
-                    txtMeetingSearch.ForeColor = Color.Gray; // Silik renk
-                    txtTitle.Focus();
-                }
-            }
-        }
-
-        private void txtMeetingSearch_Enter(object sender, EventArgs e) {
-            if (txtMeetingSearch.ForeColor == Color.Gray) {
-                txtMeetingSearch.Clear();
-                txtMeetingSearch.ForeColor = Color.Black; // Normal metin rengi
-            }
-        }
-
-       
     }
 }

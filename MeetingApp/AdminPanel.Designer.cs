@@ -66,7 +66,7 @@ namespace MeetingApp
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1904, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1533, 48);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -93,7 +93,7 @@ namespace MeetingApp
             // 
             this.görüşmeToolStripMenuItem.Name = "görüşmeToolStripMenuItem";
             this.görüşmeToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
-            this.görüşmeToolStripMenuItem.Text = "Toplantı";
+            this.görüşmeToolStripMenuItem.Text = "Faaliyet";
             this.görüşmeToolStripMenuItem.Click += new System.EventHandler(this.addMeeting_Click);
             // 
             // addCompany
@@ -134,7 +134,7 @@ namespace MeetingApp
             // 
             this.şirketToolStripMenuItem.Name = "şirketToolStripMenuItem";
             this.şirketToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
-            this.şirketToolStripMenuItem.Text = "Toplantı";
+            this.şirketToolStripMenuItem.Text = "Faaliyet";
             this.şirketToolStripMenuItem.Click += new System.EventHandler(this.şirketToolStripMenuItem_Click);
             // 
             // şirketToolStripMenuItem1
@@ -202,14 +202,14 @@ namespace MeetingApp
             this.panelofMeetings.Location = new System.Drawing.Point(0, 49);
             this.panelofMeetings.Margin = new System.Windows.Forms.Padding(11);
             this.panelofMeetings.Name = "panelofMeetings";
-            this.panelofMeetings.Size = new System.Drawing.Size(1904, 962);
+            this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
             this.panelofMeetings.TabIndex = 10;
             // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1011);
+            this.ClientSize = new System.Drawing.Size(1533, 843);
             this.Controls.Add(this.panelofMeetings);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));

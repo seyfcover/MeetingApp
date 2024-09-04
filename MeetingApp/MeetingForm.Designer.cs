@@ -18,9 +18,6 @@ namespace MeetingApp
         private System.Windows.Forms.Button btnAddEmployees;
         private System.Windows.Forms.Button btnSaveMeeting;
         private System.Windows.Forms.RichTextBox rtbNotes;
-        private System.Windows.Forms.Label lblUsers;
-        private System.Windows.Forms.Label lblAcademics;
-        private System.Windows.Forms.Label lblEmployees;
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeetingForm));
             this.lbSelectedCompanies = new System.Windows.Forms.ListBox();
@@ -40,9 +37,6 @@ namespace MeetingApp
             this.dtpTime = new System.Windows.Forms.DateTimePicker();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.rtbNotes = new System.Windows.Forms.RichTextBox();
-            this.lblUsers = new System.Windows.Forms.Label();
-            this.lblAcademics = new System.Windows.Forms.Label();
-            this.lblEmployees = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,104 +54,110 @@ namespace MeetingApp
             this.deleteFile = new System.Windows.Forms.Button();
             this.searchCompany = new System.Windows.Forms.TextBox();
             this.searchAcedemic = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.MeetingType = new System.Windows.Forms.ComboBox();
+            this.isImportant = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lbSelectedCompanies
             // 
             this.lbSelectedCompanies.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.lbSelectedCompanies.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.lbSelectedCompanies.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lbSelectedCompanies.FormattingEnabled = true;
-            this.lbSelectedCompanies.ItemHeight = 19;
-            this.lbSelectedCompanies.Location = new System.Drawing.Point(1619, 142);
+            this.lbSelectedCompanies.ItemHeight = 16;
+            this.lbSelectedCompanies.Location = new System.Drawing.Point(1317, 115);
             this.lbSelectedCompanies.Name = "lbSelectedCompanies";
-            this.lbSelectedCompanies.Size = new System.Drawing.Size(259, 137);
+            this.lbSelectedCompanies.Size = new System.Drawing.Size(199, 116);
             this.lbSelectedCompanies.TabIndex = 0;
             // 
             // lbSelectedUsers
             // 
             this.lbSelectedUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.lbSelectedUsers.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.lbSelectedUsers.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lbSelectedUsers.FormattingEnabled = true;
-            this.lbSelectedUsers.ItemHeight = 19;
-            this.lbSelectedUsers.Location = new System.Drawing.Point(1619, 805);
+            this.lbSelectedUsers.ItemHeight = 16;
+            this.lbSelectedUsers.Location = new System.Drawing.Point(1314, 673);
             this.lbSelectedUsers.Margin = new System.Windows.Forms.Padding(0);
             this.lbSelectedUsers.Name = "lbSelectedUsers";
-            this.lbSelectedUsers.Size = new System.Drawing.Size(259, 137);
+            this.lbSelectedUsers.Size = new System.Drawing.Size(199, 116);
             this.lbSelectedUsers.TabIndex = 1;
             // 
             // lbSelectedAcademics
             // 
             this.lbSelectedAcademics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.lbSelectedAcademics.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.lbSelectedAcademics.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lbSelectedAcademics.FormattingEnabled = true;
-            this.lbSelectedAcademics.ItemHeight = 19;
-            this.lbSelectedAcademics.Location = new System.Drawing.Point(1619, 592);
+            this.lbSelectedAcademics.ItemHeight = 16;
+            this.lbSelectedAcademics.Location = new System.Drawing.Point(1316, 463);
             this.lbSelectedAcademics.Margin = new System.Windows.Forms.Padding(0);
             this.lbSelectedAcademics.Name = "lbSelectedAcademics";
-            this.lbSelectedAcademics.Size = new System.Drawing.Size(259, 137);
+            this.lbSelectedAcademics.Size = new System.Drawing.Size(199, 148);
             this.lbSelectedAcademics.TabIndex = 2;
             // 
             // lbSelectedEmployees
             // 
             this.lbSelectedEmployees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.lbSelectedEmployees.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.lbSelectedEmployees.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lbSelectedEmployees.FormattingEnabled = true;
-            this.lbSelectedEmployees.ItemHeight = 19;
-            this.lbSelectedEmployees.Location = new System.Drawing.Point(1619, 352);
+            this.lbSelectedEmployees.ItemHeight = 16;
+            this.lbSelectedEmployees.Location = new System.Drawing.Point(1315, 289);
             this.lbSelectedEmployees.Margin = new System.Windows.Forms.Padding(0);
             this.lbSelectedEmployees.Name = "lbSelectedEmployees";
-            this.lbSelectedEmployees.Size = new System.Drawing.Size(259, 137);
+            this.lbSelectedEmployees.Size = new System.Drawing.Size(199, 116);
             this.lbSelectedEmployees.TabIndex = 3;
             // 
             // clbCompanies
             // 
             this.clbCompanies.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.clbCompanies.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.clbCompanies.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.clbCompanies.FormattingEnabled = true;
-            this.clbCompanies.Location = new System.Drawing.Point(21, 141);
+            this.clbCompanies.Location = new System.Drawing.Point(21, 115);
             this.clbCompanies.Margin = new System.Windows.Forms.Padding(0);
             this.clbCompanies.Name = "clbCompanies";
-            this.clbCompanies.Size = new System.Drawing.Size(259, 136);
+            this.clbCompanies.Size = new System.Drawing.Size(199, 123);
             this.clbCompanies.TabIndex = 4;
             this.clbCompanies.SelectedIndexChanged += new System.EventHandler(this.clbCompanies_SelectedIndexChanged);
             // 
             // clbUsers
             // 
             this.clbUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.clbUsers.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.clbUsers.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.clbUsers.FormattingEnabled = true;
-            this.clbUsers.Location = new System.Drawing.Point(21, 805);
+            this.clbUsers.Location = new System.Drawing.Point(18, 673);
             this.clbUsers.Margin = new System.Windows.Forms.Padding(0);
             this.clbUsers.Name = "clbUsers";
-            this.clbUsers.Size = new System.Drawing.Size(259, 136);
+            this.clbUsers.Size = new System.Drawing.Size(199, 123);
             this.clbUsers.TabIndex = 5;
             // 
             // clbAcademics
             // 
             this.clbAcademics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.clbAcademics.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.clbAcademics.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.clbAcademics.FormattingEnabled = true;
-            this.clbAcademics.Location = new System.Drawing.Point(21, 593);
+            this.clbAcademics.Location = new System.Drawing.Point(20, 496);
             this.clbAcademics.Margin = new System.Windows.Forms.Padding(0);
             this.clbAcademics.Name = "clbAcademics";
-            this.clbAcademics.Size = new System.Drawing.Size(259, 136);
+            this.clbAcademics.Size = new System.Drawing.Size(199, 123);
             this.clbAcademics.TabIndex = 6;
             // 
             // clbEmployees
             // 
             this.clbEmployees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.clbEmployees.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.clbEmployees.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.clbEmployees.FormattingEnabled = true;
-            this.clbEmployees.Location = new System.Drawing.Point(21, 353);
+            this.clbEmployees.Location = new System.Drawing.Point(20, 289);
             this.clbEmployees.Margin = new System.Windows.Forms.Padding(0);
             this.clbEmployees.Name = "clbEmployees";
-            this.clbEmployees.Size = new System.Drawing.Size(259, 136);
+            this.clbEmployees.Size = new System.Drawing.Size(199, 123);
             this.clbEmployees.TabIndex = 7;
             // 
             // btnAddCompanies
@@ -165,9 +165,10 @@ namespace MeetingApp
             this.btnAddCompanies.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAddCompanies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCompanies.ForeColor = System.Drawing.Color.White;
-            this.btnAddCompanies.Location = new System.Drawing.Point(21, 280);
+            this.btnAddCompanies.Location = new System.Drawing.Point(20, 238);
+            this.btnAddCompanies.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddCompanies.Name = "btnAddCompanies";
-            this.btnAddCompanies.Size = new System.Drawing.Size(259, 27);
+            this.btnAddCompanies.Size = new System.Drawing.Size(199, 25);
             this.btnAddCompanies.TabIndex = 8;
             this.btnAddCompanies.Text = "EKLE";
             this.btnAddCompanies.UseVisualStyleBackColor = false;
@@ -178,9 +179,10 @@ namespace MeetingApp
             this.btnAddUsers.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAddUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddUsers.ForeColor = System.Drawing.Color.White;
-            this.btnAddUsers.Location = new System.Drawing.Point(21, 944);
+            this.btnAddUsers.Location = new System.Drawing.Point(18, 796);
+            this.btnAddUsers.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddUsers.Name = "btnAddUsers";
-            this.btnAddUsers.Size = new System.Drawing.Size(259, 27);
+            this.btnAddUsers.Size = new System.Drawing.Size(199, 25);
             this.btnAddUsers.TabIndex = 9;
             this.btnAddUsers.Text = "EKLE";
             this.btnAddUsers.UseVisualStyleBackColor = false;
@@ -191,9 +193,10 @@ namespace MeetingApp
             this.btnAddAcademics.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAddAcademics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAcademics.ForeColor = System.Drawing.Color.White;
-            this.btnAddAcademics.Location = new System.Drawing.Point(21, 730);
+            this.btnAddAcademics.Location = new System.Drawing.Point(18, 619);
+            this.btnAddAcademics.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddAcademics.Name = "btnAddAcademics";
-            this.btnAddAcademics.Size = new System.Drawing.Size(259, 27);
+            this.btnAddAcademics.Size = new System.Drawing.Size(201, 25);
             this.btnAddAcademics.TabIndex = 10;
             this.btnAddAcademics.Text = "EKLE";
             this.btnAddAcademics.UseVisualStyleBackColor = false;
@@ -204,9 +207,10 @@ namespace MeetingApp
             this.btnAddEmployees.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAddEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddEmployees.ForeColor = System.Drawing.Color.White;
-            this.btnAddEmployees.Location = new System.Drawing.Point(21, 492);
+            this.btnAddEmployees.Location = new System.Drawing.Point(20, 412);
+            this.btnAddEmployees.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddEmployees.Name = "btnAddEmployees";
-            this.btnAddEmployees.Size = new System.Drawing.Size(259, 27);
+            this.btnAddEmployees.Size = new System.Drawing.Size(200, 25);
             this.btnAddEmployees.TabIndex = 11;
             this.btnAddEmployees.Text = "EKLE";
             this.btnAddEmployees.UseVisualStyleBackColor = false;
@@ -216,11 +220,11 @@ namespace MeetingApp
             // 
             this.btnSaveMeeting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnSaveMeeting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveMeeting.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSaveMeeting.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnSaveMeeting.ForeColor = System.Drawing.Color.White;
-            this.btnSaveMeeting.Location = new System.Drawing.Point(1229, 833);
+            this.btnSaveMeeting.Location = new System.Drawing.Point(1036, 752);
             this.btnSaveMeeting.Name = "btnSaveMeeting";
-            this.btnSaveMeeting.Size = new System.Drawing.Size(208, 53);
+            this.btnSaveMeeting.Size = new System.Drawing.Size(132, 37);
             this.btnSaveMeeting.TabIndex = 18;
             this.btnSaveMeeting.Text = "Toplantı Kaydet";
             this.btnSaveMeeting.UseVisualStyleBackColor = false;
@@ -229,117 +233,78 @@ namespace MeetingApp
             // dtpDate
             // 
             this.dtpDate.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.dtpDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.dtpDate.Location = new System.Drawing.Point(462, 47);
+            this.dtpDate.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.dtpDate.Location = new System.Drawing.Point(375, 64);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(298, 27);
+            this.dtpDate.Size = new System.Drawing.Size(196, 23);
             this.dtpDate.TabIndex = 13;
             // 
             // dtpTime
             // 
             this.dtpTime.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.dtpTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.dtpTime.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpTime.Location = new System.Drawing.Point(954, 47);
+            this.dtpTime.Location = new System.Drawing.Point(670, 65);
             this.dtpTime.Name = "dtpTime";
-            this.dtpTime.Size = new System.Drawing.Size(298, 27);
+            this.dtpTime.Size = new System.Drawing.Size(196, 23);
             this.dtpTime.TabIndex = 14;
             // 
             // txtTitle
             // 
             this.txtTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.txtTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.txtTitle.Location = new System.Drawing.Point(462, 106);
+            this.txtTitle.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtTitle.Location = new System.Drawing.Point(375, 106);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(802, 27);
+            this.txtTitle.Size = new System.Drawing.Size(620, 23);
             this.txtTitle.TabIndex = 15;
             // 
             // rtbNotes
             // 
             this.rtbNotes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.rtbNotes.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.rtbNotes.Location = new System.Drawing.Point(462, 212);
+            this.rtbNotes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.rtbNotes.Location = new System.Drawing.Point(375, 212);
             this.rtbNotes.Name = "rtbNotes";
-            this.rtbNotes.Size = new System.Drawing.Size(975, 517);
+            this.rtbNotes.Size = new System.Drawing.Size(793, 399);
             this.rtbNotes.TabIndex = 17;
             this.rtbNotes.Text = "";
-            // 
-            // lblUsers
-            // 
-            this.lblUsers.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.lblUsers.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblUsers.ForeColor = System.Drawing.Color.White;
-            this.lblUsers.Location = new System.Drawing.Point(21, 779);
-            this.lblUsers.Name = "lblUsers";
-            this.lblUsers.Size = new System.Drawing.Size(259, 26);
-            this.lblUsers.TabIndex = 18;
-            this.lblUsers.Text = "TEKNOKENT";
-            this.lblUsers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblAcademics
-            // 
-            this.lblAcademics.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblAcademics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.lblAcademics.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblAcademics.ForeColor = System.Drawing.Color.White;
-            this.lblAcademics.Location = new System.Drawing.Point(21, 567);
-            this.lblAcademics.Name = "lblAcademics";
-            this.lblAcademics.Size = new System.Drawing.Size(259, 26);
-            this.lblAcademics.TabIndex = 19;
-            this.lblAcademics.Text = "Akademisyenler";
-            this.lblAcademics.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblEmployees
-            // 
-            this.lblEmployees.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblEmployees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.lblEmployees.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblEmployees.ForeColor = System.Drawing.Color.White;
-            this.lblEmployees.Location = new System.Drawing.Point(21, 327);
-            this.lblEmployees.Name = "lblEmployees";
-            this.lblEmployees.Size = new System.Drawing.Size(259, 26);
-            this.lblEmployees.TabIndex = 20;
-            this.lblEmployees.Text = "Şirket Çalışanları";
-            this.lblEmployees.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(311, 109);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(248, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 19);
+            this.label1.Size = new System.Drawing.Size(108, 16);
             this.label1.TabIndex = 25;
             this.label1.Text = "Toplantı Konusu";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(311, 215);
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(248, 215);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 19);
+            this.label2.Size = new System.Drawing.Size(93, 16);
             this.label2.TabIndex = 25;
             this.label2.Text = "Alınan Notlar";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(311, 53);
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(248, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 19);
+            this.label3.Size = new System.Drawing.Size(39, 16);
             this.label3.TabIndex = 25;
             this.label3.Text = "Tarih";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(846, 53);
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(613, 69);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 19);
+            this.label4.Size = new System.Drawing.Size(36, 16);
             this.label4.TabIndex = 25;
             this.label4.Text = "Saat";
             // 
@@ -351,7 +316,7 @@ namespace MeetingApp
             this.label5.Location = new System.Drawing.Point(21, 20);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(10);
-            this.label5.Size = new System.Drawing.Size(259, 41);
+            this.label5.Size = new System.Drawing.Size(199, 41);
             this.label5.TabIndex = 26;
             this.label5.Text = "KATILIMCI SEÇ";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -361,10 +326,10 @@ namespace MeetingApp
             this.label6.BackColor = System.Drawing.Color.Teal;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(1615, 25);
+            this.label6.Location = new System.Drawing.Point(1314, 20);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(10);
-            this.label6.Size = new System.Drawing.Size(263, 41);
+            this.label6.Size = new System.Drawing.Size(199, 41);
             this.label6.TabIndex = 26;
             this.label6.Text = "ÖNİZLEME";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -376,9 +341,10 @@ namespace MeetingApp
             this.clrCom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clrCom.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.clrCom.ForeColor = System.Drawing.Color.White;
-            this.clrCom.Location = new System.Drawing.Point(1619, 280);
+            this.clrCom.Location = new System.Drawing.Point(1316, 234);
+            this.clrCom.Margin = new System.Windows.Forms.Padding(0);
             this.clrCom.Name = "clrCom";
-            this.clrCom.Size = new System.Drawing.Size(259, 27);
+            this.clrCom.Size = new System.Drawing.Size(199, 24);
             this.clrCom.TabIndex = 27;
             this.clrCom.Text = "SİL";
             this.clrCom.UseVisualStyleBackColor = false;
@@ -391,9 +357,10 @@ namespace MeetingApp
             this.clrEmp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clrEmp.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.clrEmp.ForeColor = System.Drawing.Color.White;
-            this.clrEmp.Location = new System.Drawing.Point(1619, 492);
+            this.clrEmp.Location = new System.Drawing.Point(1315, 405);
+            this.clrEmp.Margin = new System.Windows.Forms.Padding(0);
             this.clrEmp.Name = "clrEmp";
-            this.clrEmp.Size = new System.Drawing.Size(259, 27);
+            this.clrEmp.Size = new System.Drawing.Size(199, 24);
             this.clrEmp.TabIndex = 27;
             this.clrEmp.Text = "SİL";
             this.clrEmp.UseVisualStyleBackColor = false;
@@ -406,9 +373,10 @@ namespace MeetingApp
             this.clrAca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clrAca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.clrAca.ForeColor = System.Drawing.Color.White;
-            this.clrAca.Location = new System.Drawing.Point(1619, 732);
+            this.clrAca.Location = new System.Drawing.Point(1317, 611);
+            this.clrAca.Margin = new System.Windows.Forms.Padding(0);
             this.clrAca.Name = "clrAca";
-            this.clrAca.Size = new System.Drawing.Size(259, 27);
+            this.clrAca.Size = new System.Drawing.Size(199, 24);
             this.clrAca.TabIndex = 27;
             this.clrAca.Text = "SİL";
             this.clrAca.UseVisualStyleBackColor = false;
@@ -421,9 +389,10 @@ namespace MeetingApp
             this.clrUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clrUser.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.clrUser.ForeColor = System.Drawing.Color.White;
-            this.clrUser.Location = new System.Drawing.Point(1619, 944);
+            this.clrUser.Location = new System.Drawing.Point(1314, 789);
+            this.clrUser.Margin = new System.Windows.Forms.Padding(0);
             this.clrUser.Name = "clrUser";
-            this.clrUser.Size = new System.Drawing.Size(259, 27);
+            this.clrUser.Size = new System.Drawing.Size(199, 24);
             this.clrUser.TabIndex = 27;
             this.clrUser.Text = "SİL";
             this.clrUser.UseVisualStyleBackColor = false;
@@ -432,20 +401,20 @@ namespace MeetingApp
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(311, 155);
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(248, 155);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(103, 19);
+            this.label11.Size = new System.Drawing.Size(87, 16);
             this.label11.TabIndex = 28;
             this.label11.Text = "Toplantı Yeri";
             // 
             // txtLocation
             // 
             this.txtLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.txtLocation.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.txtLocation.Location = new System.Drawing.Point(462, 152);
+            this.txtLocation.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtLocation.Location = new System.Drawing.Point(375, 152);
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(802, 27);
+            this.txtLocation.Size = new System.Drawing.Size(686, 23);
             this.txtLocation.TabIndex = 16;
             this.txtLocation.TextChanged += new System.EventHandler(this.txtLocation_TextChanged);
             // 
@@ -454,20 +423,21 @@ namespace MeetingApp
             this.nameDocument.AutoEllipsis = true;
             this.nameDocument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.nameDocument.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nameDocument.Location = new System.Drawing.Point(462, 735);
+            this.nameDocument.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.nameDocument.Location = new System.Drawing.Point(375, 622);
             this.nameDocument.Name = "nameDocument";
-            this.nameDocument.Size = new System.Drawing.Size(975, 70);
+            this.nameDocument.Size = new System.Drawing.Size(793, 50);
             this.nameDocument.TabIndex = 30;
             // 
             // addDocument
             // 
             this.addDocument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.addDocument.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addDocument.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.addDocument.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.addDocument.ForeColor = System.Drawing.Color.White;
-            this.addDocument.Location = new System.Drawing.Point(462, 833);
+            this.addDocument.Location = new System.Drawing.Point(375, 713);
             this.addDocument.Name = "addDocument";
-            this.addDocument.Size = new System.Drawing.Size(208, 53);
+            this.addDocument.Size = new System.Drawing.Size(132, 37);
             this.addDocument.TabIndex = 31;
             this.addDocument.Text = "Belge Ekle";
             this.addDocument.UseVisualStyleBackColor = false;
@@ -477,11 +447,11 @@ namespace MeetingApp
             // 
             this.deleteFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
             this.deleteFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteFile.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.deleteFile.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.deleteFile.ForeColor = System.Drawing.Color.White;
-            this.deleteFile.Location = new System.Drawing.Point(462, 892);
+            this.deleteFile.Location = new System.Drawing.Point(375, 759);
             this.deleteFile.Name = "deleteFile";
-            this.deleteFile.Size = new System.Drawing.Size(208, 49);
+            this.deleteFile.Size = new System.Drawing.Size(132, 37);
             this.deleteFile.TabIndex = 32;
             this.deleteFile.Text = "Sil";
             this.deleteFile.UseVisualStyleBackColor = false;
@@ -491,9 +461,9 @@ namespace MeetingApp
             // 
             this.searchCompany.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.searchCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.searchCompany.Location = new System.Drawing.Point(21, 82);
+            this.searchCompany.Location = new System.Drawing.Point(21, 64);
             this.searchCompany.Name = "searchCompany";
-            this.searchCompany.Size = new System.Drawing.Size(259, 27);
+            this.searchCompany.Size = new System.Drawing.Size(199, 27);
             this.searchCompany.TabIndex = 33;
             this.searchCompany.TextChanged += new System.EventHandler(this.searchCompany_TextChanged);
             // 
@@ -501,92 +471,179 @@ namespace MeetingApp
             // 
             this.searchAcedemic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.searchAcedemic.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.searchAcedemic.Location = new System.Drawing.Point(21, 537);
+            this.searchAcedemic.Location = new System.Drawing.Point(20, 466);
             this.searchAcedemic.Name = "searchAcedemic";
-            this.searchAcedemic.Size = new System.Drawing.Size(259, 27);
+            this.searchAcedemic.Size = new System.Drawing.Size(199, 27);
             this.searchAcedemic.TabIndex = 34;
             this.searchAcedemic.TextChanged += new System.EventHandler(this.searchAcedemic_TextChanged);
-            // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(21, 115);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(259, 26);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "Şirketler";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(1619, 115);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(259, 26);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Şirketler";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(1619, 779);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(259, 26);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "TEKNOKENT";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(1619, 567);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(259, 26);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Akademisyenler";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(1619, 327);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(259, 26);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Şirket Çalışanları";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label19.Location = new System.Drawing.Point(311, 756);
+            this.label19.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label19.Location = new System.Drawing.Point(249, 628);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(141, 19);
+            this.label19.Size = new System.Drawing.Size(120, 16);
             this.label19.TabIndex = 35;
             this.label19.Text = "Eklenen Dosyalar";
             // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(21, 91);
+            this.label7.Name = "label7";
+            this.label7.Padding = new System.Windows.Forms.Padding(3);
+            this.label7.Size = new System.Drawing.Size(199, 24);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "Şirketler";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(20, 265);
+            this.label8.Name = "label8";
+            this.label8.Padding = new System.Windows.Forms.Padding(3);
+            this.label8.Size = new System.Drawing.Size(199, 24);
+            this.label8.TabIndex = 36;
+            this.label8.Text = "Şirket Çalışanları";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(20, 439);
+            this.label9.Name = "label9";
+            this.label9.Padding = new System.Windows.Forms.Padding(3);
+            this.label9.Size = new System.Drawing.Size(199, 24);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Akademisyenler";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(18, 648);
+            this.label10.Name = "label10";
+            this.label10.Padding = new System.Windows.Forms.Padding(3);
+            this.label10.Size = new System.Drawing.Size(199, 24);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "TEKNOKENT";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(1317, 91);
+            this.label12.Name = "label12";
+            this.label12.Padding = new System.Windows.Forms.Padding(3);
+            this.label12.Size = new System.Drawing.Size(199, 24);
+            this.label12.TabIndex = 36;
+            this.label12.Text = "Şirketler";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(1315, 265);
+            this.label13.Name = "label13";
+            this.label13.Padding = new System.Windows.Forms.Padding(3);
+            this.label13.Size = new System.Drawing.Size(199, 24);
+            this.label13.TabIndex = 36;
+            this.label13.Text = "Şirket Çalışanları";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(1316, 439);
+            this.label14.Name = "label14";
+            this.label14.Padding = new System.Windows.Forms.Padding(3);
+            this.label14.Size = new System.Drawing.Size(199, 24);
+            this.label14.TabIndex = 36;
+            this.label14.Text = "Akademisyenler";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(1314, 648);
+            this.label15.Name = "label15";
+            this.label15.Padding = new System.Windows.Forms.Padding(3);
+            this.label15.Size = new System.Drawing.Size(199, 24);
+            this.label15.TabIndex = 36;
+            this.label15.Text = "TEKNOKENT";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label16.Location = new System.Drawing.Point(248, 34);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(90, 16);
+            this.label16.TabIndex = 25;
+            this.label16.Text = "Faaliyet Türü";
+            // 
+            // MeetingType
+            // 
+            this.MeetingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MeetingType.FormattingEnabled = true;
+            this.MeetingType.Items.AddRange(new object[] {
+            "ÜSİ",
+            "Girişimcilik",
+            "FSMH",
+            "Süreç Yönetimi",
+            "Etkinlik"});
+            this.MeetingType.Location = new System.Drawing.Point(375, 30);
+            this.MeetingType.Name = "MeetingType";
+            this.MeetingType.Size = new System.Drawing.Size(104, 24);
+            this.MeetingType.TabIndex = 37;
+            // 
+            // isImportant
+            // 
+            this.isImportant.AutoSize = true;
+            this.isImportant.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.isImportant.Location = new System.Drawing.Point(539, 31);
+            this.isImportant.Name = "isImportant";
+            this.isImportant.Size = new System.Drawing.Size(143, 22);
+            this.isImportant.TabIndex = 38;
+            this.isImportant.Text = "Önemli Faaliyet";
+            this.isImportant.UseVisualStyleBackColor = true;
+            // 
             // MeetingForm
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1904, 996);
+            this.ClientSize = new System.Drawing.Size(1532, 829);
+            this.Controls.Add(this.isImportant);
+            this.Controls.Add(this.MeetingType);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.searchAcedemic);
             this.Controls.Add(this.searchCompany);
@@ -603,35 +660,28 @@ namespace MeetingApp
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbSelectedEmployees);
             this.Controls.Add(this.btnAddEmployees);
             this.Controls.Add(this.clbEmployees);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.lblEmployees);
             this.Controls.Add(this.lbSelectedAcademics);
             this.Controls.Add(this.btnAddAcademics);
             this.Controls.Add(this.clbAcademics);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.lblAcademics);
             this.Controls.Add(this.lbSelectedUsers);
             this.Controls.Add(this.btnAddUsers);
             this.Controls.Add(this.clbUsers);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.lblUsers);
             this.Controls.Add(this.lbSelectedCompanies);
             this.Controls.Add(this.btnAddCompanies);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.clbCompanies);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.rtbNotes);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.dtpTime);
             this.Controls.Add(this.btnSaveMeeting);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MeetingForm";
@@ -659,14 +709,20 @@ namespace MeetingApp
         private Button deleteFile;
         private TextBox searchCompany;
         private TextBox searchAcedemic;
-        private Label label13;
         public DateTimePicker dtpDate;
         public DateTimePicker dtpTime;
         private TextBox txtTitle;
+        private Label label19;
         private Label label7;
         private Label label8;
         private Label label9;
         private Label label10;
-        private Label label19;
+        private Label label12;
+        private Label label13;
+        private Label label14;
+        private Label label15;
+        private Label label16;
+        private ComboBox MeetingType;
+        private CheckBox isImportant;
     }
 }

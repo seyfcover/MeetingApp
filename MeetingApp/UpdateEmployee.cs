@@ -51,6 +51,14 @@ namespace MeetingApp
 
             int companyID = Convert.ToInt32(cmbCompany.SelectedValue);
 
+            string emptyMask = "(   )    -"; // MaskedTextBox boşken görünen format
+
+            if (phone == emptyMask) {
+                // Boş veya eksik bilgi varsa null olarak değerlendir
+                phone = string.Empty;
+            }
+
+
             // Boş alanları kontrol et
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(position)) {
                 MessageBox.Show("Ad, soyad, ünvan ve görev eksik olamaz.", "Eksik Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -92,7 +100,7 @@ namespace MeetingApp
             }
         }
 
-        private void listofEmployee_SelectedIndexChanged(object sender, EventArgs e) {
+        public void listofEmployee_SelectedIndexChanged(object sender, EventArgs e) {
             // Ensure that SelectedValue is not null and can be cast to int
             if (listofEmployee.SelectedValue != null && int.TryParse(listofEmployee.SelectedValue.ToString(), out int selectedEmployeeID)) {
 
