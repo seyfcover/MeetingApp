@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Net.Mail;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace MeetingApp
 {
@@ -16,10 +19,12 @@ namespace MeetingApp
         private List<string> documentTypesList = new List<string>();
         public int _selectedMeetingID;
         private int userID;
-        public UpdateMeeting(DatabaseHelper databaseHelper , int userID) {
+        private string FullName;
+        public UpdateMeeting(DatabaseHelper databaseHelper, int userID,string FullName ) {
             InitializeComponent();
             dbHelper = databaseHelper;
             this.userID = userID;
+            this.FullName = FullName;
             LoadCompanies();
             LoadUsers();
             LoadAcademics();
@@ -224,7 +229,7 @@ namespace MeetingApp
         private void btnSaveMeeting_Click(object sender, EventArgs e) {
             try {
                 if (_selectedMeetingID <= 0) {
-                    MessageBox.Show($"Toplantı seçmediniz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Faaliyet seçmediniz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (MeetingType.SelectedItem == null) {
@@ -233,17 +238,17 @@ namespace MeetingApp
                 }
                 // Boş alanlar için kontrolleri yap
                 if (string.IsNullOrWhiteSpace(txtTitle.Text)) {
-                    MessageBox.Show("Toplantı başlığı boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Faaliyet başlığı boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (string.IsNullOrWhiteSpace(rtbNotes.Text)) {
-                    MessageBox.Show("Toplantı notları boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Faaliyet notları boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (string.IsNullOrWhiteSpace(txtLocation.Text)) {
-                    MessageBox.Show("Toplantı yeri boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Faaliyet yeri boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -263,45 +268,48 @@ namespace MeetingApp
                     MeetingType = MeetingType.Text,
                     isImportant = isImportant.Checked
                 };
-                
-                    // Toplantıyı güncelle
-                    dbHelper.UpdateMeeting(meeting);
 
-                    // Toplantı Katılımcılarını güncelle
-                    UpdateMeetingParticipants();
+                // Toplantıyı güncelle
+                dbHelper.UpdateMeeting(meeting);
 
-                    // Toplantıya dosyayı ekle (eğer varsa)
-                    if (documentDataList != null) {
-                        dbHelper.UpdateMeetingDocuments(_selectedMeetingID, documentDataList, documentNamesList, documentTypesList);
-                    }
+                // Toplantı Katılımcılarını güncelle
+                UpdateMeetingParticipants();
 
-                    // Bilgilendirme mesajı
-                    MessageBox.Show("Toplantı başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Toplantıya dosyayı ekle (eğer varsa)
+                if (documentDataList != null) {
+                    dbHelper.UpdateMeetingDocuments(_selectedMeetingID, documentDataList, documentNamesList, documentTypesList);
+                }
 
-                    // Formu temizle
-                    ClearForm();
-                    LoadMeetingsIntoComboBox();
+                // Bilgilendirme mesajı
+                MessageBox.Show("Faaliyet başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dbHelper.AddLog("Güncelleme", "ID:" + userID.ToString() + " " + FullName + " || Faaliyet : " + txtTitle.Text + " Başlıklı Faaliyet Güncellendi. ");
+                // Formu temizle
+                ClearForm();
+                LoadMeetingsIntoComboBox();
 
             } catch (Exception ex) {
                 // Hata durumunda bilgilendirme mesajı
                 MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Faaliyet : " + txtTitle.Text + " Başlıklı Faaliyet Güncellenirken Hata Oluştu. "+ ex.Message);
             }
         }
 
         private void btnDelMeeting_Click(object sender, EventArgs e) {
             if (_selectedMeetingID > 0) {
-                DialogResult result = MessageBox.Show("Bu toplantıyı silmek istediğinizden emin misiniz?", "Toplantı Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("Bu faaliyeti silmek istediğinizden emin misiniz?", "Faaliyet Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Yes) {
                     bool isDeleted = dbHelper.DeleteMeeting(_selectedMeetingID);
 
                     if (isDeleted) {
-                        MessageBox.Show("Toplantı başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Faaliyet başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dbHelper.AddLog("Silme", "ID:" + userID.ToString() + " " + FullName + " || Faaliyet : " + txtTitle.Text + " Başlıklı Faaliyet Silindi. ");
                         ClearForm();
                         LoadMeetingsIntoComboBox();
-                        
+
                     } else {
-                        MessageBox.Show("Toplantı silinirken bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Faaliyet silinirken bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Faaliyet : " + txtTitle.Text + " Başlıklı Faaliyet Silinirken Hata Oluştu. ");
                     }
                 }
             } else {
@@ -412,38 +420,51 @@ namespace MeetingApp
             }
         }
 
-        private void clrCom_Click(object sender, EventArgs e) {
-            // Şirket listesi için seçili öğeleri temizle
+        private void clrCompanySolo_Click(object sender, EventArgs e) {
             while (lbSelectedCompanies.SelectedItems.Count > 0) {
                 Participant selectedParticipant = (Participant)lbSelectedCompanies.SelectedItems[0];
                 lbSelectedCompanies.Items.Remove(selectedParticipant);
             }
         }
 
-        private void clrEmp_Click(object sender, EventArgs e) {
-            // Çalışan listesi için seçili öğeleri temizle
+        private void clrEmployeeSolo_Click(object sender, EventArgs e) {
             while (lbSelectedEmployees.SelectedItems.Count > 0) {
                 Participant selectedParticipant = (Participant)lbSelectedEmployees.SelectedItems[0];
                 lbSelectedEmployees.Items.Remove(selectedParticipant);
             }
         }
 
-        private void clrAca_Click(object sender, EventArgs e) {
-            // Akademik listesi için seçili öğeleri temizle
+        private void clrAcedemicSolo_Click(object sender, EventArgs e) {
             while (lbSelectedAcademics.SelectedItems.Count > 0) {
                 Participant selectedParticipant = (Participant)lbSelectedAcademics.SelectedItems[0];
                 lbSelectedAcademics.Items.Remove(selectedParticipant);
             }
         }
 
-        private void clrUser_Click(object sender, EventArgs e) {
-            // Kullanıcı listesi için seçili öğeleri temizle
+        private void clrUserSolo_Click(object sender, EventArgs e) {
             while (lbSelectedUsers.SelectedItems.Count > 0) {
                 Participant selectedParticipant = (Participant)lbSelectedUsers.SelectedItems[0];
                 lbSelectedUsers.Items.Remove(selectedParticipant);
             }
         }
 
+
+
+        private void SclrCom_Click(object sender, EventArgs e) {
+            lbSelectedCompanies.Items.Clear();
+        }
+
+        private void SclrEmp_Click(object sender, EventArgs e) {
+            lbSelectedEmployees.Items.Clear();
+        }
+
+        private void SclrAca_Click(object sender, EventArgs e) {
+            lbSelectedAcademics.Items.Clear();
+        }
+
+        private void SclrUser_Click(object sender, EventArgs e) {
+            lbSelectedUsers.Items.Clear();
+        }
 
         private void deleteFile_Click(object sender, EventArgs e) {
             // Document listelerini temizle
@@ -453,7 +474,7 @@ namespace MeetingApp
 
             // UI elementlerini temizle
             nameDocument.Text = string.Empty;
-            DialogResult result = MessageBox.Show("Bu toplantı belgelerini silmek istediğinizden emin misiniz?", "Toplantı Belgeleri Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("Bu faaliyet belgelerini silmek istediğinizden emin misiniz?", "Faaliyet Belgeleri Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes) {
                 // Toplantı ID'si kontrolü
@@ -462,8 +483,10 @@ namespace MeetingApp
                         // Veritabanından ilgili dosyaları sil
                         dbHelper.DeleteMeetingDocuments(_selectedMeetingID);
                         MessageBox.Show("İlgili dosyalar başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dbHelper.AddLog("Silme", "ID: " + userID.ToString() + " " + FullName + " " + txtTitle.Text + " Başlıklı Faaliyetin dosyalarını sildi.");
                     } catch (Exception ex) {
                         MessageBox.Show($"Dosyalar silinirken bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dbHelper.AddLog("Hata", "ID: " + userID.ToString() + " " + FullName + " " + txtTitle.Text + " Başlıklı Faaliyetin dosyalarını silerken hata oluştu.");
                     }
                 } else {
                     MessageBox.Show("Silinecek dökuman bulunamadı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -480,7 +503,7 @@ namespace MeetingApp
                 var selectedMeeting = (KeyValuePair<int, string>)listofMeetings.SelectedItem;
                 _selectedMeetingID = selectedMeeting.Key;  // ID'yi sakla
                 forceloadcalendar(_selectedMeetingID);
-            } 
+            }
         }
 
         public void forceloadcalendar(int selectedmeetingID) {
@@ -513,6 +536,132 @@ namespace MeetingApp
 
         private void searchAcedemic_TextChanged(object sender, EventArgs e) {
             FilterAcademics(searchAcedemic.Text);
+        }
+        private bool isAllSelected = false;
+        private void selectAllAcademics_Click(object sender, EventArgs e) {
+            if (!isAllSelected) {
+                // Eğer öğeler seçili değilse, hepsini seç
+                for (int i = 0; i < clbAcademics.Items.Count; i++) {
+                    clbAcademics.SetItemChecked(i, true);
+                }
+                isAllSelected = true;
+            } else {
+                // Eğer öğeler zaten seçiliyse, seçimleri kaldır
+                for (int i = 0; i < clbAcademics.Items.Count; i++) {
+                    clbAcademics.SetItemChecked(i, false);
+                }
+                isAllSelected = false;
+            }
+        }
+
+        // Seçim durumu için bir bayrak tanımlayın
+        private bool isAllUsersSelected = false;
+
+        private void selectAllUsers_Click(object sender, EventArgs e) {
+            if (!isAllUsersSelected) {
+                // Eğer öğeler seçili değilse, hepsini seç
+                for (int i = 0; i < clbUsers.Items.Count; i++) {
+                    clbUsers.SetItemChecked(i, true);
+                }
+                isAllUsersSelected = true;
+            } else {
+                // Eğer öğeler zaten seçiliyse, seçimleri kaldır
+                for (int i = 0; i < clbUsers.Items.Count; i++) {
+                    clbUsers.SetItemChecked(i, false);
+                }
+                isAllUsersSelected = false;
+            }
+        }
+
+        private void sendAllMail_Click(object sender, EventArgs e) {
+            // E-posta konusu ve içeriği
+            DataTable userDetail = dbHelper.GetDetailUser(userID);
+            DataRow row = userDetail.Rows[0]; // İlk satırı al
+
+            // Ad ve soyad bilgilerini al
+            string firstName = row["FirstName"].ToString();
+            string lastName = row["LastName"].ToString();
+            string position = row["position"].ToString();
+            if (_selectedMeetingID < 0) {
+                MessageBox.Show("Herhangi bir faaliyet seçmediniz.");
+                return;
+            }
+            string bodyNotes = rtbNotes.Text;
+            string subject = txtTitle.Text;
+            string body = $"{bodyNotes} \n\n\n Sakarya Teknokent - {firstName} {lastName} - {position} \n\nGenerated by Teknokent Meeting.";
+            // E-posta içeriğini oluştur ve göster
+            string message = $"Konu: {subject}\n\n{body}";
+
+            // Kullanıcıya önizleme göster
+            DialogResult result = MessageBox.Show(message, "E-posta Önizleme", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
+            if (result == DialogResult.OK) {
+               
+            } else {
+                // İşlem iptal edildi
+                return;
+            }
+
+            // RichTextBox içeriğini kontrol edin
+            if (string.IsNullOrEmpty(rtbNotes.Text)) {
+                MessageBox.Show("Toplantı notları boş.");
+                return;
+            }
+
+            // E-posta adreslerini toplamak için bir liste
+            List<string> emailAddresses = new List<string>();
+
+            // Şirketlerden e-posta adreslerini toplama
+            foreach (Participant participant in lbSelectedCompanies.Items) {
+                string email = dbHelper.GetEmailFromId(participant.ID, "Companies");
+                if (!string.IsNullOrEmpty(email)) {
+                    emailAddresses.Add(email);
+                }
+            }
+
+            // Çalışanlardan e-posta adreslerini toplama
+            foreach (Participant participant in lbSelectedEmployees.Items) {
+                string email = dbHelper.GetEmailFromId(participant.ID, "Employees");
+                if (!string.IsNullOrEmpty(email)) {
+                    emailAddresses.Add(email);
+                }
+            }
+
+            // Akademisyenlerden e-posta adreslerini toplama
+            foreach (Participant participant in lbSelectedAcademics.Items) {
+                string email = dbHelper.GetEmailFromId(participant.ID, "Academics");
+                if (!string.IsNullOrEmpty(email)) {
+                    emailAddresses.Add(email);
+                }
+            }
+
+            // Kullanıcılardan e-posta adreslerini toplama
+            foreach (Participant participant in lbSelectedUsers.Items) {
+                if (participant.ID == userID) {
+                    continue;
+                }
+                string email = dbHelper.GetEmailFromId(participant.ID, "Users");
+                if (!string.IsNullOrEmpty(email)) {
+                    emailAddresses.Add(email);
+                }
+            }
+
+            // E-posta adreslerini birleştir
+            string emailList = string.Join(",", emailAddresses.Distinct()); // Tekrarlanan e-posta adreslerini kaldırın
+
+            // Mailto URI oluştur
+            string encodedSubject = Uri.EscapeDataString(subject);
+            string encodedBody = Uri.EscapeDataString(body);
+
+            // Debug için URI'yi kontrol edin
+            string mailtoUri = $"mailto:{emailList}?subject={encodedSubject}&body={encodedBody}";
+
+
+            try {
+                Process.Start(mailtoUri);
+            } catch (Exception ex) {
+                MessageBox.Show("E-posta istemcisi açılırken bir hata oluştu: " + ex.Message);
+            }
         }
     }
 }

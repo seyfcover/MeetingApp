@@ -37,7 +37,7 @@ namespace MeetingApp
             this.plotViewHeatMap.Location = new System.Drawing.Point(0, 0);
             this.plotViewHeatMap.Name = "plotViewHeatMap";
             this.plotViewHeatMap.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.plotViewHeatMap.Size = new System.Drawing.Size(1265, 473);
+            this.plotViewHeatMap.Size = new System.Drawing.Size(1534, 426);
             this.plotViewHeatMap.TabIndex = 0;
             this.plotViewHeatMap.Text = "plotView1";
             this.plotViewHeatMap.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -49,7 +49,7 @@ namespace MeetingApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.ClientSize = new System.Drawing.Size(1265, 473);
+            this.ClientSize = new System.Drawing.Size(1534, 426);
             this.ControlBox = false;
             this.Controls.Add(this.plotViewHeatMap);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

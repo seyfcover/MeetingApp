@@ -31,10 +31,11 @@ namespace MeetingApp
 
         public User ValidateUser(string username, string password) {
             using (SqlConnection connection = new SqlConnection(connectionString)) {
-                string query = "SELECT userID, isAdmin FROM users WHERE username = @username AND userPassword = @password";
+                // Şifrelerin hash'lenip hash'lenmediğini kontrol edin ve gerekli önlemleri alın.
+                string query = "SELECT userID, isAdmin, FirstName, LastName FROM users WHERE username = @username AND userPassword = @password";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", password);
+                command.Parameters.AddWithValue("@password", password); // Bu kısmı hash'lenmiş şifre ile karşılaştıracak şekilde ayarlayın.
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -42,12 +43,18 @@ namespace MeetingApp
                 if (reader.Read()) {
                     int userId = reader.GetInt32(reader.GetOrdinal("userID"));
                     bool isAdmin = reader.GetBoolean(reader.GetOrdinal("isAdmin"));
-                    return new User { UserID = userId, IsAdmin = isAdmin };
+                    string firstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                    string lastName = reader.GetString(reader.GetOrdinal("LastName"));
+
+                    string fullName = $"{firstName} {lastName}";
+
+                    return new User { UserID = userId, IsAdmin = isAdmin, FullName = fullName };
                 } else {
                     return null;
                 }
             }
         }
+
 
         public string GetEmailByUsername(string username) {
             using (SqlConnection connection = new SqlConnection(connectionString)) {
@@ -467,7 +474,7 @@ namespace MeetingApp
 
         public DataTable GetCompanies() {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = "SELECT companyID, name FROM Companies";
+                string query = "SELECT companyID, name FROM Companies ORDER BY name ASC";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable companies = new DataTable();
                 adapter.Fill(companies);
@@ -475,9 +482,10 @@ namespace MeetingApp
             }
         }
 
+
         public DataTable GetCandidateCompanies() {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = "SELECT CompanyID, Name, FieldsOfActivity, Phone, Points FROM CandidateCompanies";
+                string query = "SELECT CompanyID, Name, FieldsOfActivity, Phone, Points FROM CandidateCompanies ORDER BY name ASC";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable companies = new DataTable();
                 adapter.Fill(companies);
@@ -494,8 +502,9 @@ namespace MeetingApp
                 cmd.Parameters.AddWithValue("@CompanyID", companyID);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@Title", title);
-                cmd.Parameters.AddWithValue("@Position", position);
+                cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = (object)title ?? DBNull.Value;
+                cmd.Parameters.Add("@Position", SqlDbType.NVarChar).Value = (object)position ?? DBNull.Value;
+
 
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();
@@ -582,9 +591,8 @@ namespace MeetingApp
                         command.Parameters.AddWithValue("@LastName", lastName);
                         command.Parameters.AddWithValue("@Email", email);
                         command.Parameters.AddWithValue("@Phone", phone);
-                        command.Parameters.AddWithValue("@Title", title);
-                        command.Parameters.AddWithValue("@Position", position);
-
+                        command.Parameters.Add("@Title", SqlDbType.NVarChar).Value = (object)title ?? DBNull.Value;
+                        command.Parameters.Add("@Position", SqlDbType.NVarChar).Value = (object)position ?? DBNull.Value;
                         int result = command.ExecuteNonQuery();
 
                         // Eğer etkilenen satır sayısı 1 ise ekleme başarılı olmuştur
@@ -670,7 +678,7 @@ namespace MeetingApp
 
         public DataTable GetUsers() {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = "SELECT userID, username, firstName, lastName FROM users";
+                string query = "SELECT userID, username, firstName, lastName FROM users ORDER BY firstName ASC";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable users = new DataTable();
                 adapter.Fill(users);
@@ -699,7 +707,7 @@ namespace MeetingApp
         public DataTable GetAcademics() {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
                 try {
-                    string query = "SELECT AcademicID, FirstName, LastName FROM Academics";
+                    string query = "SELECT AcademicID, FirstName, LastName FROM Academics ORDER BY FirstName ASC";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable academics = new DataTable();
                     adapter.Fill(academics);
@@ -743,7 +751,7 @@ namespace MeetingApp
 
         public DataTable GetListEmployees() {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = "SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS FullName FROM Employees";
+                string query = "SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS FullName FROM Employees ORDER BY Fullname ASC";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable employees = new DataTable();
                 adapter.Fill(employees);
@@ -766,7 +774,7 @@ namespace MeetingApp
 
         public int AddMeeting(Meeting meeting) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = "INSERT INTO Meetings (MeetingDate, MeetingTime, MeetingTitle, MeetingNotes, MeetingLocation, MeetingType, isImprtant) OUTPUT INSERTED.MeetingID VALUES (@Date, @Time, @Title, @Notes, @Location, @MeetingType, @isImprtant)";
+                string query = "INSERT INTO Meetings (MeetingDate, MeetingTime, MeetingTitle, MeetingNotes, MeetingLocation, MeetingType, isImportant) OUTPUT INSERTED.MeetingID VALUES (@Date, @Time, @Title, @Notes, @Location, @MeetingType, @isImportant)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Date", meeting.Date);
                 cmd.Parameters.AddWithValue("@Time", meeting.Time);
@@ -999,7 +1007,7 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
 
 
         public void ViewDocuments(int meetingId) {
-            ViewDocumentsForm viewDocumentsForm = new ViewDocumentsForm(meetingId,connectionString);
+            ViewDocumentsForm viewDocumentsForm = new ViewDocumentsForm(meetingId, connectionString);
             viewDocumentsForm.ShowDialog();
         }
 
@@ -1256,7 +1264,7 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
             }
         }
 
-        
+
 
 
 
@@ -1437,20 +1445,16 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
             }
         }
 
-        public List<Meeting> GetMeetingsWithSelectedParticipantsAndDateRange(int? companyId, int? userId, int? academicId, DateTime? dateTimeStart, DateTime? dateTimeEnd) {
-            // Eğer hiçbir participant seçilmediyse, boş liste döndür.
-            if (!companyId.HasValue && !userId.HasValue && !academicId.HasValue) {
-                return new List<Meeting>();
-            }
 
+        public List<Meeting> GetMeetingsWithSelectedParticipantsAndDateRange(int? companyId, int? userId, int? academicId, int? employeeId, DateTime? dateTimeStart, DateTime? dateTimeEnd, string meetingType, bool isImportant) {
             using (var connection = new SqlConnection(connectionString)) {
                 connection.Open();
 
                 var query = new StringBuilder();
-                query.AppendLine("SELECT DISTINCT m.MeetingID, m.MeetingTitle, m.MeetingDate");
+                query.AppendLine("SELECT DISTINCT m.MeetingID, m.MeetingTitle, m.MeetingDate, m.MeetingType, m.isImportant");
                 query.AppendLine("FROM Meetings m");
 
-                // Seçili olan participant'lara göre join ekleme
+                // Katılımcı bilgileri varsa, ilgili join'leri ekle
                 if (companyId.HasValue) {
                     query.AppendLine("INNER JOIN MeetingParticipants mp1 ON m.MeetingID = mp1.MeetingID AND mp1.ParticipantType = 'Company' AND mp1.ParticipantID = @CompanyId");
                 }
@@ -1460,16 +1464,31 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                 if (academicId.HasValue) {
                     query.AppendLine("INNER JOIN MeetingParticipants mp3 ON m.MeetingID = mp3.MeetingID AND mp3.ParticipantType = 'Academic' AND mp3.ParticipantID = @AcademicId");
                 }
+                if (employeeId.HasValue) {
+                    query.AppendLine("INNER JOIN MeetingParticipants mp4 ON m.MeetingID = mp4.MeetingID AND mp4.ParticipantType = 'Employee' AND mp4.ParticipantID = @EmployeeId");
+                }
 
                 query.AppendLine("WHERE 1 = 1");  // Dinamik WHERE koşulları için
 
-                // Tarih aralığı filtreleme durumu
+                // Eğer tarih aralığı varsa, bu durumu kontrol et
                 if (dateTimeStart.HasValue && dateTimeEnd.HasValue) {
                     query.AppendLine("AND m.MeetingDate BETWEEN @StartDate AND @EndDate");
                 }
 
+                // Katılımcı bilgileri verilmemişse, sadece IsImportant ile filtrele
+                if (!companyId.HasValue && !userId.HasValue && !academicId.HasValue) {
+                    // MeetingType null değilse, MeetingType filtresi ekle
+                    if (!string.IsNullOrEmpty(meetingType)) {
+                        query.AppendLine("AND m.MeetingType = @MeetingType");
+                    }
+                    query.AppendLine("AND m.isImportant = @isImportant");
+                }
+
+                // Toplantı tarihine göre sıralama ekleyin
+                query.AppendLine("ORDER BY m.MeetingDate DESC");
+
                 using (var command = new SqlCommand(query.ToString(), connection)) {
-                    // Parametreleri ekleme
+                    // Parametreleri ekle
                     if (companyId.HasValue) {
                         command.Parameters.AddWithValue("@CompanyId", companyId.Value);
                     }
@@ -1479,11 +1498,22 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                     if (academicId.HasValue) {
                         command.Parameters.AddWithValue("@AcademicId", academicId.Value);
                     }
+                    if (employeeId.HasValue) {
+                        command.Parameters.AddWithValue("@EmployeeId",employeeId.Value);
+                    }
 
                     // Tarih aralığı için parametreleri ekle
                     if (dateTimeStart.HasValue && dateTimeEnd.HasValue) {
                         command.Parameters.AddWithValue("@StartDate", dateTimeStart.Value);
                         command.Parameters.AddWithValue("@EndDate", dateTimeEnd.Value);
+                    }
+
+                    // Eğer katılımcı bilgileri yoksa MeetingType ve IsImportant parametrelerini ekle
+                    if (!companyId.HasValue && !userId.HasValue && !academicId.HasValue) {
+                        if (!string.IsNullOrEmpty(meetingType)) {
+                            command.Parameters.AddWithValue("@MeetingType", meetingType);
+                        }
+                        command.Parameters.AddWithValue("@isImportant", isImportant);
                     }
 
                     var meetings = new List<Meeting>();
@@ -1493,7 +1523,9 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                             var meeting = new Meeting {
                                 MeetingID = reader.GetInt32(0),
                                 Title = reader.GetString(1),
-                                Date = reader.GetDateTime(2)
+                                Date = reader.GetDateTime(2),
+                                MeetingType = !reader.IsDBNull(3) ? reader.GetString(3) : "Bilinmiyor",  // null kontrolü
+                                isImportant = reader.GetBoolean(4)
                             };
                             meetings.Add(meeting);
                         }
@@ -1503,6 +1535,9 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                 }
             }
         }
+
+
+
 
         //Statistic
 
@@ -1664,6 +1699,136 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
 
             return eventsTable;
         }
+
+
+        public string GetEmailFromId(int id, string type) {
+            string email = null;
+            string query = "";
+            SqlParameter[] parameters = new SqlParameter[1];
+
+            // `type` parametresine göre sorgu oluştur
+            switch (type) {
+                case "Companies":
+                    query = "SELECT Email FROM Companies WHERE CompanyID = @ID";
+                    parameters[0] = new SqlParameter("@ID", id);
+                    break;
+                case "Employees":
+                    query = "SELECT Email FROM Employees WHERE EmployeeID = @ID";
+                    parameters[0] = new SqlParameter("@ID", id);
+                    break;
+                case "Academics":
+                    query = "SELECT Email FROM Academics WHERE AcademicID = @ID";
+                    parameters[0] = new SqlParameter("@ID", id);
+                    break;
+                case "Users":
+                    query = "SELECT Email FROM Users WHERE UserID = @ID";
+                    parameters[0] = new SqlParameter("@ID", id);
+                    break;
+                default:
+                    throw new ArgumentException("Invalid type specified.");
+            }
+
+            // Veritabanı bağlantısını oluştur ve sorguyu çalıştır
+            using (SqlConnection connection = new SqlConnection(connectionString)) {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddRange(parameters);
+
+                try {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null) {
+                        email = result.ToString();
+                    }
+                } catch (Exception ex) {
+                    // Hata yönetimi
+                    MessageBox.Show("E-posta adresi alınırken bir hata oluştu: " + ex.Message);
+                }
+            }
+
+            return email;
+        }
+
+        // SQL sorgusu çalıştırıp sonuçları dönen metot
+        public DataTable ExecuteQuery(string query, SqlParameter[] parameters = null) {
+            DataTable dt = new DataTable();
+
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        if (parameters != null) {
+                            cmd.Parameters.AddRange(parameters); // Parametreleri ekle
+                        }
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt); // Sonuçları DataTable'a doldur
+                    }
+                }
+            } catch (Exception ex) {
+                MessageBox.Show("Veritabanı hatası: " + ex.Message);
+            }
+
+            return dt;
+        }
+
+        // Parametreli SQL sorgusu çalıştıran metot
+        public void ExecuteNonQuery(string query, SqlParameter[] parameters = null) {
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        if (parameters != null) {
+                            cmd.Parameters.AddRange(parameters);
+                        }
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            } catch (Exception ex) {
+                MessageBox.Show("Veritabanı hatası: " + ex.Message);
+            }
+        }
+
+
+        // Log eklemek için bir metot
+        public void AddLog(string logType, string logDescription) {
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    conn.Open();
+                    string query = "INSERT INTO Logs (LogType, LogDescription) VALUES (@LogType, @LogDescription)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        cmd.Parameters.AddWithValue("@LogType", logType);
+                        cmd.Parameters.AddWithValue("@LogDescription", logDescription);
+
+                        cmd.ExecuteNonQuery(); // Veriyi veritabanına ekler
+                    }
+                }
+            } catch (Exception ex) {
+                // Hata mesajı gösterebiliriz
+                MessageBox.Show("Veri ekleme hatası: " + ex.Message);
+            }
+        }
+    
+
+    public void DeleteAllLogs() {
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    conn.Open();
+                    string query = "DELETE FROM Logs"; // Logs tablosundaki tüm kayıtları siler
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        cmd.ExecuteNonQuery(); // Veritabanındaki logları siler
+                    }
+                }
+
+                MessageBox.Show("Tüm loglar başarıyla silindi.");
+            } catch (Exception ex) {
+                // Hata durumunda mesaj göster
+                MessageBox.Show("Logları silerken bir hata oluştu: " + ex.Message);
+            }
+        }
+
     }
 }
+
 

@@ -10,11 +10,13 @@ namespace MeetingApp
         private DatabaseHelper dbHelper;
         private int selectedAcedemicID;
         private int userID; // Sınıf seviyesinde tanımlama
+        private string FullName;
 
-        public UpdateAcedemic(DatabaseHelper dbHelper, int userID) {
+        public UpdateAcedemic(DatabaseHelper dbHelper, int userID , string FullName) {
             InitializeComponent();
             this.userID = userID;
             this.dbHelper = dbHelper;
+            this.FullName = FullName;
             LoadAcademics();
         }
          
@@ -57,9 +59,12 @@ namespace MeetingApp
 
             if (dbHelper.UpdateAcademic(selectedAcedemicID, firstName, lastName, email, phone, title, position)) {
                 MessageBox.Show("Akademisyen Güncellendi.");
+
+                dbHelper.AddLog("Güncelleme", "ID:" + userID.ToString() + " " + FullName + " || Akademisyen : " + firstName + " " + lastName + " Güncelledi. ");
                 this.Close();
             } else {
                 MessageBox.Show("Akademisyen güncellenirken bir hata oluştu.");
+                dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Akademisyen : " + firstName + " " + lastName + " Güncellenirken Hata OLuştu. ");
             }
         }
 
@@ -67,9 +72,11 @@ namespace MeetingApp
             bool isDeleted = dbHelper.DeleteAcademic(selectedAcedemicID);
             if (isDeleted) {
                 MessageBox.Show("Akademisyen başarıyla silindi.");
+                dbHelper.AddLog("Silme", "ID:" + userID.ToString() + " " + FullName + " || Akademisyen : " + txtFirstName.Text + " " + txtFirstName.Text + " Silindi. ");
                 this.Close();
             } else {
                 MessageBox.Show("Akademisyen silinirken bir hata oluştu.");
+                dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Akademisyen : " + txtFirstName.Text + " " + txtFirstName.Text + " Silinirken Hata Oluştu. ");
             }
         }
 

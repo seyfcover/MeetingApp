@@ -71,6 +71,13 @@ namespace MeetingApp
             this.isImportant = new System.Windows.Forms.CheckBox();
             this.MeetingType = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.selecetAllUsers = new System.Windows.Forms.Button();
+            this.selecetAllAcedemic = new System.Windows.Forms.Button();
+            this.clrUserSolo = new System.Windows.Forms.Button();
+            this.clrAcademicSolo = new System.Windows.Forms.Button();
+            this.clrEmployeeSolo = new System.Windows.Forms.Button();
+            this.clrAcedemicSolo = new System.Windows.Forms.Button();
+            this.sendAllMail = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbSelectedCompanies
@@ -170,7 +177,7 @@ namespace MeetingApp
             // 
             this.btnAddCompanies.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAddCompanies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddCompanies.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnAddCompanies.Font = new System.Drawing.Font("Segoe UI Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.btnAddCompanies.ForeColor = System.Drawing.Color.White;
             this.btnAddCompanies.Location = new System.Drawing.Point(21, 234);
             this.btnAddCompanies.Margin = new System.Windows.Forms.Padding(0);
@@ -185,12 +192,12 @@ namespace MeetingApp
             // 
             this.btnAddUsers.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAddUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddUsers.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnAddUsers.Font = new System.Drawing.Font("Segoe UI Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.btnAddUsers.ForeColor = System.Drawing.Color.White;
             this.btnAddUsers.Location = new System.Drawing.Point(21, 790);
             this.btnAddUsers.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddUsers.Name = "btnAddUsers";
-            this.btnAddUsers.Size = new System.Drawing.Size(199, 27);
+            this.btnAddUsers.Size = new System.Drawing.Size(151, 27);
             this.btnAddUsers.TabIndex = 9;
             this.btnAddUsers.Text = "EKLE";
             this.btnAddUsers.UseVisualStyleBackColor = false;
@@ -200,12 +207,12 @@ namespace MeetingApp
             // 
             this.btnAddAcademics.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAddAcademics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddAcademics.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnAddAcademics.Font = new System.Drawing.Font("Segoe UI Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.btnAddAcademics.ForeColor = System.Drawing.Color.White;
             this.btnAddAcademics.Location = new System.Drawing.Point(21, 613);
             this.btnAddAcademics.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddAcademics.Name = "btnAddAcademics";
-            this.btnAddAcademics.Size = new System.Drawing.Size(199, 27);
+            this.btnAddAcademics.Size = new System.Drawing.Size(152, 27);
             this.btnAddAcademics.TabIndex = 10;
             this.btnAddAcademics.Text = "EKLE";
             this.btnAddAcademics.UseVisualStyleBackColor = false;
@@ -215,7 +222,7 @@ namespace MeetingApp
             // 
             this.btnAddEmployees.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAddEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddEmployees.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnAddEmployees.Font = new System.Drawing.Font("Segoe UI Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.btnAddEmployees.ForeColor = System.Drawing.Color.White;
             this.btnAddEmployees.Location = new System.Drawing.Point(21, 407);
             this.btnAddEmployees.Margin = new System.Windows.Forms.Padding(0);
@@ -236,34 +243,34 @@ namespace MeetingApp
             this.btnSaveMeeting.Name = "btnSaveMeeting";
             this.btnSaveMeeting.Size = new System.Drawing.Size(132, 37);
             this.btnSaveMeeting.TabIndex = 18;
-            this.btnSaveMeeting.Text = "Toplantı Kaydet";
+            this.btnSaveMeeting.Text = "Faaliyet Kaydet";
             this.btnSaveMeeting.UseVisualStyleBackColor = false;
             this.btnSaveMeeting.Click += new System.EventHandler(this.btnSaveMeeting_Click);
             // 
             // dtpDate
             // 
-            this.dtpDate.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dtpDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.dtpDate.Location = new System.Drawing.Point(395, 118);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(210, 23);
+            this.dtpDate.Size = new System.Drawing.Size(257, 27);
             this.dtpDate.TabIndex = 13;
             // 
             // dtpTime
             // 
-            this.dtpTime.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dtpTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpTime.Location = new System.Drawing.Point(781, 117);
             this.dtpTime.Name = "dtpTime";
-            this.dtpTime.Size = new System.Drawing.Size(210, 23);
+            this.dtpTime.Size = new System.Drawing.Size(210, 27);
             this.dtpTime.TabIndex = 14;
             // 
             // txtTitle
             // 
             this.txtTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.txtTitle.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.txtTitle.Location = new System.Drawing.Point(395, 164);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(597, 23);
+            this.txtTitle.Size = new System.Drawing.Size(597, 27);
             this.txtTitle.TabIndex = 15;
             // 
             // rtbNotes
@@ -271,6 +278,7 @@ namespace MeetingApp
             this.rtbNotes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.rtbNotes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.rtbNotes.Location = new System.Drawing.Point(395, 261);
+            this.rtbNotes.MaxLength = 3000;
             this.rtbNotes.Name = "rtbNotes";
             this.rtbNotes.Size = new System.Drawing.Size(739, 408);
             this.rtbNotes.TabIndex = 17;
@@ -280,21 +288,21 @@ namespace MeetingApp
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(281, 164);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(259, 164);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 16);
+            this.label1.Size = new System.Drawing.Size(122, 18);
             this.label1.TabIndex = 25;
-            this.label1.Text = "Toplantı Konusu";
+            this.label1.Text = "Faaliyet Konusu";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(281, 255);
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Location = new System.Drawing.Point(259, 255);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 16);
+            this.label2.Size = new System.Drawing.Size(103, 18);
             this.label2.TabIndex = 25;
             this.label2.Text = "Alınan Notlar";
             // 
@@ -302,10 +310,10 @@ namespace MeetingApp
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(281, 119);
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label3.Location = new System.Drawing.Point(259, 119);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 16);
+            this.label3.Size = new System.Drawing.Size(42, 18);
             this.label3.TabIndex = 25;
             this.label3.Text = "Tarih";
             // 
@@ -353,14 +361,14 @@ namespace MeetingApp
             this.clrCom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clrCom.Font = new System.Drawing.Font("Segoe UI Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.clrCom.ForeColor = System.Drawing.Color.White;
-            this.clrCom.Location = new System.Drawing.Point(1311, 227);
+            this.clrCom.Location = new System.Drawing.Point(1355, 227);
             this.clrCom.Margin = new System.Windows.Forms.Padding(0);
             this.clrCom.Name = "clrCom";
-            this.clrCom.Size = new System.Drawing.Size(199, 24);
+            this.clrCom.Size = new System.Drawing.Size(155, 24);
             this.clrCom.TabIndex = 27;
-            this.clrCom.Text = "SİL";
+            this.clrCom.Text = "Tümünü Sil";
             this.clrCom.UseVisualStyleBackColor = false;
-            this.clrCom.Click += new System.EventHandler(this.clrCom_Click);
+            this.clrCom.Click += new System.EventHandler(this.SclrCom_Click);
             // 
             // clrEmp
             // 
@@ -369,14 +377,14 @@ namespace MeetingApp
             this.clrEmp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clrEmp.Font = new System.Drawing.Font("Segoe UI Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.clrEmp.ForeColor = System.Drawing.Color.White;
-            this.clrEmp.Location = new System.Drawing.Point(1311, 411);
+            this.clrEmp.Location = new System.Drawing.Point(1355, 411);
             this.clrEmp.Margin = new System.Windows.Forms.Padding(0);
             this.clrEmp.Name = "clrEmp";
-            this.clrEmp.Size = new System.Drawing.Size(199, 23);
+            this.clrEmp.Size = new System.Drawing.Size(155, 28);
             this.clrEmp.TabIndex = 27;
-            this.clrEmp.Text = "SİL";
+            this.clrEmp.Text = "Tümünü Sil";
             this.clrEmp.UseVisualStyleBackColor = false;
-            this.clrEmp.Click += new System.EventHandler(this.clrEmp_Click);
+            this.clrEmp.Click += new System.EventHandler(this.SclrEmp_Click);
             // 
             // clrAca
             // 
@@ -385,49 +393,49 @@ namespace MeetingApp
             this.clrAca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clrAca.Font = new System.Drawing.Font("Segoe UI Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.clrAca.ForeColor = System.Drawing.Color.White;
-            this.clrAca.Location = new System.Drawing.Point(1311, 613);
+            this.clrAca.Location = new System.Drawing.Point(1355, 613);
             this.clrAca.Margin = new System.Windows.Forms.Padding(0);
             this.clrAca.Name = "clrAca";
-            this.clrAca.Size = new System.Drawing.Size(199, 22);
+            this.clrAca.Size = new System.Drawing.Size(155, 24);
             this.clrAca.TabIndex = 27;
-            this.clrAca.Text = "SİL";
+            this.clrAca.Text = "Tümünü Sil";
             this.clrAca.UseVisualStyleBackColor = false;
-            this.clrAca.Click += new System.EventHandler(this.clrAca_Click);
+            this.clrAca.Click += new System.EventHandler(this.SclrAca_Click);
             // 
             // clrUser
             // 
             this.clrUser.BackColor = System.Drawing.Color.OrangeRed;
             this.clrUser.FlatAppearance.BorderSize = 0;
             this.clrUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clrUser.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.clrUser.Font = new System.Drawing.Font("Segoe UI Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.clrUser.ForeColor = System.Drawing.Color.White;
-            this.clrUser.Location = new System.Drawing.Point(1311, 793);
+            this.clrUser.Location = new System.Drawing.Point(1355, 793);
             this.clrUser.Margin = new System.Windows.Forms.Padding(0);
             this.clrUser.Name = "clrUser";
-            this.clrUser.Size = new System.Drawing.Size(199, 24);
+            this.clrUser.Size = new System.Drawing.Size(155, 24);
             this.clrUser.TabIndex = 27;
-            this.clrUser.Text = "SİL";
+            this.clrUser.Text = "Tümünü Sil";
             this.clrUser.UseVisualStyleBackColor = false;
-            this.clrUser.Click += new System.EventHandler(this.clrUser_Click);
+            this.clrUser.Click += new System.EventHandler(this.SclrUser_Click);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label11.Location = new System.Drawing.Point(281, 210);
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label11.Location = new System.Drawing.Point(259, 210);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(87, 16);
+            this.label11.Size = new System.Drawing.Size(98, 18);
             this.label11.TabIndex = 28;
-            this.label11.Text = "Toplantı Yeri";
+            this.label11.Text = "Faaliyet Yeri";
             // 
             // txtLocation
             // 
             this.txtLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.txtLocation.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtLocation.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.txtLocation.Location = new System.Drawing.Point(395, 210);
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(538, 23);
+            this.txtLocation.Size = new System.Drawing.Size(538, 27);
             this.txtLocation.TabIndex = 16;
             // 
             // nameDocument
@@ -438,7 +446,7 @@ namespace MeetingApp
             this.nameDocument.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.nameDocument.Location = new System.Drawing.Point(395, 672);
             this.nameDocument.Name = "nameDocument";
-            this.nameDocument.Size = new System.Drawing.Size(739, 44);
+            this.nameDocument.Size = new System.Drawing.Size(604, 44);
             this.nameDocument.TabIndex = 30;
             // 
             // addDocument
@@ -473,11 +481,11 @@ namespace MeetingApp
             // 
             this.listofMeetings.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.listofMeetings.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.listofMeetings.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.listofMeetings.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.listofMeetings.FormattingEnabled = true;
             this.listofMeetings.Location = new System.Drawing.Point(395, 75);
             this.listofMeetings.Name = "listofMeetings";
-            this.listofMeetings.Size = new System.Drawing.Size(597, 24);
+            this.listofMeetings.Size = new System.Drawing.Size(597, 27);
             this.listofMeetings.TabIndex = 33;
             this.listofMeetings.SelectedIndexChanged += new System.EventHandler(this.listofMeetings_SelectedIndexChanged);
             // 
@@ -485,12 +493,12 @@ namespace MeetingApp
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label13.Location = new System.Drawing.Point(281, 78);
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label13.Location = new System.Drawing.Point(259, 78);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(85, 16);
+            this.label13.Size = new System.Drawing.Size(98, 18);
             this.label13.TabIndex = 34;
-            this.label13.Text = "Toplantı Seç";
+            this.label13.Text = "Faaliyet Seç";
             // 
             // viewDocument
             // 
@@ -540,18 +548,17 @@ namespace MeetingApp
             this.btnDelMeeting.Name = "btnDelMeeting";
             this.btnDelMeeting.Size = new System.Drawing.Size(132, 31);
             this.btnDelMeeting.TabIndex = 18;
-            this.btnDelMeeting.Text = "Toplantı Sil";
+            this.btnDelMeeting.Text = "Faaliyet Sil";
             this.btnDelMeeting.UseVisualStyleBackColor = false;
             this.btnDelMeeting.Click += new System.EventHandler(this.btnDelMeeting_Click);
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
             this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label19.Location = new System.Drawing.Point(281, 673);
+            this.label19.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label19.Location = new System.Drawing.Point(259, 673);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(107, 16);
+            this.label19.Size = new System.Drawing.Size(107, 43);
             this.label19.TabIndex = 25;
             this.label19.Text = "Eklenen Dosyalar";
             // 
@@ -662,10 +669,10 @@ namespace MeetingApp
             // isImportant
             // 
             this.isImportant.AutoSize = true;
-            this.isImportant.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.isImportant.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.isImportant.Location = new System.Drawing.Point(541, 28);
             this.isImportant.Name = "isImportant";
-            this.isImportant.Size = new System.Drawing.Size(143, 22);
+            this.isImportant.Size = new System.Drawing.Size(150, 23);
             this.isImportant.TabIndex = 50;
             this.isImportant.Text = "Önemli Faaliyet";
             this.isImportant.UseVisualStyleBackColor = true;
@@ -673,27 +680,137 @@ namespace MeetingApp
             // MeetingType
             // 
             this.MeetingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MeetingType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.MeetingType.FormattingEnabled = true;
             this.MeetingType.Items.AddRange(new object[] {
             "ÜSİ",
             "Girişimcilik",
             "FSMH",
             "Süreç Yönetimi",
-            "Etkinlik"});
+            "Etkinlik",
+            "Uluslararasılaşma",
+            "Genel/TTO"});
             this.MeetingType.Location = new System.Drawing.Point(394, 26);
             this.MeetingType.Name = "MeetingType";
-            this.MeetingType.Size = new System.Drawing.Size(104, 24);
+            this.MeetingType.Size = new System.Drawing.Size(104, 27);
             this.MeetingType.TabIndex = 49;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label20.Location = new System.Drawing.Point(281, 30);
+            this.label20.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label20.Location = new System.Drawing.Point(259, 30);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(90, 16);
+            this.label20.Size = new System.Drawing.Size(99, 18);
             this.label20.TabIndex = 48;
             this.label20.Text = "Faaliyet Türü";
+            // 
+            // selecetAllUsers
+            // 
+            this.selecetAllUsers.BackColor = System.Drawing.Color.CadetBlue;
+            this.selecetAllUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selecetAllUsers.ForeColor = System.Drawing.Color.White;
+            this.selecetAllUsers.Location = new System.Drawing.Point(172, 791);
+            this.selecetAllUsers.Margin = new System.Windows.Forms.Padding(0);
+            this.selecetAllUsers.Name = "selecetAllUsers";
+            this.selecetAllUsers.Size = new System.Drawing.Size(48, 25);
+            this.selecetAllUsers.TabIndex = 51;
+            this.selecetAllUsers.Text = "Tüm";
+            this.selecetAllUsers.UseVisualStyleBackColor = false;
+            this.selecetAllUsers.Click += new System.EventHandler(this.selectAllUsers_Click);
+            // 
+            // selecetAllAcedemic
+            // 
+            this.selecetAllAcedemic.BackColor = System.Drawing.Color.CadetBlue;
+            this.selecetAllAcedemic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selecetAllAcedemic.ForeColor = System.Drawing.Color.White;
+            this.selecetAllAcedemic.Location = new System.Drawing.Point(173, 614);
+            this.selecetAllAcedemic.Margin = new System.Windows.Forms.Padding(0);
+            this.selecetAllAcedemic.Name = "selecetAllAcedemic";
+            this.selecetAllAcedemic.Size = new System.Drawing.Size(48, 25);
+            this.selecetAllAcedemic.TabIndex = 52;
+            this.selecetAllAcedemic.Text = "Tüm";
+            this.selecetAllAcedemic.UseVisualStyleBackColor = false;
+            this.selecetAllAcedemic.Click += new System.EventHandler(this.selectAllAcademics_Click);
+            // 
+            // clrUserSolo
+            // 
+            this.clrUserSolo.BackColor = System.Drawing.Color.Coral;
+            this.clrUserSolo.FlatAppearance.BorderSize = 0;
+            this.clrUserSolo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clrUserSolo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.clrUserSolo.ForeColor = System.Drawing.Color.White;
+            this.clrUserSolo.Location = new System.Drawing.Point(1311, 792);
+            this.clrUserSolo.Margin = new System.Windows.Forms.Padding(0);
+            this.clrUserSolo.Name = "clrUserSolo";
+            this.clrUserSolo.Size = new System.Drawing.Size(44, 25);
+            this.clrUserSolo.TabIndex = 53;
+            this.clrUserSolo.Text = "Sil";
+            this.clrUserSolo.UseVisualStyleBackColor = false;
+            this.clrUserSolo.Click += new System.EventHandler(this.clrUserSolo_Click);
+            // 
+            // clrAcademicSolo
+            // 
+            this.clrAcademicSolo.BackColor = System.Drawing.Color.Coral;
+            this.clrAcademicSolo.FlatAppearance.BorderSize = 0;
+            this.clrAcademicSolo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clrAcademicSolo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.clrAcademicSolo.ForeColor = System.Drawing.Color.White;
+            this.clrAcademicSolo.Location = new System.Drawing.Point(1311, 227);
+            this.clrAcademicSolo.Margin = new System.Windows.Forms.Padding(0);
+            this.clrAcademicSolo.Name = "clrAcademicSolo";
+            this.clrAcademicSolo.Size = new System.Drawing.Size(44, 24);
+            this.clrAcademicSolo.TabIndex = 54;
+            this.clrAcademicSolo.Text = "Sil";
+            this.clrAcademicSolo.UseVisualStyleBackColor = false;
+            this.clrAcademicSolo.Click += new System.EventHandler(this.clrCompanySolo_Click);
+            // 
+            // clrEmployeeSolo
+            // 
+            this.clrEmployeeSolo.BackColor = System.Drawing.Color.Coral;
+            this.clrEmployeeSolo.FlatAppearance.BorderSize = 0;
+            this.clrEmployeeSolo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clrEmployeeSolo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.clrEmployeeSolo.ForeColor = System.Drawing.Color.White;
+            this.clrEmployeeSolo.Location = new System.Drawing.Point(1311, 411);
+            this.clrEmployeeSolo.Margin = new System.Windows.Forms.Padding(0);
+            this.clrEmployeeSolo.Name = "clrEmployeeSolo";
+            this.clrEmployeeSolo.Size = new System.Drawing.Size(44, 28);
+            this.clrEmployeeSolo.TabIndex = 55;
+            this.clrEmployeeSolo.Text = "Sil";
+            this.clrEmployeeSolo.UseVisualStyleBackColor = false;
+            this.clrEmployeeSolo.Click += new System.EventHandler(this.clrEmployeeSolo_Click);
+            // 
+            // clrAcedemicSolo
+            // 
+            this.clrAcedemicSolo.BackColor = System.Drawing.Color.Coral;
+            this.clrAcedemicSolo.FlatAppearance.BorderSize = 0;
+            this.clrAcedemicSolo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clrAcedemicSolo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.clrAcedemicSolo.ForeColor = System.Drawing.Color.White;
+            this.clrAcedemicSolo.Location = new System.Drawing.Point(1311, 613);
+            this.clrAcedemicSolo.Margin = new System.Windows.Forms.Padding(0);
+            this.clrAcedemicSolo.Name = "clrAcedemicSolo";
+            this.clrAcedemicSolo.Size = new System.Drawing.Size(44, 24);
+            this.clrAcedemicSolo.TabIndex = 56;
+            this.clrAcedemicSolo.Text = "Sil";
+            this.clrAcedemicSolo.UseVisualStyleBackColor = false;
+            this.clrAcedemicSolo.Click += new System.EventHandler(this.clrAcedemicSolo_Click);
+            // 
+            // sendAllMail
+            // 
+            this.sendAllMail.BackColor = System.Drawing.Color.SeaGreen;
+            this.sendAllMail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sendAllMail.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.sendAllMail.ForeColor = System.Drawing.Color.White;
+            this.sendAllMail.Location = new System.Drawing.Point(1002, 672);
+            this.sendAllMail.Margin = new System.Windows.Forms.Padding(0);
+            this.sendAllMail.Name = "sendAllMail";
+            this.sendAllMail.Size = new System.Drawing.Size(133, 44);
+            this.sendAllMail.TabIndex = 9;
+            this.sendAllMail.Text = "Mail Gönder";
+            this.sendAllMail.UseVisualStyleBackColor = false;
+            this.sendAllMail.Click += new System.EventHandler(this.sendAllMail_Click);
             // 
             // UpdateMeeting
             // 
@@ -701,6 +818,12 @@ namespace MeetingApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1532, 829);
+            this.Controls.Add(this.clrUserSolo);
+            this.Controls.Add(this.clrAcademicSolo);
+            this.Controls.Add(this.clrEmployeeSolo);
+            this.Controls.Add(this.clrAcedemicSolo);
+            this.Controls.Add(this.selecetAllUsers);
+            this.Controls.Add(this.selecetAllAcedemic);
             this.Controls.Add(this.isImportant);
             this.Controls.Add(this.MeetingType);
             this.Controls.Add(this.label20);
@@ -740,6 +863,7 @@ namespace MeetingApp
             this.Controls.Add(this.btnAddAcademics);
             this.Controls.Add(this.clbAcademics);
             this.Controls.Add(this.lbSelectedUsers);
+            this.Controls.Add(this.sendAllMail);
             this.Controls.Add(this.btnAddUsers);
             this.Controls.Add(this.clbUsers);
             this.Controls.Add(this.lbSelectedCompanies);
@@ -757,7 +881,7 @@ namespace MeetingApp
             this.MaximizeBox = false;
             this.Name = "UpdateMeeting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Görüşme Düzenle";
+            this.Text = "Faaliyet Düzenle";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -798,5 +922,12 @@ namespace MeetingApp
         private CheckBox isImportant;
         private ComboBox MeetingType;
         private Label label20;
+        private Button selecetAllUsers;
+        private Button selecetAllAcedemic;
+        private Button clrUserSolo;
+        private Button clrAcademicSolo;
+        private Button clrEmployeeSolo;
+        private Button clrAcedemicSolo;
+        private Button sendAllMail;
     }
 }

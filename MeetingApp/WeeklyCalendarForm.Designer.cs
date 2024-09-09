@@ -67,7 +67,13 @@ namespace MeetingApp
             // 
             // btnPreviousWeek
             // 
-            this.btnPreviousWeek.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPreviousWeek.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
+            this.btnPreviousWeek.FlatAppearance.BorderSize = 0;
+            this.btnPreviousWeek.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(89)))), ((int)(((byte)(149)))));
+            this.btnPreviousWeek.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(179)))));
+            this.btnPreviousWeek.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreviousWeek.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnPreviousWeek.ForeColor = System.Drawing.Color.White;
             this.btnPreviousWeek.Location = new System.Drawing.Point(10, 10);
             this.btnPreviousWeek.Name = "btnPreviousWeek";
             this.btnPreviousWeek.Size = new System.Drawing.Size(150, 30);
@@ -77,8 +83,13 @@ namespace MeetingApp
             // 
             // btnNextWeek
             // 
-            this.btnNextWeek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextWeek.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNextWeek.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
+            this.btnNextWeek.FlatAppearance.BorderSize = 0;
+            this.btnNextWeek.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(89)))), ((int)(((byte)(149)))));
+            this.btnNextWeek.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(179)))));
+            this.btnNextWeek.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextWeek.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnNextWeek.ForeColor = System.Drawing.Color.White;
             this.btnNextWeek.Location = new System.Drawing.Point(1372, 10);
             this.btnNextWeek.Name = "btnNextWeek";
             this.btnNextWeek.Size = new System.Drawing.Size(150, 30);

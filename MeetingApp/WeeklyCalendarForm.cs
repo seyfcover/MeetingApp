@@ -11,15 +11,17 @@ namespace MeetingApp
     {
         private DatabaseHelper dbHelper;
         private int userID;
+        private string FullName;
         private DateTime currentWeekStart;
         private Timer blinkTimer;
         private bool isBlinking = false;
         private Label lblEvent;
 
-        public WeeklyCalendarForm(DatabaseHelper dbHelper, int userID) {
+        public WeeklyCalendarForm(DatabaseHelper dbHelper, int userID , string FullName) {
             InitializeComponent();
             this.dbHelper = dbHelper;
             this.userID = userID;
+            this.FullName = FullName;
             currentWeekStart = GetStartOfWeek(DateTime.Now); // Başlangıç olarak bu haftanın ilk günü 
         }
 
@@ -108,53 +110,57 @@ namespace MeetingApp
                 foreach (Control control in tableLayoutPanelDays.Controls) {
                     if (control is TableLayoutPanel dayPanel) {
                         foreach (Control panel in dayPanel.Controls) {
-                            if (panel is Panel eventPanel && (DateTime)eventPanel.Tag == eventDate) {
-                                int eventIndex = 0;
-                                int maxEventsPerPanel = 16; // Her panelde gösterilebilecek maksimum etkinlik sayısı
-                                int panelCount = dayPanel.Controls.OfType<Panel>().Count();
+                            if (panel is Panel eventPanel) {
+                                // Tag özelliğini kontrol et ve null olup olmadığını doğrula
+                                if (eventPanel.Tag is DateTime tagDate && tagDate == eventDate) {
+                                    int eventIndex = 0;
+                                    int maxEventsPerPanel = 14; // Her panelde gösterilebilecek maksimum etkinlik sayısı
+                                    int panelCount = dayPanel.Controls.OfType<Panel>().Count();
 
-                                foreach (DataRow row in events) {
-                                    if (eventIndex >= panelCount * maxEventsPerPanel) {
-                                        // Eğer etkinlik sayısı mevcut panelleri aşarsa, yeni panel oluşturun
-                                        Panel newPanel = CreateNewEventPanel();
-                                        dayPanel.Controls.Add(newPanel);
-                                        panelCount++;
+                                    foreach (DataRow row in events) {
+                                        if (eventIndex >= maxEventsPerPanel) {
+                                            // Eğer etkinlik sayısı sınırı aşarsa döngüyü kırın
+                                            break;
+                                        }
+
+                                        // Etkinlik için bir label oluşturun ve mevcut panelin içine ekleyin
+                                        Panel currentPanel = dayPanel.Controls.OfType<Panel>()
+                                            .Skip((eventIndex / maxEventsPerPanel) % panelCount)
+                                            .First();
+
+                                        Label lblEvent = new Label {
+                                            Text = row["MeetingTitle"].ToString(),
+                                            Dock = DockStyle.Top,
+                                            TextAlign = ContentAlignment.MiddleCenter,
+                                            BackColor = GetColorForEvent(row["MeetingType"].ToString()),
+                                            ForeColor = Color.WhiteSmoke,
+                                            Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                                            Tag = new KeyValuePair<int, string>(Convert.ToInt32(row["MeetingID"]), row["MeetingTitle"].ToString()),
+                                            Height = 50
+                                        };
+
+                                        // Eğer toplantı önemliyse yanıp sönme özelliğini ekleyin
+                                        if (Convert.ToBoolean(row["isImportant"])) {
+                                            lblEvent.BackColor = GetColorForEvent(row["MeetingType"].ToString()); // Başlangıç rengi
+                                            InitializeBlinking(lblEvent, GetColorForEvent(row["MeetingType"].ToString())); // Her bir label için yanıp sönme işlevini başlat
+                                        }
+
+                                        lblEvent.Click += LblEvent_Click;
+                                        currentPanel.Controls.Add(lblEvent);
+
+                                        eventIndex++;
                                     }
-
-                                    // Etkinlik için bir label oluşturun ve mevcut panelin içine ekleyin
-                                    Panel currentPanel = dayPanel.Controls.OfType<Panel>()
-                                        .Skip((eventIndex / maxEventsPerPanel) % panelCount)
-                                        .First();
-
-                                    Label lblEvent = new Label {
-                                        Text = row["MeetingTitle"].ToString(),
-                                        Dock = DockStyle.Top,
-                                        TextAlign = ContentAlignment.MiddleCenter,
-                                        BackColor = GetColorForEvent(row["MeetingType"].ToString()),
-                                        ForeColor = Color.Black,
-                                        Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                                        Tag = new KeyValuePair<int, string>(Convert.ToInt32(row["MeetingID"]), row["MeetingTitle"].ToString()),
-                                        Height = 50
-                                    };
-
-                                    // Eğer toplantı önemliyse yanıp sönme özelliğini ekleyin
-                                    if (Convert.ToBoolean(row["isImportant"])) {
-                                        lblEvent.BackColor = GetColorForEvent(row["MeetingType"].ToString()); // Başlangıç rengi
-                                        InitializeBlinking(lblEvent, GetColorForEvent(row["MeetingType"].ToString())); // Her bir label için yanıp sönme işlevini başlat
-                                    }
-
-                                    lblEvent.Click += LblEvent_Click;
-                                    currentPanel.Controls.Add(lblEvent);
-
-                                    eventIndex++;
+                                    break;
                                 }
-                                break;
                             }
                         }
                     }
                 }
             }
         }
+
+
+
 
 
         // Her bir Label için yanıp sönme işlevini başlatmak için
@@ -172,31 +178,21 @@ namespace MeetingApp
             if (lblEvent != null) {
                 // Yanıp sönme durumunu kontrol et
                 if (lblEvent.BackColor == originalColor) {
-                    lblEvent.BackColor = Color.Transparent; // İlk durumda şeffaf yap
+                    lblEvent.BackColor = Color.Transparent;
+                    lblEvent.ForeColor = Color.Black;
+                    // İlk durumda şeffaf yap
                 } else {
-                    lblEvent.BackColor = originalColor; // Şeffaflıktan sonra orijinal renge döner
+                    lblEvent.BackColor = originalColor;
+                    lblEvent.ForeColor = Color.WhiteSmoke;// Şeffaflıktan sonra orijinal renge döner
                 }
             }
         }
-
-
-
-        private Panel CreateNewEventPanel() {
-            return new Panel {
-                Dock = DockStyle.Fill,
-                Height = 68,
-                BorderStyle = BorderStyle.FixedSingle,
-                Margin = new Padding(1)
-            };
-        }
-
-
 
         private void LblEvent_Click(object sender, EventArgs e) {
             if (sender is Label lblEvent && lblEvent.Tag is KeyValuePair<int, string> eventDetails) {
                 int selectedEventID = eventDetails.Key;
                 if (selectedEventID > 0) {
-                    UpdateMeeting eventForm = new UpdateMeeting(dbHelper, userID) {
+                    UpdateMeeting eventForm = new UpdateMeeting(dbHelper, userID , FullName) {
                         _selectedMeetingID = selectedEventID
                     };
                     eventForm.listofMeetings_SelectedIndexChanged(null, null);
@@ -209,12 +205,14 @@ namespace MeetingApp
         private Color GetColorForEvent(string type) {
             // Renkler listesini tanımlayın
             var eventColors = new Dictionary<string, Color> {
-        { "üsi", Color.LightSkyBlue },          // Açık Mavi
-        { "girişimcilik", Color.LightGreen },   // Açık Yeşil
-        { "fsmh", Color.LightGoldenrodYellow }, // Açık Sarı
-        { "süreç yönetimi", Color.LightCoral }, // Açık Turuncu
-        { "etkinlik", Color.Turquoise }       // Açık Mor
-    };
+                { "üsi", Color.DarkBlue },          // Açık Mavi
+                { "girişimcilik", Color.OrangeRed },   // Açık Yeşil
+                { "fsmh", Color.Maroon }, // Açık Sarı
+                { "süreç yönetimi", Color.ForestGreen }, // Açık Turuncu
+                { "etkinlik", Color.Purple },
+                { "uluslararasılaşma", Color.DarkSlateGray },
+                { "genel/tto", Color.Teal }  // Açık Mor
+            };
 
             // `type` değerine göre uygun renk döndürme
             return eventColors.TryGetValue(type.ToLower(), out var color) ? color : Color.LightGray;
@@ -233,7 +231,7 @@ namespace MeetingApp
             LoadWeeklyEvents();
         }
 
-        private void refCalendar_Click(object sender, EventArgs e) {
+        public void refCalendar_Click(object sender, EventArgs e) {
             DisplayWeekDays();
             LoadWeeklyEvents();
         }
@@ -253,7 +251,7 @@ namespace MeetingApp
                 DateTime dayDate = (DateTime)clickedLabel.Tag;
                 string dateText = dayDate.ToString("dd MMMM yyyy");
 
-                MeetingForm newMeeting = new MeetingForm(dbHelper, userID) {
+                MeetingForm newMeeting = new MeetingForm(dbHelper, userID, FullName) {
                     dtpDate = { Text = dateText },
                     dtpTime = { Text = "09:00" }
                 };

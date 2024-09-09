@@ -9,10 +9,12 @@ namespace MeetingApp
     {
         private DatabaseHelper dbHelper;
         private int userID;
-        public UpdateEmployee(DatabaseHelper dbHelper, int userID) {
+        private string FullName;
+        public UpdateEmployee(DatabaseHelper dbHelper, int userID, string FullName) {
             InitializeComponent();
             this.dbHelper = dbHelper;
             this.userID = userID;
+            this.FullName = FullName;
             LoadCompanies();
             LoadEmployees();
            
@@ -82,9 +84,11 @@ namespace MeetingApp
             // Çalışanı güncelle
             if (dbHelper.UpdateEmployee(selectedEmployeeID, firstName, lastName, companyID, email, phone, title, position)) {
                 MessageBox.Show("Çalışan başarıyla güncellendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dbHelper.AddLog("Güncelleme", "ID:" + userID.ToString() + " " + FullName + " || Şirket Personeli : " + firstName + " " + lastName + " Güncellendi. ");
                 this.Close();
             } else {
                 MessageBox.Show("Çalışan güncellenirken bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Şirket Personeli : " + firstName + " " + lastName + " Güncellenirken Hata Oluştu. ");
             }
         }
 

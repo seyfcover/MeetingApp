@@ -158,6 +158,8 @@
             // 
             // txtTitle
             // 
+            this.txtTitle.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtTitle.FormattingEnabled = true;
             this.txtTitle.Items.AddRange(new object[] {
             "Rektör",
@@ -193,6 +195,8 @@
             // 
             // listofAcedemics
             // 
+            this.listofAcedemics.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.listofAcedemics.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.listofAcedemics.FormattingEnabled = true;
             this.listofAcedemics.Location = new System.Drawing.Point(18, 39);
             this.listofAcedemics.Name = "listofAcedemics";

@@ -10,14 +10,19 @@ namespace MeetingApp
         private DatabaseHelper dbHelper;
         private ErrorProvider errorProvider;
         private int selecteduserID;
-        public UpdateUsers(DatabaseHelper dbHelper) {
+        private int userID;
+        private string FullName;
+        public UpdateUsers(DatabaseHelper dbHelper, int userID, string FullName) {
             InitializeComponent();
             this.dbHelper = dbHelper;
+            this.userID = userID;
+            this.FullName = FullName;
             this.errorProvider = new ErrorProvider();
             LoadUsers();
 
             // E-mail numarası için validasyon olaylarını ekleyin
             txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
+            
         }
 
         private void LoadUsers() {
@@ -63,6 +68,7 @@ namespace MeetingApp
             );
 
             MessageBox.Show("Kullanıcı Güncellendi.!");
+            dbHelper.AddLog("Güncelleme", FullName + ",  " + txtFirstName.Text + " " + txtLastName.Text + " Kullanıcısını Güncelledi.");
             this.Close();
         }
 
@@ -82,9 +88,11 @@ namespace MeetingApp
 
                 if (isDeleted) {
                     MessageBox.Show("Kullanıcı başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dbHelper.AddLog("Silme", FullName + ",  " + txtFirstName.Text + " " + txtLastName.Text + " Kullanıcısını Sildi.");
                     LoadUsers(); 
                 } else {
                     MessageBox.Show("Kullanıcı silinirken bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dbHelper.AddLog("Hata", FullName + ",  " + txtFirstName.Text + " " + txtLastName.Text + " Kullanıcısını Silerken Hata Oluştu.");
                 }
             }
         }

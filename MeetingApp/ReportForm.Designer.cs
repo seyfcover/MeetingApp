@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace MeetingApp
 {
@@ -18,12 +19,13 @@ namespace MeetingApp
             this.btnGenerateReport = new System.Windows.Forms.Button();
             this.renewMeetings = new System.Windows.Forms.Button();
             this.dgvMeetings = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.isImportant = new System.Windows.Forms.CheckBox();
             this.customDateRange = new System.Windows.Forms.CheckBox();
             this.dateTimeEnd = new System.Windows.Forms.DateTimePicker();
-            this.fastReport3Month = new System.Windows.Forms.Button();
-            this.fastReportMonth = new System.Windows.Forms.Button();
+            this.MeetingType = new System.Windows.Forms.ComboBox();
             this.dateTimeStart = new System.Windows.Forms.DateTimePicker();
             this.reportConditions = new System.Windows.Forms.Button();
             this.chkAcd = new System.Windows.Forms.CheckBox();
@@ -36,7 +38,11 @@ namespace MeetingApp
             this.listAcedemics = new System.Windows.Forms.ComboBox();
             this.listUsers = new System.Windows.Forms.ComboBox();
             this.listCompany = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.searchEvent = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelEmployee = new System.Windows.Forms.Label();
+            this.listEmployee = new System.Windows.Forms.ComboBox();
+            this.chkEmployee = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMeetings)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -46,12 +52,12 @@ namespace MeetingApp
             this.btnGenerateReport.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnGenerateReport.FlatAppearance.BorderSize = 0;
             this.btnGenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerateReport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnGenerateReport.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnGenerateReport.ForeColor = System.Drawing.Color.White;
-            this.btnGenerateReport.Location = new System.Drawing.Point(558, 560);
+            this.btnGenerateReport.Location = new System.Drawing.Point(875, 765);
             this.btnGenerateReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnGenerateReport.Name = "btnGenerateReport";
-            this.btnGenerateReport.Size = new System.Drawing.Size(204, 58);
+            this.btnGenerateReport.Size = new System.Drawing.Size(257, 69);
             this.btnGenerateReport.TabIndex = 6;
             this.btnGenerateReport.Text = "Rapor Oluştur";
             this.btnGenerateReport.UseVisualStyleBackColor = false;
@@ -62,12 +68,12 @@ namespace MeetingApp
             this.renewMeetings.BackColor = System.Drawing.Color.Orange;
             this.renewMeetings.FlatAppearance.BorderSize = 0;
             this.renewMeetings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.renewMeetings.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.renewMeetings.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.renewMeetings.ForeColor = System.Drawing.Color.White;
-            this.renewMeetings.Location = new System.Drawing.Point(28, 559);
+            this.renewMeetings.Location = new System.Drawing.Point(11, 765);
             this.renewMeetings.Margin = new System.Windows.Forms.Padding(4);
             this.renewMeetings.Name = "renewMeetings";
-            this.renewMeetings.Size = new System.Drawing.Size(196, 58);
+            this.renewMeetings.Size = new System.Drawing.Size(257, 69);
             this.renewMeetings.TabIndex = 5;
             this.renewMeetings.Text = "Yenile";
             this.renewMeetings.UseVisualStyleBackColor = false;
@@ -78,64 +84,97 @@ namespace MeetingApp
             this.dgvMeetings.AllowUserToAddRows = false;
             this.dgvMeetings.AllowUserToDeleteRows = false;
             this.dgvMeetings.AllowUserToResizeColumns = false;
-            this.dgvMeetings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMeetings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvMeetings.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvMeetings.BackgroundColor = System.Drawing.Color.White;
             this.dgvMeetings.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvMeetings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMeetings.Location = new System.Drawing.Point(11, 35);
+            this.dgvMeetings.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dgvMeetings.Location = new System.Drawing.Point(11, 100);
             this.dgvMeetings.Margin = new System.Windows.Forms.Padding(0);
             this.dgvMeetings.MultiSelect = false;
             this.dgvMeetings.Name = "dgvMeetings";
+            this.dgvMeetings.ReadOnly = true;
             this.dgvMeetings.RowHeadersVisible = false;
             this.dgvMeetings.RowHeadersWidth = 51;
             this.dgvMeetings.RowTemplate.Height = 24;
             this.dgvMeetings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMeetings.Size = new System.Drawing.Size(751, 516);
+            this.dgvMeetings.Size = new System.Drawing.Size(1121, 657);
             this.dgvMeetings.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(13, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 23);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Toplantılar";
+            this.dgvMeetings.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMeetings_CellDoubleClick);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.isImportant);
             this.panel1.Controls.Add(this.customDateRange);
             this.panel1.Controls.Add(this.dateTimeEnd);
-            this.panel1.Controls.Add(this.fastReport3Month);
-            this.panel1.Controls.Add(this.fastReportMonth);
+            this.panel1.Controls.Add(this.MeetingType);
             this.panel1.Controls.Add(this.dateTimeStart);
             this.panel1.Controls.Add(this.reportConditions);
             this.panel1.Controls.Add(this.chkAcd);
             this.panel1.Controls.Add(this.lisrConditions);
+            this.panel1.Controls.Add(this.chkEmployee);
             this.panel1.Controls.Add(this.chkUser);
             this.panel1.Controls.Add(this.chkCom);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.labelEmployee);
             this.panel1.Controls.Add(this.labelPArticipants);
             this.panel1.Controls.Add(this.listAcedemics);
             this.panel1.Controls.Add(this.listUsers);
             this.panel1.Controls.Add(this.listCompany);
-            this.panel1.Location = new System.Drawing.Point(774, 35);
+            this.panel1.Controls.Add(this.listEmployee);
+            this.panel1.Location = new System.Drawing.Point(1152, 6);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(229, 587);
+            this.panel1.Size = new System.Drawing.Size(372, 840);
             this.panel1.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(50, 8);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(10);
+            this.label1.Size = new System.Drawing.Size(287, 52);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Raporlama";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkBox1.Location = new System.Drawing.Point(92, 78);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 54;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // isImportant
+            // 
+            this.isImportant.AutoSize = true;
+            this.isImportant.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.isImportant.Location = new System.Drawing.Point(92, 109);
+            this.isImportant.Name = "isImportant";
+            this.isImportant.Size = new System.Drawing.Size(202, 29);
+            this.isImportant.TabIndex = 53;
+            this.isImportant.Text = "  Önemli Faaliyet";
+            this.isImportant.UseVisualStyleBackColor = true;
             // 
             // customDateRange
             // 
             this.customDateRange.AutoSize = true;
-            this.customDateRange.Location = new System.Drawing.Point(16, 271);
+            this.customDateRange.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.customDateRange.Location = new System.Drawing.Point(55, 534);
             this.customDateRange.Name = "customDateRange";
-            this.customDateRange.Size = new System.Drawing.Size(112, 24);
+            this.customDateRange.Size = new System.Drawing.Size(149, 29);
             this.customDateRange.TabIndex = 44;
             this.customDateRange.Text = "Tarihe Göre";
             this.customDateRange.UseVisualStyleBackColor = true;
@@ -144,47 +183,38 @@ namespace MeetingApp
             // dateTimeEnd
             // 
             this.dateTimeEnd.Enabled = false;
-            this.dateTimeEnd.Location = new System.Drawing.Point(16, 333);
+            this.dateTimeEnd.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dateTimeEnd.Location = new System.Drawing.Point(55, 619);
             this.dateTimeEnd.Name = "dateTimeEnd";
-            this.dateTimeEnd.Size = new System.Drawing.Size(200, 26);
+            this.dateTimeEnd.Size = new System.Drawing.Size(285, 33);
             this.dateTimeEnd.TabIndex = 43;
             // 
-            // fastReport3Month
+            // MeetingType
             // 
-            this.fastReport3Month.BackColor = System.Drawing.Color.Teal;
-            this.fastReport3Month.FlatAppearance.BorderSize = 0;
-            this.fastReport3Month.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fastReport3Month.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.fastReport3Month.ForeColor = System.Drawing.Color.White;
-            this.fastReport3Month.Location = new System.Drawing.Point(0, 422);
-            this.fastReport3Month.Margin = new System.Windows.Forms.Padding(4);
-            this.fastReport3Month.Name = "fastReport3Month";
-            this.fastReport3Month.Size = new System.Drawing.Size(229, 37);
-            this.fastReport3Month.TabIndex = 6;
-            this.fastReport3Month.Text = "Hızlı Rapor (3 Aylık)";
-            this.fastReport3Month.UseVisualStyleBackColor = false;
-            // 
-            // fastReportMonth
-            // 
-            this.fastReportMonth.BackColor = System.Drawing.Color.Teal;
-            this.fastReportMonth.FlatAppearance.BorderSize = 0;
-            this.fastReportMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fastReportMonth.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.fastReportMonth.ForeColor = System.Drawing.Color.White;
-            this.fastReportMonth.Location = new System.Drawing.Point(0, 377);
-            this.fastReportMonth.Margin = new System.Windows.Forms.Padding(4);
-            this.fastReportMonth.Name = "fastReportMonth";
-            this.fastReportMonth.Size = new System.Drawing.Size(229, 37);
-            this.fastReportMonth.TabIndex = 6;
-            this.fastReportMonth.Text = "Hızlı Rapor (Aylık)";
-            this.fastReportMonth.UseVisualStyleBackColor = false;
+            this.MeetingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MeetingType.Enabled = false;
+            this.MeetingType.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingType.FormattingEnabled = true;
+            this.MeetingType.Items.AddRange(new object[] {
+            "ÜSİ",
+            "Girişimcilik",
+            "FSMH",
+            "Süreç Yönetimi",
+            "Etkinlik",
+            "Uluslararasılaşma",
+            "Genel/TTO"});
+            this.MeetingType.Location = new System.Drawing.Point(127, 71);
+            this.MeetingType.Name = "MeetingType";
+            this.MeetingType.Size = new System.Drawing.Size(155, 32);
+            this.MeetingType.TabIndex = 52;
             // 
             // dateTimeStart
             // 
             this.dateTimeStart.Enabled = false;
-            this.dateTimeStart.Location = new System.Drawing.Point(16, 301);
+            this.dateTimeStart.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dateTimeStart.Location = new System.Drawing.Point(55, 571);
             this.dateTimeStart.Name = "dateTimeStart";
-            this.dateTimeStart.Size = new System.Drawing.Size(200, 26);
+            this.dateTimeStart.Size = new System.Drawing.Size(285, 33);
             this.dateTimeStart.TabIndex = 42;
             // 
             // reportConditions
@@ -192,20 +222,21 @@ namespace MeetingApp
             this.reportConditions.BackColor = System.Drawing.Color.SteelBlue;
             this.reportConditions.FlatAppearance.BorderSize = 0;
             this.reportConditions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.reportConditions.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.reportConditions.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.reportConditions.ForeColor = System.Drawing.Color.White;
-            this.reportConditions.Location = new System.Drawing.Point(0, 533);
+            this.reportConditions.Location = new System.Drawing.Point(55, 759);
             this.reportConditions.Margin = new System.Windows.Forms.Padding(4);
             this.reportConditions.Name = "reportConditions";
-            this.reportConditions.Size = new System.Drawing.Size(229, 41);
+            this.reportConditions.Size = new System.Drawing.Size(285, 69);
             this.reportConditions.TabIndex = 6;
-            this.reportConditions.Text = "Raporla";
+            this.reportConditions.Text = "Tümünü Raporla";
             this.reportConditions.UseVisualStyleBackColor = false;
+            this.reportConditions.Click += new System.EventHandler(this.reportConditions_Click);
             // 
             // chkAcd
             // 
             this.chkAcd.AutoSize = true;
-            this.chkAcd.Location = new System.Drawing.Point(58, 223);
+            this.chkAcd.Location = new System.Drawing.Point(92, 481);
             this.chkAcd.Name = "chkAcd";
             this.chkAcd.Size = new System.Drawing.Size(86, 24);
             this.chkAcd.TabIndex = 41;
@@ -219,12 +250,12 @@ namespace MeetingApp
             this.lisrConditions.BackColor = System.Drawing.Color.Orange;
             this.lisrConditions.FlatAppearance.BorderSize = 0;
             this.lisrConditions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lisrConditions.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lisrConditions.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lisrConditions.ForeColor = System.Drawing.Color.White;
-            this.lisrConditions.Location = new System.Drawing.Point(0, 488);
+            this.lisrConditions.Location = new System.Drawing.Point(55, 691);
             this.lisrConditions.Margin = new System.Windows.Forms.Padding(4);
             this.lisrConditions.Name = "lisrConditions";
-            this.lisrConditions.Size = new System.Drawing.Size(229, 37);
+            this.lisrConditions.Size = new System.Drawing.Size(285, 60);
             this.lisrConditions.TabIndex = 5;
             this.lisrConditions.Text = "Listele";
             this.lisrConditions.UseVisualStyleBackColor = false;
@@ -233,7 +264,7 @@ namespace MeetingApp
             // chkUser
             // 
             this.chkUser.AutoSize = true;
-            this.chkUser.Location = new System.Drawing.Point(55, 129);
+            this.chkUser.Location = new System.Drawing.Point(91, 385);
             this.chkUser.Name = "chkUser";
             this.chkUser.Size = new System.Drawing.Size(87, 24);
             this.chkUser.TabIndex = 41;
@@ -245,7 +276,7 @@ namespace MeetingApp
             // chkCom
             // 
             this.chkCom.AutoSize = true;
-            this.chkCom.Location = new System.Drawing.Point(55, 44);
+            this.chkCom.Location = new System.Drawing.Point(88, 197);
             this.chkCom.Name = "chkCom";
             this.chkCom.Size = new System.Drawing.Size(90, 24);
             this.chkCom.TabIndex = 41;
@@ -257,12 +288,12 @@ namespace MeetingApp
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(32, 181);
+            this.label3.Location = new System.Drawing.Point(55, 423);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(10);
-            this.label3.Size = new System.Drawing.Size(165, 39);
+            this.label3.Size = new System.Drawing.Size(282, 47);
             this.label3.TabIndex = 40;
             this.label3.Text = "Akademisyenler";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -271,12 +302,12 @@ namespace MeetingApp
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(32, 87);
+            this.label2.Location = new System.Drawing.Point(55, 329);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(10);
-            this.label2.Size = new System.Drawing.Size(165, 39);
+            this.label2.Size = new System.Drawing.Size(282, 47);
             this.label2.TabIndex = 40;
             this.label2.Text = "TEKNOKENT";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -285,12 +316,12 @@ namespace MeetingApp
             // labelPArticipants
             // 
             this.labelPArticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.labelPArticipants.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelPArticipants.Font = new System.Drawing.Font("Century Gothic", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelPArticipants.ForeColor = System.Drawing.Color.White;
-            this.labelPArticipants.Location = new System.Drawing.Point(32, 0);
+            this.labelPArticipants.Location = new System.Drawing.Point(55, 141);
             this.labelPArticipants.Name = "labelPArticipants";
             this.labelPArticipants.Padding = new System.Windows.Forms.Padding(10);
-            this.labelPArticipants.Size = new System.Drawing.Size(165, 39);
+            this.labelPArticipants.Size = new System.Drawing.Size(282, 47);
             this.labelPArticipants.TabIndex = 40;
             this.labelPArticipants.Text = "Şirketler";
             this.labelPArticipants.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -298,50 +329,109 @@ namespace MeetingApp
             // 
             // listAcedemics
             // 
+            this.listAcedemics.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.listAcedemics.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.listAcedemics.Enabled = false;
+            this.listAcedemics.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listAcedemics.FormattingEnabled = true;
-            this.listAcedemics.Location = new System.Drawing.Point(32, 223);
+            this.listAcedemics.Location = new System.Drawing.Point(55, 473);
             this.listAcedemics.Name = "listAcedemics";
-            this.listAcedemics.Size = new System.Drawing.Size(165, 28);
+            this.listAcedemics.Size = new System.Drawing.Size(282, 32);
             this.listAcedemics.TabIndex = 0;
             // 
             // listUsers
             // 
+            this.listUsers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.listUsers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.listUsers.Enabled = false;
+            this.listUsers.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listUsers.FormattingEnabled = true;
-            this.listUsers.Location = new System.Drawing.Point(32, 129);
+            this.listUsers.Location = new System.Drawing.Point(55, 379);
             this.listUsers.Name = "listUsers";
-            this.listUsers.Size = new System.Drawing.Size(165, 28);
+            this.listUsers.Size = new System.Drawing.Size(282, 32);
             this.listUsers.TabIndex = 0;
             // 
             // listCompany
             // 
+            this.listCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.listCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.listCompany.Enabled = false;
+            this.listCompany.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listCompany.FormattingEnabled = true;
-            this.listCompany.Location = new System.Drawing.Point(32, 42);
+            this.listCompany.Location = new System.Drawing.Point(55, 191);
             this.listCompany.Name = "listCompany";
-            this.listCompany.Size = new System.Drawing.Size(165, 28);
+            this.listCompany.Size = new System.Drawing.Size(282, 32);
             this.listCompany.TabIndex = 0;
             // 
-            // label4
+            // searchEvent
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(832, 9);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 23);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Raporlama";
+            this.searchEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
+            this.searchEvent.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.searchEvent.Location = new System.Drawing.Point(305, 40);
+            this.searchEvent.Name = "searchEvent";
+            this.searchEvent.Size = new System.Drawing.Size(827, 37);
+            this.searchEvent.TabIndex = 9;
+            this.searchEvent.TextChanged += new System.EventHandler(this.searchEvent_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(12, 25);
+            this.label5.Name = "label5";
+            this.label5.Padding = new System.Windows.Forms.Padding(10);
+            this.label5.Size = new System.Drawing.Size(287, 52);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Faaliyetler     |     Arama";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelEmployee
+            // 
+            this.labelEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.labelEmployee.Font = new System.Drawing.Font("Century Gothic", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelEmployee.ForeColor = System.Drawing.Color.White;
+            this.labelEmployee.Location = new System.Drawing.Point(55, 235);
+            this.labelEmployee.Name = "labelEmployee";
+            this.labelEmployee.Padding = new System.Windows.Forms.Padding(10);
+            this.labelEmployee.Size = new System.Drawing.Size(282, 47);
+            this.labelEmployee.TabIndex = 40;
+            this.labelEmployee.Text = "Personeller";
+            this.labelEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelEmployee.Click += new System.EventHandler(this.labelEmployee_Click);
+            // 
+            // listEmployee
+            // 
+            this.listEmployee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.listEmployee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.listEmployee.Enabled = false;
+            this.listEmployee.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.listEmployee.FormattingEnabled = true;
+            this.listEmployee.Location = new System.Drawing.Point(58, 287);
+            this.listEmployee.Name = "listEmployee";
+            this.listEmployee.Size = new System.Drawing.Size(282, 32);
+            this.listEmployee.TabIndex = 55;
+            // 
+            // chkEmployee
+            // 
+            this.chkEmployee.AutoSize = true;
+            this.chkEmployee.Location = new System.Drawing.Point(88, 293);
+            this.chkEmployee.Name = "chkEmployee";
+            this.chkEmployee.Size = new System.Drawing.Size(127, 24);
+            this.chkEmployee.TabIndex = 41;
+            this.chkEmployee.Text = "chkEmployee";
+            this.chkEmployee.UseVisualStyleBackColor = true;
+            this.chkEmployee.Visible = false;
+            this.chkEmployee.CheckedChanged += new System.EventHandler(this.chkEmp1_CheckedChanged);
             // 
             // ReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 631);
+            this.ClientSize = new System.Drawing.Size(1533, 843);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.searchEvent);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGenerateReport);
             this.Controls.Add(this.renewMeetings);
             this.Controls.Add(this.dgvMeetings);
@@ -352,7 +442,7 @@ namespace MeetingApp
             this.MaximizeBox = false;
             this.Name = "ReportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Toplantı Raporları";
+            this.Text = "Faaliyet Raporları";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMeetings)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -364,7 +454,6 @@ namespace MeetingApp
         private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.Button renewMeetings;
         private System.Windows.Forms.DataGridView dgvMeetings;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox listAcedemics;
         private System.Windows.Forms.ComboBox listUsers;
@@ -380,8 +469,14 @@ namespace MeetingApp
         private System.Windows.Forms.Button lisrConditions;
         private System.Windows.Forms.CheckBox customDateRange;
         private System.Windows.Forms.Button reportConditions;
-        private System.Windows.Forms.Button fastReport3Month;
-        private System.Windows.Forms.Button fastReportMonth;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox isImportant;
+        private System.Windows.Forms.ComboBox MeetingType;
+        private System.Windows.Forms.TextBox searchEvent;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label1;
+        private ComboBox listEmployee;
+        private Label labelEmployee;
+        private CheckBox chkEmployee;
     }
 }

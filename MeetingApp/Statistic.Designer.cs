@@ -57,7 +57,7 @@
             series1.Legend = "MeetingCountLegend";
             series1.Name = "MeetingCountSeries";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1169, 450);
+            this.chart1.Size = new System.Drawing.Size(1393, 358);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "Toplantı Sayısı Grafiği";
             // 
@@ -95,7 +95,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.Location = new System.Drawing.Point(981, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(1240, 0);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -104,16 +104,16 @@
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.RowTemplate.Height = 40;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(284, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(294, 358);
             this.dataGridView1.TabIndex = 1;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.panel1.Location = new System.Drawing.Point(0, 538);
+            this.panel1.Location = new System.Drawing.Point(0, 419);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1265, 473);
+            this.panel1.Size = new System.Drawing.Size(1534, 426);
             this.panel1.TabIndex = 2;
             // 
             // btnUpdate
@@ -125,7 +125,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(511, 479);
+            this.btnUpdate.Location = new System.Drawing.Point(635, 373);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(0);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(255, 33);
@@ -138,7 +138,7 @@
             // 
             this.dptEnd.CalendarFont = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.dptEnd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dptEnd.Location = new System.Drawing.Point(925, 479);
+            this.dptEnd.Location = new System.Drawing.Point(1195, 372);
             this.dptEnd.Name = "dptEnd";
             this.dptEnd.Size = new System.Drawing.Size(327, 31);
             this.dptEnd.TabIndex = 32;
@@ -148,7 +148,7 @@
             // 
             this.dtpStart.CalendarFont = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.dtpStart.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dtpStart.Location = new System.Drawing.Point(12, 481);
+            this.dtpStart.Location = new System.Drawing.Point(13, 372);
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(327, 31);
             this.dtpStart.TabIndex = 33;
@@ -159,11 +159,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.ClientSize = new System.Drawing.Size(1264, 1011);
+            this.ClientSize = new System.Drawing.Size(1533, 843);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dptEnd);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dtpStart);
             this.Controls.Add(this.chart1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

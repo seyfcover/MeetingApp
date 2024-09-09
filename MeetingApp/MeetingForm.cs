@@ -16,13 +16,15 @@ namespace MeetingApp
         private List<string> documentNamesList = new List<string>(); // Dosya adları
         private List<string> documentTypesList = new List<string>(); // Dosya türleri
         private int userID;
-        public MeetingForm(DatabaseHelper dbHelper, int userID) {
+        private string FullName;
+        public MeetingForm(DatabaseHelper dbHelper, int userID , string FullName) {
             InitializeComponent();
             this.dbHelper = dbHelper;
+            this.userID = userID;
+            this.FullName = FullName;
             LoadCompanies();
             LoadUsers();
             LoadAcademics();
-            this.userID = userID;   
         }
 
         private void FilterCompanies(string searchText) {
@@ -176,16 +178,16 @@ namespace MeetingApp
                 }
                 // Boş alanlar için kontrolleri yap
                 if (string.IsNullOrWhiteSpace(txtTitle.Text)) {
-                    MessageBox.Show("Toplantı başlığı boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Faaliyet başlığı boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (string.IsNullOrWhiteSpace(rtbNotes.Text)) {
-                    MessageBox.Show("Toplantı notları boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Faaliyet notları boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(txtLocation.Text)) {
-                    MessageBox.Show("Toplantı yeri boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Faaliyet yeri boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -202,7 +204,7 @@ namespace MeetingApp
                     Notes = rtbNotes.Text,
                     Location = txtLocation.Text,
                     MeetingType = MeetingType.Text,
-                    isImportant = isImportant.Checked
+                    isImportant = Convert.ToBoolean(isImportant.Checked)
                 };
 
                 // Toplantıyı veritabanına ekle ve ID'sini al
@@ -217,11 +219,13 @@ namespace MeetingApp
                 //Toplantıya dosyayaı ekle
                 dbHelper.AddMeetingDocuments(meetingId, documentDataList, documentNamesList, documentTypesList);
                 // Bilgilendirme mesajı
-                MessageBox.Show("Toplantı başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Faaliyet başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dbHelper.AddLog("Ekleme","ID: "+ userID.ToString() + " " + FullName + " || " + txtTitle.Text + " Başlıklı faaliyeti ekledi.");
                 ClearForm();
             } catch (Exception ex) {
                 // Hata durumunda bilgilendirme mesajı
                 MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dbHelper.AddLog("Hata", "ID: " + userID.ToString() + " " + FullName + " || " + txtTitle.Text + " Başlıklı faaliyeti eklerken sorun oluştu. " + ex.Message);
             }
         }
 
@@ -237,10 +241,6 @@ namespace MeetingApp
             txtTitle.Text = string.Empty;
             rtbNotes.Text = string.Empty;
             txtLocation.Text = string.Empty;
-
-            // DateTimePicker'ları varsayılan tarihe ayarla
-            dtpDate.Value = DateTime.Now;
-            dtpTime.Value = DateTime.Now; // Zamanı varsayılan olarak şimdiki zaman yap
 
             // ListBox'ları temizle
             lbSelectedCompanies.Items.Clear();
@@ -359,6 +359,71 @@ namespace MeetingApp
 
         private void txtLocation_TextChanged(object sender, EventArgs e) {
             dbHelper.CastingName(txtLocation);
+        }
+
+        private bool isAllSelected = false;
+
+        private void selectAllAcademics_Click(object sender, EventArgs e) {
+            if (!isAllSelected) {
+                // Eğer öğeler seçili değilse, hepsini seç
+                for (int i = 0; i < clbAcademics.Items.Count; i++) {
+                    clbAcademics.SetItemChecked(i, true);
+                }
+                isAllSelected = true;
+            } else {
+                // Eğer öğeler zaten seçiliyse, seçimleri kaldır
+                for (int i = 0; i < clbAcademics.Items.Count; i++) {
+                    clbAcademics.SetItemChecked(i, false);
+                }
+                isAllSelected = false;
+            }
+        }
+
+        // Seçim durumu için bir bayrak tanımlayın
+        private bool isAllUsersSelected = false;
+
+        private void selectAllUsers_Click(object sender, EventArgs e) {
+            if (!isAllUsersSelected) {
+                // Eğer öğeler seçili değilse, hepsini seç
+                for (int i = 0; i < clbUsers.Items.Count; i++) {
+                    clbUsers.SetItemChecked(i, true);
+                }
+                isAllUsersSelected = true;
+            } else {
+                // Eğer öğeler zaten seçiliyse, seçimleri kaldır
+                for (int i = 0; i < clbUsers.Items.Count; i++) {
+                    clbUsers.SetItemChecked(i, false);
+                }
+                isAllUsersSelected = false;
+            }
+        }
+
+        private void clrCompanySolo_Click(object sender, EventArgs e) {
+            while (lbSelectedCompanies.SelectedItems.Count > 0) {
+                Participant selectedParticipant = (Participant)lbSelectedCompanies.SelectedItems[0];
+                lbSelectedCompanies.Items.Remove(selectedParticipant);
+            }
+        }
+
+        private void clrEmployeeSolo_Click(object sender, EventArgs e) {
+            while (lbSelectedEmployees.SelectedItems.Count > 0) {
+                Participant selectedParticipant = (Participant)lbSelectedEmployees.SelectedItems[0];
+                lbSelectedEmployees.Items.Remove(selectedParticipant);
+            }
+        }
+
+        private void clrAcedemicSolo_Click(object sender, EventArgs e) {
+            while (lbSelectedAcademics.SelectedItems.Count > 0) {
+                Participant selectedParticipant = (Participant)lbSelectedAcademics.SelectedItems[0];
+                lbSelectedAcademics.Items.Remove(selectedParticipant);
+            }
+        }
+
+        private void clrUserSolo_Click(object sender, EventArgs e) {
+            while (lbSelectedUsers.SelectedItems.Count > 0) {
+                Participant selectedParticipant = (Participant)lbSelectedUsers.SelectedItems[0];
+                lbSelectedUsers.Items.Remove(selectedParticipant);
+            }
         }
     }
 }

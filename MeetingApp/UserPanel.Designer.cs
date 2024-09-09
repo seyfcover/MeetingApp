@@ -24,9 +24,8 @@
             this.personelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.akademisyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.raporToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.takvimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.raporToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelofMeetings = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -34,15 +33,14 @@
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.menuStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.yeniToolStripMenuItem,
             this.düzenleToolStripMenuItem,
             this.aramaToolStripMenuItem,
-            this.raporToolStripMenuItem,
             this.takvimToolStripMenuItem,
-            this.istatistiklerToolStripMenuItem});
+            this.raporToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
@@ -63,22 +61,22 @@
             // toplantıToolStripMenuItem
             // 
             this.toplantıToolStripMenuItem.Name = "toplantıToolStripMenuItem";
-            this.toplantıToolStripMenuItem.Size = new System.Drawing.Size(232, 30);
+            this.toplantıToolStripMenuItem.Size = new System.Drawing.Size(235, 30);
             this.toplantıToolStripMenuItem.Text = "Faaliyet";
             this.toplantıToolStripMenuItem.Click += new System.EventHandler(this.toplantıToolStripMenuItem_Click);
             // 
             // şirketToolStripMenuItem
             // 
             this.şirketToolStripMenuItem.Name = "şirketToolStripMenuItem";
-            this.şirketToolStripMenuItem.Size = new System.Drawing.Size(232, 30);
+            this.şirketToolStripMenuItem.Size = new System.Drawing.Size(235, 30);
             this.şirketToolStripMenuItem.Text = "Şirket ve Personel";
             this.şirketToolStripMenuItem.Click += new System.EventHandler(this.şirketToolStripMenuItem_Click);
             // 
             // akedemisyenToolStripMenuItem
             // 
             this.akedemisyenToolStripMenuItem.Name = "akedemisyenToolStripMenuItem";
-            this.akedemisyenToolStripMenuItem.Size = new System.Drawing.Size(232, 30);
-            this.akedemisyenToolStripMenuItem.Text = "Akedemisyen";
+            this.akedemisyenToolStripMenuItem.Size = new System.Drawing.Size(235, 30);
+            this.akedemisyenToolStripMenuItem.Text = "Akademisyen";
             this.akedemisyenToolStripMenuItem.Click += new System.EventHandler(this.akedemisyenToolStripMenuItem_Click);
             // 
             // düzenleToolStripMenuItem
@@ -89,64 +87,57 @@
             this.personelToolStripMenuItem1,
             this.akademisyenToolStripMenuItem});
             this.düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
-            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(93, 29);
+            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(94, 29);
             this.düzenleToolStripMenuItem.Text = "Düzenle";
             // 
             // toplantıToolStripMenuItem1
             // 
             this.toplantıToolStripMenuItem1.Name = "toplantıToolStripMenuItem1";
-            this.toplantıToolStripMenuItem1.Size = new System.Drawing.Size(195, 30);
-            this.toplantıToolStripMenuItem1.Text = "Toplantı";
+            this.toplantıToolStripMenuItem1.Size = new System.Drawing.Size(199, 30);
+            this.toplantıToolStripMenuItem1.Text = "Faaliyet";
             this.toplantıToolStripMenuItem1.Click += new System.EventHandler(this.toplantıToolStripMenuItem1_Click);
             // 
             // şirketToolStripMenuItem1
             // 
             this.şirketToolStripMenuItem1.Name = "şirketToolStripMenuItem1";
-            this.şirketToolStripMenuItem1.Size = new System.Drawing.Size(195, 30);
+            this.şirketToolStripMenuItem1.Size = new System.Drawing.Size(199, 30);
             this.şirketToolStripMenuItem1.Text = "Şirket";
             this.şirketToolStripMenuItem1.Click += new System.EventHandler(this.şirketToolStripMenuItem1_Click);
             // 
             // personelToolStripMenuItem1
             // 
             this.personelToolStripMenuItem1.Name = "personelToolStripMenuItem1";
-            this.personelToolStripMenuItem1.Size = new System.Drawing.Size(195, 30);
+            this.personelToolStripMenuItem1.Size = new System.Drawing.Size(199, 30);
             this.personelToolStripMenuItem1.Text = "Personel";
             this.personelToolStripMenuItem1.Click += new System.EventHandler(this.personelToolStripMenuItem1_Click);
             // 
             // akademisyenToolStripMenuItem
             // 
             this.akademisyenToolStripMenuItem.Name = "akademisyenToolStripMenuItem";
-            this.akademisyenToolStripMenuItem.Size = new System.Drawing.Size(195, 30);
+            this.akademisyenToolStripMenuItem.Size = new System.Drawing.Size(199, 30);
             this.akademisyenToolStripMenuItem.Text = "Akademisyen";
             this.akademisyenToolStripMenuItem.Click += new System.EventHandler(this.akademisyenToolStripMenuItem_Click);
             // 
             // aramaToolStripMenuItem
             // 
             this.aramaToolStripMenuItem.Name = "aramaToolStripMenuItem";
-            this.aramaToolStripMenuItem.Size = new System.Drawing.Size(79, 29);
+            this.aramaToolStripMenuItem.Size = new System.Drawing.Size(81, 29);
             this.aramaToolStripMenuItem.Text = "Arama";
             this.aramaToolStripMenuItem.Click += new System.EventHandler(this.aramaToolStripMenuItem_Click);
-            // 
-            // raporToolStripMenuItem
-            // 
-            this.raporToolStripMenuItem.Name = "raporToolStripMenuItem";
-            this.raporToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
-            this.raporToolStripMenuItem.Text = "Rapor";
-            this.raporToolStripMenuItem.Click += new System.EventHandler(this.raporToolStripMenuItem_Click);
             // 
             // takvimToolStripMenuItem
             // 
             this.takvimToolStripMenuItem.Name = "takvimToolStripMenuItem";
-            this.takvimToolStripMenuItem.Size = new System.Drawing.Size(81, 29);
+            this.takvimToolStripMenuItem.Size = new System.Drawing.Size(84, 29);
             this.takvimToolStripMenuItem.Text = "Takvim";
             this.takvimToolStripMenuItem.Click += new System.EventHandler(this.takvimToolStripMenuItem_Click);
             // 
-            // istatistiklerToolStripMenuItem
+            // raporToolStripMenuItem
             // 
-            this.istatistiklerToolStripMenuItem.Name = "istatistiklerToolStripMenuItem";
-            this.istatistiklerToolStripMenuItem.Size = new System.Drawing.Size(114, 29);
-            this.istatistiklerToolStripMenuItem.Text = "İstatistikler";
-            this.istatistiklerToolStripMenuItem.Click += new System.EventHandler(this.istatistiklerToolStripMenuItem_Click);
+            this.raporToolStripMenuItem.Name = "raporToolStripMenuItem";
+            this.raporToolStripMenuItem.Size = new System.Drawing.Size(75, 29);
+            this.raporToolStripMenuItem.Text = "Rapor";
+            this.raporToolStripMenuItem.Click += new System.EventHandler(this.raporToolStripMenuItem_Click);
             // 
             // panelofMeetings
             // 
@@ -193,7 +184,6 @@
         private System.Windows.Forms.ToolStripMenuItem toplantıToolStripMenuItem1;
         private System.Windows.Forms.Panel panelofMeetings;
         private System.Windows.Forms.ToolStripMenuItem takvimToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem istatistiklerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem şirketToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem personelToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem akademisyenToolStripMenuItem;

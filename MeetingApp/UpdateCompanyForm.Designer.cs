@@ -159,6 +159,8 @@
             // 
             // cmbCompany
             // 
+            this.cmbCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbCompany.FormattingEnabled = true;
             this.cmbCompany.Location = new System.Drawing.Point(12, 12);
             this.cmbCompany.Name = "cmbCompany";

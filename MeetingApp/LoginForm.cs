@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Mailjet.Client.Resources;
 using MeetingApp.Models;
 
 namespace MeetingApp
@@ -43,28 +44,31 @@ namespace MeetingApp
                 return;
             }
 
-            User user = dbHelper.ValidateUser(txtUsername.Text, txtPassword.Text);
+            MeetingApp.Models.User user = dbHelper.ValidateUser(txtUsername.Text, txtPassword.Text);
             if (user != null) {
                 // User found, login successful
                 MessageBox.Show("Giriş Başarılı!");
                     if (user.IsAdmin) {
-                        AdminPanel adminPanel = new AdminPanel(dbHelper, user.UserID);
+                        AdminPanel adminPanel = new AdminPanel(dbHelper, user.UserID , user.FullName);
                         adminPanel.FormClosed += (s, args) => this.Visible = true;
                         adminPanel.FormClosed += (s, args) => clearTxtboxes();// AdminPanel kapatıldığında LoginForm'u görünür yap
                         adminPanel.Show();
                         this.Visible = false;
-                    }
+                        dbHelper.AddLog("Giriş", "Admin ID:" + user.UserID.ToString() + " " + user.FullName + " || Sisteme Giriş Yaptı.");
+                }
                    else {
-                    UserPanel userPanel = new UserPanel(dbHelper, user.UserID);
+                    UserPanel userPanel = new UserPanel(dbHelper, user.UserID , user.FullName);
                     userPanel.FormClosed += (s, args) => this.Visible = true;
                     userPanel.FormClosed += (s, args) => clearTxtboxes();// AdminPanel kapatıldığında LoginForm'u görünür yap
                     userPanel.Show();
                     this.Visible = false;
+                    dbHelper.AddLog("Giriş", "ID:" + user.UserID.ToString() + " " + user.FullName + " || Sisteme Giriş Yaptı.");
                 }
 
             } else {
                 // User not found, login failed
                 MessageBox.Show("Kullanıcı adı veya parola yanlış.");
+                dbHelper.AddLog("Hata", txtUsername.Text + " " + txtPassword + " Hatalı giriş.");
             }
         }
         private void clearTxtboxes() { 

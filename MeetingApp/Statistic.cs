@@ -21,6 +21,7 @@ namespace MeetingApp
 
             // Bugünün tarihini dptEnd'e ata (günün son anına kadar ayarlanmış şekilde)
             dptEnd.Value = DateTime.Now.Date.AddDays(1).AddTicks(-1);
+            btnUpdate_Click(null, null);
         }
 
         private void Statistic_Load(object sender, EventArgs e) {
@@ -60,7 +61,7 @@ namespace MeetingApp
         private void LoadParticipantMeetingData() {
             try {
                 DateTime startDate = dtpStart.Value.Date;
-                DateTime endDate = dptEnd.Value.Date.AddDays(1).AddTicks(-1);
+                DateTime endDate = dptEnd.Value.Date;
                 // Verileri al
                 List<ParticipantMeetingData> data = dbHelper.GetParticipantMeetingDataForUsers(startDate,endDate);
 
@@ -89,7 +90,7 @@ namespace MeetingApp
         private void LoadAttendanceRateChart() {
             try {
                 DateTime startDate = dtpStart.Value.Date;
-                DateTime endDate = dptEnd.Value.Date.AddDays(1).AddTicks(-1);
+                DateTime endDate = dptEnd.Value.Date;
                 // Yalnızca kullanıcı verilerini yükle
                 List<ParticipantMeetingData> data = dbHelper.GetParticipantMeetingDataForUsers(startDate,endDate);
 

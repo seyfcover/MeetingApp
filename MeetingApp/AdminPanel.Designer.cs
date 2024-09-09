@@ -47,6 +47,7 @@ namespace MeetingApp
             this.makeReport = new System.Windows.Forms.ToolStripMenuItem();
             this.adayŞirketlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelofMeetings = new System.Windows.Forms.Panel();
+            this.logKayıtlarıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +63,8 @@ namespace MeetingApp
             this.takvimToolStripMenuItem,
             this.istatistiklerToolStripMenuItem,
             this.makeReport,
-            this.adayŞirketlerToolStripMenuItem});
+            this.adayŞirketlerToolStripMenuItem,
+            this.logKayıtlarıToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -205,6 +207,13 @@ namespace MeetingApp
             this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
             this.panelofMeetings.TabIndex = 10;
             // 
+            // logKayıtlarıToolStripMenuItem
+            // 
+            this.logKayıtlarıToolStripMenuItem.Name = "logKayıtlarıToolStripMenuItem";
+            this.logKayıtlarıToolStripMenuItem.Size = new System.Drawing.Size(104, 44);
+            this.logKayıtlarıToolStripMenuItem.Text = "Log Kayıtları";
+            this.logKayıtlarıToolStripMenuItem.Click += new System.EventHandler(this.logKayıtlarıToolStripMenuItem_Click);
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -249,5 +258,6 @@ namespace MeetingApp
         private ToolStripMenuItem takvimToolStripMenuItem;
         private ToolStripMenuItem adayŞirketlerToolStripMenuItem;
         private ToolStripMenuItem istatistiklerToolStripMenuItem;
+        private ToolStripMenuItem logKayıtlarıToolStripMenuItem;
     }
 }

@@ -13,10 +13,12 @@ namespace MeetingApp
         private DatabaseHelper dbHelper;
         private int selectedCompanyId;
         private int userID;
-        public UpdateCompanyForm(DatabaseHelper dbHelper , int userID) {
+        private string FullName;
+        public UpdateCompanyForm(DatabaseHelper dbHelper , int userID, string FullName) {
             InitializeComponent();
             this.dbHelper = dbHelper;
             this.userID = userID;
+            this.FullName = FullName;
             LoadCompanies();
             isCandidate.CheckedChanged += isCandidate_CheckedChanged;
 
@@ -152,22 +154,27 @@ namespace MeetingApp
                     int point = Convert.ToInt32(canPoints.Text);
                     if (dbHelper.UpdateCandidateCompany(selectedCompanyId, companyName, address, phone, fieldsOfActivity, logo, email,point)) {
                         MessageBox.Show("Şirket başarıyla güncellendi.");
+                        dbHelper.AddLog("Güncelleme", "ID:" + userID.ToString() + " " + FullName + " || Aday Şirket : " +companyName + " Güncellendi. ");
                         ClearForms();
                     } else {
                         MessageBox.Show("Şirket güncellenirken bir hata oluştu.");
+                        dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Aday Şirket : " + companyName + " Güncellenirken Hata Oluştu. ");
                     }
                 } else {
                     if (dbHelper.UpdateCompany(selectedCompanyId, companyName, address, phone, fieldsOfActivity, logo, email)) {
                         MessageBox.Show("Şirket başarıyla güncellendi.");
+                        dbHelper.AddLog("Güncelleme", "ID:" + userID.ToString() + " " + FullName + " || Şirket : " + companyName + " Güncellendi. ");
                         ClearForms();
                     } else {
                         MessageBox.Show("Şirket güncellenirken bir hata oluştu.");
+                        dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Şirket : " + companyName + " Güncellenirken Hata Oluştu. ");
                     }
                 }
                 
             } catch (Exception ex) {
                 // Hata mesajını logla veya kullanıcıya göster
                 MessageBox.Show("Bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " Hata Oluştu. " + ex.Message);
             }
         }
 
@@ -227,18 +234,22 @@ namespace MeetingApp
                     try {
                         dbHelper.DeleteCompany(selectedCompanyId);
                         MessageBox.Show("Şirket ve onunla ilgili her şey silindi.");
+                        dbHelper.AddLog("Silme", "ID:" + userID.ToString() + " " + FullName + " || Şirket : " + txtCompanyName.Text + " Silindi. ");
                         ClearForms();
                     } catch (Exception ex) {
                         MessageBox.Show("Hata oluştu" + ex.ToString());
+                        dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Şirket : " + txtCompanyName.Text + " Silinirken Hata Oluştu. "+ ex.ToString());
                         throw ex;
                     }
                 } else {
                     try {
                         dbHelper.DeleteCandidateCompany(selectedCompanyId);
                         MessageBox.Show("Aday şirket silindi");
+                        dbHelper.AddLog("Silme", "ID:" + userID.ToString() + " " + FullName + " || Aday Şirket : " + txtCompanyName.Text + " Silindi. ");
                         ClearForms();
                     } catch (Exception ex) {
                         MessageBox.Show("Hata oluştu" + ex.ToString());
+                        dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Aday Şirket : " + txtCompanyName.Text + " Silinirken Hata Oluştu. " + ex.ToString());
                         throw ex;
                     }
                 }

@@ -58,6 +58,7 @@
             this.labelsearch = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.refMeeting = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ParticipantCompany)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +82,7 @@
             // 
             this.textBoxSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.textBoxSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBoxSearch.Location = new System.Drawing.Point(24, 474);
+            this.textBoxSearch.Location = new System.Drawing.Point(24, 484);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(280, 27);
             this.textBoxSearch.TabIndex = 53;
@@ -92,7 +93,7 @@
             this.checkedListBoxParticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.checkedListBoxParticipants.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkedListBoxParticipants.FormattingEnabled = true;
-            this.checkedListBoxParticipants.Location = new System.Drawing.Point(24, 507);
+            this.checkedListBoxParticipants.Location = new System.Drawing.Point(24, 517);
             this.checkedListBoxParticipants.Name = "checkedListBoxParticipants";
             this.checkedListBoxParticipants.Size = new System.Drawing.Size(280, 193);
             this.checkedListBoxParticipants.TabIndex = 52;
@@ -118,7 +119,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label6.Location = new System.Drawing.Point(152, 431);
+            this.label6.Location = new System.Drawing.Point(152, 450);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(16, 21);
@@ -129,7 +130,7 @@
             // 
             this.Filterbegin.CalendarFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Filterbegin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Filterbegin.Location = new System.Drawing.Point(24, 425);
+            this.Filterbegin.Location = new System.Drawing.Point(24, 444);
             this.Filterbegin.Name = "Filterbegin";
             this.Filterbegin.Size = new System.Drawing.Size(107, 27);
             this.Filterbegin.TabIndex = 49;
@@ -138,7 +139,7 @@
             // 
             this.Filterend.CalendarFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Filterend.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Filterend.Location = new System.Drawing.Point(201, 426);
+            this.Filterend.Location = new System.Drawing.Point(201, 445);
             this.Filterend.Name = "Filterend";
             this.Filterend.Size = new System.Drawing.Size(103, 27);
             this.Filterend.TabIndex = 48;
@@ -153,7 +154,7 @@
             this.label5.Padding = new System.Windows.Forms.Padding(10);
             this.label5.Size = new System.Drawing.Size(254, 47);
             this.label5.TabIndex = 26;
-            this.label5.Text = "Toplantılar";
+            this.label5.Text = "Faaliyetler";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ParticipantPosition
@@ -164,7 +165,6 @@
             this.ParticipantPosition.Name = "ParticipantPosition";
             this.ParticipantPosition.Size = new System.Drawing.Size(221, 17);
             this.ParticipantPosition.TabIndex = 45;
-            this.ParticipantPosition.Text = "XXXXX";
             // 
             // ParticipantTitle
             // 
@@ -172,9 +172,8 @@
             this.ParticipantTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ParticipantTitle.Location = new System.Drawing.Point(24, 227);
             this.ParticipantTitle.Name = "ParticipantTitle";
-            this.ParticipantTitle.Size = new System.Drawing.Size(64, 19);
+            this.ParticipantTitle.Size = new System.Drawing.Size(0, 19);
             this.ParticipantTitle.TabIndex = 44;
-            this.ParticipantTitle.Text = "XXXXX";
             // 
             // countofAmeeting
             // 
@@ -204,7 +203,6 @@
             this.ParticipantPhone.Name = "ParticipantPhone";
             this.ParticipantPhone.Size = new System.Drawing.Size(293, 63);
             this.ParticipantPhone.TabIndex = 40;
-            this.ParticipantPhone.Text = "XXXXX";
             // 
             // labelPArticipants
             // 
@@ -225,9 +223,8 @@
             this.ParticipantEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ParticipantEmail.Location = new System.Drawing.Point(24, 261);
             this.ParticipantEmail.Name = "ParticipantEmail";
-            this.ParticipantEmail.Size = new System.Drawing.Size(64, 19);
+            this.ParticipantEmail.Size = new System.Drawing.Size(0, 19);
             this.ParticipantEmail.TabIndex = 38;
-            this.ParticipantEmail.Text = "XXXXX";
             // 
             // ParticipantName
             // 
@@ -237,9 +234,8 @@
             this.ParticipantName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ParticipantName.Location = new System.Drawing.Point(24, 166);
             this.ParticipantName.Name = "ParticipantName";
-            this.ParticipantName.Size = new System.Drawing.Size(64, 19);
+            this.ParticipantName.Size = new System.Drawing.Size(0, 19);
             this.ParticipantName.TabIndex = 37;
-            this.ParticipantName.Text = "XXXXX";
             // 
             // listofParticipants
             // 
@@ -276,42 +272,38 @@
             // MeetingTime
             // 
             this.MeetingTime.AutoSize = true;
-            this.MeetingTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingTime.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.MeetingTime.Location = new System.Drawing.Point(1012, 34);
             this.MeetingTime.Name = "MeetingTime";
-            this.MeetingTime.Size = new System.Drawing.Size(70, 21);
+            this.MeetingTime.Size = new System.Drawing.Size(0, 25);
             this.MeetingTime.TabIndex = 34;
-            this.MeetingTime.Text = "XXXXXX";
             // 
             // MeetingDate
             // 
             this.MeetingDate.AutoSize = true;
-            this.MeetingDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingDate.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.MeetingDate.Location = new System.Drawing.Point(862, 34);
             this.MeetingDate.Name = "MeetingDate";
-            this.MeetingDate.Size = new System.Drawing.Size(70, 21);
+            this.MeetingDate.Size = new System.Drawing.Size(0, 25);
             this.MeetingDate.TabIndex = 33;
-            this.MeetingDate.Text = "XXXXXX";
             // 
             // MeetingLocation
             // 
             this.MeetingLocation.AutoEllipsis = true;
-            this.MeetingLocation.Font = new System.Drawing.Font("Century Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingLocation.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.MeetingLocation.Location = new System.Drawing.Point(330, 94);
             this.MeetingLocation.Name = "MeetingLocation";
             this.MeetingLocation.Size = new System.Drawing.Size(760, 40);
             this.MeetingLocation.TabIndex = 32;
-            this.MeetingLocation.Text = "XXXXXX";
             // 
             // MeetingTitle
             // 
             this.MeetingTitle.AutoSize = true;
-            this.MeetingTitle.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.MeetingTitle.Location = new System.Drawing.Point(329, 50);
             this.MeetingTitle.Name = "MeetingTitle";
-            this.MeetingTitle.Size = new System.Drawing.Size(84, 25);
+            this.MeetingTitle.Size = new System.Drawing.Size(0, 30);
             this.MeetingTitle.TabIndex = 31;
-            this.MeetingTitle.Text = "XXXXXX";
             // 
             // viewDocument
             // 
@@ -333,7 +325,7 @@
             // MeetingNotes
             // 
             this.MeetingNotes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
-            this.MeetingNotes.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MeetingNotes.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.MeetingNotes.Location = new System.Drawing.Point(334, 134);
             this.MeetingNotes.Margin = new System.Windows.Forms.Padding(0);
             this.MeetingNotes.Name = "MeetingNotes";
@@ -410,17 +402,18 @@
             this.labelsearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
             this.labelsearch.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelsearch.ForeColor = System.Drawing.Color.White;
-            this.labelsearch.Location = new System.Drawing.Point(22, 392);
+            this.labelsearch.Location = new System.Drawing.Point(24, 394);
             this.labelsearch.Name = "labelsearch";
             this.labelsearch.Padding = new System.Windows.Forms.Padding(4);
-            this.labelsearch.Size = new System.Drawing.Size(282, 23);
+            this.labelsearch.Size = new System.Drawing.Size(280, 35);
             this.labelsearch.TabIndex = 57;
-            this.labelsearch.Text = "Toplantı Arama";
+            this.labelsearch.Text = "Faaliyet Arama";
             this.labelsearch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.labelsearch);
             this.panel1.Controls.Add(this.Filterend);
             this.panel1.Controls.Add(this.Filterbegin);
@@ -461,6 +454,23 @@
             this.refMeeting.UseVisualStyleBackColor = false;
             this.refMeeting.Click += new System.EventHandler(this.refMeeting_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(89)))), ((int)(((byte)(149)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(179)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(179, 101);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 53);
+            this.button1.TabIndex = 59;
+            this.button1.Text = " Faaliyetle İlgili Mail Gönder";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // viewMeetings
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -489,7 +499,6 @@
             this.Name = "viewMeetings";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "viewMeetings";
             ((System.ComponentModel.ISupportInitialize)(this.ParticipantCompany)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -532,5 +541,6 @@
         private System.Windows.Forms.Label labelsearch;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button refMeeting;
+        private System.Windows.Forms.Button button1;
     }
 }

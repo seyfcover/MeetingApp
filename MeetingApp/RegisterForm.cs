@@ -9,8 +9,12 @@ namespace MeetingApp
         private DatabaseHelper dbHelper;
         private ErrorProvider errorProvider;
         private string username;
-        public RegisterForm(DatabaseHelper dbHelper) {
+        private int userID;
+        private string FullName;
+        public RegisterForm(DatabaseHelper dbHelper , int userID , string FullName) {
             InitializeComponent();
+            this.userID = userID;
+            this.FullName = FullName;
             this.dbHelper = dbHelper;
             this.errorProvider = new ErrorProvider();
 
@@ -55,6 +59,7 @@ namespace MeetingApp
             );
 
             MessageBox.Show("Kayıt başarılı!");
+            dbHelper.AddLog("Ekleme", FullName + " || " + txtFirstName.Text + " " + txtLastName.Text + " Kullanıcısını Eklledi");
             this.Close();
         }
         private void txtEmail_Validating(object sender, System.ComponentModel.CancelEventArgs e) {

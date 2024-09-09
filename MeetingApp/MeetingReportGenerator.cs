@@ -50,7 +50,7 @@ namespace MeetingApp
                 }
 
                 // Kalan şirket placeholder'larını temizle
-                for (int i = companyCount; i <= 6; i++) { // 6, toplam boş olan placeholder sayısıdır. İhtiyaca göre değiştirilebilir.
+                for (int i = companyCount; i <= 10; i++) { // 6, toplam boş olan placeholder sayısıdır. İhtiyaca göre değiştirilebilir.
                     document.ReplaceText($"{{CompanyName{i}}}", "");
                     document.ReplaceText($"{{CompanyInfo{i}}}", "");
                 }
@@ -68,7 +68,7 @@ namespace MeetingApp
                 }
 
                 // Kalan diğer katılımcı placeholder'larını temizle
-                for (int i = participantCount; i <= 10; i++) { // 10, toplam boş olan placeholder sayısıdır. İhtiyaca göre değiştirilebilir.
+                for (int i = participantCount; i <= 25; i++) { // 10, toplam boş olan placeholder sayısıdır. İhtiyaca göre değiştirilebilir.
                     document.ReplaceText($"{{ParticipantName{i}}}", "");
                     document.ReplaceText($"{{ParticipantTitle{i}}}", "");
                     document.ReplaceText($"{{ParticipantPhone{i}}}", "");
@@ -85,7 +85,7 @@ namespace MeetingApp
                 }
 
                 // Kalan akademik placeholder'larını temizle
-                for (int i = academicCount; i <= 6; i++) { // 6, toplam boş olan placeholder sayısıdır. İhtiyaca göre değiştirilebilir.
+                for (int i = academicCount; i <= 10; i++) { // 6, toplam boş olan placeholder sayısıdır. İhtiyaca göre değiştirilebilir.
                     document.ReplaceText($"{{Acedemic{i}}}", "");
                 }
 

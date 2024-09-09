@@ -14,15 +14,18 @@ namespace MeetingApp
     {
         private DatabaseHelper dbHelper;
         private int userID;
-        public CompanyForm(DatabaseHelper dbHelper, int userID) {
+        private string FullName;
+        public CompanyForm(DatabaseHelper dbHelper, int userID, string fullName) {
             InitializeComponent();
             this.dbHelper = dbHelper;
+            FullName = fullName;
             logoBox.Image = null;
             this.userID = userID;
             if (!dbHelper.IsAdmin(userID)) {
                 isCandidate.Enabled = false;
             }
             LoadCompanies();
+            
         }
 
         private void LoadCompanies() {
@@ -90,15 +93,18 @@ namespace MeetingApp
                     // Şirketi eklemeye çalış
                     if (dbHelper.AddCompany(companyName, address, phone, fieldsOfActivity, logo, email)) {
                         MessageBox.Show("Şirket başarıyla eklendi.");
+                        dbHelper.AddLog("Ekleme", "ID:" + userID.ToString() + " " + FullName + " || Şirket : " + companyName + " ekledi.");
                         clearForm();
                         LoadCompanies();
                         EtxtFirstName.Focus();
                     } else {
                         MessageBox.Show("Şirket eklenirken bir hata oluştu.");
+                        dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Şirket : " + companyName + " eklerken hata oluştu.");
                     }
                 } catch (Exception ex) {
                     // Hata mesajını logla veya kullanıcıya göster
                     MessageBox.Show("Bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + " || Şirket : " + companyName + " eklerken hata oluştu. " + ex.Message);
                 }
             } else {
 
@@ -122,13 +128,16 @@ namespace MeetingApp
                     // Şirketi eklemeye çalış
                     if (dbHelper.AddCandidateCompany(companyName, address, phone, fieldsOfActivity, logo, email, point)) {
                         MessageBox.Show("Şirket başarıyla eklendi.");
+                        dbHelper.AddLog("Ekleme", "ID:" + userID.ToString() + " " + FullName + "|| Aday Şirket : " + companyName + " ekledi.");
                         clearForm();
                     } else {
                         MessageBox.Show("Şirket eklenirken bir hata oluştu.");
+                        dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + "|| Aday Şirket : " + companyName + " eklerken hata oluştu.");
                     }
                 } catch (Exception ex) {
                     // Hata mesajını logla veya kullanıcıya göster
                     MessageBox.Show("Bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + "|| Aday Şirket : " + companyName + " eklerken hata oluştu." + ex.Message);
                 }
 
             }
@@ -217,8 +226,8 @@ namespace MeetingApp
             string position = EtxtPosition.Text;
             int companyID = Convert.ToInt32(cmbCompany.SelectedValue);
 
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(position)) {
-                MessageBox.Show("Ad, soyad , görev ve ünvan boş olamaz.");
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName)) {
+                MessageBox.Show("Ad, soyad boş olamaz.");
                 return;
             }
             if (!string.IsNullOrWhiteSpace(txtEmail.Text)) {
@@ -237,11 +246,13 @@ namespace MeetingApp
 
             if (dbHelper.AddEmployee(firstName, lastName, companyID, email, phone, title, position)) {
                 MessageBox.Show("Personel başarıyla eklendi");
+                dbHelper.AddLog("Ekleme", "ID:" + userID.ToString() + " " + FullName + "|| Şirket Personeli : " + firstName + " " + lastName + " ekledi.");
                 EclearForm();
                 cmbCompany.SelectedValue = companyID;
                 LoadEmployees(companyID);
             } else {
                 MessageBox.Show("Personel eklenirken bir hata oluştu.");
+                dbHelper.AddLog("Hata", "ID:" + userID.ToString() + " " + FullName + "|| Şirket Personeli : " + firstName + " " + lastName + " eklerken hata oluştu.");
             }
         }
 
@@ -271,7 +282,7 @@ namespace MeetingApp
                 int selectedEmployeeID = selectedEmployee.ID;
 
                 // UpdateEmployee formunu aç ve seçili olan EmployeeID'yi gönder
-                UpdateEmployee updateEmployeeForm = new UpdateEmployee(dbHelper, userID);
+                UpdateEmployee updateEmployeeForm = new UpdateEmployee(dbHelper, userID, FullName);
                 updateEmployeeForm.listofEmployee.SelectedValue = selectedEmployeeID;
                 updateEmployeeForm.listofEmployee_SelectedIndexChanged(null,null);
                 updateEmployeeForm.FormClosed += (s, args) => LoadEmployees(selectedforEmp);
