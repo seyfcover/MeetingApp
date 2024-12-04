@@ -143,10 +143,12 @@ namespace MeetingApp
                 // Çalışanı sil
                 if (dbHelper.DeleteEmployee(selectedEmployeeID)) {
                     MessageBox.Show("Çalışan başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dbHelper.AddLog("Silme", FullName + " " + txtFirstName.Text + " " + txtLastName.Text + " Çalışanını sildi");
                     // Güncellenmiş listeyi yeniden yükleyin veya arayüzü güncelleyin
                     LoadEmployees();
                 } else {
                     MessageBox.Show("Çalışan silinirken bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dbHelper.AddLog("Hata", FullName + " " + txtFirstName.Text + " " + txtLastName.Text + " Çalışanını silerken hata oluştu");
                 }
             }
         }

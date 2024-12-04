@@ -24,7 +24,6 @@
         private System.Windows.Forms.Label lblPosition;
         private System.Windows.Forms.MaskedTextBox txtPhone;
         private System.Windows.Forms.ComboBox txtTitle;
-        private System.Windows.Forms.ComboBox listofAcedemics;
         private System.Windows.Forms.Label label1;
 
         private void InitializeComponent() {
@@ -45,6 +44,10 @@
             this.listofAcedemics = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btndel = new System.Windows.Forms.Button();
+            this.lblFieldsOfActivity = new System.Windows.Forms.Label();
+            this.txtFieldsOfActivity = new System.Windows.Forms.RichTextBox();
+            this.textmaskedtcid = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtFirstName
@@ -67,29 +70,29 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(15, 186);
+            this.txtEmail.Location = new System.Drawing.Point(15, 234);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(260, 23);
-            this.txtEmail.TabIndex = 2;
+            this.txtEmail.TabIndex = 3;
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(15, 336);
+            this.txtPosition.Location = new System.Drawing.Point(15, 384);
             this.txtPosition.MaxLength = 50;
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Size = new System.Drawing.Size(260, 23);
-            this.txtPosition.TabIndex = 5;
+            this.txtPosition.TabIndex = 6;
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(15, 370);
+            this.btnSave.Location = new System.Drawing.Point(12, 501);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(118, 29);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Güncelle";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -115,7 +118,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(15, 166);
+            this.lblEmail.Location = new System.Drawing.Point(15, 214);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(43, 16);
             this.lblEmail.TabIndex = 9;
@@ -124,7 +127,7 @@
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(15, 216);
+            this.lblPhone.Location = new System.Drawing.Point(15, 264);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(53, 16);
             this.lblPhone.TabIndex = 10;
@@ -133,7 +136,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(15, 266);
+            this.lblTitle.Location = new System.Drawing.Point(15, 314);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(47, 16);
             this.lblTitle.TabIndex = 11;
@@ -142,7 +145,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(15, 316);
+            this.lblPosition.Location = new System.Drawing.Point(15, 364);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(46, 16);
             this.lblPosition.TabIndex = 12;
@@ -150,11 +153,11 @@
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(18, 240);
+            this.txtPhone.Location = new System.Drawing.Point(18, 288);
             this.txtPhone.Mask = "(999) 000-0000";
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(257, 23);
-            this.txtPhone.TabIndex = 3;
+            this.txtPhone.TabIndex = 4;
             // 
             // txtTitle
             // 
@@ -187,11 +190,11 @@
             "Finans Sorumlusu",
             "İnsan Kaynakları Sorumlusu",
             "Hukuk Müşaviri"});
-            this.txtTitle.Location = new System.Drawing.Point(15, 285);
+            this.txtTitle.Location = new System.Drawing.Point(15, 333);
             this.txtTitle.MaxLength = 50;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(257, 24);
-            this.txtTitle.TabIndex = 4;
+            this.txtTitle.TabIndex = 5;
             // 
             // listofAcedemics
             // 
@@ -218,17 +221,57 @@
             this.btndel.BackColor = System.Drawing.Color.DarkOrange;
             this.btndel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btndel.ForeColor = System.Drawing.Color.White;
-            this.btndel.Location = new System.Drawing.Point(164, 370);
+            this.btndel.Location = new System.Drawing.Point(161, 501);
             this.btndel.Name = "btndel";
             this.btndel.Size = new System.Drawing.Size(111, 29);
-            this.btndel.TabIndex = 6;
+            this.btndel.TabIndex = 9;
             this.btndel.Text = "Sil";
             this.btndel.UseVisualStyleBackColor = false;
             this.btndel.Click += new System.EventHandler(this.btndel_Click);
             // 
+            // lblFieldsOfActivity
+            // 
+            this.lblFieldsOfActivity.AutoSize = true;
+            this.lblFieldsOfActivity.Location = new System.Drawing.Point(11, 414);
+            this.lblFieldsOfActivity.Name = "lblFieldsOfActivity";
+            this.lblFieldsOfActivity.Size = new System.Drawing.Size(125, 16);
+            this.lblFieldsOfActivity.TabIndex = 16;
+            this.lblFieldsOfActivity.Text = "Anahtar Kelimeler";
+            // 
+            // txtFieldsOfActivity
+            // 
+            this.txtFieldsOfActivity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
+            this.txtFieldsOfActivity.Location = new System.Drawing.Point(15, 436);
+            this.txtFieldsOfActivity.MaxLength = 255;
+            this.txtFieldsOfActivity.Name = "txtFieldsOfActivity";
+            this.txtFieldsOfActivity.Size = new System.Drawing.Size(260, 52);
+            this.txtFieldsOfActivity.TabIndex = 7;
+            this.txtFieldsOfActivity.Text = "";
+            // 
+            // textmaskedtcid
+            // 
+            this.textmaskedtcid.Location = new System.Drawing.Point(18, 188);
+            this.textmaskedtcid.Mask = "00000000000";
+            this.textmaskedtcid.Name = "textmaskedtcid";
+            this.textmaskedtcid.Size = new System.Drawing.Size(254, 23);
+            this.textmaskedtcid.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 168);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 16);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "TC No:";
+            // 
             // UpdateAcedemic
             // 
-            this.ClientSize = new System.Drawing.Size(284, 409);
+            this.ClientSize = new System.Drawing.Size(284, 550);
+            this.Controls.Add(this.textmaskedtcid);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblFieldsOfActivity);
+            this.Controls.Add(this.txtFieldsOfActivity);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listofAcedemics);
             this.Controls.Add(this.txtTitle);
@@ -258,5 +301,10 @@
         }
 
         private System.Windows.Forms.Button btndel;
+        private System.Windows.Forms.Label lblFieldsOfActivity;
+        private System.Windows.Forms.RichTextBox txtFieldsOfActivity;
+        public System.Windows.Forms.ComboBox listofAcedemics;
+        private System.Windows.Forms.MaskedTextBox textmaskedtcid;
+        private System.Windows.Forms.Label label2;
     }
 }

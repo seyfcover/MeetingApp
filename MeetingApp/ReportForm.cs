@@ -511,23 +511,39 @@ namespace MeetingApp
             if (e.RowIndex >= 0) {
                 // Çift tıklanan satırı al
                 DataGridViewRow row = dgvMeetings.Rows[e.RowIndex];
+              
 
                 // "MeetingID" sütunundaki değeri al
                 int selectedEventID = Convert.ToInt32(row.Cells["MeetingID"].Value);
 
+                DateTime selectedEventDate = dbHelper.GetMeetingDateByID(selectedEventID); // Veritabanından tarih al
+
                 if (selectedEventID > 0) {
-                    // UpdateMeeting formunu oluştur ve MeetingID değerini ilet
-                    UpdateMeeting eventForm = new UpdateMeeting(dbHelper, userID, FullName) {
-                        _selectedMeetingID = selectedEventID
-                        
-                    };
+                    UpdateMeeting eventForm = new UpdateMeeting(dbHelper, userID, FullName);
+
+                    // MeetingID ve MeetingDate kontrolü ile manuel olarak ComboBox'tan seçimi ayarla
+                    for (int i = 0; i < eventForm.listofMeetings.Items.Count; i++) {
+                        var item = (KeyValuePair<int, string>)eventForm.listofMeetings.Items[i];
+
+                        // Toplantı başlığı aynı olabilir, ancak ID ve tarih ile kontrol ediyoruz
+                        if (item.Key == selectedEventID) {
+                            DateTime itemDate = dbHelper.GetMeetingDateByID(item.Key); // Her item'in tarihini al
+
+                            if (itemDate.Date == selectedEventDate.Date) {
+                                eventForm.listofMeetings.SelectedIndex = i; // Doğru index'i bulduktan sonra seç
+                                break;
+                            }
+                        }
+                    }
                     eventForm.listofMeetings_SelectedIndexChanged(null, null);
                     eventForm.FormClosed += UpdateList_FormClosed;
-                    // Formu göster
                     eventForm.ShowDialog();
+
                 }
+
             }
         }
+
         private void UpdateList_FormClosed(object sender, FormClosedEventArgs e) {
             renewMeetings_Click(null, null);
         }

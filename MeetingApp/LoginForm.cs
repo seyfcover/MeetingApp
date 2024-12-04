@@ -17,11 +17,11 @@ namespace MeetingApp
                 dbHelper = new DatabaseHelper(connectionString);
             }
            
-            // Placeholder metni başlangıçta ayarlayın
+            // Placeholder metni 
             SetPlaceholderText(txtUsername, "Kullanıcı Adı");
             SetPlaceholderText(txtPassword, "Şifre");
 
-            // Olayları ekleyin
+            // Olayları ekleme
             txtUsername.GotFocus += RemovePlaceholderText;
             txtUsername.LostFocus += SetPlaceholderText;
             txtPassword.GotFocus += RemovePlaceholderText;
@@ -40,37 +40,41 @@ namespace MeetingApp
 
             // TextBox'ların boş olup olmadığını kontrol edin
             if (string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text)) {
-                MessageBox.Show("Kullanıcı adı ve şifre boş olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lütfen kullanıcı adı ve şifre alanlarını doldurun.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             MeetingApp.Models.User user = dbHelper.ValidateUser(txtUsername.Text, txtPassword.Text);
             if (user != null) {
-                // User found, login successful
-                MessageBox.Show("Giriş Başarılı!");
-                    if (user.IsAdmin) {
-                        AdminPanel adminPanel = new AdminPanel(dbHelper, user.UserID , user.FullName);
-                        adminPanel.FormClosed += (s, args) => this.Visible = true;
-                        adminPanel.FormClosed += (s, args) => clearTxtboxes();// AdminPanel kapatıldığında LoginForm'u görünür yap
-                        adminPanel.Show();
-                        this.Visible = false;
-                        dbHelper.AddLog("Giriş", "Admin ID:" + user.UserID.ToString() + " " + user.FullName + " || Sisteme Giriş Yaptı.");
-                }
-                   else {
-                    UserPanel userPanel = new UserPanel(dbHelper, user.UserID , user.FullName);
+                if (user.IsAdmin) {
+                    AdminPanel adminPanel = new AdminPanel(dbHelper, user.UserID, user.FullName);
+                    adminPanel.FormClosed += (s, args) => this.Visible = true;
+                    adminPanel.FormClosed += (s, args) => clearTxtboxes(); // AdminPanel kapatıldığında LoginForm'u görünür yapma
+                    adminPanel.Show();
+                    this.Visible = false;
+
+                    // Log ekle
+                    dbHelper.AddLog("Giriş", $"Admin ID: {user.UserID} - {user.FullName} sisteme giriş yaptı.");
+                } else {
+                    UserPanel userPanel = new UserPanel(dbHelper, user.UserID, user.FullName);
                     userPanel.FormClosed += (s, args) => this.Visible = true;
-                    userPanel.FormClosed += (s, args) => clearTxtboxes();// AdminPanel kapatıldığında LoginForm'u görünür yap
+                    userPanel.FormClosed += (s, args) => clearTxtboxes(); // UserPanel kapatıldığında LoginForm'u görünür yapma
                     userPanel.Show();
                     this.Visible = false;
-                    dbHelper.AddLog("Giriş", "ID:" + user.UserID.ToString() + " " + user.FullName + " || Sisteme Giriş Yaptı.");
+
+                    // Log ekle
+                    dbHelper.AddLog("Giriş", $"Kullanıcı ID: {user.UserID} - {user.FullName} sisteme giriş yaptı.");
                 }
 
             } else {
                 // User not found, login failed
-                MessageBox.Show("Kullanıcı adı veya parola yanlış.");
-                dbHelper.AddLog("Hata", txtUsername.Text + " " + txtPassword + " Hatalı giriş.");
+                MessageBox.Show("Kullanıcı adı veya şifre yanlış.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Hatalı giriş logu
+                dbHelper.AddLog("Hata", $"Kullanıcı: {txtUsername.Text} hatalı giriş yaptı.");
             }
         }
+
         private void clearTxtboxes() { 
             txtUsername.Clear();
             txtPassword.Clear();

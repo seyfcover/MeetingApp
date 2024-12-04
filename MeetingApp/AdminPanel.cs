@@ -25,6 +25,10 @@ namespace MeetingApp
         private Statistic statisticForm;
         private WeeklyCalendarForm weeklyCalendarForm;
         private LogViews logViewsForm;
+        private SearchAceCom searchAceComForm;
+        private InventoryManagementForm inventoryManagementForm;
+        private UpdateInventory UpdateInventoryForm;
+        private InventoryStatus InventoryStatusForm;
         private Form calendarForm = null;
         private Form viewMeetingsForm = null;
         private List<object> selectedItems = new List<object>();
@@ -35,8 +39,12 @@ namespace MeetingApp
             this.userID = userID;
             this.FullName = FullName;
             InitializeComponent();
-            UpdateFormTitle(userID);
-            LoadCalendarForm(); 
+            UpdateFormTitle();
+            LoadCalendarForm();
+            Alert(userID);
+        }
+        private void Alert(int userID) { 
+            dbHelper.CheckUpcomingMeetingsForNextWeek(userID);
         }
  
         private void LoadCalendarForm() {
@@ -78,24 +86,13 @@ namespace MeetingApp
             if (candidateCompaniesForm != null && !candidateCompaniesForm.IsDisposed) candidateCompaniesForm.Close();
             if (statisticForm != null && !statisticForm.IsDisposed) statisticForm.Close();
             if (logViewsForm != null && !logViewsForm.IsDisposed) logViewsForm.Close();
+            if (searchAceComForm != null && !searchAceComForm.IsDisposed) searchAceComForm.Close();
+            if (inventoryManagementForm != null && !inventoryManagementForm.IsDisposed) inventoryManagementForm.Close();
+            if (UpdateInventoryForm != null && !UpdateInventoryForm.IsDisposed) UpdateInventoryForm.Close();
+            if (InventoryStatusForm != null && !InventoryStatusForm.IsDisposed) InventoryStatusForm.Close();
         }
-        private void UpdateFormTitle(int userID) {
-            // Kullanıcı bilgilerini al
-            DataTable userDetail = dbHelper.GetDetailUser(userID);
-
-            // Eğer kullanıcı bilgileri başarıyla alındıysa
-            if (userDetail != null && userDetail.Rows.Count > 0) {
-                DataRow row = userDetail.Rows[0]; // İlk satırı al
-
-                // Ad ve soyad bilgilerini al
-                string firstName = row["FirstName"].ToString();
-                string lastName = row["LastName"].ToString();
-
-                // Formun başlığını güncelle
-                this.Text = $"Teknokent - {firstName} {lastName} - Yönetici";
-            } else {
-                MessageBox.Show("Kullanıcı bilgileri bulunamadı.");
-            }
+        private void UpdateFormTitle() {
+            this.Text = $"Teknokent - {FullName} - Yönetici";
         }
 
         private void ShowOrCreateForm<T>(ref T form, Func<T> createForm) where T : Form {
@@ -106,9 +103,6 @@ namespace MeetingApp
                 form.BringToFront();
             }
         }
-
-        
-
 
         private void addCompany_Click(object sender, EventArgs e) {
             ShowOrCreateForm(ref companyForm, () => new CompanyForm(dbHelper,userID, FullName));
@@ -160,6 +154,13 @@ namespace MeetingApp
             ShowOrCreateForm(ref logViewsForm, () => new LogViews(dbHelper));
         }
 
+        private void şirketAkademisyenToolStripMenuItem_Click(object sender, EventArgs e) {
+            ShowOrCreateForm(ref searchAceComForm, () => new SearchAceCom(dbHelper, userID, FullName));
+        }
+        private void envanterToolStripMenuItem_Click(object sender, EventArgs e) {
+            ShowOrCreateForm(ref InventoryStatusForm, () => new InventoryStatus(dbHelper, userID, FullName));
+        }
+    
         private void takvimToolStripMenuItem_Click(object sender, EventArgs e) {
             // Diğer form açıksa kapat
             if (viewMeetingsForm != null && !viewMeetingsForm.IsDisposed) {
@@ -204,6 +205,6 @@ namespace MeetingApp
             dbHelper.AddLog("Çıkış", "Admin " + FullName + " Sistemden çıkış yaptı.");
         }
 
-       
+        
     }
 }

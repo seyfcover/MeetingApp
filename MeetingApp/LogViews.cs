@@ -42,9 +42,9 @@ namespace MeetingApp
                     if (logType == "Ekleme") {
                         dataGridViewLogs.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSkyBlue;  // Açık Mavi
                         dataGridViewLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
-                    } else if (logType == "Düzenleme") {
-                        dataGridViewLogs.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;  // Açık Turuncu
-                        dataGridViewLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                    } else if (logType == "Güncelleme") {
+                        dataGridViewLogs.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Orange;  // Açık Turuncu
+                        dataGridViewLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Snow;
                     } else if (logType == "Silme") {
                         dataGridViewLogs.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;  // Koyu Kırmızı
                         dataGridViewLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;

@@ -191,17 +191,35 @@ namespace MeetingApp
         private void LblEvent_Click(object sender, EventArgs e) {
             if (sender is Label lblEvent && lblEvent.Tag is KeyValuePair<int, string> eventDetails) {
                 int selectedEventID = eventDetails.Key;
+                string selectedEventTitle = eventDetails.Value; // Etkinliğin başlığı
+                DateTime selectedEventDate = dbHelper.GetMeetingDateByID(selectedEventID); // Veritabanından tarih al
+
                 if (selectedEventID > 0) {
-                    UpdateMeeting eventForm = new UpdateMeeting(dbHelper, userID , FullName) {
-                        _selectedMeetingID = selectedEventID
-                    };
+                    UpdateMeeting eventForm = new UpdateMeeting(dbHelper, userID, FullName);
+
+                    // MeetingID ve MeetingDate kontrolü ile manuel olarak ComboBox'tan seçimi ayarla
+                    for (int i = 0; i < eventForm.listofMeetings.Items.Count; i++) {
+                        var item = (KeyValuePair<int, string>)eventForm.listofMeetings.Items[i];
+
+                        // Toplantı başlığı aynı olabilir, ancak ID ve tarih ile kontrol ediyoruz
+                        if (item.Key == selectedEventID) {
+                            DateTime itemDate = dbHelper.GetMeetingDateByID(item.Key); // Her item'in tarihini al
+
+                            if (itemDate.Date == selectedEventDate.Date) {
+                                eventForm.listofMeetings.SelectedIndex = i; // Doğru index'i bulduktan sonra seç
+                                break;
+                            }
+                        }
+                    }
+
                     eventForm.listofMeetings_SelectedIndexChanged(null, null);
-                    eventForm.dtpDate.Value = Convert.ToDateTime(eventForm.dtpDate.Value);
                     eventForm.FormClosed += UpdateMeeting_FormClosed;
                     eventForm.ShowDialog();
                 }
             }
         }
+
+
         private Color GetColorForEvent(string type) {
             // Renkler listesini tanımlayın
             var eventColors = new Dictionary<string, Color> {

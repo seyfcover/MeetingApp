@@ -118,13 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bar_chart_graphic_statistics_icon_264070" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bar_chart_graphic_statistics_icon_264070.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="coins_icon_263956" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\coins_icon_263956.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="seal_icon_264141" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\seal_icon_264141.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jGlzr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jGlzr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendar_time_add_schedule_planning_icon_264061" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendar_time_add_schedule_planning_icon_264061.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="briefcase_suitcase_icon_264054" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\briefcase_suitcase_icon_264054.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="teknokentlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\teknokentlogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="suitcase_briefcase_icon_264150" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\suitcase_briefcase_icon_264150.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="target_icon_264154" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\target_icon_264154.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendar_add_icon_264057" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendar_add_icon_264057.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\back.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="jGlzr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jGlzr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="schedule_icon_264140" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\schedule_icon_264140.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="teknokentlogo " type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\teknokentlogo .ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -260,10 +260,10 @@
         private System.Windows.Forms.MaskedTextBox txtPhone;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.ComboBox cmbCompany;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox canPoints;
         private System.Windows.Forms.CheckBox isCandidate;
         private System.Windows.Forms.Button delCandidate;
+        public System.Windows.Forms.ComboBox cmbCompany;
     }
 }

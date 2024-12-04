@@ -312,18 +312,37 @@
     <Compile Include="HeatMapForm.Designer.cs">
       <DependentUpon>HeatMapForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryManagementForm.Designer.cs">
+      <DependentUpon>InventoryManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryStatus.Designer.cs">
+      <DependentUpon>InventoryStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogViews.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LogViews.Designer.cs">
       <DependentUpon>LogViews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ParticipantMeetingData.cs" />
     <Compile Include="ProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProgressForm.Designer.cs">
       <DependentUpon>ProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchAceCom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchAceCom.Designer.cs">
+      <DependentUpon>SearchAceCom.cs</DependentUpon>
     </Compile>
     <Compile Include="Statistic.cs">
       <SubType>Form</SubType>
@@ -393,6 +412,12 @@
     <Compile Include="UpdateEmployee.Designer.cs">
       <DependentUpon>UpdateEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateInventory.Designer.cs">
+      <DependentUpon>UpdateInventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateMeeting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,11 +430,23 @@
     <Compile Include="UpdateUsers.Designer.cs">
       <DependentUpon>UpdateUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserInformationEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInformationEditForm.Designer.cs">
+      <DependentUpon>UserInformationEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserPanel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserPanel.Designer.cs">
       <DependentUpon>UserPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserPlusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserPlusForm.Designer.cs">
+      <DependentUpon>UserPlusForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewDocumentsForm.cs">
       <SubType>Form</SubType>
@@ -444,11 +481,20 @@
     <EmbeddedResource Include="HeatMapForm.resx">
       <DependentUpon>HeatMapForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InventoryManagementForm.resx">
+      <DependentUpon>InventoryManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryStatus.resx">
+      <DependentUpon>InventoryStatus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogViews.resx">
       <DependentUpon>LogViews.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchAceCom.resx">
+      <DependentUpon>SearchAceCom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Statistic.resx">
       <DependentUpon>Statistic.cs</DependentUpon>
@@ -482,14 +528,23 @@
     <EmbeddedResource Include="UpdateEmployee.resx">
       <DependentUpon>UpdateEmployee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpdateInventory.resx">
+      <DependentUpon>UpdateInventory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateMeeting.resx">
       <DependentUpon>UpdateMeeting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateUsers.resx">
       <DependentUpon>UpdateUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserInformationEditForm.resx">
+      <DependentUpon>UserInformationEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserPanel.resx">
       <DependentUpon>UserPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserPlusForm.resx">
+      <DependentUpon>UserPlusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewDocumentsForm.resx">
       <DependentUpon>ViewDocumentsForm.cs</DependentUpon>
@@ -538,6 +593,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\jGlzr.png" />
+    <None Include="Resources\suitcase_briefcase_icon_264150.ico" />
+    <None Include="Resources\calendar_add_icon_264057.ico" />
+    <None Include="Resources\briefcase_suitcase_icon_264054.ico" />
+    <None Include="Resources\bar_chart_graphic_statistics_icon_264070.ico" />
+    <None Include="Resources\seal_icon_264141.ico" />
+    <None Include="Resources\schedule_icon_264140.ico" />
+    <None Include="Resources\coins_icon_263956.ico" />
+    <None Include="Resources\calendar_time_add_schedule_planning_icon_264061.ico" />
+    <None Include="Resources\target_icon_264154.ico" />
+    <None Include="Resources\teknokentlogo .ico" />
     <Content Include="teknokentlogo .ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

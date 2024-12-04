@@ -17,15 +17,19 @@ namespace MeetingApp
             string database = txtDatabase.Text;
             string userId = txtUserId.Text;
             string password = txtPassword.Text;
+            if (string.IsNullOrWhiteSpace(database)) {
+                MessageBox.Show("Don't forget to enter the database name");
+                return;
+            }
 
-            // Önce bağlantı dizisini geçici olarak test edin
+            // Önce bağlantı dizisini geçici olarak test 
             if (TestDatabaseConnection(server, port, database, userId, password)) {
-                // Bağlantı başarılıysa, bağlantı dizisini güncelleyin veya oluşturun
+                // Bağlantı başarılıysa, bağlantı dizisini güncelle veya oluştur
                 if (UpdateConnectionString(server, port, database, userId, password)) {
-                    // Şifreleme işlemini yapın
+                    // Şifreleme işlemi
                     EncryptConnectionStringsSection();
 
-                    // Kullanıcıya uygulamayı yeniden başlatmaları gerektiğini bildirin
+                    // Kullanıcıya uygulamayı yeniden başlatmaları gerektiğini bildirme
                     MessageBox.Show("Configuration saved successfully. Please restart the application to apply changes.");
                     Application.Exit(); // Uygulamayı kapat
                 } else {
@@ -45,12 +49,12 @@ namespace MeetingApp
                     var settings = connectionStringsSection.ConnectionStrings["MyDbConnectionString"];
 
                     if (settings == null) {
-                        // Eğer bağlantı dizesi mevcut değilse, yenisini ekleyin
+                        // Eğer bağlantı dizesi mevcut değilse, yenisini ekleme
                         settings = new ConnectionStringSettings("MyDbConnectionString",
                             $"Server={server},{port};Database={database};User Id={userId};Password={password};");
                         connectionStringsSection.ConnectionStrings.Add(settings);
                     } else {
-                        // Mevcut bağlantı dizisini güncelleyin
+                        // Mevcut bağlantı dizisini güncelleme
                         settings.ConnectionString = $"Server={server},{port};Database={database};User Id={userId};Password={password};";
                     }
 

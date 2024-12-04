@@ -120,6 +120,7 @@
             // 
             // ConfigurationForm
             // 
+            this.BackColor = System.Drawing.Color.CornflowerBlue;
             this.ClientSize = new System.Drawing.Size(340, 270);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblPassword);

@@ -40,6 +40,10 @@
             this.lblPosition = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.MaskedTextBox();
             this.txtTitle = new System.Windows.Forms.ComboBox();
+            this.lblFieldsOfActivity = new System.Windows.Forms.Label();
+            this.txtFieldsOfActivity = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtmaskedtcid = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // txtFirstName
@@ -71,11 +75,11 @@
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(120, 230);
+            this.txtPosition.Location = new System.Drawing.Point(120, 270);
             this.txtPosition.MaxLength = 50;
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Size = new System.Drawing.Size(200, 24);
-            this.txtPosition.TabIndex = 5;
+            this.txtPosition.TabIndex = 6;
             // 
             // btnSave
             // 
@@ -83,10 +87,10 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(120, 270);
+            this.btnSave.Location = new System.Drawing.Point(120, 414);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(200, 35);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Kaydet";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -121,7 +125,7 @@
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(12, 153);
+            this.lblPhone.Location = new System.Drawing.Point(12, 193);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(61, 19);
             this.lblPhone.TabIndex = 10;
@@ -130,7 +134,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(12, 193);
+            this.lblTitle.Location = new System.Drawing.Point(12, 233);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(58, 19);
             this.lblTitle.TabIndex = 11;
@@ -139,7 +143,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(12, 233);
+            this.lblPosition.Location = new System.Drawing.Point(12, 273);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(55, 19);
             this.lblPosition.TabIndex = 12;
@@ -147,11 +151,11 @@
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(120, 150);
+            this.txtPhone.Location = new System.Drawing.Point(120, 190);
             this.txtPhone.Mask = "(999) 000-0000";
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(101, 24);
-            this.txtPhone.TabIndex = 3;
+            this.txtPhone.TabIndex = 4;
             // 
             // txtTitle
             // 
@@ -182,20 +186,60 @@
             "Finans Sorumlusu",
             "İnsan Kaynakları Sorumlusu",
             "Hukuk Müşaviri"});
-            this.txtTitle.Location = new System.Drawing.Point(120, 190);
+            this.txtTitle.Location = new System.Drawing.Point(120, 230);
             this.txtTitle.MaxLength = 100;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(200, 25);
-            this.txtTitle.TabIndex = 4;
+            this.txtTitle.TabIndex = 5;
+            // 
+            // lblFieldsOfActivity
+            // 
+            this.lblFieldsOfActivity.AutoSize = true;
+            this.lblFieldsOfActivity.Location = new System.Drawing.Point(12, 308);
+            this.lblFieldsOfActivity.Name = "lblFieldsOfActivity";
+            this.lblFieldsOfActivity.Size = new System.Drawing.Size(130, 19);
+            this.lblFieldsOfActivity.TabIndex = 14;
+            this.lblFieldsOfActivity.Text = "Anahtar Kelimeler";
+            // 
+            // txtFieldsOfActivity
+            // 
+            this.txtFieldsOfActivity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
+            this.txtFieldsOfActivity.Location = new System.Drawing.Point(16, 330);
+            this.txtFieldsOfActivity.MaxLength = 300;
+            this.txtFieldsOfActivity.Name = "txtFieldsOfActivity";
+            this.txtFieldsOfActivity.Size = new System.Drawing.Size(304, 78);
+            this.txtFieldsOfActivity.TabIndex = 7;
+            this.txtFieldsOfActivity.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 152);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 19);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "TC No:";
+            // 
+            // txtmaskedtcid
+            // 
+            this.txtmaskedtcid.Location = new System.Drawing.Point(120, 149);
+            this.txtmaskedtcid.Mask = "00000000000";
+            this.txtmaskedtcid.Name = "txtmaskedtcid";
+            this.txtmaskedtcid.Size = new System.Drawing.Size(118, 24);
+            this.txtmaskedtcid.TabIndex = 3;
             // 
             // AcademicForm
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(340, 330);
+            this.ClientSize = new System.Drawing.Size(340, 456);
+            this.Controls.Add(this.lblFieldsOfActivity);
+            this.Controls.Add(this.txtFieldsOfActivity);
             this.Controls.Add(this.txtTitle);
+            this.Controls.Add(this.txtmaskedtcid);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.lblPosition);
             this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblLastName);
@@ -216,5 +260,10 @@
             this.PerformLayout();
 
         }
+
+        private System.Windows.Forms.Label lblFieldsOfActivity;
+        private System.Windows.Forms.RichTextBox txtFieldsOfActivity;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MaskedTextBox txtmaskedtcid;
     }
 }

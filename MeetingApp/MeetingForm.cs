@@ -28,13 +28,13 @@ namespace MeetingApp
         }
 
         private void FilterCompanies(string searchText) {
-            // Arama metnini küçük harfe çevirerek büyük/küçük harf farkını yok sayalım
+            // Arama metnini küçük harfe çevirerek büyük/küçük harf farkını yok saymak için
             string searchLower = searchText.ToLower();
 
-            // CheckedListBox'ı temizle ve filtrelenmiş verilerle yeniden yükle
+            // CheckedListBox'ı temizle ve filtrelenmiş verilerle yeniden yükleme
             clbCompanies.Items.Clear();
 
-            // Tüm şirketleri almak için bir metod çağırıyoruz
+            // Tüm şirketleri almak için bir metod
             DataTable companies = dbHelper.GetCompanies();
 
             foreach (DataRow row in companies.Rows) {
@@ -262,7 +262,7 @@ namespace MeetingApp
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true; // Birden fazla dosya seçilmesine izin verir
-            openFileDialog.Filter = "Supported Files|*.docx;*.pdf;*.xlsx;*.jpg;*.png"; // Desteklenen dosya türleri
+            openFileDialog.Filter = "Supported Files|*.docx;*.pdf;*.xlsx;*.jpg;*.png;*.jpeg"; // Desteklenen dosya türleri
 
             if (openFileDialog.ShowDialog() == DialogResult.OK) {
                 // Seçilen dosya sayısını kontrol et
@@ -314,6 +314,7 @@ namespace MeetingApp
                 case ".xlsx":
                     return "Excel Spreadsheet";
                 case ".jpg":
+                    return "JPG Image";
                 case ".jpeg":
                     return "JPEG Image";
                 case ".png":

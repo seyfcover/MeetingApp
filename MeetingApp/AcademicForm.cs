@@ -24,6 +24,8 @@ namespace MeetingApp
             string phone = txtPhone.Text;
             string title = txtTitle.Text;
             string position = txtPosition.Text;
+            string keyWords = txtFieldsOfActivity.Text;
+            string tcId = txtmaskedtcid.Text;
 
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName)) {
                 MessageBox.Show("Ad ve soyad zorunlu.");
@@ -44,7 +46,7 @@ namespace MeetingApp
                 }
             }
 
-            if (dbHelper.AddAcademic(firstName, lastName, email, phone, title, position)) {
+            if (dbHelper.AddAcademic(firstName, lastName, email, phone, title, position , keyWords , tcId)) {
                 MessageBox.Show("Akademisyen Eklendi.");
                 dbHelper.AddLog("Ekleme", "ID:" + userID.ToString() + " " + FullName + " || Akademisyen : " + firstName + " " + lastName + " ekledi ");
                 ClearForm();
@@ -77,5 +79,6 @@ namespace MeetingApp
             txtPosition.Text = string.Empty;
             txtTitle.Text = string.Empty;   
         }
+
     }
 }

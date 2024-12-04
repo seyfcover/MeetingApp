@@ -42,12 +42,14 @@ namespace MeetingApp
             this.personelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.akademisyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.şirketAkademisyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.takvimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.makeReport = new System.Windows.Forms.ToolStripMenuItem();
             this.adayŞirketlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelofMeetings = new System.Windows.Forms.Panel();
+            this.envanterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logKayıtlarıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelofMeetings = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,9 +63,10 @@ namespace MeetingApp
             this.düzenleToolStripMenuItem,
             this.aramaToolStripMenuItem,
             this.takvimToolStripMenuItem,
-            this.istatistiklerToolStripMenuItem,
             this.makeReport,
             this.adayŞirketlerToolStripMenuItem,
+            this.envanterToolStripMenuItem,
+            this.istatistiklerToolStripMenuItem,
             this.logKayıtlarıToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -79,9 +82,10 @@ namespace MeetingApp
             this.görüşmeToolStripMenuItem,
             this.addCompany,
             this.addAcademian});
+            this.yeniToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.calendar_add_icon_264057;
             this.yeniToolStripMenuItem.Name = "yeniToolStripMenuItem";
             this.yeniToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
-            this.yeniToolStripMenuItem.Size = new System.Drawing.Size(70, 44);
+            this.yeniToolStripMenuItem.Size = new System.Drawing.Size(86, 44);
             this.yeniToolStripMenuItem.Text = "Yeni";
             // 
             // kullanıcıToolStripMenuItem
@@ -120,9 +124,10 @@ namespace MeetingApp
             this.şirketToolStripMenuItem1,
             this.personelToolStripMenuItem1,
             this.akademisyenToolStripMenuItem});
+            this.düzenleToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.calendar_time_add_schedule_planning_icon_264061;
             this.düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
             this.düzenleToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
-            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(97, 44);
+            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(113, 44);
             this.düzenleToolStripMenuItem.Text = "Düzenle";
             // 
             // kullanıcıToolStripMenuItem1
@@ -162,40 +167,70 @@ namespace MeetingApp
             // 
             // aramaToolStripMenuItem
             // 
+            this.aramaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.şirketAkademisyenToolStripMenuItem});
+            this.aramaToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.target_icon_264154;
             this.aramaToolStripMenuItem.Name = "aramaToolStripMenuItem";
             this.aramaToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
-            this.aramaToolStripMenuItem.Size = new System.Drawing.Size(87, 44);
+            this.aramaToolStripMenuItem.Size = new System.Drawing.Size(103, 44);
             this.aramaToolStripMenuItem.Text = "Arama";
             this.aramaToolStripMenuItem.Click += new System.EventHandler(this.aramaToolStripMenuItem_Click);
             // 
+            // şirketAkademisyenToolStripMenuItem
+            // 
+            this.şirketAkademisyenToolStripMenuItem.Name = "şirketAkademisyenToolStripMenuItem";
+            this.şirketAkademisyenToolStripMenuItem.Size = new System.Drawing.Size(217, 24);
+            this.şirketAkademisyenToolStripMenuItem.Text = "Şirket / Akademisyen";
+            this.şirketAkademisyenToolStripMenuItem.Click += new System.EventHandler(this.şirketAkademisyenToolStripMenuItem_Click);
+            // 
             // takvimToolStripMenuItem
             // 
+            this.takvimToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.schedule_icon_264140;
             this.takvimToolStripMenuItem.Name = "takvimToolStripMenuItem";
-            this.takvimToolStripMenuItem.Size = new System.Drawing.Size(66, 44);
+            this.takvimToolStripMenuItem.Size = new System.Drawing.Size(82, 44);
             this.takvimToolStripMenuItem.Text = "Takvim";
             this.takvimToolStripMenuItem.Click += new System.EventHandler(this.takvimToolStripMenuItem_Click);
             // 
             // istatistiklerToolStripMenuItem
             // 
+            this.istatistiklerToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.bar_chart_graphic_statistics_icon_264070;
             this.istatistiklerToolStripMenuItem.Name = "istatistiklerToolStripMenuItem";
-            this.istatistiklerToolStripMenuItem.Size = new System.Drawing.Size(92, 44);
+            this.istatistiklerToolStripMenuItem.Size = new System.Drawing.Size(108, 44);
             this.istatistiklerToolStripMenuItem.Text = "İstatistikler";
             this.istatistiklerToolStripMenuItem.Click += new System.EventHandler(this.istatistiklerToolStripMenuItem_Click);
             // 
             // makeReport
             // 
+            this.makeReport.Image = global::MeetingApp.Properties.Resources.briefcase_suitcase_icon_264054;
             this.makeReport.Name = "makeReport";
             this.makeReport.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
-            this.makeReport.Size = new System.Drawing.Size(83, 44);
+            this.makeReport.Size = new System.Drawing.Size(99, 44);
             this.makeReport.Text = "Rapor";
             this.makeReport.Click += new System.EventHandler(this.makeReport_Click);
             // 
             // adayŞirketlerToolStripMenuItem
             // 
+            this.adayŞirketlerToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.seal_icon_264141;
             this.adayŞirketlerToolStripMenuItem.Name = "adayŞirketlerToolStripMenuItem";
-            this.adayŞirketlerToolStripMenuItem.Size = new System.Drawing.Size(113, 44);
+            this.adayŞirketlerToolStripMenuItem.Size = new System.Drawing.Size(129, 44);
             this.adayŞirketlerToolStripMenuItem.Text = "Aday Şirketler";
             this.adayŞirketlerToolStripMenuItem.Click += new System.EventHandler(this.adayŞirketlerToolStripMenuItem_Click);
+            // 
+            // envanterToolStripMenuItem
+            // 
+            this.envanterToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.coins_icon_263956;
+            this.envanterToolStripMenuItem.Name = "envanterToolStripMenuItem";
+            this.envanterToolStripMenuItem.Size = new System.Drawing.Size(156, 44);
+            this.envanterToolStripMenuItem.Text = "Envanter Yönetimi";
+            this.envanterToolStripMenuItem.Click += new System.EventHandler(this.envanterToolStripMenuItem_Click);
+            // 
+            // logKayıtlarıToolStripMenuItem
+            // 
+            this.logKayıtlarıToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.suitcase_briefcase_icon_264150;
+            this.logKayıtlarıToolStripMenuItem.Name = "logKayıtlarıToolStripMenuItem";
+            this.logKayıtlarıToolStripMenuItem.Size = new System.Drawing.Size(120, 44);
+            this.logKayıtlarıToolStripMenuItem.Text = "Log Kayıtları";
+            this.logKayıtlarıToolStripMenuItem.Click += new System.EventHandler(this.logKayıtlarıToolStripMenuItem_Click);
             // 
             // panelofMeetings
             // 
@@ -206,13 +241,6 @@ namespace MeetingApp
             this.panelofMeetings.Name = "panelofMeetings";
             this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
             this.panelofMeetings.TabIndex = 10;
-            // 
-            // logKayıtlarıToolStripMenuItem
-            // 
-            this.logKayıtlarıToolStripMenuItem.Name = "logKayıtlarıToolStripMenuItem";
-            this.logKayıtlarıToolStripMenuItem.Size = new System.Drawing.Size(104, 44);
-            this.logKayıtlarıToolStripMenuItem.Text = "Log Kayıtları";
-            this.logKayıtlarıToolStripMenuItem.Click += new System.EventHandler(this.logKayıtlarıToolStripMenuItem_Click);
             // 
             // AdminPanel
             // 
@@ -259,5 +287,7 @@ namespace MeetingApp
         private ToolStripMenuItem adayŞirketlerToolStripMenuItem;
         private ToolStripMenuItem istatistiklerToolStripMenuItem;
         private ToolStripMenuItem logKayıtlarıToolStripMenuItem;
+        private ToolStripMenuItem şirketAkademisyenToolStripMenuItem;
+        private ToolStripMenuItem envanterToolStripMenuItem;
     }
 }

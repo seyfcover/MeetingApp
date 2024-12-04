@@ -73,6 +73,56 @@ namespace MeetingApp.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap bar_chart_graphic_statistics_icon_264070 {
+            get {
+                object obj = ResourceManager.GetObject("bar_chart_graphic_statistics_icon_264070", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap briefcase_suitcase_icon_264054 {
+            get {
+                object obj = ResourceManager.GetObject("briefcase_suitcase_icon_264054", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap calendar_add_icon_264057 {
+            get {
+                object obj = ResourceManager.GetObject("calendar_add_icon_264057", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap calendar_time_add_schedule_planning_icon_264061 {
+            get {
+                object obj = ResourceManager.GetObject("calendar_time_add_schedule_planning_icon_264061", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap coins_icon_263956 {
+            get {
+                object obj = ResourceManager.GetObject("coins_icon_263956", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap jGlzr {
             get {
                 object obj = ResourceManager.GetObject("jGlzr", resourceCulture);
@@ -83,9 +133,59 @@ namespace MeetingApp.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap schedule_icon_264140 {
+            get {
+                object obj = ResourceManager.GetObject("schedule_icon_264140", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap seal_icon_264141 {
+            get {
+                object obj = ResourceManager.GetObject("seal_icon_264141", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap suitcase_briefcase_icon_264150 {
+            get {
+                object obj = ResourceManager.GetObject("suitcase_briefcase_icon_264150", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap target_icon_264154 {
+            get {
+                object obj = ResourceManager.GetObject("target_icon_264154", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap teknokentlogo {
             get {
                 object obj = ResourceManager.GetObject("teknokentlogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap teknokentlogo_ {
+            get {
+                object obj = ResourceManager.GetObject("teknokentlogo ", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

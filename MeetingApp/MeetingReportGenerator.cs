@@ -7,8 +7,6 @@ namespace MeetingApp
 {
     public class MeetingReportGenerator
     {
-
-
         private DatabaseHelper dbHelper;
 
         public MeetingReportGenerator(DatabaseHelper databaseHelper) {

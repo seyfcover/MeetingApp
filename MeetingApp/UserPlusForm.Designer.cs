@@ -1,6 +1,6 @@
 ﻿namespace MeetingApp
 {
-    partial class UserPanel
+    partial class UserPlusForm
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -12,9 +12,8 @@
         }
 
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPanel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPlusForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.panelofMeetings = new System.Windows.Forms.Panel();
             this.yeniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toplantıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.şirketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -29,6 +28,8 @@
             this.takvimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.raporToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bilgilerimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelofMeetings = new System.Windows.Forms.Panel();
+            this.envanterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,23 +45,14 @@
             this.aramaToolStripMenuItem,
             this.takvimToolStripMenuItem,
             this.raporToolStripMenuItem,
-            this.bilgilerimToolStripMenuItem});
+            this.bilgilerimToolStripMenuItem,
+            this.envanterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1532, 48);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // panelofMeetings
-            // 
-            this.panelofMeetings.AutoScroll = true;
-            this.panelofMeetings.BackColor = System.Drawing.Color.White;
-            this.panelofMeetings.Location = new System.Drawing.Point(0, 49);
-            this.panelofMeetings.Margin = new System.Windows.Forms.Padding(11);
-            this.panelofMeetings.Name = "panelofMeetings";
-            this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
-            this.panelofMeetings.TabIndex = 11;
             // 
             // yeniToolStripMenuItem
             // 
@@ -173,9 +165,25 @@
             this.bilgilerimToolStripMenuItem.Name = "bilgilerimToolStripMenuItem";
             this.bilgilerimToolStripMenuItem.Size = new System.Drawing.Size(101, 44);
             this.bilgilerimToolStripMenuItem.Text = "Bilgilerim";
-            this.bilgilerimToolStripMenuItem.Click += new System.EventHandler(this.bilgilerimToolStripMenuItem_Click);
             // 
-            // UserPanel
+            // panelofMeetings
+            // 
+            this.panelofMeetings.AutoScroll = true;
+            this.panelofMeetings.BackColor = System.Drawing.Color.White;
+            this.panelofMeetings.Location = new System.Drawing.Point(0, 49);
+            this.panelofMeetings.Margin = new System.Windows.Forms.Padding(11);
+            this.panelofMeetings.Name = "panelofMeetings";
+            this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
+            this.panelofMeetings.TabIndex = 11;
+            // 
+            // envanterToolStripMenuItem
+            // 
+            this.envanterToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.coins_icon_263956;
+            this.envanterToolStripMenuItem.Name = "envanterToolStripMenuItem";
+            this.envanterToolStripMenuItem.Size = new System.Drawing.Size(94, 44);
+            this.envanterToolStripMenuItem.Text = "Envanter";
+            // 
+            // UserPlusForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -188,7 +196,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.Name = "UserPanel";
+            this.Name = "UserPlusForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kullanıcı Paneli";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserPanel_FormClosing);
@@ -214,5 +222,6 @@
         private System.Windows.Forms.ToolStripMenuItem akademisyenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem şirketAkademisyenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bilgilerimToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem envanterToolStripMenuItem;
     }
 }

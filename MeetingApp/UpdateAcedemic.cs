@@ -41,8 +41,11 @@ namespace MeetingApp
             string phone = txtPhone.Text;
             string title = txtTitle.Text;
             string position = txtPosition.Text;
+            string keyWords = txtFieldsOfActivity.Text;
+            string tcId = textmaskedtcid.Text;
 
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(position)) {
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email) 
+                || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(position) || string.IsNullOrEmpty(keyWords)) {
                 MessageBox.Show("Tüm alanlar gereklidir.");
                 return;
             }
@@ -57,7 +60,7 @@ namespace MeetingApp
                 return;
             }
 
-            if (dbHelper.UpdateAcademic(selectedAcedemicID, firstName, lastName, email, phone, title, position)) {
+            if (dbHelper.UpdateAcademic(selectedAcedemicID, firstName, lastName, email, phone, title, position, keyWords , tcId)) {
                 MessageBox.Show("Akademisyen Güncellendi.");
 
                 dbHelper.AddLog("Güncelleme", "ID:" + userID.ToString() + " " + FullName + " || Akademisyen : " + firstName + " " + lastName + " Güncelledi. ");
@@ -108,6 +111,8 @@ namespace MeetingApp
                     txtPhone.Text = row["Phone"].ToString();
                     txtTitle.Text = row["Title"].ToString();
                     txtPosition.Text = row["Position"].ToString();
+                    txtFieldsOfActivity.Text = row["keyWords"].ToString();
+                    textmaskedtcid.Text = row["tcID"].ToString();
                 } else {
                     // Handle the case where no details are found
                     MessageBox.Show("Seçilen akademisyenin detayları bulunamadı.");

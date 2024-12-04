@@ -17,7 +17,7 @@ namespace MeetingApp
         private List<byte[]> documentDataList = new List<byte[]>(); // Dosya içerikleri
         private List<string> documentNamesList = new List<string>(); // Dosya adları
         private List<string> documentTypesList = new List<string>();
-        public int _selectedMeetingID;
+        public int _selectedMeetingID ;
         private int userID;
         private string FullName;
         public UpdateMeeting(DatabaseHelper databaseHelper, int userID,string FullName ) {
@@ -30,31 +30,6 @@ namespace MeetingApp
             LoadAcademics();
             LoadMeetingsIntoComboBox();
         }
-        private void FilterMeetings(string searchText) {
-
-            // Eğer arama metni boşsa veya arama sonucu yoksa verileri yeniden yükle
-            if (string.IsNullOrEmpty(searchText) || listofMeetings.Items.Count == 0) {
-                LoadMeetingsIntoComboBox(); // Verileri tekrar yükler
-                return;
-            }
-
-            // Aksi halde, arama filtresi uygulamaya devam edin
-            for (int i = listofMeetings.Items.Count - 1; i >= 0; i--) {
-                var item = (KeyValuePair<int, string>)listofMeetings.Items[i];
-                if (item.Value.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) < 0) {
-                    listofMeetings.Items.RemoveAt(i);
-                }
-
-            }
-
-            // Eğer öğeler tamamen silindiyse, verileri yeniden yükleyin
-            if (listofMeetings.Items.Count == 0) {
-                LoadMeetingsIntoComboBox();
-            }
-
-        }
-
-
 
         private void FilterCompanies(string searchText) {
             // Arama metnini küçük harfe çevirerek büyük/küçük harf farkını yok sayalım
@@ -104,12 +79,17 @@ namespace MeetingApp
             foreach (DataRow row in meetings.Rows) {
                 int meetingID = (int)row["MeetingID"];
                 string meetingTitle = row["MeetingTitle"].ToString();
+                DateTime meetingDate = (DateTime)row["MeetingDate"];
+
+                // Tarih olmadan sadece başlık ekleniyor, ancak tarihler arka planda tutuluyor
                 listofMeetings.Items.Add(new KeyValuePair<int, string>(meetingID, meetingTitle));
             }
 
-            listofMeetings.DisplayMember = "Value"; // Gösterilecek metin: KeyValuePair'in Value kısmı
-            listofMeetings.ValueMember = "Key"; // Seçilecek değer: KeyValuePair'in Key kısmı
+            listofMeetings.DisplayMember = "Value"; // Yalnızca toplantı başlığını göster
+            listofMeetings.ValueMember = "Key"; // Seçilecek değer: meetingID
         }
+
+
 
 
         private void LoadCompanies() {
@@ -360,7 +340,7 @@ namespace MeetingApp
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true; // Birden fazla dosya seçilmesine izin verir
-            openFileDialog.Filter = "Supported Files|*.docx;*.pdf;*.xlsx;*.jpg;*.png"; // Desteklenen dosya türleri
+            openFileDialog.Filter = "Supported Files|*.docx;*.pdf;*.xlsx;*.jpg;*.png;*.jpeg"; ; // Desteklenen dosya türleri
 
             if (openFileDialog.ShowDialog() == DialogResult.OK) {
                 List<string> selectedFileNames = new List<string>(); // Seçilen dosya isimlerini tutacak liste
@@ -411,6 +391,7 @@ namespace MeetingApp
                 case ".xlsx":
                     return "Excel Document";
                 case ".jpg":
+                    return "JPG Image";
                 case ".jpeg":
                     return "JPEG Image";
                 case ".png":
@@ -496,7 +477,7 @@ namespace MeetingApp
 
 
         public void listofMeetings_SelectedIndexChanged(object sender, EventArgs e) {
-            if (sender == null && e == null) {
+            if ((sender == null) &&( e == null)) {
                 forceloadcalendar(_selectedMeetingID);
             }
             if (listofMeetings.SelectedItem != null) {

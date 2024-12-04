@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MeetingApp
 {
-    public partial class UserPanel : Form
+    public partial class UserPlusForm : Form
     {
         private DatabaseHelper dbHelper;
         private CompanyForm companyForm;
@@ -17,12 +17,11 @@ namespace MeetingApp
         private UpdateEmployee updateEmployeeForm;
         private UpdateAcedemic updateAcedemicForm;
         private SearchAceCom SearchAceComForm;
-        private UserInformationEditForm userInformationEditForm;
         private Form calendarForm = null;
         private Form viewMeetingsForm = null;
         private int userID;
         private string FullName;
-        public UserPanel(DatabaseHelper databaseHelper, int UserID, string fullName) {
+        public UserPlusForm(DatabaseHelper databaseHelper, int UserID, string fullName) {
             dbHelper = databaseHelper;
             userID = UserID;
             FullName = fullName;
@@ -81,7 +80,6 @@ namespace MeetingApp
             if (updateCompanyForm != null && !updateCompanyForm.IsDisposed) updateCompanyForm.Close();
             if (updateEmployeeForm != null && !updateEmployeeForm.IsDisposed) updateEmployeeForm.Close();
             if (SearchAceComForm != null && !SearchAceComForm.IsDisposed) SearchAceComForm.Close();
-            if (userInformationEditForm != null && !userInformationEditForm.IsDisposed) userInformationEditForm.Close();
         }
         private void aramaToolStripMenuItem_Click(object sender, EventArgs e) {
             // Diğer form açıksa kapat
@@ -121,13 +119,13 @@ namespace MeetingApp
         private void şirketToolStripMenuItem_Click(object sender, EventArgs e) {
             ShowOrCreateForm(ref companyForm, () => new CompanyForm(dbHelper, userID, FullName));
         }
-    
+
         private void updateCalendar(object sender, FormClosedEventArgs e) {
             calendarForm = null;
             LoadCalendarForm();
         }
         private void akedemisyenToolStripMenuItem_Click(object sender, EventArgs e) {
-            ShowOrCreateForm(ref academicForm, () => new AcademicForm(dbHelper, userID , FullName));
+            ShowOrCreateForm(ref academicForm, () => new AcademicForm(dbHelper, userID, FullName));
         }
 
         private void toplantıToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -141,7 +139,7 @@ namespace MeetingApp
         }
 
         private void toplantıToolStripMenuItem1_Click(object sender, EventArgs e) {
-            ShowOrCreateForm(ref UpdateMeetingForm, () => new UpdateMeeting(dbHelper, userID , FullName));
+            ShowOrCreateForm(ref UpdateMeetingForm, () => new UpdateMeeting(dbHelper, userID, FullName));
             UpdateMeetingForm.FormClosed += updateCalendar;
         }
 
@@ -162,10 +160,6 @@ namespace MeetingApp
         private void şirketAkademisyenToolStripMenuItem_Click(object sender, EventArgs e) {
             ShowOrCreateForm(ref SearchAceComForm, () => new SearchAceCom(dbHelper, userID, FullName));
         }
-
-        private void bilgilerimToolStripMenuItem_Click(object sender, EventArgs e) {
-            ShowOrCreateForm(ref userInformationEditForm, () => new UserInformationEditForm(dbHelper, userID, FullName));
-        }
         private void takvimToolStripMenuItem_Click(object sender, EventArgs e) {
             // Diğer form açıksa kapat
             if (viewMeetingsForm != null && !viewMeetingsForm.IsDisposed) {
@@ -177,6 +171,6 @@ namespace MeetingApp
             LoadCalendarForm();
         }
 
-        
+
     }
 }
