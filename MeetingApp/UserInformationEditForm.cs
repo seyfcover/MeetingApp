@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
+using MeetingApp.Models;
 
 namespace MeetingApp
 {
@@ -10,6 +11,7 @@ namespace MeetingApp
         private DatabaseHelper dbHelper;
         private int userID;
         private string FullName;
+        private byte  UserType;
         public UserInformationEditForm(DatabaseHelper databaseHelper, int userID, string fullName) {
             InitializeComponent();
             dbHelper = databaseHelper;
@@ -17,6 +19,20 @@ namespace MeetingApp
             FullName = fullName;
             LoadUsersDetails();
             LoadInventoryByUserId(userID);
+            Permissions(userID);
+            GetCountInvetories(userID);
+        }
+        private void GetCountInvetories(int userID) {
+             countInventory.Text = dbHelper.CountInventory(userID).ToString();
+        }
+
+        private void Permissions(int userID) {
+
+            byte isAdmin = dbHelper.isAdmin(userID);
+            if (isAdmin == 4 || isAdmin == 3 || isAdmin == 2) {
+                btnRquestMng.Enabled = true;
+                btnRquestMng.Visible = true;
+            } 
         }
         private void LoadInventoryByUserId(int userId) {
             // DataTable'ı doldurmak için metodu çağırıyoruz
@@ -45,6 +61,7 @@ namespace MeetingApp
                 txtPhone.Text = row["phoneNumber"].ToString();
                 txtTitle.Text = row["Title"].ToString();
                 txtPosition.Text = row["Position"].ToString();
+                UserType = Convert.ToByte(row["isAdmin"]);
             } else {
                 // Handle the case where no details are found
                 MessageBox.Show("Seçilen kullanıcının detayları bulunamadı.");
@@ -80,7 +97,7 @@ namespace MeetingApp
                 txtTitle.Text,
                 txtPhone.Text,
                 txtPassword.Text,
-                false,
+                UserType,
                 txtPosition.Text
             );
 
@@ -135,6 +152,31 @@ namespace MeetingApp
             } catch {
                 return false;
             }
+        }
+
+        private void MyInventoryies_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            if (e.RowIndex >= 0) {
+                // itemID değerini al      
+                string selectedItemIdStr = MyInventoryies.Rows[e.RowIndex].Cells["itemID"].Value.ToString();
+                if (selectedItemIdStr.Length > 3) {
+                    int selectedItemId = Convert.ToInt32(selectedItemIdStr.Substring(3));
+
+                    // Yeni bir form aç ve itemID'yi gönder
+                    UpdateInventory updateInventoryForm = new UpdateInventory(dbHelper, userID, FullName, selectedItemId);
+                    updateInventoryForm.ShowDialog(); // Modsal olarak açabiliriz
+                }
+                // Eğer ID 'TTO123' gibi bir formatta ise, 'TTO' harflerinden sonraki kısmı almak için:
+            }
+        }
+
+        private void btnNewRquest_Click(object sender, EventArgs e) {
+            NewRequestForm newRequestForm = new NewRequestForm(dbHelper,userID,FullName);
+            newRequestForm.ShowDialog();
+        }
+
+        private void RequestMng_Click(object sender, EventArgs e) {
+            RequestManagement requestManagement = new RequestManagement(dbHelper, userID, FullName);
+            requestManagement.ShowDialog();
         }
     }
 }

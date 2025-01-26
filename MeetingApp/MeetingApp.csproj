@@ -287,6 +287,12 @@
     <Compile Include="AcademicForm.Designer.cs">
       <DependentUpon>AcademicForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrative.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrative.Designer.cs">
+      <DependentUpon>Administrative.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -332,11 +338,23 @@
     </Compile>
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ParticipantMeetingData.cs" />
+    <Compile Include="NewRequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewRequestForm.Designer.cs">
+      <DependentUpon>NewRequestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProgressForm.Designer.cs">
       <DependentUpon>ProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RequestManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RequestManagement.Designer.cs">
+      <DependentUpon>RequestManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="SearchAceCom.cs">
       <SubType>Form</SubType>
@@ -349,6 +367,12 @@
     </Compile>
     <Compile Include="Statistic.Designer.cs">
       <DependentUpon>Statistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TTOAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TTOAdmin.Designer.cs">
+      <DependentUpon>TTOAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="UpdateAcedemic.cs">
       <SubType>Form</SubType>
@@ -442,12 +466,6 @@
     <Compile Include="UserPanel.Designer.cs">
       <DependentUpon>UserPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserPlusForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserPlusForm.Designer.cs">
-      <DependentUpon>UserPlusForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewDocumentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -468,6 +486,9 @@
     </Compile>
     <EmbeddedResource Include="AcademicForm.resx">
       <DependentUpon>AcademicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrative.resx">
+      <DependentUpon>Administrative.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
@@ -490,14 +511,23 @@
     <EmbeddedResource Include="LogViews.resx">
       <DependentUpon>LogViews.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewRequestForm.resx">
+      <DependentUpon>NewRequestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RequestManagement.resx">
+      <DependentUpon>RequestManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchAceCom.resx">
       <DependentUpon>SearchAceCom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Statistic.resx">
       <DependentUpon>Statistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TTOAdmin.resx">
+      <DependentUpon>TTOAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateAcedemic.resx">
       <DependentUpon>UpdateAcedemic.cs</DependentUpon>
@@ -542,9 +572,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserPanel.resx">
       <DependentUpon>UserPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserPlusForm.resx">
-      <DependentUpon>UserPlusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewDocumentsForm.resx">
       <DependentUpon>ViewDocumentsForm.cs</DependentUpon>

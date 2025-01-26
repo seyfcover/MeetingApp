@@ -44,6 +44,8 @@
             this.listofEmployee = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDel = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.EmployeeTcID = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtFirstName
@@ -67,7 +69,7 @@
             // txtEmail
             // 
             this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txtEmail.Location = new System.Drawing.Point(17, 177);
+            this.txtEmail.Location = new System.Drawing.Point(17, 236);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(297, 23);
@@ -75,7 +77,7 @@
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(17, 316);
+            this.txtPosition.Location = new System.Drawing.Point(17, 375);
             this.txtPosition.MaxLength = 50;
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Size = new System.Drawing.Size(297, 23);
@@ -86,7 +88,7 @@
             this.cmbCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbCompany.FormattingEnabled = true;
-            this.cmbCompany.Location = new System.Drawing.Point(17, 366);
+            this.cmbCompany.Location = new System.Drawing.Point(17, 425);
             this.cmbCompany.Name = "cmbCompany";
             this.cmbCompany.Size = new System.Drawing.Size(297, 24);
             this.cmbCompany.TabIndex = 6;
@@ -96,7 +98,7 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(17, 406);
+            this.btnSave.Location = new System.Drawing.Point(17, 465);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(165, 28);
             this.btnSave.TabIndex = 7;
@@ -125,7 +127,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(17, 156);
+            this.lblEmail.Location = new System.Drawing.Point(17, 215);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(43, 16);
             this.lblEmail.TabIndex = 10;
@@ -134,7 +136,7 @@
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(17, 203);
+            this.lblPhone.Location = new System.Drawing.Point(17, 262);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(53, 16);
             this.lblPhone.TabIndex = 11;
@@ -143,7 +145,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(17, 248);
+            this.lblTitle.Location = new System.Drawing.Point(17, 307);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(47, 16);
             this.lblTitle.TabIndex = 12;
@@ -152,7 +154,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(17, 297);
+            this.lblPosition.Location = new System.Drawing.Point(17, 356);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(46, 16);
             this.lblPosition.TabIndex = 13;
@@ -161,7 +163,7 @@
             // lblCompany
             // 
             this.lblCompany.AutoSize = true;
-            this.lblCompany.Location = new System.Drawing.Point(17, 347);
+            this.lblCompany.Location = new System.Drawing.Point(17, 406);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.Size = new System.Drawing.Size(43, 16);
             this.lblCompany.TabIndex = 14;
@@ -178,14 +180,14 @@
             "Sorumlu Mühendis",
             "Firma Sahibi",
             "Üretim Direktörü"});
-            this.txtTitle.Location = new System.Drawing.Point(17, 267);
+            this.txtTitle.Location = new System.Drawing.Point(17, 326);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(297, 24);
             this.txtTitle.TabIndex = 4;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(17, 222);
+            this.txtPhone.Location = new System.Drawing.Point(17, 281);
             this.txtPhone.Mask = "(999) 000-0000";
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(111, 23);
@@ -217,20 +219,42 @@
             this.btnDel.Enabled = false;
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDel.ForeColor = System.Drawing.Color.White;
-            this.btnDel.Location = new System.Drawing.Point(207, 406);
+            this.btnDel.Location = new System.Drawing.Point(207, 465);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(107, 28);
             this.btnDel.TabIndex = 7;
             this.btnDel.Text = "Sil";
             this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Visible = false;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 166);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 16);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "TC";
+            // 
+            // EmployeeTcID
+            // 
+            this.EmployeeTcID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.EmployeeTcID.Location = new System.Drawing.Point(17, 185);
+            this.EmployeeTcID.MaxLength = 11;
+            this.EmployeeTcID.Name = "EmployeeTcID";
+            this.EmployeeTcID.Size = new System.Drawing.Size(297, 23);
+            this.EmployeeTcID.TabIndex = 17;
+            this.EmployeeTcID.TextChanged += new System.EventHandler(this.EmployeeTcID_TextChanged);
             // 
             // UpdateEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(345, 451);
+            this.ClientSize = new System.Drawing.Size(345, 508);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.EmployeeTcID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listofEmployee);
             this.Controls.Add(this.txtPhone);
@@ -281,5 +305,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDel;
         public System.Windows.Forms.ComboBox listofEmployee;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox EmployeeTcID;
     }
 }

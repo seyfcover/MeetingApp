@@ -190,12 +190,14 @@
             // isCandidate
             // 
             this.isCandidate.AutoSize = true;
+            this.isCandidate.Enabled = false;
             this.isCandidate.Location = new System.Drawing.Point(168, 42);
             this.isCandidate.Name = "isCandidate";
             this.isCandidate.Size = new System.Drawing.Size(102, 20);
             this.isCandidate.TabIndex = 13;
             this.isCandidate.Text = "Aday Şirket";
             this.isCandidate.UseVisualStyleBackColor = true;
+            this.isCandidate.Visible = false;
             this.isCandidate.CheckedChanged += new System.EventHandler(this.isCandidate_CheckedChanged);
             // 
             // delCandidate
@@ -210,6 +212,7 @@
             this.delCandidate.TabIndex = 16;
             this.delCandidate.Text = "Sil";
             this.delCandidate.UseVisualStyleBackColor = false;
+            this.delCandidate.Visible = false;
             this.delCandidate.Click += new System.EventHandler(this.delCandidate_Click);
             // 
             // UpdateCompanyForm

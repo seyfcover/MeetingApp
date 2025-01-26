@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -18,12 +19,32 @@ namespace MeetingApp
             this.userID = userID;
             this.FullName = FullName;
             this.errorProvider = new ErrorProvider();
+            PopulateUserTypes();
             LoadUsers();
 
             // E-mail numarası için validasyon olaylarını ekleyin
             txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             
         }
+        // ComboBox'a key-value atama fonksiyonu
+        private void PopulateUserTypes() {
+            userTypes.DataSource = null;
+            var userTypesList = new Dictionary<byte, string>()
+            {
+                { 3, "TTO Admin" },
+                { 2, "İdari Admin" },
+                { 0, "User" }
+            };
+
+            // ComboBox'a veri bağlama
+            userTypes.DataSource = new BindingSource(userTypesList, null);
+            userTypes.DisplayMember = "Value";  // Kullanıcıya gösterilecek değer
+            userTypes.ValueMember = "Key";      // Arka planda tutulacak değer
+
+            // Varsayılan seçim yapmak istersen
+            userTypes.SelectedIndex = -1;  // Hiçbiri seçili olmasın
+        }
+
 
         private void LoadUsers() {
             DataTable users = dbHelper.GetUsers();
@@ -36,7 +57,6 @@ namespace MeetingApp
         }
 
         private void btnRegister_Click(object sender, EventArgs e) {
-
             if (string.IsNullOrWhiteSpace(txtUsername.Text) ||
                 string.IsNullOrWhiteSpace(txtFirstName.Text) ||
                 string.IsNullOrWhiteSpace(txtLastName.Text) ||
@@ -63,7 +83,7 @@ namespace MeetingApp
                 txtTitle.Text,
                 txtPhone.Text,
                 txtPassword.Text,
-                chkIsAdmin.Checked,
+                (byte)userTypes.SelectedValue,
                 txtPosition.Text
             );
 
@@ -125,7 +145,7 @@ namespace MeetingApp
                     DataRow row = userDetails.Rows[0];
 
                     // Display the details in the appropriate controls
-                    chkIsAdmin.Checked = Convert.ToBoolean(row["isAdmin"]);
+                    userTypes.SelectedValue = Convert.ToByte(row["isAdmin"]);
                     txtUsername.Text = row["username"].ToString();
                     txtPassword.Text = row["userPassword"].ToString();
                     txtFirstName.Text = row["FirstName"].ToString();

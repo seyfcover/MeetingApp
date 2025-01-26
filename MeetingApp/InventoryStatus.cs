@@ -10,6 +10,7 @@ namespace MeetingApp
         private DatabaseHelper dbHelper;
         private int userID;
         private String FullName;
+        private DataTable OriginalTable;
 
         public InventoryStatus(DatabaseHelper databaseHelper, int userID, String FullName) {
             InitializeComponent();
@@ -17,10 +18,13 @@ namespace MeetingApp
             this.userID = userID;
             this.FullName = FullName;
             LoadInventoryData();
+            CountInventories.Text = dbHelper.CountAllInventories().ToString();
         }
         private void InventoryStatus_Load(object sender, EventArgs e) {
             // Veritabanından envanter öğelerini al
+            dataGridViewInventory.DataSource = null;
             DataTable inventoryTable = dbHelper.GetInventoryItems();
+            OriginalTable = inventoryTable;
             dataGridViewInventory.DataSource = inventoryTable;
 
             // Kolon başlıklarını Türkçe yap
@@ -51,8 +55,6 @@ namespace MeetingApp
             dataGridViewInventory.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;  // Alternatif satır rengi
 
             // Başlıkların renkleri ve düzenlemeleri
-            dataGridViewInventory.ColumnHeadersDefaultCellStyle.BackColor = Color.Teal;  // Başlık arka planı
-            dataGridViewInventory.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;  // Başlık yazı rengi
             dataGridViewInventory.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);  // Başlık yazı tipi
 
             // Kenarlık düzenlemeleri
@@ -60,7 +62,7 @@ namespace MeetingApp
             dataGridViewInventory.GridColor = Color.Gray;  // Grid çizgisi rengi
 
             // Satır yüksekliği
-            dataGridViewInventory.RowTemplate.Height = 30;  // Satır yüksekliğini artır
+            dataGridViewInventory.RowTemplate.Height = 20;  // Satır yüksekliğini artır
 
             // Kolonlar ve satırlar arasındaki boşluk
             dataGridViewInventory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -68,6 +70,7 @@ namespace MeetingApp
 
             // Kolonları yeniden boyutlandır
             dataGridViewInventory.AutoResizeColumns();
+            LoadInventoryData();
         }
         private void LoadInventoryData() {
             try {
@@ -86,10 +89,10 @@ namespace MeetingApp
 
         private void FormatInventoryGrid() {
             foreach (DataGridViewRow row in dataGridViewInventory.Rows) {
-                if (row.Cells["status"].Value != null && row.Cells["status"].Value.ToString() == "In Maintenance") {
+                if (row.Cells["status"].Value != null && row.Cells["status"].Value.ToString() == "Bakımda") {
                     // Eğer ekipman bakımda ise, satırı kırmızı renkte yap
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                } else if (row.Cells["status"].Value != null && row.Cells["status"].Value.ToString() == "Available") {
+                    row.DefaultCellStyle.BackColor = Color.Coral;
+                } else if (row.Cells["status"].Value != null && row.Cells["status"].Value.ToString() == "Mevcut") {
                     // Eğer ekipman kullanılabilir durumdaysa, satırı yeşil yap
                     row.DefaultCellStyle.BackColor = Color.LightGreen;
                 }
@@ -100,7 +103,12 @@ namespace MeetingApp
             // Eğer çift tıklanan satır geçerli bir satırsa
             if (e.RowIndex >= 0) {
                 // itemID değerini al
-                int selectedItemId = Convert.ToInt32(dataGridViewInventory.Rows[e.RowIndex].Cells["itemID"].Value);
+                string selectedItemIdStr = dataGridViewInventory.Rows[e.RowIndex].Cells["itemID"].Value.ToString();
+
+                // Eğer ID 'TTO123' gibi bir formatta ise, 'TTO' harflerinden sonraki kısmı almak için:
+                int selectedItemId = Convert.ToInt32(selectedItemIdStr.Substring(3));
+
+
 
                 // Yeni bir form aç ve itemID'yi gönder
                 UpdateInventory updateInventoryForm = new UpdateInventory(dbHelper, userID, FullName, selectedItemId);
@@ -109,8 +117,52 @@ namespace MeetingApp
         }
 
         private void btnUpdateItem_Click(object sender, EventArgs e) {
-            InventoryManagementForm InventoryManagementForm = new InventoryManagementForm(dbHelper);
+            InventoryManagementForm InventoryManagementForm = new InventoryManagementForm(dbHelper,FullName);
             InventoryManagementForm.ShowDialog(); // Modsal olarak açabiliriz
+        }
+
+        private void btn_refItems_Click(object sender, EventArgs e) {
+            dataGridViewInventory.DataSource = null;
+            InventoryStatus_Load(null, null);
+            LoadInventoryData();
+            originalTable();
+            CountInventories.Text = dbHelper.CountAllInventories().ToString();
+        }
+        private void originalTable() {
+            OriginalTable = dbHelper.GetInventoryItems();
+        }
+
+        private void txtbox_searchItems_TextChanged(object sender, EventArgs e) {
+            // Arama metnini al
+            string searchText = txtbox_searchItems.Text.ToLower();
+
+            // Orijinal tabloyu filtrele
+            if (string.IsNullOrWhiteSpace(searchText)) {
+                // Arama kutusu boşsa orijinal tabloyu göster
+                dataGridViewInventory.DataSource = OriginalTable;
+                return;
+            }
+
+            // Yeni bir DataTable oluştur
+            DataTable filteredTable = OriginalTable.Clone(); // Yapıyı klonla (kolonları oluştur)
+
+            foreach (DataRow row in OriginalTable.Rows) {
+                // Görünen kolonlarda arama yap
+                foreach (DataColumn column in OriginalTable.Columns) {
+                   // if (!dataGridViewInventory.Columns[column.ColumnName].Visible)
+                      //  continue; // Sadece görünen kolonları kontrol et
+
+                    string cellValue = row[column.ColumnName].ToString().ToLower();
+                    if (cellValue.Contains(searchText)) {
+                        filteredTable.Rows.Add(row.ItemArray); // Eşleşen satırı ekle
+                        break;
+                    }
+                }
+            }
+
+            // Filtrelenmiş tabloyu DataGridView'e ata
+            dataGridViewInventory.DataSource = filteredTable;
+            FormatInventoryGrid();
         }
     }
 }

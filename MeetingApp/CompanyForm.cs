@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -220,14 +221,15 @@ namespace MeetingApp
         private void EbtnSave_Click(object sender, EventArgs e) {
             string firstName = EtxtFirstName.Text;
             string lastName = EtxtLastName.Text;
+            string tcID = EmployeeTcId.Text;
             string email = EtxtMail.Text;
             string phone = Ephone.Text;
             string title = EtxtTitle.Text;
             string position = EtxtPosition.Text;
             int companyID = Convert.ToInt32(cmbCompany.SelectedValue);
 
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName)) {
-                MessageBox.Show("Ad, soyad boş olamaz.");
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(tcID)) {
+                MessageBox.Show("Ad, soyad ve TC boş olamaz.");
                 return;
             }
             if (!string.IsNullOrWhiteSpace(txtEmail.Text)) {
@@ -244,7 +246,7 @@ namespace MeetingApp
                 phone = string.Empty;
             }
 
-            if (dbHelper.AddEmployee(firstName, lastName, companyID, email, phone, title, position)) {
+            if (dbHelper.AddEmployee(firstName, lastName,tcID, companyID, email, phone, title, position)) {
                 MessageBox.Show("Personel başarıyla eklendi");
                 dbHelper.AddLog("Ekleme", "ID:" + userID.ToString() + " " + FullName + "|| Şirket Personeli : " + firstName + " " + lastName + " ekledi.");
                 EclearForm();
@@ -299,6 +301,21 @@ namespace MeetingApp
 
         private void EtxtFirstName_TextChanged(object sender, EventArgs e) {
             dbHelper.CastingName(EtxtFirstName);
+        }
+
+        private void EmployeeTcId_TextChanged(object sender, EventArgs e) {
+
+            if (EmployeeTcId != null) {
+                // Sadece rakamları içeren bir değer oluştur
+                string newText = string.Concat(EmployeeTcId.Text.Where(char.IsDigit));
+
+                // TextBox içeriği değiştiyse güncelle
+                if (EmployeeTcId.Text != newText) {
+                    int selectionStart = EmployeeTcId.SelectionStart - (EmployeeTcId.Text.Length - newText.Length);
+                    EmployeeTcId.Text = newText;
+                    EmployeeTcId.SelectionStart = Math.Max(selectionStart, 0); // İmleç pozisyonunu koru
+                }
+            }
         }
     }
 }

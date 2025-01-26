@@ -47,6 +47,8 @@
             this.listofEmployee = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.EbtnUpdate = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.EmployeeTcId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -219,11 +221,11 @@
             // 
             this.Ephone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.Ephone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Ephone.Location = new System.Drawing.Point(308, 252);
+            this.Ephone.Location = new System.Drawing.Point(308, 284);
             this.Ephone.Mask = "(999) 000-0000";
             this.Ephone.Name = "Ephone";
             this.Ephone.Size = new System.Drawing.Size(119, 24);
-            this.Ephone.TabIndex = 18;
+            this.Ephone.TabIndex = 19;
             // 
             // EtxtTitle
             // 
@@ -265,11 +267,11 @@
             "Finans Sorumlusu",
             "İnsan Kaynakları Sorumlusu",
             "Hukuk Müşaviri"});
-            this.EtxtTitle.Location = new System.Drawing.Point(308, 312);
+            this.EtxtTitle.Location = new System.Drawing.Point(306, 347);
             this.EtxtTitle.MaxLength = 50;
             this.EtxtTitle.Name = "EtxtTitle";
             this.EtxtTitle.Size = new System.Drawing.Size(227, 25);
-            this.EtxtTitle.TabIndex = 19;
+            this.EtxtTitle.TabIndex = 20;
             // 
             // lblCompany
             // 
@@ -285,7 +287,7 @@
             // 
             this.lblPosition.AutoSize = true;
             this.lblPosition.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.lblPosition.Location = new System.Drawing.Point(305, 351);
+            this.lblPosition.Location = new System.Drawing.Point(305, 375);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(51, 19);
             this.lblPosition.TabIndex = 28;
@@ -295,7 +297,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.lblTitle.Location = new System.Drawing.Point(304, 290);
+            this.lblTitle.Location = new System.Drawing.Point(308, 325);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(54, 19);
             this.lblTitle.TabIndex = 27;
@@ -305,7 +307,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.label3.Location = new System.Drawing.Point(305, 231);
+            this.label3.Location = new System.Drawing.Point(305, 263);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 19);
             this.label3.TabIndex = 26;
@@ -315,7 +317,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.lblEmail.Location = new System.Drawing.Point(305, 171);
+            this.lblEmail.Location = new System.Drawing.Point(305, 215);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(46, 19);
             this.lblEmail.TabIndex = 25;
@@ -325,7 +327,7 @@
             // 
             this.lblLastName.AutoSize = true;
             this.lblLastName.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.lblLastName.Location = new System.Drawing.Point(305, 122);
+            this.lblLastName.Location = new System.Drawing.Point(305, 114);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(53, 19);
             this.lblLastName.TabIndex = 24;
@@ -335,7 +337,7 @@
             // 
             this.lblFirstName.AutoSize = true;
             this.lblFirstName.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.lblFirstName.Location = new System.Drawing.Point(305, 72);
+            this.lblFirstName.Location = new System.Drawing.Point(305, 64);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(28, 19);
             this.lblFirstName.TabIndex = 23;
@@ -373,11 +375,11 @@
             this.EtxtPosition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.EtxtPosition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EtxtPosition.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.EtxtPosition.Location = new System.Drawing.Point(308, 372);
+            this.EtxtPosition.Location = new System.Drawing.Point(308, 396);
             this.EtxtPosition.MaxLength = 50;
             this.EtxtPosition.Name = "EtxtPosition";
             this.EtxtPosition.Size = new System.Drawing.Size(227, 24);
-            this.EtxtPosition.TabIndex = 20;
+            this.EtxtPosition.TabIndex = 21;
             // 
             // EtxtMail
             // 
@@ -385,11 +387,11 @@
             this.EtxtMail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EtxtMail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.EtxtMail.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.EtxtMail.Location = new System.Drawing.Point(306, 192);
+            this.EtxtMail.Location = new System.Drawing.Point(306, 236);
             this.EtxtMail.MaxLength = 50;
             this.EtxtMail.Name = "EtxtMail";
             this.EtxtMail.Size = new System.Drawing.Size(227, 24);
-            this.EtxtMail.TabIndex = 17;
+            this.EtxtMail.TabIndex = 18;
             // 
             // EtxtLastName
             // 
@@ -397,7 +399,7 @@
             this.EtxtLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EtxtLastName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.EtxtLastName.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.EtxtLastName.Location = new System.Drawing.Point(306, 143);
+            this.EtxtLastName.Location = new System.Drawing.Point(306, 135);
             this.EtxtLastName.MaxLength = 50;
             this.EtxtLastName.Name = "EtxtLastName";
             this.EtxtLastName.Size = new System.Drawing.Size(227, 24);
@@ -408,7 +410,7 @@
             this.EtxtFirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
             this.EtxtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EtxtFirstName.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.EtxtFirstName.Location = new System.Drawing.Point(306, 91);
+            this.EtxtFirstName.Location = new System.Drawing.Point(306, 83);
             this.EtxtFirstName.MaxLength = 50;
             this.EtxtFirstName.Name = "EtxtFirstName";
             this.EtxtFirstName.Size = new System.Drawing.Size(227, 24);
@@ -450,10 +452,35 @@
             this.EbtnUpdate.UseVisualStyleBackColor = false;
             this.EbtnUpdate.Click += new System.EventHandler(this.EbtnUpdate_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.label5.Location = new System.Drawing.Point(305, 164);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 19);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "TC";
+            // 
+            // EmployeeTcId
+            // 
+            this.EmployeeTcId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
+            this.EmployeeTcId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EmployeeTcId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.EmployeeTcId.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.EmployeeTcId.Location = new System.Drawing.Point(306, 185);
+            this.EmployeeTcId.MaxLength = 11;
+            this.EmployeeTcId.Name = "EmployeeTcId";
+            this.EmployeeTcId.Size = new System.Drawing.Size(227, 24);
+            this.EmployeeTcId.TabIndex = 17;
+            this.EmployeeTcId.TextChanged += new System.EventHandler(this.EmployeeTcId_TextChanged);
+            // 
             // CompanyForm
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(755, 476);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.EmployeeTcId);
             this.Controls.Add(this.listofEmployee);
             this.Controls.Add(this.Ephone);
             this.Controls.Add(this.EtxtTitle);
@@ -535,5 +562,7 @@
         private System.Windows.Forms.ListBox listofEmployee;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button EbtnUpdate;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox EmployeeTcId;
     }
 }

@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -20,13 +21,20 @@ namespace MeetingApp
             this.userID = userID;
             this.FullName = FullName;
             LoadCompanies();
+            Permissions(userID);
             isCandidate.CheckedChanged += isCandidate_CheckedChanged;
 
         }
+        private void Permissions(int userID) {
+            byte isAdmin = dbHelper.isAdmin(userID);
+            if (isAdmin == 4 || isAdmin == 3) {
+                delCandidate.Enabled = true;
+                delCandidate.Visible = true;
+                isCandidate.Visible = true;
+                isCandidate.Enabled = true;
+            }
+        }
         private void LoadCompanies() {
-            if (!dbHelper.IsAdmin(userID)) {
-                isCandidate.Enabled = false;
-            } 
             DataTable companies;
             if (isCandidate.Checked == true) {
                  companies = dbHelper.GetCandidateCompanies();

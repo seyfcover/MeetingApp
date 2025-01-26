@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace MeetingApp
@@ -27,7 +22,31 @@ namespace MeetingApp
             this.selectedItemId = selectedItemId;
             LoadUsers();
             LoadInventoryItemsToComboBox(cbInventories);
+            Permissions(userId);
         }
+        private void Permissions(int userID) {
+
+            byte isAdmin = dbHelper.isAdmin(userID);
+            if (isAdmin == 4 || isAdmin == 2) {
+                btnDelItem.Visible = true;
+                btnDelItem.Enabled = true;
+                btnUpdateItem.Visible = true;
+                btnUpdateItem.Enabled = true;
+                comboBoxUsers.Enabled = true;
+                cbInventories.Enabled = true;
+                cbInventories.Visible = true;
+                label13.Visible = true;
+                isNull.Enabled = true;
+ 
+
+            } else {
+                this.Text = "Demirbaş Bilgileri";
+            }
+        }
+        private string StringIemID(int itemid) {
+            return "TTO"+itemid.ToString();
+        }
+    
 
         public void LoadInventoryItemsToComboBox(ComboBox comboBox) {
             // Demirbaş verilerini al
@@ -39,7 +58,7 @@ namespace MeetingApp
 
             // ComboBox'a DataTable bağla
             comboBox.DataSource = inventoryTable;
-            comboBox.SelectedValue = selectedItemId;
+            comboBox.SelectedValue = StringIemID(selectedItemId);
         }
 
         private void LoadUsers() {
@@ -60,10 +79,15 @@ namespace MeetingApp
             if (cbInventories.SelectedIndex >= 0) // Geçerli bir seçim kontrolü
             {
                 // Seçilen demirbaşın ID'sini al
-                int selectedItemID = Convert.ToInt32(cbInventories.SelectedValue);
+                string selectedItemID = cbInventories.SelectedValue.ToString();
+
+
+                // Eğer ID 'TTO123' gibi bir formatta ise, 'TTO' harflerinden sonraki kısmı almak için:
+                int selectedItemId = Convert.ToInt32(selectedItemID.Substring(3));
+
 
                 // Detayları getir
-                DataRow selectedRow = dbHelper.GetInventoryDetails(selectedItemID);
+                DataRow selectedRow = dbHelper.GetInventoryDetails(selectedItemId);
 
                 // Detayları ilgili alanlara yazdır
                 if (selectedRow != null) {
@@ -169,13 +193,14 @@ namespace MeetingApp
 
         private void btnUpdateItem_Click(object sender, EventArgs e) {
             // Seçilen item ID'yi almak
-            int? selectedItemId = (int?)cbInventories.SelectedValue;
+
+            int? newselected = Convert.ToInt32(cbInventories.SelectedValue.ToString().Substring(3));
 
             // Eğer seçilen item ID geçerli değilse hata mesajı göster
-            if (!selectedItemId.HasValue) {
+            if (!newselected.HasValue) {
                 MessageBox.Show("Lütfen bir ekipman seçin.");
                 return;
-            }
+            } 
 
             // Güncellenmiş Item nesnesini oluştur
             Item updatedItem = new Item(
@@ -201,10 +226,12 @@ namespace MeetingApp
 
             try {
                 // Item nesnesini veritabanına güncelle
-                dbHelper.UpdateInventoryItem(updatedItem, selectedItemId);
+                dbHelper.UpdateInventoryItem(updatedItem, newselected);
                 MessageBox.Show("Ekipman başarıyla güncellendi.");
+                dbHelper.AddLog("Güncelleme", fullName + " Kullanıcısı " + txtItemName.Text + " adlı demirbaşı güncelledi." + selectedItemId.ToString());
             } catch (Exception ex) {
                 MessageBox.Show($"Bir hata oluştu: {ex.Message}");
+                dbHelper.AddLog("Hata", fullName + " Kullanıcısı " + txtItemName.Text + " adlı demirbaşı güncellerken hata oluştu." + selectedItemId.ToString() + ex.Message);
             }
         }
 
@@ -216,16 +243,16 @@ namespace MeetingApp
 
         private void btnDelItem_Click(object sender, EventArgs e) {
             // Seçilen item ID'yi almak
-            int? selectedItemId = (int?)cbInventories.SelectedValue;
-
+            string selectedItemId = cbInventories.SelectedValue.ToString();
             // Eğer geçerli bir item ID yoksa hata mesajı göster
-            if (!selectedItemId.HasValue) {
+            if (String.IsNullOrEmpty(selectedItemId)) {
                 MessageBox.Show("Lütfen bir ekipman seçin.");
                 return;
             }
 
             // Ekipmanı sil
-            dbHelper.DeleteInventoryItem(selectedItemId.Value);
+            dbHelper.DeleteInventoryItem(selectedItemId);
+            dbHelper.AddLog("Silme", fullName + " Kullanıcısı " + txtItemName.Text + " adlı demirbaşı sildi." + selectedItemId.ToString());
             cbInventories.DataSource = null;
             LoadInventoryItemsToComboBox(cbInventories);
 

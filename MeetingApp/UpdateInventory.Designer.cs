@@ -60,11 +60,11 @@
             this.comboBoxUsers = new System.Windows.Forms.ComboBox();
             this.selectFile = new System.Windows.Forms.Button();
             this.btnUpdateItem = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDelItem = new System.Windows.Forms.Button();
             this.cbInventories = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btnDelPhoto = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -179,6 +179,7 @@
             // isNull
             // 
             this.isNull.AutoSize = true;
+            this.isNull.Enabled = false;
             this.isNull.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.isNull.Location = new System.Drawing.Point(376, 400);
             this.isNull.Name = "isNull";
@@ -460,6 +461,7 @@
             this.comboBoxUsers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxUsers.BackColor = System.Drawing.SystemColors.HighlightText;
             this.comboBoxUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxUsers.Enabled = false;
             this.comboBoxUsers.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.comboBoxUsers.Location = new System.Drawing.Point(181, 398);
             this.comboBoxUsers.Name = "comboBoxUsers";
@@ -469,6 +471,7 @@
             // selectFile
             // 
             this.selectFile.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.selectFile.Enabled = false;
             this.selectFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectFile.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.selectFile.ForeColor = System.Drawing.Color.White;
@@ -478,11 +481,13 @@
             this.selectFile.TabIndex = 50;
             this.selectFile.Text = "Ekle";
             this.selectFile.UseVisualStyleBackColor = false;
+            this.selectFile.Visible = false;
             this.selectFile.Click += new System.EventHandler(this.selectFile_Click);
             // 
             // btnUpdateItem
             // 
             this.btnUpdateItem.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnUpdateItem.Enabled = false;
             this.btnUpdateItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnUpdateItem.ForeColor = System.Drawing.Color.White;
@@ -492,21 +497,13 @@
             this.btnUpdateItem.TabIndex = 52;
             this.btnUpdateItem.Text = "Demirbaş Güncelle";
             this.btnUpdateItem.UseVisualStyleBackColor = false;
+            this.btnUpdateItem.Visible = false;
             this.btnUpdateItem.Click += new System.EventHandler(this.btnUpdateItem_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.pictureBox1.Location = new System.Drawing.Point(181, 495);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(213, 130);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 53;
-            this.pictureBox1.TabStop = false;
             // 
             // btnDelItem
             // 
             this.btnDelItem.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDelItem.Enabled = false;
             this.btnDelItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnDelItem.ForeColor = System.Drawing.Color.White;
@@ -516,16 +513,19 @@
             this.btnDelItem.TabIndex = 52;
             this.btnDelItem.Text = "Demirbaş Sil";
             this.btnDelItem.UseVisualStyleBackColor = false;
+            this.btnDelItem.Visible = false;
             this.btnDelItem.Click += new System.EventHandler(this.btnDelItem_Click);
             // 
             // cbInventories
             // 
+            this.cbInventories.Enabled = false;
             this.cbInventories.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.cbInventories.FormattingEnabled = true;
             this.cbInventories.Location = new System.Drawing.Point(181, 25);
             this.cbInventories.Name = "cbInventories";
             this.cbInventories.Size = new System.Drawing.Size(250, 29);
             this.cbInventories.TabIndex = 54;
+            this.cbInventories.Visible = false;
             this.cbInventories.SelectedIndexChanged += new System.EventHandler(this.cbInventories_SelectedIndexChanged);
             // 
             // label13
@@ -537,10 +537,12 @@
             this.label13.Size = new System.Drawing.Size(130, 23);
             this.label13.TabIndex = 19;
             this.label13.Text = "Demirbaş  :";
+            this.label13.Visible = false;
             // 
             // btnDelPhoto
             // 
             this.btnDelPhoto.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDelPhoto.Enabled = false;
             this.btnDelPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelPhoto.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnDelPhoto.ForeColor = System.Drawing.Color.White;
@@ -550,7 +552,18 @@
             this.btnDelPhoto.TabIndex = 50;
             this.btnDelPhoto.Text = "Sil";
             this.btnDelPhoto.UseVisualStyleBackColor = false;
+            this.btnDelPhoto.Visible = false;
             this.btnDelPhoto.Click += new System.EventHandler(this.btnDelPhoto_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.pictureBox1.Location = new System.Drawing.Point(181, 495);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(213, 130);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 53;
+            this.pictureBox1.TabStop = false;
             // 
             // UpdateInventory
             // 

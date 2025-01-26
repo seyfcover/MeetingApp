@@ -14,7 +14,6 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPanel));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.panelofMeetings = new System.Windows.Forms.Panel();
             this.yeniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toplantıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.şirketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -29,6 +28,7 @@
             this.takvimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.raporToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bilgilerimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelofMeetings = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,16 +51,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1532, 48);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // panelofMeetings
-            // 
-            this.panelofMeetings.AutoScroll = true;
-            this.panelofMeetings.BackColor = System.Drawing.Color.White;
-            this.panelofMeetings.Location = new System.Drawing.Point(0, 49);
-            this.panelofMeetings.Margin = new System.Windows.Forms.Padding(11);
-            this.panelofMeetings.Name = "panelofMeetings";
-            this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
-            this.panelofMeetings.TabIndex = 11;
             // 
             // yeniToolStripMenuItem
             // 
@@ -171,9 +161,20 @@
             // 
             this.bilgilerimToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.seal_icon_264141;
             this.bilgilerimToolStripMenuItem.Name = "bilgilerimToolStripMenuItem";
-            this.bilgilerimToolStripMenuItem.Size = new System.Drawing.Size(101, 44);
-            this.bilgilerimToolStripMenuItem.Text = "Bilgilerim";
+            this.bilgilerimToolStripMenuItem.ShowShortcutKeys = false;
+            this.bilgilerimToolStripMenuItem.Size = new System.Drawing.Size(159, 44);
+            this.bilgilerimToolStripMenuItem.Text = "Talep ve Bilgilerim";
             this.bilgilerimToolStripMenuItem.Click += new System.EventHandler(this.bilgilerimToolStripMenuItem_Click);
+            // 
+            // panelofMeetings
+            // 
+            this.panelofMeetings.AutoScroll = true;
+            this.panelofMeetings.BackColor = System.Drawing.Color.White;
+            this.panelofMeetings.Location = new System.Drawing.Point(0, 49);
+            this.panelofMeetings.Margin = new System.Windows.Forms.Padding(11);
+            this.panelofMeetings.Name = "panelofMeetings";
+            this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
+            this.panelofMeetings.TabIndex = 11;
             // 
             // UserPanel
             // 

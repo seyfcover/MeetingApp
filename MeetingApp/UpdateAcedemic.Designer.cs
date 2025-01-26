@@ -219,6 +219,7 @@
             // btndel
             // 
             this.btndel.BackColor = System.Drawing.Color.DarkOrange;
+            this.btndel.Enabled = false;
             this.btndel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btndel.ForeColor = System.Drawing.Color.White;
             this.btndel.Location = new System.Drawing.Point(161, 501);
@@ -227,6 +228,7 @@
             this.btndel.TabIndex = 9;
             this.btndel.Text = "Sil";
             this.btndel.UseVisualStyleBackColor = false;
+            this.btndel.Visible = false;
             this.btndel.Click += new System.EventHandler(this.btndel_Click);
             // 
             // lblFieldsOfActivity

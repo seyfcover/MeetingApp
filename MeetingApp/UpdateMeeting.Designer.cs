@@ -466,6 +466,7 @@ namespace MeetingApp
             // deleteFile
             // 
             this.deleteFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
+            this.deleteFile.Enabled = false;
             this.deleteFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteFile.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.deleteFile.ForeColor = System.Drawing.Color.White;
@@ -475,6 +476,7 @@ namespace MeetingApp
             this.deleteFile.TabIndex = 32;
             this.deleteFile.Text = "Belgeleri Sil";
             this.deleteFile.UseVisualStyleBackColor = false;
+            this.deleteFile.Visible = false;
             this.deleteFile.Click += new System.EventHandler(this.deleteFile_Click);
             // 
             // listofMeetings
@@ -550,6 +552,7 @@ namespace MeetingApp
             this.btnDelMeeting.TabIndex = 18;
             this.btnDelMeeting.Text = "Faaliyet Sil";
             this.btnDelMeeting.UseVisualStyleBackColor = false;
+            this.btnDelMeeting.Visible = false;
             this.btnDelMeeting.Click += new System.EventHandler(this.btnDelMeeting_Click);
             // 
             // label19

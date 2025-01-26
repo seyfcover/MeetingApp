@@ -9,11 +9,13 @@ namespace MeetingApp
     public partial class InventoryManagementForm : Form
     {
         private DatabaseHelper dbHelper;
+        private string FullName;
         private byte[] fileBytes = null;
 
-        public InventoryManagementForm(DatabaseHelper databaseHelper) {
+        public InventoryManagementForm(DatabaseHelper databaseHelper, string FullName) {
             InitializeComponent();
             dbHelper = databaseHelper;
+            this.FullName = FullName;
         }
 
         // Form yüklendiğinde gerekli verileri al
@@ -131,11 +133,12 @@ namespace MeetingApp
                 for (int i = 0; i < countItem.Value; i++) {
                     dbHelper.AddInventoryItem(newItem);
                 }
-                
+                dbHelper.AddLog("Ekleme", FullName + " txtItemName ürününü envantere ekledi Miktar : " + countItem.Value.ToString());
                 MessageBox.Show("Öğe başarıyla eklendi.");
                 ClearForm();
             } catch (Exception ex) {
                 MessageBox.Show("Öğe eklenirken hata oluştu: " + ex.Message);
+                dbHelper.AddLog("Hata", FullName + " txtItemName ürününü envantere eklerken Hata oluştu Miktar : " + countItem.Value.ToString() + " " + ex.Message.ToString());
             }
         }
 

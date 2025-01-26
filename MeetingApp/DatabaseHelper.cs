@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
+using System.Collections;
 
 
 namespace MeetingApp
@@ -39,7 +40,7 @@ namespace MeetingApp
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read()) {
                     int userId = reader.GetInt32(reader.GetOrdinal("userID"));
-                    bool isAdmin = reader.GetBoolean(reader.GetOrdinal("isAdmin"));
+                    byte isAdmin = reader.GetByte(reader.GetOrdinal("isAdmin"));
                     string firstName = reader.GetString(reader.GetOrdinal("FirstName"));
                     string lastName = reader.GetString(reader.GetOrdinal("LastName"));
                     string fullName = $"{firstName} {lastName}";
@@ -98,7 +99,7 @@ namespace MeetingApp
             return isAdmin;
         }
 
-        public void RegisterUser(string username, string firstName, string lastName, string email, string companyName, string title, string phoneNumber, string password, bool isAdmin, string position, bool isValid) {
+        public void RegisterUser(string username, string firstName, string lastName, string email, string companyName, string title, string phoneNumber, string password, byte isAdmin, string position) {
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 string query = "INSERT INTO users (username, firstName, lastName, email, companyName, title, phoneNumber, userPassword, isAdmin ,position) VALUES (@username, @firstName, @lastName, @email, @companyName, @title, @phoneNumber, @password, @isAdmin, @position)";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -118,7 +119,7 @@ namespace MeetingApp
             }
         }
 
-        public bool UpdateUser(int userID, string username, string firstName, string lastName, string email, string companyName, string title, string phoneNumber, string password, bool isAdmin, string position) {
+        public bool UpdateUser(int userID, string username, string firstName, string lastName, string email, string companyName, string title, string phoneNumber, string password, byte isAdmin, string position) {
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 string query = @"
             UPDATE users 
@@ -495,12 +496,13 @@ namespace MeetingApp
             }
         }
 
-        public bool AddEmployee(string firstName, string lastName, int companyID, string email, string phone, string title, string position) {
+        public bool AddEmployee(string firstName, string lastName, string tcID, int companyID, string email, string phone, string title, string position) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = "INSERT INTO Employees (firstname, lastname, companyID, email, phone, title, position) VALUES (@FirstName, @LastName, @CompanyID, @Email, @Phone, @Title, @Position)";
+                string query = "INSERT INTO Employees (firstname, lastname, companyID, email, phone, title, position,EmployeeTcID) VALUES (@FirstName, @LastName, @CompanyID, @Email, @Phone, @Title, @Position , @EmployeeTcID)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@FirstName", firstName);
                 cmd.Parameters.AddWithValue("@LastName", lastName);
+                cmd.Parameters.Add("@EmployeeTcID", SqlDbType.NVarChar).Value = (object)tcID ?? DBNull.Value;
                 cmd.Parameters.AddWithValue("@CompanyID", companyID);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Phone", phone);
@@ -515,7 +517,7 @@ namespace MeetingApp
                 return result > 0;
             }
         }
-        public bool UpdateEmployee(int employeeID, string firstName, string lastName, int companyID, string email, string phone, string title, string position) {
+        public bool UpdateEmployee(int employeeID, string firstName, string tcID, string lastName, int companyID, string email, string phone, string title, string position) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
                 string query = @"UPDATE Employees 
                          SET FirstName = @FirstName, 
@@ -524,7 +526,8 @@ namespace MeetingApp
                              Email = @Email, 
                              Phone = @Phone, 
                              Title = @Title, 
-                             Position = @Position 
+                             Position = @Position,
+                             EmployeeTcID = @EmployeeTcID
                          WHERE EmployeeID = @EmployeeID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -536,6 +539,7 @@ namespace MeetingApp
                 cmd.Parameters.AddWithValue("@Title", title);
                 cmd.Parameters.AddWithValue("@Position", position);
                 cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+                cmd.Parameters.AddWithValue("@EmployeeTcID", tcID);
 
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();
@@ -766,7 +770,7 @@ namespace MeetingApp
 
         public DataTable GetDetailsEmployee(int EmployeeID) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = "SELECT FirstName, LastName, Email, Phone, Title, Position, CompanyID FROM Employees WHERE EmployeeID = @EmployeeID";
+                string query = "SELECT FirstName, LastName, Email, Phone, Title, Position, CompanyID, EmployeeTcID FROM Employees WHERE EmployeeID = @EmployeeID";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 adapter.SelectCommand.Parameters.AddWithValue("@EmployeeID", EmployeeID);
                 DataTable employees = new DataTable();
@@ -1967,8 +1971,12 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                                 userID, status, lastMaintenanceDate, notes 
                          FROM inventory 
                          WHERE itemID = @itemID";
+
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@itemID", itemID);
+
+                // Gelen int değerine 'TTO' ekleyerek parametreyi ayarla
+                string formattedItemID = "TTO" + itemID.ToString();
+                cmd.Parameters.AddWithValue("@itemID", formattedItemID);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable resultTable = new DataTable();
@@ -1980,6 +1988,7 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                     return null;
             }
         }
+
 
         public DataTable GetInventoryItemsByUserId(int userId) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
@@ -2056,9 +2065,12 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
 
         // Mevcut envanter öğesini güncelle
         public void UpdateInventoryItem(Item item , int? itemID) {
+            string ID;
             if (!itemID.HasValue) {
                 MessageBox.Show("Lütfen bir ekipman seçin.");
                 return;
+            } else { 
+                ID = "TTO" + itemID.ToString();
             }
 
             using (SqlConnection conn = new SqlConnection(connectionString)) {
@@ -2084,7 +2096,7 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
             WHERE itemID = @itemID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn)) {
-                    cmd.Parameters.AddWithValue("@itemID", itemID);
+                    cmd.Parameters.AddWithValue("@itemID", ID);
                     cmd.Parameters.AddWithValue("@itemName", item.ItemName);
                     cmd.Parameters.AddWithValue("@itemType", item.ItemType);
                     cmd.Parameters.AddWithValue("@serialNumber", (object)item.SerialNumber ?? DBNull.Value);
@@ -2109,8 +2121,8 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
             }
         }
 
-        public void DeleteInventoryItem(int itemID) {
-            if (itemID <= 0) {
+        public void DeleteInventoryItem(string itemID) {
+            if (String.IsNullOrEmpty(itemID)) {
                 MessageBox.Show("Geçerli bir ekipman seçin.");
                 return;
             }
@@ -2135,6 +2147,210 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                     }
                 }
             }
+        }
+
+
+        public byte isAdmin(int userID) {
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                string query = "SELECT isAdmin FROM Users WHERE UserID = @UserID";
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                    // Parametre ekleyerek sorguyu güvenli hale getiriyoruz
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+
+                    // isAdmin değerini al
+                    var result = cmd.ExecuteScalar(); 
+                    return Convert.ToByte(result);
+  
+                }
+            }
+        }
+
+        public bool InsertRequest(int userID, RichTextBox box) {
+     
+            string query = "INSERT INTO Requests (userID, note) VALUES (@userID, @note)";
+
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        // Parametreleri ekleyelim
+                        cmd.Parameters.AddWithValue("@userID", userID);
+                        cmd.Parameters.AddWithValue("@note", string.IsNullOrWhiteSpace(box.Text) ? DBNull.Value : (object)box.Text);
+
+                        // Bağlantıyı aç ve sorguyu çalıştır
+                        conn.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Eğer 1 veya daha fazla satır eklendiyse işlem başarılı
+                        return rowsAffected > 0;
+                    }
+                }
+            } catch (Exception ex) {
+                // Hata durumunda loglama yapılabilir
+                MessageBox.Show("Hata: " + ex.Message);
+                return false;
+            }
+        }
+
+        public List<Tuple<DateTime, string, bool>> GetRequest(int? userID) {
+            List<Tuple<DateTime, string, bool>> requestList = new List<Tuple<DateTime, string, bool>>();
+
+            string query = "SELECT createTime, note, isComplete FROM Requests";
+
+            if (userID.HasValue) {
+                query += " WHERE userID = @userID";
+            }
+
+            query += " ORDER BY createTime DESC";
+
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        if (userID.HasValue) {
+                            cmd.Parameters.AddWithValue("@userID", userID.Value);
+                        }
+
+                        conn.Open();
+
+                        using (SqlDataReader reader = cmd.ExecuteReader()) {
+                            while (reader.Read()) {
+                                DateTime createTime = (DateTime)reader["createTime"];
+                                string note = (string)reader["note"];
+                                bool isComplete = (bool)reader["isComplete"];
+
+                                requestList.Add(new Tuple<DateTime, string, bool>(createTime, note, isComplete));
+                            }
+                        }
+                    }
+                }
+            } catch (Exception ex) {
+                MessageBox.Show("Talepler getirilirken hata oluştu: " + ex.Message);
+            }
+
+            return requestList;
+        }
+
+        public List<Tuple<int, DateTime, string, string>> GetAllRequests() {
+            List<Tuple<int, DateTime, string, string>> requestList = new List<Tuple<int, DateTime, string, string>>();
+
+            string query = @"
+        SELECT 
+            R.RequestID,
+            R.createTime, 
+            R.note, 
+            CASE 
+                WHEN R.isComplete = 1 THEN 'Tamamlandı' 
+                ELSE 'Beklemede' 
+            END AS Status, 
+            U.FirstName + ' ' + U.LastName AS UserFullName
+        FROM Requests R
+        JOIN Users U ON R.userID = U.UserID
+        ORDER BY R.createTime DESC";
+
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        conn.Open();
+
+                        using (SqlDataReader reader = cmd.ExecuteReader()) {
+                            while (reader.Read()) {
+                                int requestID = (int)reader["RequestID"];
+                                DateTime createTime = (DateTime)reader["createTime"];
+                                string note = reader["note"] != DBNull.Value ? (string)reader["note"] : string.Empty;
+                                string status = (string)reader["Status"];
+                                string userFullName = (string)reader["UserFullName"];
+
+                                requestList.Add(new Tuple<int, DateTime, string, string>(requestID, createTime, note, $"{userFullName} - {status}"));
+                            }
+                        }
+                    }
+                }
+            } catch (Exception ex) {
+                MessageBox.Show("Talepler getirilirken hata oluştu: " + ex.Message);
+            }
+
+            return requestList;
+        }
+
+        public bool ConfirmRequest(int requestID) {
+            string query = "UPDATE Requests SET isComplete = 1 WHERE RequestID = @RequestID";
+
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        cmd.Parameters.AddWithValue("@RequestID", requestID);
+
+                        conn.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        return rowsAffected > 0; // En az bir satır güncellendiyse true döndür
+                    }
+                }
+            } catch (Exception ex) {
+                MessageBox.Show("Talep onaylanırken hata oluştu: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool DeleteRequest(int requestID) {
+            string query = "DELETE FROM Requests WHERE RequestID = @RequestID";
+
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        cmd.Parameters.AddWithValue("@RequestID", requestID);
+
+                        conn.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        return rowsAffected > 0; // Eğer en az bir satır silindiyse true döner
+                    }
+                }
+            } catch (Exception ex) {
+                MessageBox.Show("Talep silinirken hata oluştu: " + ex.Message);
+                return false;
+            }
+        }
+
+        public int CountInventory(int userID) {
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                try {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM inventory WHERE userID = @userID";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        cmd.Parameters.AddWithValue("@userID", userID);
+
+                        // Sayıyı al
+                        count = (int)cmd.ExecuteScalar();
+                    }
+                } catch (Exception ex) {
+                    // Hata durumu, örneğin loglama yapılabilir
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return count;
+        }
+
+        public int CountAllInventories() {
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                try {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM inventory";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        // Sayıyı al
+                        count = (int)cmd.ExecuteScalar();
+                    }
+                } catch (Exception ex) {
+                    // Hata durumu, örneğin loglama yapılabilir
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return count;
         }
     }
 }

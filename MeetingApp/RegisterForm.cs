@@ -53,9 +53,8 @@ namespace MeetingApp
                 txtTitle.Text,
                 txtPhone.Text,
                 txtPassword.Text,
-                chkIsAdmin.Checked,
-                txtPosition.Text,
-                chkIsAdmin.Checked
+                (byte)0,
+                txtPosition.Text
             );
 
             MessageBox.Show("Kayıt başarılı!");

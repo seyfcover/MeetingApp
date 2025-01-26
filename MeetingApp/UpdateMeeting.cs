@@ -29,6 +29,7 @@ namespace MeetingApp
             LoadUsers();
             LoadAcademics();
             LoadMeetingsIntoComboBox();
+            Permissions(userID);
         }
 
         private void FilterCompanies(string searchText) {
@@ -100,8 +101,14 @@ namespace MeetingApp
                 string name = row["Name"].ToString();
                 clbCompanies.Items.Add(new Participant(id, name));
             }
-            if (dbHelper.IsAdmin(userID)) {
-                btnDelMeeting.Enabled = true;
+        }
+        private void Permissions(int userID) {
+            byte isAdmin = dbHelper.isAdmin(userID);
+            if (isAdmin == 4 || isAdmin == 3) {
+                btnDelMeeting.Enabled=true;
+                btnDelMeeting.Visible=true;
+                deleteFile.Enabled=true;
+                deleteFile.Visible=true;
             }
         }
 

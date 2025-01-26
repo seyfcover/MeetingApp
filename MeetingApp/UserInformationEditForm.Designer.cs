@@ -35,10 +35,10 @@
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -49,10 +49,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.countInventory = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnNewRquest = new System.Windows.Forms.Button();
             this.panelFooter = new System.Windows.Forms.Panel();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnRquestMng = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyInventoryies)).BeginInit();
             this.SuspendLayout();
@@ -169,6 +170,26 @@
             this.panel1.Size = new System.Drawing.Size(309, 130);
             this.panel1.TabIndex = 18;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(24, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Şifre";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(21, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Kullanıcı Adı ";
+            // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(147, 71);
@@ -186,26 +207,6 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(145, 28);
             this.txtUsername.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(21, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Kullanıcı Adı ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(24, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Şifre";
             // 
             // label8
             // 
@@ -268,6 +269,7 @@
             this.MyInventoryies.Name = "MyInventoryies";
             this.MyInventoryies.Size = new System.Drawing.Size(845, 294);
             this.MyInventoryies.TabIndex = 27;
+            this.MyInventoryies.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyInventoryies_CellDoubleClick);
             // 
             // label11
             // 
@@ -302,19 +304,20 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnNewRquest
             // 
-            this.button2.BackColor = System.Drawing.Color.Orange;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(617, 431);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(208, 30);
-            this.button2.TabIndex = 29;
-            this.button2.Text = "Talep Formu";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnNewRquest.BackColor = System.Drawing.Color.Orange;
+            this.btnNewRquest.FlatAppearance.BorderSize = 0;
+            this.btnNewRquest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewRquest.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.btnNewRquest.ForeColor = System.Drawing.Color.White;
+            this.btnNewRquest.Location = new System.Drawing.Point(617, 431);
+            this.btnNewRquest.Name = "btnNewRquest";
+            this.btnNewRquest.Size = new System.Drawing.Size(208, 30);
+            this.btnNewRquest.TabIndex = 29;
+            this.btnNewRquest.Text = "Talep Formu";
+            this.btnNewRquest.UseVisualStyleBackColor = false;
+            this.btnNewRquest.Click += new System.EventHandler(this.btnNewRquest_Click);
             // 
             // panelFooter
             // 
@@ -348,6 +351,23 @@
             this.label12.Text = "Envanterim";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnRquestMng
+            // 
+            this.btnRquestMng.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnRquestMng.Enabled = false;
+            this.btnRquestMng.FlatAppearance.BorderSize = 0;
+            this.btnRquestMng.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRquestMng.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.btnRquestMng.ForeColor = System.Drawing.Color.White;
+            this.btnRquestMng.Location = new System.Drawing.Point(869, 430);
+            this.btnRquestMng.Name = "btnRquestMng";
+            this.btnRquestMng.Size = new System.Drawing.Size(208, 30);
+            this.btnRquestMng.TabIndex = 29;
+            this.btnRquestMng.Text = "Talep Yönetimi";
+            this.btnRquestMng.UseVisualStyleBackColor = false;
+            this.btnRquestMng.Visible = false;
+            this.btnRquestMng.Click += new System.EventHandler(this.RequestMng_Click);
+            // 
             // UserInformationEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -357,7 +377,8 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.panelFooter);
             this.Controls.Add(this.panelHeader);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnRquestMng);
+            this.Controls.Add(this.btnNewRquest);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.countInventory);
             this.Controls.Add(this.MyInventoryies);
@@ -415,9 +436,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label countInventory;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnNewRquest;
         private System.Windows.Forms.Panel panelFooter;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnRquestMng;
     }
 }

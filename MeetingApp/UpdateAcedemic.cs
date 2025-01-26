@@ -18,20 +18,22 @@ namespace MeetingApp
             this.dbHelper = dbHelper;
             this.FullName = FullName;
             LoadAcademics();
+            Permissions(userID);
         }
-         
+        private void Permissions(int userID) {
+            byte isAdmin = dbHelper.isAdmin(userID);
+            if (isAdmin == 4 || isAdmin == 3) {
+                btndel.Enabled = true;
+                btndel.Visible = true;
+            }
+        }
         private void LoadAcademics() {
             DataTable academics = dbHelper.GetAcademics();
-
             // FullName sütunu ekleyelim
             academics.Columns.Add("FullName", typeof(string), "FirstName + ' ' + LastName");
             listofAcedemics.DataSource = academics;
             listofAcedemics.DisplayMember = "FullName";
             listofAcedemics.ValueMember = "AcademicID";
-
-            if (dbHelper.IsAdmin(userID) == false) {
-                btndel.Enabled = false;
-            }
         }
 
         private void btnSave_Click(object sender, EventArgs e) {

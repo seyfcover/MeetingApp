@@ -46,7 +46,7 @@ namespace MeetingApp
 
             MeetingApp.Models.User user = dbHelper.ValidateUser(txtUsername.Text, txtPassword.Text);
             if (user != null) {
-                if (user.IsAdmin) {
+                if (user.IsAdmin == 4) {
                     AdminPanel adminPanel = new AdminPanel(dbHelper, user.UserID, user.FullName);
                     adminPanel.FormClosed += (s, args) => this.Visible = true;
                     adminPanel.FormClosed += (s, args) => clearTxtboxes(); // AdminPanel kapatıldığında LoginForm'u görünür yapma
@@ -54,7 +54,26 @@ namespace MeetingApp
                     this.Visible = false;
 
                     // Log ekle
-                    dbHelper.AddLog("Giriş", $"Admin ID: {user.UserID} - {user.FullName} sisteme giriş yaptı.");
+                    dbHelper.AddLog("Giriş", $"Super User ID: {user.UserID} - {user.FullName} sisteme giriş yaptı.");
+
+                } else if (user.IsAdmin == 3) { //TTO ADMIN
+                    TTOAdmin adminPanel = new TTOAdmin(dbHelper, user.UserID, user.FullName);
+                    adminPanel.FormClosed += (s, args) => this.Visible = true;
+                    adminPanel.FormClosed += (s, args) => clearTxtboxes(); // AdminPanel kapatıldığında LoginForm'u görünür yapma
+                    adminPanel.Show();
+                    this.Visible = false;
+
+                    // Log ekle
+                    dbHelper.AddLog("Giriş", $"TTO Admin ID: {user.UserID} - {user.FullName} sisteme giriş yaptı.");
+                } else if (user.IsAdmin == 2) {
+                    Administrative adminPanel = new Administrative(dbHelper, user.UserID, user.FullName);
+                    adminPanel.FormClosed += (s, args) => this.Visible = true;
+                    adminPanel.FormClosed += (s, args) => clearTxtboxes(); // AdminPanel kapatıldığında LoginForm'u görünür yapma
+                    adminPanel.Show();
+                    this.Visible = false;
+
+                    // Log ekle
+                    dbHelper.AddLog("Giriş", $"İdari Admin ID: {user.UserID} - {user.FullName} sisteme giriş yaptı.");
                 } else {
                     UserPanel userPanel = new UserPanel(dbHelper, user.UserID, user.FullName);
                     userPanel.FormClosed += (s, args) => this.Visible = true;
