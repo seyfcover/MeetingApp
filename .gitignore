@@ -363,7 +363,7 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #Database
-DatabaseHelper.cs
+MeetingApp/DatabaseHelper.cs
 
 #Resx
 *.resx
