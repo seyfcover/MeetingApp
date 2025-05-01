@@ -64,8 +64,8 @@ namespace MeetingApp
 
         private void btnSendRequest_Click(object sender, EventArgs e) {
             // Kullanıcının girdisini kontrol et
-            if (txtRequest.TextLength <= 50) {
-                MessageBox.Show("Talebiniz 50 karakterden uzun olmalı.");
+            if (txtRequest.TextLength <= 5) {
+                MessageBox.Show("Talebiniz 5 karakterden uzun olmalı.");
                 return;
             }
             if (txtRequest.TextLength >= 254) {

@@ -154,7 +154,7 @@ namespace MeetingApp
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "RequestManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Yeni Talep Oluştur";
+            this.Text = "Talep Yönetimi";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyRequests)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

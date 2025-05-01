@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace MeetingApp
 {
@@ -32,6 +33,8 @@ namespace MeetingApp
         UserInformationEditForm userInformationEditForm;
         private Form calendarForm = null;
         private Form viewMeetingsForm = null;
+        private Timer notificationBlinkTimer;
+        private bool isBlinking = false;
         private List<object> selectedItems = new List<object>();
 
 
@@ -44,10 +47,71 @@ namespace MeetingApp
             LoadCalendarForm();
             Alert(userID);
         }
-        private void Alert(int userID) { 
+        private void Alert(int userID) {
             dbHelper.CheckUpcomingMeetingsForNextWeek(userID);
+            AddNotificationToMenu(dbHelper.GetReminds(null));
         }
- 
+        private void AddNotificationToMenu(List<string> messages) {
+            // Menüde 'Bildirimler' adında bir ToolStripMenuItem varsa
+            var notificationsMenu = bildirimlerToolStripMenuItem;
+
+            if (notificationsMenu != null) {
+                // Duruma göre renk belirle
+                foreach (string message in messages) {
+                    // Bildirimi ekleyeceğimiz yeni bir ToolStripMenuItem oluştur
+                    ToolStripMenuItem newNotification = new ToolStripMenuItem();
+                    newNotification.Text = message;
+
+                    // Menüye ekle
+                    notificationsMenu.DropDownItems.Add(newNotification);
+                }
+
+                // Eğer bildirim varsa, yanıp sönme başlat
+                if (messages.Count > 0 && !isBlinking) {
+                    isBlinking = true;
+                    StartBlinking();
+                }
+            }
+        }
+
+        // Yanıp sönme işlemi için metod
+        private void StartBlinking() {
+            // Timer'ı başlatıyoruz
+            if (notificationBlinkTimer == null) {
+                notificationBlinkTimer = new Timer();
+                notificationBlinkTimer.Interval = 500;  // 500 ms aralıklarla yanıp sönecek
+                notificationBlinkTimer.Tick += NotificationBlinkTimer_Tick;
+            }
+
+            notificationBlinkTimer.Start();
+        }
+
+        // Timer'ın tick event'inde yapılacak işlemler
+        private void NotificationBlinkTimer_Tick(object sender, EventArgs e) {
+            // Menüde 'Bildirimler' ToolStripMenuItem'i varsa
+            if (bildirimlerToolStripMenuItem != null) {
+                // Yanıp sönme efekti: arka plan rengini değiştir
+                if (bildirimlerToolStripMenuItem.BackColor == Color.DarkOrange) {
+                    bildirimlerToolStripMenuItem.BackColor = Color.Transparent;
+                    bildirimlerToolStripMenuItem.ForeColor = Color.Black;// Arka planı normal yap
+                } else {
+                    bildirimlerToolStripMenuItem.BackColor = Color.DarkOrange;
+                    bildirimlerToolStripMenuItem.ForeColor = Color.White;// Arka planı sarı yap (yanıp söner gibi)
+                }
+            }
+        }
+
+        // Bildirimler okunduğunda yanıp sönmeyi durdurma
+        private void StopBlinking() {
+            if (notificationBlinkTimer != null) {
+                notificationBlinkTimer.Stop();
+                bildirimlerToolStripMenuItem.BackColor = Color.Transparent;
+                bildirimlerToolStripMenuItem.ForeColor = Color.Black;
+                // Arka planı normal yap
+                isBlinking = false;
+            }
+        }
+
         private void LoadCalendarForm() {
             // Takvim formunu oluştur ve panelde göster
             if (calendarForm == null || calendarForm.IsDisposed) {
@@ -210,6 +274,8 @@ namespace MeetingApp
             dbHelper.AddLog("Çıkış", "Admin " + FullName + " Sistemden çıkış yaptı.");
         }
 
-        
+        private void bildirimlerToolStripMenuItem_Click(object sender, EventArgs e) {
+            StopBlinking();
+        }
     }
 }

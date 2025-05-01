@@ -89,12 +89,29 @@ namespace MeetingApp
 
         private void FormatInventoryGrid() {
             foreach (DataGridViewRow row in dataGridViewInventory.Rows) {
-                if (row.Cells["status"].Value != null && row.Cells["status"].Value.ToString() == "Bakımda") {
-                    // Eğer ekipman bakımda ise, satırı kırmızı renkte yap
-                    row.DefaultCellStyle.BackColor = Color.Coral;
-                } else if (row.Cells["status"].Value != null && row.Cells["status"].Value.ToString() == "Mevcut") {
-                    // Eğer ekipman kullanılabilir durumdaysa, satırı yeşil yap
-                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                if (row.Cells["status"].Value != null) {
+                    string status = row.Cells["status"].Value.ToString();
+
+                    switch (status) {
+                        case "Bakımda":
+                            row.DefaultCellStyle.BackColor = Color.Moccasin;
+                            break;
+                        case "Mevcut":
+                            row.DefaultCellStyle.BackColor = Color.Honeydew;
+                            break;
+                        case "Kayıp":
+                            row.DefaultCellStyle.BackColor = Color.MistyRose;
+                            break;
+                        case "Kullanımda":
+                            row.DefaultCellStyle.BackColor = Color.AliceBlue;
+                            break;
+                        case "Arızalı":
+                            row.DefaultCellStyle.BackColor = Color.Gainsboro;
+                            break;
+                        default:
+                            row.DefaultCellStyle.BackColor = Color.White; // Varsayılan renk
+                            break;
+                    }
                 }
             }
         }

@@ -53,7 +53,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePickerLastMaintenance = new System.Windows.Forms.DateTimePicker();
             this.lblPurchaseDate = new System.Windows.Forms.Label();
-            this.dateTimePickerWarrantyEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerWarranty = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.dateTimePickerPurchase = new System.Windows.Forms.DateTimePicker();
             this.lblUser = new System.Windows.Forms.Label();
@@ -65,6 +65,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.btnDelPhoto = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.checkBoxReminder = new System.Windows.Forms.CheckBox();
+            this.txtID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,7 +162,7 @@
             "Bakımda",
             "Arızalı",
             "Kayıp"});
-            this.txtStatus.Location = new System.Drawing.Point(181, 429);
+            this.txtStatus.Location = new System.Drawing.Point(181, 464);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(180, 29);
             this.txtStatus.TabIndex = 48;
@@ -169,7 +171,7 @@
             // 
             this.txtNotes.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtNotes.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtNotes.Location = new System.Drawing.Point(181, 631);
+            this.txtNotes.Location = new System.Drawing.Point(181, 666);
             this.txtNotes.MaxLength = 300;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.Size = new System.Drawing.Size(250, 114);
@@ -181,7 +183,7 @@
             this.isNull.AutoSize = true;
             this.isNull.Enabled = false;
             this.isNull.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.isNull.Location = new System.Drawing.Point(376, 400);
+            this.isNull.Location = new System.Drawing.Point(376, 435);
             this.isNull.Name = "isNull";
             this.isNull.Size = new System.Drawing.Size(55, 25);
             this.isNull.TabIndex = 47;
@@ -213,7 +215,7 @@
             // 
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(24, 636);
+            this.label12.Location = new System.Drawing.Point(24, 671);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(100, 24);
             this.label12.TabIndex = 23;
@@ -223,7 +225,7 @@
             // 
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(24, 373);
+            this.label9.Location = new System.Drawing.Point(24, 408);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(151, 23);
             this.label9.TabIndex = 24;
@@ -233,7 +235,7 @@
             // 
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(24, 342);
+            this.label8.Location = new System.Drawing.Point(24, 377);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 23);
             this.label8.TabIndex = 25;
@@ -243,7 +245,7 @@
             // 
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(24, 311);
+            this.label7.Location = new System.Drawing.Point(24, 346);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 23);
             this.label7.TabIndex = 26;
@@ -253,7 +255,7 @@
             // 
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(24, 280);
+            this.label6.Location = new System.Drawing.Point(24, 315);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 23);
             this.label6.TabIndex = 27;
@@ -303,7 +305,7 @@
             // 
             this.txtDepartment.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtDepartment.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtDepartment.Location = new System.Drawing.Point(181, 367);
+            this.txtDepartment.Location = new System.Drawing.Point(181, 402);
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(250, 29);
             this.txtDepartment.TabIndex = 45;
@@ -312,7 +314,7 @@
             // 
             this.txtLocation.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtLocation.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtLocation.Location = new System.Drawing.Point(181, 336);
+            this.txtLocation.Location = new System.Drawing.Point(181, 371);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(250, 29);
             this.txtLocation.TabIndex = 44;
@@ -321,7 +323,7 @@
             // 
             this.txtTaxRate.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtTaxRate.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtTaxRate.Location = new System.Drawing.Point(181, 305);
+            this.txtTaxRate.Location = new System.Drawing.Point(181, 340);
             this.txtTaxRate.Name = "txtTaxRate";
             this.txtTaxRate.Size = new System.Drawing.Size(250, 29);
             this.txtTaxRate.TabIndex = 43;
@@ -330,7 +332,7 @@
             // 
             this.txtCost.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtCost.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtCost.Location = new System.Drawing.Point(181, 274);
+            this.txtCost.Location = new System.Drawing.Point(181, 309);
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(250, 29);
             this.txtCost.TabIndex = 42;
@@ -372,7 +374,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(24, 495);
+            this.label1.Location = new System.Drawing.Point(24, 530);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 24);
             this.label1.TabIndex = 32;
@@ -382,7 +384,7 @@
             // 
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(24, 466);
+            this.label11.Location = new System.Drawing.Point(24, 501);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(151, 24);
             this.label11.TabIndex = 36;
@@ -401,7 +403,7 @@
             // dateTimePickerLastMaintenance
             // 
             this.dateTimePickerLastMaintenance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dateTimePickerLastMaintenance.Location = new System.Drawing.Point(181, 460);
+            this.dateTimePickerLastMaintenance.Location = new System.Drawing.Point(181, 495);
             this.dateTimePickerLastMaintenance.MinDate = new System.DateTime(2000, 1, 24, 0, 0, 0, 0);
             this.dateTimePickerLastMaintenance.Name = "dateTimePickerLastMaintenance";
             this.dateTimePickerLastMaintenance.Size = new System.Drawing.Size(250, 29);
@@ -417,20 +419,20 @@
             this.lblPurchaseDate.TabIndex = 34;
             this.lblPurchaseDate.Text = "Satın Alınma Tarihi :";
             // 
-            // dateTimePickerWarrantyEnd
+            // dateTimePickerWarranty
             // 
-            this.dateTimePickerWarrantyEnd.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dateTimePickerWarrantyEnd.Location = new System.Drawing.Point(181, 243);
-            this.dateTimePickerWarrantyEnd.MinDate = new System.DateTime(2000, 1, 24, 0, 0, 0, 0);
-            this.dateTimePickerWarrantyEnd.Name = "dateTimePickerWarrantyEnd";
-            this.dateTimePickerWarrantyEnd.Size = new System.Drawing.Size(250, 29);
-            this.dateTimePickerWarrantyEnd.TabIndex = 41;
+            this.dateTimePickerWarranty.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dateTimePickerWarranty.Location = new System.Drawing.Point(181, 243);
+            this.dateTimePickerWarranty.MinDate = new System.DateTime(2000, 1, 24, 0, 0, 0, 0);
+            this.dateTimePickerWarranty.Name = "dateTimePickerWarranty";
+            this.dateTimePickerWarranty.Size = new System.Drawing.Size(250, 29);
+            this.dateTimePickerWarranty.TabIndex = 41;
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(24, 437);
+            this.label10.Location = new System.Drawing.Point(24, 472);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(100, 23);
             this.label10.TabIndex = 38;
@@ -449,7 +451,7 @@
             // 
             this.lblUser.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblUser.ForeColor = System.Drawing.Color.Black;
-            this.lblUser.Location = new System.Drawing.Point(24, 404);
+            this.lblUser.Location = new System.Drawing.Point(24, 439);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(130, 23);
             this.lblUser.TabIndex = 40;
@@ -463,7 +465,7 @@
             this.comboBoxUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUsers.Enabled = false;
             this.comboBoxUsers.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.comboBoxUsers.Location = new System.Drawing.Point(181, 398);
+            this.comboBoxUsers.Location = new System.Drawing.Point(181, 433);
             this.comboBoxUsers.Name = "comboBoxUsers";
             this.comboBoxUsers.Size = new System.Drawing.Size(180, 29);
             this.comboBoxUsers.TabIndex = 46;
@@ -475,7 +477,7 @@
             this.selectFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectFile.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.selectFile.ForeColor = System.Drawing.Color.White;
-            this.selectFile.Location = new System.Drawing.Point(400, 495);
+            this.selectFile.Location = new System.Drawing.Point(400, 530);
             this.selectFile.Name = "selectFile";
             this.selectFile.Size = new System.Drawing.Size(31, 64);
             this.selectFile.TabIndex = 50;
@@ -491,7 +493,7 @@
             this.btnUpdateItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnUpdateItem.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateItem.Location = new System.Drawing.Point(28, 760);
+            this.btnUpdateItem.Location = new System.Drawing.Point(28, 795);
             this.btnUpdateItem.Name = "btnUpdateItem";
             this.btnUpdateItem.Size = new System.Drawing.Size(194, 35);
             this.btnUpdateItem.TabIndex = 52;
@@ -507,7 +509,7 @@
             this.btnDelItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnDelItem.ForeColor = System.Drawing.Color.White;
-            this.btnDelItem.Location = new System.Drawing.Point(237, 760);
+            this.btnDelItem.Location = new System.Drawing.Point(237, 795);
             this.btnDelItem.Name = "btnDelItem";
             this.btnDelItem.Size = new System.Drawing.Size(194, 35);
             this.btnDelItem.TabIndex = 52;
@@ -546,7 +548,7 @@
             this.btnDelPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelPhoto.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnDelPhoto.ForeColor = System.Drawing.Color.White;
-            this.btnDelPhoto.Location = new System.Drawing.Point(400, 561);
+            this.btnDelPhoto.Location = new System.Drawing.Point(400, 596);
             this.btnDelPhoto.Name = "btnDelPhoto";
             this.btnDelPhoto.Size = new System.Drawing.Size(31, 64);
             this.btnDelPhoto.TabIndex = 50;
@@ -558,19 +560,43 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.pictureBox1.Location = new System.Drawing.Point(181, 495);
+            this.pictureBox1.Location = new System.Drawing.Point(181, 530);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(213, 130);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 53;
             this.pictureBox1.TabStop = false;
             // 
+            // checkBoxReminder
+            // 
+            this.checkBoxReminder.AutoSize = true;
+            this.checkBoxReminder.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.checkBoxReminder.Location = new System.Drawing.Point(181, 278);
+            this.checkBoxReminder.Name = "checkBoxReminder";
+            this.checkBoxReminder.Size = new System.Drawing.Size(110, 25);
+            this.checkBoxReminder.TabIndex = 55;
+            this.checkBoxReminder.Text = "Hatırlatma";
+            this.checkBoxReminder.UseVisualStyleBackColor = true;
+            // 
+            // txtID
+            // 
+            this.txtID.AutoSize = true;
+            this.txtID.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.txtID.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.txtID.Location = new System.Drawing.Point(24, 9);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(62, 21);
+            this.txtID.TabIndex = 56;
+            this.txtID.Text = "label14";
+            // 
             // UpdateInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(450, 815);
+            this.ClientSize = new System.Drawing.Size(450, 849);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.checkBoxReminder);
             this.Controls.Add(this.cbInventories);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtItemType);
@@ -601,7 +627,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePickerLastMaintenance);
             this.Controls.Add(this.lblPurchaseDate);
-            this.Controls.Add(this.dateTimePickerWarrantyEnd);
+            this.Controls.Add(this.dateTimePickerWarranty);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dateTimePickerPurchase);
             this.Controls.Add(this.lblUser);
@@ -650,7 +676,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePickerLastMaintenance;
         private System.Windows.Forms.Label lblPurchaseDate;
-        private System.Windows.Forms.DateTimePicker dateTimePickerWarrantyEnd;
+        private System.Windows.Forms.DateTimePicker dateTimePickerWarranty;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dateTimePickerPurchase;
         private System.Windows.Forms.Label lblUser;
@@ -661,5 +687,7 @@
         private System.Windows.Forms.ComboBox cbInventories;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnDelPhoto;
+        private System.Windows.Forms.CheckBox checkBoxReminder;
+        private System.Windows.Forms.Label txtID;
     }
 }

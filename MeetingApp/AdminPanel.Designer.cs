@@ -45,12 +45,13 @@ namespace MeetingApp
             this.şirketAkademisyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.takvimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.makeReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.bilgilerimVeTalepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adayŞirketlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.envanterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logKayıtlarıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelofMeetings = new System.Windows.Forms.Panel();
-            this.bilgilerimVeTalepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bildirimlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +68,7 @@ namespace MeetingApp
             this.makeReport,
             this.bilgilerimVeTalepToolStripMenuItem,
             this.adayŞirketlerToolStripMenuItem,
+            this.bildirimlerToolStripMenuItem,
             this.envanterToolStripMenuItem,
             this.istatistiklerToolStripMenuItem,
             this.logKayıtlarıToolStripMenuItem});
@@ -202,6 +204,14 @@ namespace MeetingApp
             this.makeReport.Text = "Rapor";
             this.makeReport.Click += new System.EventHandler(this.makeReport_Click);
             // 
+            // bilgilerimVeTalepToolStripMenuItem
+            // 
+            this.bilgilerimVeTalepToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.seal_icon_264141;
+            this.bilgilerimVeTalepToolStripMenuItem.Name = "bilgilerimVeTalepToolStripMenuItem";
+            this.bilgilerimVeTalepToolStripMenuItem.Size = new System.Drawing.Size(159, 44);
+            this.bilgilerimVeTalepToolStripMenuItem.Text = "Bilgilerim ve Talep";
+            this.bilgilerimVeTalepToolStripMenuItem.Click += new System.EventHandler(this.bilgilerimVeTalepToolStripMenuItem_Click);
+            // 
             // adayŞirketlerToolStripMenuItem
             // 
             this.adayŞirketlerToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.seal_icon_264141;
@@ -245,13 +255,13 @@ namespace MeetingApp
             this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
             this.panelofMeetings.TabIndex = 10;
             // 
-            // bilgilerimVeTalepToolStripMenuItem
+            // bildirimlerToolStripMenuItem
             // 
-            this.bilgilerimVeTalepToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.seal_icon_264141;
-            this.bilgilerimVeTalepToolStripMenuItem.Name = "bilgilerimVeTalepToolStripMenuItem";
-            this.bilgilerimVeTalepToolStripMenuItem.Size = new System.Drawing.Size(159, 44);
-            this.bilgilerimVeTalepToolStripMenuItem.Text = "Bilgilerim ve Talep";
-            this.bilgilerimVeTalepToolStripMenuItem.Click += new System.EventHandler(this.bilgilerimVeTalepToolStripMenuItem_Click);
+            this.bildirimlerToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.calendar_time_add_schedule_planning_icon_264061;
+            this.bildirimlerToolStripMenuItem.Name = "bildirimlerToolStripMenuItem";
+            this.bildirimlerToolStripMenuItem.Size = new System.Drawing.Size(106, 44);
+            this.bildirimlerToolStripMenuItem.Text = "Bildirimler";
+            this.bildirimlerToolStripMenuItem.Click += new System.EventHandler(this.bildirimlerToolStripMenuItem_Click);
             // 
             // AdminPanel
             // 
@@ -301,5 +311,6 @@ namespace MeetingApp
         private ToolStripMenuItem şirketAkademisyenToolStripMenuItem;
         private ToolStripMenuItem envanterToolStripMenuItem;
         private ToolStripMenuItem bilgilerimVeTalepToolStripMenuItem;
+        private ToolStripMenuItem bildirimlerToolStripMenuItem;
     }
 }

@@ -91,6 +91,7 @@ namespace MeetingApp
 
                 // Detayları ilgili alanlara yazdır
                 if (selectedRow != null) {
+                    txtID.Text = selectedRow["itemID"].ToString();
                     txtItemName.Text = selectedRow["itemName"].ToString();
                     txtItemType.Text = selectedRow["itemType"].ToString();
                     txtSerialNumber.Text = selectedRow["serialNumber"].ToString();
@@ -102,8 +103,9 @@ namespace MeetingApp
                         dateTimePickerPurchase.Value = purchaseDate;
 
                     if (DateTime.TryParse(selectedRow["warrantyEndDate"].ToString(), out DateTime warrantyEndDate))
-                        dateTimePickerWarrantyEnd.Value = warrantyEndDate;
+                        dateTimePickerWarranty.Value = warrantyEndDate;
 
+                    checkBoxReminder.Checked = Convert.ToBoolean(selectedRow["reminderStatus"]);
                     txtCost.Text = selectedRow["cost"].ToString();
                     txtTaxRate.Text = selectedRow["taxRate"].ToString();
 
@@ -192,48 +194,58 @@ namespace MeetingApp
         }
 
         private void btnUpdateItem_Click(object sender, EventArgs e) {
-            // Seçilen item ID'yi almak
-
-            int? newselected = Convert.ToInt32(cbInventories.SelectedValue.ToString().Substring(3));
-
-            // Eğer seçilen item ID geçerli değilse hata mesajı göster
-            if (!newselected.HasValue) {
-                MessageBox.Show("Lütfen bir ekipman seçin.");
-                return;
-            } 
-
-            // Güncellenmiş Item nesnesini oluştur
-            Item updatedItem = new Item(
-                itemName: txtItemName.Text.Trim(),
-                itemType: txtItemType.Text.Trim(),
-                serialNumber: string.IsNullOrEmpty(txtSerialNumber.Text) ? null : txtSerialNumber.Text.Trim(),
-                brand: string.IsNullOrEmpty(txtBrand.Text) ? null : txtBrand.Text.Trim(),
-                model: string.IsNullOrEmpty(txtModel.Text) ? null : txtModel.Text.Trim(),
-                purchaseDate: dateTimePickerPurchase.Value,
-                warrantyEndDate: dateTimePickerWarrantyEnd.Value,
-                cost: decimal.TryParse(txtCost.Text.Trim(), out var cost) ? cost : (decimal?)null,
-                taxRate: decimal.TryParse(txtTaxRate.Text.Trim(), out var taxRate) ? taxRate : (decimal?)null,
-                photo: fileBytes != null && fileBytes.Length > 0 ? fileBytes : null,
-                location: string.IsNullOrEmpty(txtLocation.Text) ? null : txtLocation.Text.Trim(),
-                department: string.IsNullOrEmpty(txtDepartment.Text) ? null : txtDepartment.Text.Trim(),
-                userID: (int?)comboBoxUsers.SelectedValue,
-                status: string.IsNullOrEmpty(txtStatus.Text) ? null : txtStatus.Text.Trim(),
-                lastMaintenanceDate: dateTimePickerLastMaintenance.Value,
-                notes: string.IsNullOrEmpty(txtNotes.Text) ? null : txtNotes.Text.Trim(),
-                createdAt: null, // Veritabanında zaten mevcut, güncellenmemeli
-                updatedAt: DateTime.Now // Güncelleme tarihi
-            );
-
             try {
-                // Item nesnesini veritabanına güncelle
-                dbHelper.UpdateInventoryItem(updatedItem, newselected);
+                // Seçilen item ID'yi almak
+                if (cbInventories.SelectedValue == null || string.IsNullOrWhiteSpace(cbInventories.SelectedValue.ToString())) {
+                    MessageBox.Show("Lütfen bir ekipman seçin.");
+                    return;
+                }
+
+                if (!int.TryParse(cbInventories.SelectedValue.ToString().Substring(3), out int newSelected)) {
+                    MessageBox.Show("Geçersiz ekipman ID.");
+                    return;
+                }
+
+                // Kullanıcı ID dönüşümü (Güvenli şekilde)
+                int? userID = comboBoxUsers.SelectedValue != null ? (int?)Convert.ToInt32(comboBoxUsers.SelectedValue) : null;
+
+                // Hatırlatma durumu
+                bool reminderStatus = checkBoxReminder.Checked;
+
+                // Güncellenmiş Item nesnesini oluştur
+                Item updatedItem = new Item(
+                    itemName: txtItemName.Text.Trim(),
+                    itemType: txtItemType.Text.Trim(),
+                    serialNumber: string.IsNullOrEmpty(txtSerialNumber.Text) ? null : txtSerialNumber.Text.Trim(),
+                    brand: string.IsNullOrEmpty(txtBrand.Text) ? null : txtBrand.Text.Trim(),
+                    model: string.IsNullOrEmpty(txtModel.Text) ? null : txtModel.Text.Trim(),
+                    purchaseDate: dateTimePickerPurchase.Checked ? dateTimePickerPurchase.Value : (DateTime?)null,
+                    warrantyEndDate: dateTimePickerWarranty.Checked ? dateTimePickerWarranty.Value : (DateTime?)null,
+                    cost: decimal.TryParse(txtCost.Text.Trim(), out var cost) ? cost : (decimal?)null,
+                    taxRate: decimal.TryParse(txtTaxRate.Text.Trim(), out var taxRate) ? taxRate : (decimal?)null,
+                    photo: fileBytes != null && fileBytes.Length > 0 ? fileBytes : null,
+                    location: string.IsNullOrEmpty(txtLocation.Text) ? null : txtLocation.Text.Trim(),
+                    department: string.IsNullOrEmpty(txtDepartment.Text) ? null : txtDepartment.Text.Trim(),
+                    userID: userID,
+                    status: string.IsNullOrEmpty(txtStatus.Text) ? null : txtStatus.Text.Trim(),
+                    lastMaintenanceDate: dateTimePickerLastMaintenance.Checked ? dateTimePickerLastMaintenance.Value : (DateTime?)null,
+                    notes: string.IsNullOrEmpty(txtNotes.Text) ? null : txtNotes.Text.Trim(),
+                    createdAt: null, // Veritabanında zaten mevcut, güncellenmemeli
+                    updatedAt: DateTime.Now, // Güncelleme tarihi
+                    reminderStatus: reminderStatus // Yeni eklenen alan
+                );
+
+                // Veritabanında güncelle
+                dbHelper.UpdateInventoryItem(updatedItem, newSelected);
                 MessageBox.Show("Ekipman başarıyla güncellendi.");
-                dbHelper.AddLog("Güncelleme", fullName + " Kullanıcısı " + txtItemName.Text + " adlı demirbaşı güncelledi." + selectedItemId.ToString());
+                dbHelper.AddLog("Güncelleme", fullName + $" Kullanıcısı {txtItemName.Text} adlı demirbaşı güncelledi. ID: {newSelected}");
+
             } catch (Exception ex) {
                 MessageBox.Show($"Bir hata oluştu: {ex.Message}");
-                dbHelper.AddLog("Hata", fullName + " Kullanıcısı " + txtItemName.Text + " adlı demirbaşı güncellerken hata oluştu." + selectedItemId.ToString() + ex.Message);
+                dbHelper.AddLog("Hata", fullName + $" Kullanıcısı {txtItemName.Text} adlı demirbaşı güncellerken hata oluştu. Hata: {ex.Message}");
             }
         }
+
 
 
         private void btnDelPhoto_Click(object sender, EventArgs e) {

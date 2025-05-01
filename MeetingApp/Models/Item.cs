@@ -21,11 +21,12 @@ public class Item
     public string Notes { get; set; } // Ek açıklamalar
     public DateTime? CreatedAt { get; set; } // Kaydın oluşturulma zamanı
     public DateTime? UpdatedAt { get; set; } // Kaydın güncellenme zamanı
+    public bool ReminderStatus { get; set; }
 
     // Kurucu (Constructor)
     public Item(string itemName, string itemType, string serialNumber, string brand, string model,
                 DateTime? purchaseDate, DateTime? warrantyEndDate, decimal? cost, decimal? taxRate, byte[] photo, string location, string department, int? userID,
-                string status, DateTime? lastMaintenanceDate, string notes, DateTime? createdAt, DateTime? updatedAt) {
+                string status, DateTime? lastMaintenanceDate, string notes, DateTime? createdAt, DateTime? updatedAt, bool reminderStatus) {
         ItemName = itemName;
         ItemType = itemType;
         SerialNumber = serialNumber;
@@ -44,5 +45,6 @@ public class Item
         Notes = notes;
         CreatedAt = createdAt;
         UpdatedAt = updatedAt;
+        ReminderStatus = reminderStatus;
     }
 }

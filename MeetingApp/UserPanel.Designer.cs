@@ -29,6 +29,7 @@
             this.raporToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bilgilerimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelofMeetings = new System.Windows.Forms.Panel();
+            this.bildirimlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +45,8 @@
             this.aramaToolStripMenuItem,
             this.takvimToolStripMenuItem,
             this.raporToolStripMenuItem,
-            this.bilgilerimToolStripMenuItem});
+            this.bilgilerimToolStripMenuItem,
+            this.bildirimlerToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -176,6 +178,15 @@
             this.panelofMeetings.Size = new System.Drawing.Size(1532, 793);
             this.panelofMeetings.TabIndex = 11;
             // 
+            // bildirimlerToolStripMenuItem
+            // 
+            this.bildirimlerToolStripMenuItem.Image = global::MeetingApp.Properties.Resources.calendar_time_add_schedule_planning_icon_264061;
+            this.bildirimlerToolStripMenuItem.Name = "bildirimlerToolStripMenuItem";
+            this.bildirimlerToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bildirimlerToolStripMenuItem.Size = new System.Drawing.Size(106, 44);
+            this.bildirimlerToolStripMenuItem.Text = "Bildirimler";
+            this.bildirimlerToolStripMenuItem.Click += new System.EventHandler(this.bildirimlerToolStripMenuItem_Click);
+            // 
             // UserPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -215,5 +226,6 @@
         private System.Windows.Forms.ToolStripMenuItem akademisyenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem şirketAkademisyenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bilgilerimToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bildirimlerToolStripMenuItem;
     }
 }

@@ -39,12 +39,11 @@ namespace MeetingApp
             }
             comboBoxUsers.SelectedItem = null;
         }
-        
+
 
         // Add Item butonuna tıklanınca yeni öğe ekle
         private void btnAddItem_Click(object sender, EventArgs e) {
             try {
-
                 // Gerekli alanları kontrol et
                 if (string.IsNullOrEmpty(txtItemName.Text.Trim())) {
                     MessageBox.Show("Öğe adı boş olamaz.");
@@ -87,60 +86,47 @@ namespace MeetingApp
                     return;
                 }
 
-                
-                string itemName = txtItemName.Text.Trim();
-                string itemType = txtItemType.Text.Trim();
-                string serialNumber = txtSerialNumber.Text.Trim();  
-                string brand = txtBrand.Text.Trim();  
-                string model = txtModel.Text.Trim();  
-                DateTime? purchaseDate = dateTimePickerPurchase.Value;  
-                DateTime? warrantyEndDate = dateTimePickerWarrantyEnd.Value;  
-                decimal? cost = string.IsNullOrEmpty(txtCost.Text) ? (decimal?)null : Convert.ToDecimal(txtCost.Text); 
-                decimal? taxRate = string.IsNullOrEmpty(txtTaxRate.Text) ? (decimal?)null : Convert.ToDecimal(txtTaxRate.Text);
-                byte[] photo = fileBytes ?? null;
-                string location = txtLocation.Text.Trim();  
-                string department = txtDepartment.Text.Trim();  
-                int? userID = comboBoxUsers.SelectedValue != null ? (int?)comboBoxUsers.SelectedValue : null;  
-                string status = txtStatus.Text.Trim();  
-                DateTime? lastMaintenanceDate = dateTimePickerLastMaintenance.Value;  
-                string notes = txtNotes.Text.Trim();  
-                DateTime? createdAt = DateTime.Now;  
-                DateTime? updatedAt = DateTime.Now;  
+                // Kullanıcı ID dönüşümü (Güvenli şekilde)
+                int? userID = comboBoxUsers.SelectedValue != null ? (int?)Convert.ToInt32(comboBoxUsers.SelectedValue) : null;
 
-                // Item nesnesi oluştur
+                // ReminderStatus Checkbox kontrolü
+                bool reminderStatus = checkBoxReminder.Checked;
+
                 Item newItem = new Item(
-                    itemName: itemName,
-                    itemType: itemType,
-                    serialNumber: serialNumber,
-                    brand: brand,
-                    model: model,
-                    purchaseDate: purchaseDate,
-                    warrantyEndDate: warrantyEndDate,
-                    cost: cost,
-                    taxRate: taxRate,
-                    photo: photo,
-                    location: location,
-                    department: department,
+                    itemName: txtItemName.Text.Trim(),
+                    itemType: txtItemType.Text.Trim(),
+                    serialNumber: string.IsNullOrEmpty(txtSerialNumber.Text) ? null : txtSerialNumber.Text.Trim(),
+                    brand: string.IsNullOrEmpty(txtBrand.Text) ? null : txtBrand.Text.Trim(),
+                    model: string.IsNullOrEmpty(txtModel.Text) ? null : txtModel.Text.Trim(),
+                    purchaseDate: dateTimePickerPurchase.Checked ? dateTimePickerPurchase.Value : (DateTime?)null,
+                    warrantyEndDate: dateTimePickerWarranty.Checked ? dateTimePickerWarranty.Value : (DateTime?)null,
+                    cost: decimal.TryParse(txtCost.Text.Trim(), out var cost) ? cost : (decimal?)null,
+                    taxRate: decimal.TryParse(txtTaxRate.Text.Trim(), out var taxRate) ? taxRate : (decimal?)null,
+                    photo: fileBytes != null && fileBytes.Length > 0 ? fileBytes : null,
+                    location: string.IsNullOrEmpty(txtLocation.Text) ? null : txtLocation.Text.Trim(),
+                    department: string.IsNullOrEmpty(txtDepartment.Text) ? null : txtDepartment.Text.Trim(),
                     userID: userID,
-                    status: status,
-                    lastMaintenanceDate: lastMaintenanceDate,
-                    notes: notes,
-                    createdAt: createdAt,
-                    updatedAt: updatedAt
+                    status: string.IsNullOrEmpty(txtStatus.Text) ? null : txtStatus.Text.Trim(),
+                    lastMaintenanceDate: dateTimePickerLastMaintenance.Checked ? dateTimePickerLastMaintenance.Value : (DateTime?)null,
+                    notes: string.IsNullOrEmpty(txtNotes.Text) ? null : txtNotes.Text.Trim(),
+                    createdAt: null, // Veritabanında otomatik ekleniyor
+                    updatedAt: DateTime.Now, // Güncelleme tarihi
+                    reminderStatus: reminderStatus// Yeni eklenen alan
                 );
-
-                // Item nesnesini veritabanına ekle
+                // Belirtilen miktar kadar öğe ekle
                 for (int i = 0; i < countItem.Value; i++) {
                     dbHelper.AddInventoryItem(newItem);
                 }
-                dbHelper.AddLog("Ekleme", FullName + " txtItemName ürününü envantere ekledi Miktar : " + countItem.Value.ToString());
+
+                dbHelper.AddLog("Ekleme", FullName + $" {txtItemName.Text} ürününü envantere ekledi.");
                 MessageBox.Show("Öğe başarıyla eklendi.");
                 ClearForm();
             } catch (Exception ex) {
                 MessageBox.Show("Öğe eklenirken hata oluştu: " + ex.Message);
-                dbHelper.AddLog("Hata", FullName + " txtItemName ürününü envantere eklerken Hata oluştu Miktar : " + countItem.Value.ToString() + " " + ex.Message.ToString());
+                dbHelper.AddLog("Hata", FullName + $" {txtItemName.Text} ürününü envantere eklerken hata oluştu. " + ex.Message);
             }
         }
+
 
         public void ValidateNumberRange(TextBox textBox) {
             // TextBox'ın TextChanged olayını kullanarak her metin değişikliğinde kontrol yapılacak
@@ -187,7 +173,7 @@ namespace MeetingApp
             txtBrand.Clear();                
             txtModel.Clear();          
             dateTimePickerPurchase.Value = DateTime.Now;  
-            dateTimePickerWarrantyEnd.Value = DateTime.Now; 
+            dateTimePickerWarranty.Value = DateTime.Now; 
             txtCost.Clear();               
             txtTaxRate.Clear();              
             txtLocation.Clear();              

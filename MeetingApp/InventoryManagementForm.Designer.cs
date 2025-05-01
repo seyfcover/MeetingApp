@@ -42,7 +42,7 @@ namespace MeetingApp
             this.label3 = new System.Windows.Forms.Label();
             this.txtModel = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePickerWarrantyEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerWarranty = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCost = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -64,6 +64,7 @@ namespace MeetingApp
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.countItem = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxReminder = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.countItem)).BeginInit();
             this.SuspendLayout();
@@ -121,7 +122,7 @@ namespace MeetingApp
             // 
             this.lblUser.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblUser.ForeColor = System.Drawing.Color.Black;
-            this.lblUser.Location = new System.Drawing.Point(26, 365);
+            this.lblUser.Location = new System.Drawing.Point(26, 399);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(130, 23);
             this.lblUser.TabIndex = 6;
@@ -134,10 +135,10 @@ namespace MeetingApp
             this.comboBoxUsers.BackColor = System.Drawing.SystemColors.HighlightText;
             this.comboBoxUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUsers.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.comboBoxUsers.Location = new System.Drawing.Point(183, 359);
+            this.comboBoxUsers.Location = new System.Drawing.Point(183, 393);
             this.comboBoxUsers.Name = "comboBoxUsers";
             this.comboBoxUsers.Size = new System.Drawing.Size(180, 29);
-            this.comboBoxUsers.TabIndex = 12;
+            this.comboBoxUsers.TabIndex = 13;
             // 
             // btnAddItem
             // 
@@ -145,10 +146,10 @@ namespace MeetingApp
             this.btnAddItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnAddItem.ForeColor = System.Drawing.Color.White;
-            this.btnAddItem.Location = new System.Drawing.Point(30, 721);
+            this.btnAddItem.Location = new System.Drawing.Point(30, 759);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(404, 35);
-            this.btnAddItem.TabIndex = 17;
+            this.btnAddItem.TabIndex = 20;
             this.btnAddItem.Text = "Demirbaş Ekle";
             this.btnAddItem.UseVisualStyleBackColor = false;
             this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
@@ -157,7 +158,7 @@ namespace MeetingApp
             // 
             this.isNull.AutoSize = true;
             this.isNull.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.isNull.Location = new System.Drawing.Point(378, 361);
+            this.isNull.Location = new System.Drawing.Point(378, 395);
             this.isNull.Name = "isNull";
             this.isNull.Size = new System.Drawing.Size(55, 25);
             this.isNull.TabIndex = 13;
@@ -228,20 +229,20 @@ namespace MeetingApp
             this.label4.TabIndex = 2;
             this.label4.Text = "Model :";
             // 
-            // dateTimePickerWarrantyEnd
+            // dateTimePickerWarranty
             // 
-            this.dateTimePickerWarrantyEnd.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dateTimePickerWarrantyEnd.Location = new System.Drawing.Point(183, 204);
-            this.dateTimePickerWarrantyEnd.MinDate = new System.DateTime(2000, 1, 24, 0, 0, 0, 0);
-            this.dateTimePickerWarrantyEnd.Name = "dateTimePickerWarrantyEnd";
-            this.dateTimePickerWarrantyEnd.Size = new System.Drawing.Size(250, 29);
-            this.dateTimePickerWarrantyEnd.TabIndex = 7;
+            this.dateTimePickerWarranty.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dateTimePickerWarranty.Location = new System.Drawing.Point(183, 208);
+            this.dateTimePickerWarranty.MinDate = new System.DateTime(2000, 1, 24, 0, 0, 0, 0);
+            this.dateTimePickerWarranty.Name = "dateTimePickerWarranty";
+            this.dateTimePickerWarranty.Size = new System.Drawing.Size(250, 29);
+            this.dateTimePickerWarranty.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(26, 210);
+            this.label5.Location = new System.Drawing.Point(26, 214);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(151, 23);
             this.label5.TabIndex = 4;
@@ -251,16 +252,16 @@ namespace MeetingApp
             // 
             this.txtCost.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtCost.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtCost.Location = new System.Drawing.Point(183, 235);
+            this.txtCost.Location = new System.Drawing.Point(183, 269);
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(250, 29);
-            this.txtCost.TabIndex = 8;
+            this.txtCost.TabIndex = 9;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(26, 241);
+            this.label6.Location = new System.Drawing.Point(26, 275);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 23);
             this.label6.TabIndex = 2;
@@ -270,16 +271,16 @@ namespace MeetingApp
             // 
             this.txtTaxRate.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtTaxRate.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtTaxRate.Location = new System.Drawing.Point(183, 266);
+            this.txtTaxRate.Location = new System.Drawing.Point(183, 300);
             this.txtTaxRate.Name = "txtTaxRate";
             this.txtTaxRate.Size = new System.Drawing.Size(250, 29);
-            this.txtTaxRate.TabIndex = 9;
+            this.txtTaxRate.TabIndex = 10;
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(26, 272);
+            this.label7.Location = new System.Drawing.Point(26, 306);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 23);
             this.label7.TabIndex = 2;
@@ -289,16 +290,16 @@ namespace MeetingApp
             // 
             this.txtLocation.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtLocation.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtLocation.Location = new System.Drawing.Point(183, 297);
+            this.txtLocation.Location = new System.Drawing.Point(183, 331);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(250, 29);
-            this.txtLocation.TabIndex = 10;
+            this.txtLocation.TabIndex = 11;
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(26, 303);
+            this.label8.Location = new System.Drawing.Point(26, 337);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 23);
             this.label8.TabIndex = 2;
@@ -308,16 +309,16 @@ namespace MeetingApp
             // 
             this.txtDepartment.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtDepartment.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtDepartment.Location = new System.Drawing.Point(183, 328);
+            this.txtDepartment.Location = new System.Drawing.Point(183, 362);
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(250, 29);
-            this.txtDepartment.TabIndex = 11;
+            this.txtDepartment.TabIndex = 12;
             // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(26, 334);
+            this.label9.Location = new System.Drawing.Point(26, 368);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(151, 23);
             this.label9.TabIndex = 2;
@@ -327,7 +328,7 @@ namespace MeetingApp
             // 
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(26, 398);
+            this.label10.Location = new System.Drawing.Point(26, 432);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(100, 23);
             this.label10.TabIndex = 6;
@@ -336,17 +337,17 @@ namespace MeetingApp
             // dateTimePickerLastMaintenance
             // 
             this.dateTimePickerLastMaintenance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dateTimePickerLastMaintenance.Location = new System.Drawing.Point(183, 421);
+            this.dateTimePickerLastMaintenance.Location = new System.Drawing.Point(183, 456);
             this.dateTimePickerLastMaintenance.MinDate = new System.DateTime(2000, 1, 24, 0, 0, 0, 0);
             this.dateTimePickerLastMaintenance.Name = "dateTimePickerLastMaintenance";
             this.dateTimePickerLastMaintenance.Size = new System.Drawing.Size(250, 29);
-            this.dateTimePickerLastMaintenance.TabIndex = 14;
+            this.dateTimePickerLastMaintenance.TabIndex = 15;
             // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(26, 427);
+            this.label11.Location = new System.Drawing.Point(26, 461);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(151, 24);
             this.label11.TabIndex = 4;
@@ -356,7 +357,7 @@ namespace MeetingApp
             // 
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(26, 597);
+            this.label12.Location = new System.Drawing.Point(26, 635);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(100, 24);
             this.label12.TabIndex = 2;
@@ -366,11 +367,11 @@ namespace MeetingApp
             // 
             this.txtNotes.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtNotes.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtNotes.Location = new System.Drawing.Point(183, 592);
+            this.txtNotes.Location = new System.Drawing.Point(183, 630);
             this.txtNotes.MaxLength = 300;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.Size = new System.Drawing.Size(250, 114);
-            this.txtNotes.TabIndex = 16;
+            this.txtNotes.TabIndex = 17;
             this.txtNotes.Text = "";
             // 
             // txtStatus
@@ -384,16 +385,16 @@ namespace MeetingApp
             "Bakımda",
             "Arızalı",
             "Kayıp"});
-            this.txtStatus.Location = new System.Drawing.Point(183, 390);
+            this.txtStatus.Location = new System.Drawing.Point(183, 424);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(129, 29);
-            this.txtStatus.TabIndex = 13;
+            this.txtStatus.Size = new System.Drawing.Size(180, 29);
+            this.txtStatus.TabIndex = 14;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(26, 456);
+            this.label1.Location = new System.Drawing.Point(26, 494);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 24);
             this.label1.TabIndex = 4;
@@ -405,10 +406,10 @@ namespace MeetingApp
             this.selectFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectFile.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.selectFile.ForeColor = System.Drawing.Color.White;
-            this.selectFile.Location = new System.Drawing.Point(402, 456);
+            this.selectFile.Location = new System.Drawing.Point(402, 494);
             this.selectFile.Name = "selectFile";
             this.selectFile.Size = new System.Drawing.Size(31, 130);
-            this.selectFile.TabIndex = 15;
+            this.selectFile.TabIndex = 16;
             this.selectFile.Text = "Ekle";
             this.selectFile.UseVisualStyleBackColor = false;
             this.selectFile.Click += new System.EventHandler(this.selectFile_Click);
@@ -497,7 +498,7 @@ namespace MeetingApp
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.pictureBox1.Location = new System.Drawing.Point(183, 456);
+            this.pictureBox1.Location = new System.Drawing.Point(183, 494);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(213, 130);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -508,16 +509,17 @@ namespace MeetingApp
             // 
             this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(318, 393);
+            this.label13.Location = new System.Drawing.Point(318, 427);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(56, 23);
             this.label13.TabIndex = 6;
             this.label13.Text = "Adet : ";
+            this.label13.Visible = false;
             // 
             // countItem
             // 
             this.countItem.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.countItem.Location = new System.Drawing.Point(380, 390);
+            this.countItem.Location = new System.Drawing.Point(380, 424);
             this.countItem.Minimum = new decimal(new int[] {
             1,
             0,
@@ -531,13 +533,26 @@ namespace MeetingApp
             0,
             0,
             0});
+            this.countItem.Visible = false;
+            // 
+            // checkBoxReminder
+            // 
+            this.checkBoxReminder.AutoSize = true;
+            this.checkBoxReminder.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.checkBoxReminder.Location = new System.Drawing.Point(183, 246);
+            this.checkBoxReminder.Name = "checkBoxReminder";
+            this.checkBoxReminder.Size = new System.Drawing.Size(110, 25);
+            this.checkBoxReminder.TabIndex = 8;
+            this.checkBoxReminder.Text = "Hatırlatma";
+            this.checkBoxReminder.UseVisualStyleBackColor = true;
             // 
             // InventoryManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(455, 771);
+            this.ClientSize = new System.Drawing.Size(455, 804);
+            this.Controls.Add(this.checkBoxReminder);
             this.Controls.Add(this.countItem);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtItemType);
@@ -567,7 +582,7 @@ namespace MeetingApp
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePickerLastMaintenance);
             this.Controls.Add(this.lblPurchaseDate);
-            this.Controls.Add(this.dateTimePickerWarrantyEnd);
+            this.Controls.Add(this.dateTimePickerWarranty);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dateTimePickerPurchase);
@@ -605,7 +620,7 @@ namespace MeetingApp
         private Label label3;
         private TextBox txtModel;
         private Label label4;
-        private DateTimePicker dateTimePickerWarrantyEnd;
+        private DateTimePicker dateTimePickerWarranty;
         private Label label5;
         private TextBox txtCost;
         private Label label6;
@@ -627,5 +642,6 @@ namespace MeetingApp
         private ComboBox txtItemType;
         private Label label13;
         private NumericUpDown countItem;
+        private CheckBox checkBoxReminder;
     }
 }

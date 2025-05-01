@@ -123,7 +123,7 @@ namespace MeetingApp
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InventoryStatus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Envanter";
+            this.Text = "Envanter Yönetimi";
             this.Load += new System.EventHandler(this.InventoryStatus_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInventory)).EndInit();
             this.ResumeLayout(false);

@@ -1966,9 +1966,9 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
 
         public DataRow GetInventoryDetails(int itemID) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
-                string query = @"SELECT itemName, itemType, serialNumber, brand, model, purchaseDate, 
+                string query = @"SELECT itemID, itemName, itemType, serialNumber, brand, model, purchaseDate, 
                                 warrantyEndDate, cost, taxRate, photo, location, department, 
-                                userID, status, lastMaintenanceDate, notes 
+                                userID, status, lastMaintenanceDate, notes ,reminderStatus
                          FROM inventory 
                          WHERE itemID = @itemID";
 
@@ -2026,15 +2026,15 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
         public void AddInventoryItem(Item item) {
             using (SqlConnection conn = new SqlConnection(connectionString)) {
                 string query = @"
-            INSERT INTO inventory (
-                itemName, itemType, serialNumber, brand, model, purchaseDate, 
-                warrantyEndDate, cost, taxRate, photo, location, 
-                department, userID, status, lastMaintenanceDate, notes, created_at, updated_at
-            ) VALUES (
-                @itemName, @itemType, @serialNumber, @brand, @model, @purchaseDate, 
-                @warrantyEndDate, @cost, @taxRate, @photo, @location, 
-                @department, @userID, @status, @lastMaintenanceDate, @notes, @createdAt, @updatedAt
-            )";
+    INSERT INTO inventory (
+        itemName, itemType, serialNumber, brand, model, purchaseDate, 
+        warrantyEndDate, cost, taxRate, photo, location, 
+        department, userID, status, lastMaintenanceDate, notes, created_at, updated_at, reminderStatus
+    ) VALUES (
+        @itemName, @itemType, @serialNumber, @brand, @model, @purchaseDate, 
+        @warrantyEndDate,  @cost, @taxRate, @photo, @location, 
+        @department, @userID, @status, @lastMaintenanceDate, @notes, @createdAt, @updatedAt, @reminderStatus
+    )";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn)) {
                     cmd.Parameters.AddWithValue("@itemName", item.ItemName);
@@ -2055,6 +2055,7 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                     cmd.Parameters.AddWithValue("@notes", (object)item.Notes ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
                     cmd.Parameters.AddWithValue("@updatedAt", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@reminderStatus", item.ReminderStatus); // Yeni eklenen sütun
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -2063,37 +2064,39 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
         }
 
 
+
         // Mevcut envanter öğesini güncelle
-        public void UpdateInventoryItem(Item item , int? itemID) {
+        public void UpdateInventoryItem(Item item, int? itemID) {
             string ID;
             if (!itemID.HasValue) {
                 MessageBox.Show("Lütfen bir ekipman seçin.");
                 return;
-            } else { 
+            } else {
                 ID = "TTO" + itemID.ToString();
             }
 
             using (SqlConnection conn = new SqlConnection(connectionString)) {
                 string query = @"
-            UPDATE inventory SET 
-                itemName = @itemName, 
-                itemType = @itemType, 
-                serialNumber = @serialNumber, 
-                brand = @brand, 
-                model = @model, 
-                purchaseDate = @purchaseDate, 
-                warrantyEndDate = @warrantyEndDate, 
-                cost = @cost, 
-                taxRate = @taxRate, 
-                photo = @photo, 
-                location = @location, 
-                department = @department, 
-                userID = @userID, 
-                status = @status, 
-                lastMaintenanceDate = @lastMaintenanceDate, 
-                notes = @notes, 
-                updated_at = @updatedAt 
-            WHERE itemID = @itemID";
+    UPDATE inventory SET 
+        itemName = @itemName, 
+        itemType = @itemType, 
+        serialNumber = @serialNumber, 
+        brand = @brand, 
+        model = @model, 
+        purchaseDate = @purchaseDate, 
+        warrantyEndDate = @warrantyEndDate,
+        cost = @cost, 
+        taxRate = @taxRate, 
+        photo = @photo, 
+        location = @location, 
+        department = @department, 
+        userID = @userID, 
+        status = @status, 
+        lastMaintenanceDate = @lastMaintenanceDate, 
+        notes = @notes, 
+        updated_at = @updatedAt, 
+        reminderStatus = @reminderStatus
+    WHERE itemID = @itemID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn)) {
                     cmd.Parameters.AddWithValue("@itemID", ID);
@@ -2114,12 +2117,14 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
                     cmd.Parameters.AddWithValue("@lastMaintenanceDate", (object)item.LastMaintenanceDate ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@notes", (object)item.Notes ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@updatedAt", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@reminderStatus", item.ReminderStatus); // Yeni eklenen sütun
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
             }
         }
+
 
         public void DeleteInventoryItem(string itemID) {
             if (String.IsNullOrEmpty(itemID)) {
@@ -2352,6 +2357,37 @@ VALUES (@MeetingID, @ParticipantType, @ParticipantID)";
             }
             return count;
         }
+
+        public List<string> GetReminds(int? userID) {
+            List<string> reminders = new List<string>();
+
+            string query = @"
+        SELECT itemID, itemName, DATEDIFF(DAY, GETDATE(), warrantyEndDate) AS RemainingDays
+        FROM inventory
+        WHERE (@userID IS NULL OR userID = @UserID)
+          AND warrantyEndDate BETWEEN GETDATE() AND DATEADD(MONTH, 1, GETDATE())";
+
+            using (SqlConnection connection = new SqlConnection(connectionString)) {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection)) {
+                    command.Parameters.AddWithValue("@UserID", (object)userID ?? DBNull.Value);  // Null ise DBNull.Value gönder
+
+                    using (SqlDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            string itemID = reader["itemID"].ToString();
+                            string itemName = reader["itemName"].ToString();
+                            int remainingDays = Convert.ToInt32(reader["RemainingDays"]);
+
+                            // Mesajı oluştur
+                            string reminderMessage = $"{itemID} {itemName} adlı ürünün garanti süresine {remainingDays} gün kaldı.";
+                            reminders.Add(reminderMessage);
+                        }
+                    }
+                }
+            }
+            return reminders;
+        }
+
     }
 }
 

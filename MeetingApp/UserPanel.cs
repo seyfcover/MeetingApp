@@ -1,6 +1,9 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MeetingApp
@@ -20,6 +23,8 @@ namespace MeetingApp
         private UserInformationEditForm userInformationEditForm;
         private Form calendarForm = null;
         private Form viewMeetingsForm = null;
+        private Timer notificationBlinkTimer;
+        private bool isBlinking = false;
         private int userID;
         private string FullName;
         public UserPanel(DatabaseHelper databaseHelper, int UserID, string fullName) {
@@ -34,7 +39,73 @@ namespace MeetingApp
 
         private void Alert(int userID) {
             dbHelper.CheckUpcomingMeetingsForNextWeek(userID);
+            AddNotificationToMenu(dbHelper.GetReminds(userID));
         }
+        private void AddNotificationToMenu(List<string> messages) {
+            // Menüde 'Bildirimler' adında bir ToolStripMenuItem varsa
+            var notificationsMenu = bildirimlerToolStripMenuItem;
+
+            if (notificationsMenu != null) {
+                // Duruma göre renk belirle
+                foreach (string message in messages) {
+                    // Bildirimi ekleyeceğimiz yeni bir ToolStripMenuItem oluştur
+                    ToolStripMenuItem newNotification = new ToolStripMenuItem();
+                    newNotification.Text = message;
+
+                    // Menüye ekle
+                    notificationsMenu.DropDownItems.Add(newNotification);
+                }
+
+                // Eğer bildirim varsa, yanıp sönme başlat
+                if (messages.Count > 0 && !isBlinking) {
+                    isBlinking = true;
+                    StartBlinking();
+                }
+            }
+        }
+
+        // Yanıp sönme işlemi için metod
+        private void StartBlinking() {
+            // Timer'ı başlatıyoruz
+            if (notificationBlinkTimer == null) {
+                notificationBlinkTimer = new Timer();
+                notificationBlinkTimer.Interval = 500;  // 500 ms aralıklarla yanıp sönecek
+                notificationBlinkTimer.Tick += NotificationBlinkTimer_Tick;
+            }
+
+            notificationBlinkTimer.Start();
+        }
+
+        // Timer'ın tick event'inde yapılacak işlemler
+        private void NotificationBlinkTimer_Tick(object sender, EventArgs e) {
+            // Menüde 'Bildirimler' ToolStripMenuItem'i varsa
+            if (bildirimlerToolStripMenuItem != null) {
+                // Yanıp sönme efekti: arka plan rengini değiştir
+                if (bildirimlerToolStripMenuItem.BackColor == Color.DarkOrange) {
+                    bildirimlerToolStripMenuItem.BackColor = Color.Transparent;
+                    bildirimlerToolStripMenuItem.ForeColor = Color.Black;// Arka planı normal yap
+                } else {
+                    bildirimlerToolStripMenuItem.BackColor = Color.DarkOrange;
+                    bildirimlerToolStripMenuItem.ForeColor = Color.White;// Arka planı sarı yap (yanıp söner gibi)
+                }
+            }
+        }
+
+        // Bildirimler okunduğunda yanıp sönmeyi durdurma
+        private void StopBlinking() {
+            if (notificationBlinkTimer != null) {
+                notificationBlinkTimer.Stop();
+                bildirimlerToolStripMenuItem.BackColor = Color.Transparent;
+                bildirimlerToolStripMenuItem.ForeColor = Color.Black;
+                // Arka planı normal yap
+                isBlinking = false;
+            }
+        }
+        private void bildirimlerToolStripMenuItem_Click(object sender, EventArgs e) {
+            StopBlinking();
+        }
+
+
 
         private void LoadCalendarForm() {
             // Takvim formunu oluştur ve panelde göster

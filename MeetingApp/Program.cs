@@ -15,6 +15,7 @@ namespace MeetingApp
             if (IsConfigurationValid()) {
                 // Eğer bağlantı ayarları geçerliyse, ana formu başlat
                 Application.Run(new LoginForm());
+       
             } else {
                 // Bağlantı ayarları geçerli değilse, yapılandırma formunu başlat
                 Application.Run(new ConfigurationForm());
