@@ -364,6 +364,7 @@ FodyWeavers.xsd
 
 #Database
 MeetingApp/DatabaseHelper.cs
+MeetingApp/EmailSender.cs
 
 #Resx
 *.resx
