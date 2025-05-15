@@ -74,6 +74,10 @@ namespace MeetingApp
                         dgvMeetings.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Teal;  // Petrol Yeşili
                         dgvMeetings.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
                     }
+                     else if (logType == "GreenMent") {
+                        dgvMeetings.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkGreen;  // Koyu Yeşili
+                        dgvMeetings.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                    }
                 }
             }
         }

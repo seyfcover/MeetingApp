@@ -624,17 +624,18 @@ namespace MeetingApp
             "Süreç Yönetimi",
             "Etkinlik",
             "Uluslararasılaşma",
-            "Genel/TTO"});
+            "Genel/TTO",
+            "GreenMent"});
             this.MeetingType.Location = new System.Drawing.Point(375, 30);
             this.MeetingType.Name = "MeetingType";
-            this.MeetingType.Size = new System.Drawing.Size(104, 27);
+            this.MeetingType.Size = new System.Drawing.Size(167, 27);
             this.MeetingType.TabIndex = 37;
             // 
             // isImportant
             // 
             this.isImportant.AutoSize = true;
             this.isImportant.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.isImportant.Location = new System.Drawing.Point(539, 31);
+            this.isImportant.Location = new System.Drawing.Point(609, 30);
             this.isImportant.Name = "isImportant";
             this.isImportant.Size = new System.Drawing.Size(143, 22);
             this.isImportant.TabIndex = 38;

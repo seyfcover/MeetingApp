@@ -673,7 +673,7 @@ namespace MeetingApp
             // 
             this.isImportant.AutoSize = true;
             this.isImportant.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.isImportant.Location = new System.Drawing.Point(541, 28);
+            this.isImportant.Location = new System.Drawing.Point(584, 28);
             this.isImportant.Name = "isImportant";
             this.isImportant.Size = new System.Drawing.Size(150, 23);
             this.isImportant.TabIndex = 50;
@@ -692,10 +692,11 @@ namespace MeetingApp
             "Süreç Yönetimi",
             "Etkinlik",
             "Uluslararasılaşma",
-            "Genel/TTO"});
+            "Genel/TTO",
+            "GreenMent"});
             this.MeetingType.Location = new System.Drawing.Point(394, 26);
             this.MeetingType.Name = "MeetingType";
-            this.MeetingType.Size = new System.Drawing.Size(104, 27);
+            this.MeetingType.Size = new System.Drawing.Size(149, 27);
             this.MeetingType.TabIndex = 49;
             // 
             // label20

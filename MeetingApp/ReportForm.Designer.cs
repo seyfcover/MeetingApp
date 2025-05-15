@@ -30,19 +30,19 @@ namespace MeetingApp
             this.reportConditions = new System.Windows.Forms.Button();
             this.chkAcd = new System.Windows.Forms.CheckBox();
             this.lisrConditions = new System.Windows.Forms.Button();
+            this.chkEmployee = new System.Windows.Forms.CheckBox();
             this.chkUser = new System.Windows.Forms.CheckBox();
             this.chkCom = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.labelEmployee = new System.Windows.Forms.Label();
             this.labelPArticipants = new System.Windows.Forms.Label();
             this.listAcedemics = new System.Windows.Forms.ComboBox();
             this.listUsers = new System.Windows.Forms.ComboBox();
             this.listCompany = new System.Windows.Forms.ComboBox();
+            this.listEmployee = new System.Windows.Forms.ComboBox();
             this.searchEvent = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.labelEmployee = new System.Windows.Forms.Label();
-            this.listEmployee = new System.Windows.Forms.ComboBox();
-            this.chkEmployee = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMeetings)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -202,7 +202,8 @@ namespace MeetingApp
             "Süreç Yönetimi",
             "Etkinlik",
             "Uluslararasılaşma",
-            "Genel/TTO"});
+            "Genel/TTO",
+            "GreenMent"});
             this.MeetingType.Location = new System.Drawing.Point(127, 71);
             this.MeetingType.Name = "MeetingType";
             this.MeetingType.Size = new System.Drawing.Size(155, 32);
@@ -261,6 +262,18 @@ namespace MeetingApp
             this.lisrConditions.UseVisualStyleBackColor = false;
             this.lisrConditions.Click += new System.EventHandler(this.lisrConditions_Click);
             // 
+            // chkEmployee
+            // 
+            this.chkEmployee.AutoSize = true;
+            this.chkEmployee.Location = new System.Drawing.Point(88, 293);
+            this.chkEmployee.Name = "chkEmployee";
+            this.chkEmployee.Size = new System.Drawing.Size(127, 24);
+            this.chkEmployee.TabIndex = 41;
+            this.chkEmployee.Text = "chkEmployee";
+            this.chkEmployee.UseVisualStyleBackColor = true;
+            this.chkEmployee.Visible = false;
+            this.chkEmployee.CheckedChanged += new System.EventHandler(this.chkEmp1_CheckedChanged);
+            // 
             // chkUser
             // 
             this.chkUser.AutoSize = true;
@@ -313,6 +326,20 @@ namespace MeetingApp
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // labelEmployee
+            // 
+            this.labelEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.labelEmployee.Font = new System.Drawing.Font("Century Gothic", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelEmployee.ForeColor = System.Drawing.Color.White;
+            this.labelEmployee.Location = new System.Drawing.Point(55, 235);
+            this.labelEmployee.Name = "labelEmployee";
+            this.labelEmployee.Padding = new System.Windows.Forms.Padding(10);
+            this.labelEmployee.Size = new System.Drawing.Size(282, 47);
+            this.labelEmployee.TabIndex = 40;
+            this.labelEmployee.Text = "Personeller";
+            this.labelEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelEmployee.Click += new System.EventHandler(this.labelEmployee_Click);
+            // 
             // labelPArticipants
             // 
             this.labelPArticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -363,6 +390,18 @@ namespace MeetingApp
             this.listCompany.Size = new System.Drawing.Size(282, 32);
             this.listCompany.TabIndex = 0;
             // 
+            // listEmployee
+            // 
+            this.listEmployee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.listEmployee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.listEmployee.Enabled = false;
+            this.listEmployee.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.listEmployee.FormattingEnabled = true;
+            this.listEmployee.Location = new System.Drawing.Point(58, 287);
+            this.listEmployee.Name = "listEmployee";
+            this.listEmployee.Size = new System.Drawing.Size(282, 32);
+            this.listEmployee.TabIndex = 55;
+            // 
             // searchEvent
             // 
             this.searchEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(242)))));
@@ -385,44 +424,6 @@ namespace MeetingApp
             this.label5.TabIndex = 27;
             this.label5.Text = "Faaliyetler     |     Arama";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelEmployee
-            // 
-            this.labelEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.labelEmployee.Font = new System.Drawing.Font("Century Gothic", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.labelEmployee.ForeColor = System.Drawing.Color.White;
-            this.labelEmployee.Location = new System.Drawing.Point(55, 235);
-            this.labelEmployee.Name = "labelEmployee";
-            this.labelEmployee.Padding = new System.Windows.Forms.Padding(10);
-            this.labelEmployee.Size = new System.Drawing.Size(282, 47);
-            this.labelEmployee.TabIndex = 40;
-            this.labelEmployee.Text = "Personeller";
-            this.labelEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelEmployee.Click += new System.EventHandler(this.labelEmployee_Click);
-            // 
-            // listEmployee
-            // 
-            this.listEmployee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.listEmployee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.listEmployee.Enabled = false;
-            this.listEmployee.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.listEmployee.FormattingEnabled = true;
-            this.listEmployee.Location = new System.Drawing.Point(58, 287);
-            this.listEmployee.Name = "listEmployee";
-            this.listEmployee.Size = new System.Drawing.Size(282, 32);
-            this.listEmployee.TabIndex = 55;
-            // 
-            // chkEmployee
-            // 
-            this.chkEmployee.AutoSize = true;
-            this.chkEmployee.Location = new System.Drawing.Point(88, 293);
-            this.chkEmployee.Name = "chkEmployee";
-            this.chkEmployee.Size = new System.Drawing.Size(127, 24);
-            this.chkEmployee.TabIndex = 41;
-            this.chkEmployee.Text = "chkEmployee";
-            this.chkEmployee.UseVisualStyleBackColor = true;
-            this.chkEmployee.Visible = false;
-            this.chkEmployee.CheckedChanged += new System.EventHandler(this.chkEmp1_CheckedChanged);
             // 
             // ReportForm
             // 

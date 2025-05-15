@@ -229,7 +229,8 @@ namespace MeetingApp
                 { "süreç yönetimi", Color.ForestGreen }, // Açık Turuncu
                 { "etkinlik", Color.Purple },
                 { "uluslararasılaşma", Color.DarkSlateGray },
-                { "genel/tto", Color.Teal }  // Açık Mor
+                { "genel/tto", Color.Teal },  // Açık Mor
+                { "greenment", Color.DarkGreen }  // Açık Mor
             };
 
             // `type` değerine göre uygun renk döndürme
